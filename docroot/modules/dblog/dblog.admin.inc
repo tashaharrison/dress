@@ -10,8 +10,6 @@
  *
  * Messages are truncated at 56 chars. Full-length message could be viewed at
  * the message details page.
- *
- * @ingroup logging_severity_levels
  */
 function dblog_overview() {
   $filter = dblog_build_filter_query();

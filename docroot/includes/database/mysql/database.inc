@@ -137,16 +137,21 @@ class DatabaseConnection_mysql extends DatabaseConnection {
   /**
    * Overridden to work around issues to MySQL not supporting transactional DDL.
    */
-  protected function popCommittableTransactions() {
-    // Commit all the committable layers.
-    foreach (array_reverse($this->transactionLayers) as $name => $active) {
-      // Stop once we found an active transaction.
-      if ($active) {
-        break;
+  public function popTransaction($name) {
+    if (!$this->supportsTransactions()) {
+      return;
+    }
+    if (!$this->inTransaction()) {
+      throw new DatabaseTransactionNoActiveException();
+    }
+
+    // Commit everything since SAVEPOINT $name.
+    while ($savepoint = array_pop($this->transactionLayers)) {
+      if ($savepoint != $name) {
+        continue;
       }
 
       // If there are no more layers left then we should commit.
-      unset($this->transactionLayers[$name]);
       if (empty($this->transactionLayers)) {
         if (!PDO::commit()) {
           throw new DatabaseTransactionCommitFailedException();
@@ -164,16 +169,19 @@ class DatabaseConnection_mysql extends DatabaseConnection {
           // savepoints which no longer exist.
           //
           // To avoid exceptions when no actual error has occurred, we silently
-          // succeed for MySQL error code 1305 ("SAVEPOINT does not exist").
-          if ($e->errorInfo[1] == '1305') {
+          // succeed for PDOExceptions with SQLSTATE 42000 ("Syntax error or
+          // access rule violation") and MySQL error code 1305 ("SAVEPOINT does
+          // not exist").
+          if ($e->getCode() == '42000' && $e->errorInfo[1] == '1305') {
             // If one SAVEPOINT was released automatically, then all were.
             // Therefore, we keep just the topmost transaction.
-            $this->transactionLayers = array('drupal_transaction' => 'drupal_transaction');
+            $this->transactionLayers = array('drupal_transaction');
           }
           else {
             throw $e;
           }
         }
+        break;
       }
     }
   }

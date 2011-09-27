@@ -74,10 +74,7 @@ function lock_initialize() {
  * Helper function to get this request's unique id.
  */
 function _lock_id() {
-  // Do not use drupal_static(). This identifier refers to the current
-  // client request, and must not be changed under any circumstances
-  // else the shutdown handler may fail to release our locks.
-  static $lock_id;
+  $lock_id = &drupal_static(__FUNCTION__);
 
   if (!isset($lock_id)) {
     // Assign a unique id.

@@ -341,11 +341,7 @@ abstract class DrupalLocalStreamWrapper implements DrupalStreamWrapperInterface 
    * Base implementation of chmod().
    */
   function chmod($mode) {
-    $output = @chmod($this->getLocalPath(), $mode);
-    // We are modifying the underlying file here, so we have to clear the stat
-    // cache so that PHP understands that URI has changed too.
-    clearstatcache();
-    return $output;
+    return @chmod($this->getLocalPath(), $mode);
   }
 
   /**
@@ -401,7 +397,7 @@ abstract class DrupalLocalStreamWrapper implements DrupalStreamWrapperInterface 
     $this->handle = ($options & STREAM_REPORT_ERRORS) ? fopen($path, $mode) : @fopen($path, $mode);
 
     if ((bool) $this->handle && $options & STREAM_USE_PATH) {
-      $opened_path = $path;
+      $opened_url = $path;
     }
 
     return (bool) $this->handle;

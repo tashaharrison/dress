@@ -547,7 +547,7 @@ function theme_image_formatter($variables) {
     $output = theme('image', $image);
   }
 
-  if (!empty($variables['path']['path'])) {
+  if ($variables['path']) {
     $path = $variables['path']['path'];
     $options = $variables['path']['options'];
     // When displaying an image inside a link, the html option must be TRUE.

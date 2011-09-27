@@ -528,8 +528,6 @@ class DBLogTestCase extends DrupalWebTestCase {
    *   CSS class attribute.
    * @return
    *   The watchdog severity constant or NULL if not found.
-   *
-   * @ingroup logging_severity_levels
    */
   protected function getSeverityConstant($class) {
     // Reversed array from dblog_overview().

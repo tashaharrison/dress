@@ -459,6 +459,10 @@ h1#site-name {
 #main-menu {
   clear: both;
 }
+#main-menu-links a {
+  color: #d9d9d9;
+  padding: 0.6em 1em 0.4em;
+}
 #main-menu-links {
   font-size: 0.929em;
   margin: 0;
@@ -1430,6 +1434,9 @@ div.password-suggestions {
 }
 div.vertical-tabs .vertical-tabs-panes fieldset.vertical-tabs-pane {
   padding: 1em;
+}
+#forum tr td.forum {
+  padding-left: 35px;
 }
 #forum .name {
   font-size: 1.083em;

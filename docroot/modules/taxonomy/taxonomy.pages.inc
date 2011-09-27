@@ -110,7 +110,7 @@ function taxonomy_autocomplete($field_name, $tags_typed = '') {
       ->execute()
       ->fetchAllKeyed();
 
-    $prefix = count($tags_typed) ? drupal_implode_tags($tags_typed) . ', ' : '';
+    $prefix = count($tags_typed) ? implode(', ', $tags_typed) . ', ' : '';
 
     $term_matches = array();
     foreach ($tags_return as $tid => $name) {
@@ -119,7 +119,9 @@ function taxonomy_autocomplete($field_name, $tags_typed = '') {
       if (strpos($name, ',') !== FALSE || strpos($name, '"') !== FALSE) {
         $n = '"' . str_replace('"', '""', $name) . '"';
       }
-      $term_matches[$prefix . $n] = check_plain($name);
+      else {
+        $term_matches[$prefix . $n] = check_plain($name);
+      }
     }
   }
 
