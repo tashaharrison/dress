@@ -1,6 +1,6 @@
 
 ;----------// Theme Information
-  name        = Dress Italian Theme
+  name        = dressitalian
   description = Main theme for the Dress Italian website
   core        = 7.x
   engine      = phptemplate
