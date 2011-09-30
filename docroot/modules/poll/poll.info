@@ -1,17 +1,12 @@
+; $Id: poll.info,v 1.4 2007/06/08 05:50:55 dries Exp $
 name = Poll
 description = Allows your site to capture votes on different topics in the form of multiple choice questions.
-package = Core
+package = Core - optional
 version = VERSION
-core = 7.x
-files[] = poll.test
-stylesheets[all][] = poll.css
-
-; Information added by drupal.org packaging script on 2011-07-28
-version = "7.7"
-project = "drupal"
-datestamp = "1311813879"
-
+core = 6.x
 
 ; Information added by Acquia.com packaging script
+version = "6.20"
+project = "drupal"
 acquia = "1"
 
