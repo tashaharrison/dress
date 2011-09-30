@@ -1,5 +1,4 @@
 <?php
-// $Id: acquia_spi.module,v 1.2.2.2 2010/06/17 03:17:46 pwolanin Exp $
 
 /**
  * @file
@@ -108,8 +107,8 @@ function acquia_spi_get_platform() {
   preg_match('!^([^/]+)(/.+)?$!', $_SERVER['SERVER_SOFTWARE'], $webserver);
   $platform = array(
     'php'               => PHP_VERSION,
-    'webserver_type'    => $webserver[1],
-    'webserver_version' => $webserver[2],
+    'webserver_type'    => isset($webserver[1]) ? $webserver[1] : '',
+    'webserver_version' => isset($webserver[2]) ? $webserver[2] : '',
     'database_type'     => $database_type,
     'database_version'  => $database[$database_type]['value'],
     'system_type'       => php_uname('s'),
@@ -191,7 +190,7 @@ function _acquia_spi_generate_hashes($dir, $exclude_dirs, $limit_dirs = array())
   $fileinfo = array();
   if (is_dir($dir) && $handle = opendir($dir)) {
     while ($file = readdir($handle)) {
-      if (!in_array($file, array('.', '..', 'CVS', '.svn'))) {
+      if (!in_array($file, array('.', '..', 'CVS', '.svn', '.git', '.bzr'))) {
         $path = ($dir == '.')?$file:"$dir/$file";
 
         if (is_dir($path) && !in_array($path, $exclude_dirs) && (empty($limit_dirs) || in_array($path, $limit_dirs)) && ($file != 'translations')) {

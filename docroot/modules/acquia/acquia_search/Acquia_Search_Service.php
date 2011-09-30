@@ -1,5 +1,6 @@
 <?php
-// $Id: Acquia_Search_Service.php 5179 2009-12-30 05:39:10Z buildbot $
+// $Id: Acquia_Search_Service.php 5565 2011-05-31 22:54:47Z peter.wolanin $
+
 include_once './' . drupal_get_path('module', 'apachesolr') . '/Drupal_Apache_Solr_Service.php';
 include_once './' . drupal_get_path('module', 'acquia_agent') . '/acquia_agent_streams.inc';
 
@@ -15,7 +16,10 @@ class Acquia_Search_Service extends Drupal_Apache_Solr_Service {
     if (!stristr($url,'?')) {
       $url .= "?";
     }
-    $url .= '&request_id=' . $id;
+    else {
+      $url .= "&";
+    }
+    $url .= 'request_id=' . $id;
     return $id;
   }
   /**

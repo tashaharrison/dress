@@ -1,5 +1,4 @@
 <?php
-// $Id: acquia_agent.pages.inc,v 1.5.2.3 2010/09/15 21:39:18 pwolanin Exp $
 
 /**
  * @file
@@ -504,7 +503,7 @@ function acquia_agent_settings_form($form_state, $banner) {
   $key = acquia_agent_settings('acquia_key');
 
   // Help for copying the identifier and key.
-  $copy_help = t('Copy from <a href="@subscriptions-overview">your subscriptions overview on the Acquia Network</a>.', array('@subscriptions-overview' => 'http://acquia.com/network/dashboard/subscription'));
+  $copy_help = t('Copy from <a href="@subscriptions-overview">your subscriptions overview on the Acquia Network</a>.', array('@subscriptions-overview' => 'http://network.acquia.com/network/dashboard/subscription'));
 
   $form['cs'] = array(
     '#type' => 'fieldset',

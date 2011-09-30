@@ -8,9 +8,13 @@ hidden = TRUE
 ; synchronization with HEAD.
 php = 5
 
-; Information added by Acquia.com packaging script
+; Information added by drupal.org packaging script on 2010-11-01
 version = "6.x-1.15"
 core = "6.x"
 project = "mollom"
+datestamp = "1288636847"
+
+
+; Information added by Acquia.com packaging script
 acquia = "1"
 

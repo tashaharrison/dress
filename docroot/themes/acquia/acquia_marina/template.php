@@ -1,5 +1,5 @@
 <?php
-// $Id: template.php,v 1.3.2.6 2009/12/22 06:47:47 jwolf Exp $
+// $Id: template.php,v 1.3.2.7 2009/12/22 07:16:56 jwolf Exp $
 
 
 include_once('theme-settings.php');

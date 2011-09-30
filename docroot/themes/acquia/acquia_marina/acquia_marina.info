@@ -35,9 +35,13 @@ features[] = search
 features[] = favicon
 features[] = primary_links
 
-; Information added by Acquia.com packaging script
+; Information added by drupal.org packaging script on 2009-12-27
 version = "6.x-2.0"
 core = "6.x"
 project = "acquia_marina"
+datestamp = "1261957804"
+
+
+; Information added by Acquia.com packaging script
 acquia = "1"
 

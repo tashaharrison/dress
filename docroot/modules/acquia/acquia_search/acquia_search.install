@@ -1,5 +1,5 @@
 <?php
-// $Id: acquia_search.install 5187 2010-02-03 05:34:47Z buildbot $
+// $Id: acquia_search.install 5500 2011-04-13 13:19:06Z peter.wolanin $
 
 /**
  * Implementation of hook_requirements().
@@ -11,7 +11,7 @@ function acquia_search_requirements($phase) {
 
   // Skip install checks if install.php is running. The weak install profile
   // API means install.php calls hook_requirements for every module in a profile.
-  if ($phase == 'install' && MAINTENANCE_MODE != 'install') {
+  if ($phase == 'install' && (!defined('MAINTENANCE_MODE') || MAINTENANCE_MODE != 'install')) {
     if (module_invoke('acquia_agent', 'has_credentials')) {
       $severity = REQUIREMENT_OK;
     }

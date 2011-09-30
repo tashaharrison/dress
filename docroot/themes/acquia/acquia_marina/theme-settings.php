@@ -1,5 +1,5 @@
 <?php
-// $Id: theme-settings.php,v 1.3.2.3 2009/06/13 10:22:57 jwolf Exp $
+// $Id: theme-settings.php,v 1.3.2.4 2009/12/22 06:47:47 jwolf Exp $
 
 
 /**

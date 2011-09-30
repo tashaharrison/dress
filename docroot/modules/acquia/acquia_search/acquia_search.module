@@ -1,12 +1,12 @@
 <?php
-// $Id: acquia_search.module 5289 2010-08-12 04:42:20Z buildbot $
+// $Id: acquia_search.module 5571 2011-06-03 15:27:19Z peter.wolanin $
 
 /**
  * @file
  *   Integration between Acquia Drupal and Acquia's hosted solr search service.
  */
 
-define('ACQUIA_SEARCH_VERSION', "6.x-1.5288");
+define('ACQUIA_SEARCH_VERSION', "6.x-1.5577");
 
 /**
  * Implementation of hook_enable().
@@ -87,7 +87,7 @@ function acquia_search_form_apachesolr_settings_alter(&$form, $form_state) {
       '#title' => t('Allow advanced syntax for all searches'),
       '#default_value' => variable_get('acquia_search_edismax_default', 0),
       '#options' => array(0 => t('Disabled'), 1 => t('Enabled')),
-      '#description' => t('If enabled, all Acquia Search keyword searches may use advanced <a href="@url">Lucene syntax</a> such as wildcard searches, fuzzy searches, proximity searches, boolean operators and more via the Extended Dismax parser.', array('@url' => 'http://lucene.apache.org/java/2_9_1/queryparsersyntax.html')),
+      '#description' => t('If enabled, all Acquia Search keyword searches may use advanced <a href="@url">Lucene syntax</a> such as wildcard searches, fuzzy searches, proximity searches, boolean operators and more via the Extended Dismax parser.', array('@url' => 'http://lucene.apache.org/java/2_9_3/queryparsersyntax.html')),
       '#weight' => 10,
     );
   }
@@ -97,14 +97,31 @@ function acquia_search_form_apachesolr_settings_alter(&$form, $form_state) {
  * Implementation of hook_form_[form_id]_alter().
  */
 function acquia_search_form_acquia_agent_settings_form_alter(&$form, $form_state) {
-  $form['buttons']['submit']['#submit'][] = 'acquia_search_settings_submit';
-  $form['buttons']['delete']['#submit'][] = 'acquia_search_settings_submit';
+  if (isset($form['cs'])) {
+    $form['cs']['buttons']['submit']['#submit'][] = 'acquia_search_settings_submit';
+    $form['cs']['buttons']['delete']['#submit'][] = 'acquia_search_settings_submit';
+  }
+  else {
+    // Older versions had a different form array.
+    $form['buttons']['submit']['#submit'][] = 'acquia_search_settings_submit';
+    $form['buttons']['delete']['#submit'][] = 'acquia_search_settings_submit';
+  }
 }
+
+/**
+ * Implementation of hook_flush_caches().
+ */
+function acquia_search_flush_caches() {
+  // Make sure our settings are correct.
+  acquia_search_settings_submit();
+  return array();
+}
+
 
 /**
  * Added submit function for acquia_agent_settings and apachesolr_settings forms.
  */
-function acquia_search_settings_submit($form, &$form_state) {
+function acquia_search_settings_submit() {
   if (acquia_agent_subscription_is_active()) {
     _acquia_search_set_variables();
   }
@@ -114,26 +131,13 @@ function acquia_search_settings_submit($form, &$form_state) {
 }
 
 /**
- * Process a block search form submission.
- */
-function acquia_search_search_box_form_submit($form, &$form_state) {
-  $form_id = $form['form_id']['#value'];
-  $keys = $form_state['values'][$form_id];
-  // Handle Apache clean URL quirks.
-  if (variable_get('clean_url', '0')) {
-    $keys = str_replace('+', '%2B', $keys);
-  }
-  $form_state['redirect'] = 'search/apachesolr_search/'. trim($keys);
-}
-
-/**
  * Implementation of hook_apachesolr_modify_query().
  *
- * Possibly alters the query type ('qt') param to edismax.
+ * Possibly alters the query type ('defType') param to edismax.
  */
 function acquia_search_apachesolr_modify_query($query, &$params, $caller) {
   // @todo - does it make sense to check $caller too?
-  if (isset($params['qt'])) {
+  if (isset($params['qt']) || isset($params['defType'])) {
     // This is a 'mlt' query or something else custom.
     return;
   }
@@ -141,7 +145,7 @@ function acquia_search_apachesolr_modify_query($query, &$params, $caller) {
   // using a wildcard (* or ?).
   $keys = $query->get_query_basic();
   if ($keys && (($wildcard = preg_match('/\S+[*?]/', $keys)) || variable_get('acquia_search_edismax_default', 0))) {
-    $params['qt'] = 'edismax';
+    $params['defType'] = 'edismax';
     if ($wildcard) {
       $keys = preg_replace_callback('/(\S+[*?]\S*)/', '_acquia_search_lower', $keys);
       $query->set_keys($keys);
@@ -202,8 +206,8 @@ function acquia_search_auth_cookie(&$url, $string = '', $derived_key = NULL) {
  * Derive a key for the solr hmac using the information shared with acquia.com.
  */
 function _acquia_search_derived_key() {
-  static $derived_key;
-  if (!isset($derived_key)) {
+  static $derived_key = NULL;
+  if (!isset($derived_key) && acquia_agent_subscription_is_active()) {
     $key = acquia_agent_settings('acquia_key');
     $subscription = acquia_agent_settings('acquia_subscription_data');
     $identifier = acquia_agent_settings('acquia_identifier');
@@ -212,15 +216,9 @@ function _acquia_search_derived_key() {
     // or all clients to use a new derived key.  We also use a string
     // ('solr') specific to the service, since we want each service using a
     // derived key to have a separate one.
-    if (empty($subscription['active']) || empty($key) || empty($identifier)) {
-      // Expired or invalid subscription - don't continue.
-      $derived_key = '';
-    }
-    else {
-      $salt = isset($subscription['derived_key_salt']) ? $subscription['derived_key_salt'] : '';
-      $derivation_string = $identifier . 'solr' . $salt;
-      $derived_key = _acquia_search_hmac($key, str_pad($derivation_string, 80, $derivation_string));
-    }
+    $salt = isset($subscription['derived_key_salt']) ? $subscription['derived_key_salt'] : '';
+    $derivation_string = $identifier . 'solr' . $salt;
+    $derived_key = _acquia_search_hmac($key, str_pad($derivation_string, 80, $derivation_string));
   }
   return $derived_key;
 }

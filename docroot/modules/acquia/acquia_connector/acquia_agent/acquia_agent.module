@@ -1,5 +1,4 @@
 <?php
-// $Id: acquia_agent.module,v 1.17.2.6 2010/09/15 21:39:18 pwolanin Exp $
 
 /**
  * @file
@@ -96,9 +95,12 @@ function acquia_agent_check_subscription($params = array()) {
     }
     // Include Acquia Search module version number.
     if (module_exists('acquia_search')) {
-      $info = db_result(db_query("SELECT info FROM {system} WHERE name = 'acquia_search'"));
-      if ($info = unserialize($info)) {
-        $params['search_version'] = $info['version'];
+      $result = db_query("SELECT name, info FROM {system} WHERE name IN ('acquia_search', 'apachesolr')");
+      while ($data = db_fetch_object($result)) {
+        if ($info = unserialize($data->info)) {
+          // Send the version, or at least the core compatibility as a fallback.
+          $params['search_version'][$data->name] = isset($info['version']) ? (string)$info['version'] : (string)$info['core'];
+        }
       }
     }
     $data = acquia_agent_call('acquia.agent.subscription', $params);
@@ -199,7 +201,7 @@ function acquia_agent_has_update_service() {
   acquia_agent_load_versions();
 
   $subscription = acquia_agent_settings('acquia_subscription_data');
-  if (!IS_ACQUIA_DRUPAL || !$subscription['active'] || (isset($subscription['update_service']) && empty($subscription['update_service']))) {
+  if (!IS_ACQUIA_DRUPAL || empty($subscription['active']) || (isset($subscription['update_service']) && empty($subscription['update_service']))) {
     // We don't have update service if (1) this is not Acquia Drupal, (2) there
     // is no subscription or (3) the update service was disabled on acquia.com.
     // Requiring the update_service key and checking its value separately is
@@ -309,11 +311,8 @@ function acquia_agent_translated_menu_link_alter(&$item, $map) {
     return;
   }
   if ($item['title'] == 'acquia_subscription_status') {
-    $subscription = acquia_agent_settings('acquia_subscription_data');
-    if (empty($subscription['timestamp']) || (time() - $subscription['timestamp'] > 60*60*24)) {
-      $subscription = acquia_agent_check_subscription(array('no_heartbeat' => 1));
-    }
-    if ($subscription['active']) {
+    if (acquia_agent_subscription_is_active()) {
+      $subscription = acquia_agent_settings('acquia_subscription_data');
       $icon = '<img src="'. base_path() . 'misc/watchdog-ok.png" height="10" alt="ok" />';
       $item['title'] = t("!icon Subscription active (expires !date)", array('!icon' => $icon, '!date' => format_date(strtotime($subscription['expiration_date']['value']), 'small')));
       $item['localized_options']['extra class'] .= " acquia-active-subscription";
@@ -342,7 +341,7 @@ function acquia_agent_theme_registry_alter(&$theme_registry) {
  * Render an icon to display in the Administration Menu.
  */
 function acquia_agent_menu_icon() {
-  return '<img class="admin-menu-icon" src="'. base_path() . drupal_get_path('module', 'acquia_agent') . '/acquia.ico" height = "16" alt="" />';
+  return '<img class="admin-menu-icon" src="'. base_path() . drupal_get_path('module', 'acquia_agent') . '/acquia_drupal.ico" height = "16" alt="" />';
 }
 
 
@@ -444,7 +443,7 @@ function acquia_agent_network_address($acquia_network_address = NULL) {
  * Helper function to check if an identifer and key exist.
  */
 function acquia_agent_has_credentials() {
-  return (bool)(variable_get('acquia_identifier', '') && variable_get('acquia_key', ''));
+  return (bool)(variable_get('acquia_identifier', FALSE) && variable_get('acquia_key', FALSE));
 }
 
 /**
@@ -455,6 +454,10 @@ function acquia_agent_subscription_is_active() {
   // Subscription cannot be active if we have no credentials.
   if (acquia_agent_has_credentials()) {
     $subscription = acquia_agent_settings('acquia_subscription_data');
+    // Make sure we have data at least once per day.
+    if (isset($subscription['timestamp']) && (time() - $subscription['timestamp'] > 60*60*24)) {
+      $subscription = acquia_agent_check_subscription(array('no_heartbeat' => 1));
+    }
     $active = !empty($subscription['active']);
   }
   return $active;
