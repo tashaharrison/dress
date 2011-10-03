@@ -89,8 +89,8 @@
  *   $db_url = 'mysqli://username:password@localhost/databasename';
  *   $db_url = 'pgsql://username:password@localhost/databasename';
  */
-#$db_url = 'mysql://username:password@localhost/dressitalian';
-#$db_prefix = '';
+$db_url = 'mysql://username:password@localhost/dressitalian';
+$db_prefix = '';
 
 /**
  * Database default collation.
