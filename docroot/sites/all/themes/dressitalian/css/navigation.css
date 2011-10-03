@@ -2,269 +2,320 @@
  * $Id: navigation.css,v 1.1.2.1 2010/09/14 20:13:12 jmburnz Exp $
  */
 
-a {}
-a:link    {}
-a:visited {}
-a:hover   {}
-a:active  {}
-a.active  {}
-
+a {
+	text-decoration:none;
+}
+a:link {
+	text-decoration:none;
+}
+a:visited {
+	text-decoration:underline;
+}
+a:hover {
+	text-decoration:underline;
+}
+a:active {
+}
+a.active {
+}
 /* Global focus style for links. */
-a:active,
-a:focus {}
-
+a:active, a:focus {
+}
 /* Primary and Secondary menus. */
 .nav {
-  clear:both;
-  margin: 0;
+	clear:both;
+	margin: 0;
 }
-.nav li,
-.nav .menu li {
-  display: inline;
-  float: left;
-  list-style: none;
+.nav li, .nav .menu li {
+	display: inline;
+	float: left;
+	list-style: none;
 }
-.nav li a,
-.nav .menu li a {
-  display: block;
-  white-space: nowrap;
-  padding: 0 10px;
+.nav li a, .nav .menu li a {
+	display: block;
+	white-space: nowrap;
+	padding: 0 10px;
 }
-.nav ul,
-.nav ul.menu,
-.nav ul.menu li {
-  margin: 0;
-  padding: 0;
+.nav ul, .nav ul.menu, .nav ul.menu li {
+	margin: 0;
+	padding: 0;
 }
-
 /* Primary-links div wrapper */
-#primary-menu {}
-
+#primary-menu {
+	padding-left: 140px;
+}
 /* Class on the ul */
-.primary-links {}
-
+.primary-links {
+	text-align: center;
+}
 /* Modify the margin to set tab spacings. */
-.primary-links li {}
-.primary-links li a {}
-
+.primary-links li {
+	width: 220px;
+}
+.primary-links li.menu-401 {
+	width: 140px;
+}
+.primary-links li a {
+	color:#7D7D7D;
+	font-size: 1.19em;
+    padding: 6px 20px;
+}
 /* Set pseudo class styles. */
-.primary-links li a:link {}
-.primary-links li a:visited {}
-.primary-links li a:hover {}
-.primary-links li a:focus {}
-.primary-links li a:active {}
-
+.primary-links li a:link {
+}
+.primary-links li a:visited {
+}
+.primary-links li a:hover {
+	font-weight:bold;
+	font-size: 1.21em;
+	text-decoration:none;
+}
+.primary-links li a:focus {
+}
+.primary-links li a:active {
+}
 /* Primary first and last classes. */
-.primary-links li.first {}
-.primary-links li.last {}
-
+.primary-links li.first {
+}
+.primary-links li.last {
+}
 /* Active trail classes. */
-.primary-links li.active {}
-.primary-links li.active-trail {}
-.primary-links li.active-trail a {}
-
+.primary-links li.active {
+}
+.primary-links li.active-trail {
+}
+.primary-links li.active-trail a {
+}
 /* Secondary-links div wrapper */
-#secondary-menu {}
-
+#secondary-menu {
+	background: rgb(255,255,255); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(226,226,226,1) 2%, rgba(255,255,255,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(2%, rgba(226,226,226,1)), color-stop(100%, rgba(255,255,255,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(226,226,226,1) 2%, rgba(255,255,255,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(226,226,226,1) 2%, rgba(255,255,255,1) 100%); /* Opera11.10+ */
+	background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(226,226,226,1) 2%, rgba(255,255,255,1) 100%); /* IE10+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff', GradientType=0 ); /* IE6-9 */
+	background: linear-gradient(top, rgba(255,255,255,1) 0%, rgba(226,226,226,1) 2%, rgba(255,255,255,1) 100%); /* W3C */
+	margin-left: -19px;
+	padding-left: 200px;
+	width: 772px;
+}
 /* Class on the ul */
-.secondary-links {}
-
+.secondary-links {
+	text-align: center;
+}
 /* Modify the margin to set tab spacings. */
-.secondary-links li {}
-.secondary-links li a {}
-
+.secondary-links li {
+	width: 168px;
+}
+.secondary-links li a {
+    color: #7D7D7D;
+    font-size: 1.19em;
+    padding: 6px 26px;
+}
 /* Set pseudo class styles. */
-.secondary-links li a:link {}
-.secondary-links li a:visited {}
-.secondary-links li a:hover {}
-.secondary-links li a:focus {}
-.secondary-links li a:active {}
-
+.secondary-links li a:link {
+}
+.secondary-links li a:visited {
+}
+.secondary-links li a:hover {
+	font-weight:bold;
+  	font-size: 1.21em;
+}
+.secondary-links li a:focus {
+}
+.secondary-links li a:active {
+}
 /* Secondary first and last classes. */
-.secondary-links li.first {}
-.secondary-links li.last {}
-
+.secondary-links li.first {
+}
+.secondary-links li.last {
+}
 /* Active trail classes. */
-.secondary-links li.active {}
-.secondary-links li.active-trail {}
-.secondary-links li.active-trail a {}
-
+.secondary-links li.active {
+}
+.secondary-links li.active-trail {
+}
+.secondary-links li.active-trail a {
+}
 /* Menus */
-.menu,
-.menu ul, 
-.menu ul ul, 
-.menu ul ul ul {}
-
+.menu, .menu ul, .menu ul ul, .menu ul ul ul {
+}
 /* Menu li styles */
-.menu li {}
-
-.menu li.collapsed {}
-.menu li.expanded  {}
-.menu li.leaf      {}
-
-.menu li a:link,
-.menu li a:visited {}
-.menu li a:hover,
-.menu li a:focus,
-.menu li a:active   {}
-.menu li.active a  {}
-.menu li.active-trail a {}
-
-.menu li.first {}
-.menu li.last  {}
-
+.menu li {
+}
+.menu li.collapsed {
+}
+.menu li.expanded {
+}
+.menu li.leaf {
+}
+.menu li a:link, .menu li a:visited {
+}
+.menu li a:hover, .menu li a:focus, .menu li a:active {
+}
+.menu li.active a {
+}
+.menu li.active-trail a {
+}
+.menu li.first {
+}
+.menu li.last {
+}
 /* Breadcrumb */
 #breadcrumb {
-  padding-bottom: 1em;
+	padding-bottom: 1em;
 }
-#breadcrumb a {}
-#breadcrumb a:link {}
-#breadcrumb a:visited {}
-#breadcrumb a:hover {}
-#breadcrumb a:focus {}
-#breadcrumb a:active {}
-
+#breadcrumb a {
+}
+#breadcrumb a:link {
+}
+#breadcrumb a:visited {
+}
+#breadcrumb a:hover {
+}
+#breadcrumb a:focus {
+}
+#breadcrumb a:active {
+}
 /* Skip Navigation */
 #skip-nav {
-  text-align: left;
-  float: left;
-  width: 160px;
+	text-align: left;
+	float: left;
+	width: 160px;
 }
 #skip-nav.show-skip-link {
-  text-align:right;
+	text-align:right;
 }
 #skip-nav.show-on-focus {
-  margin-top: 0;
-  position: absolute;
-  left: 50%;
-  margin-left: -5.25em;
-  width: auto !important;
-  z-index: 50;
+	margin-top: 0;
+	position: absolute;
+	left: 50%;
+	margin-left: -5.25em;
+	width: auto !important;
+	z-index: 50;
 }
-#skip-nav.show-on-focus a,
-#skip-nav.show-on-focus a:link,
-#skip-nav.show-on-focus a:visited,
-#skip-nav.show-on-focus a:focus,
-#skip-nav.show-on-focus a:hover,
-#skip-nav.show-on-focus a:active {
-  position: absolute;
-  display: block;
-  top: auto;
-  left: -10000px;
-  width: 1px;
-  height: 1px;
-  background: #444;
-  color: #fff;
-  font-size: 0.94em;
-  text-decoration: none;
-  -khtml-border-radius: 0 0 10px 10px;
-  -moz-border-radius: 0 0 10px 10px;
-  -webkit-border-top-left-radius: 0;
-  -webkit-border-top-right-radius: 0;
-  -webkit-border-bottom-left-radius: 10px;
-  -webkit-border-bottom-right-radius: 10px;
-  border-radius:0 0 10px 10px;
+#skip-nav.show-on-focus a, #skip-nav.show-on-focus a:link, #skip-nav.show-on-focus a:visited, #skip-nav.show-on-focus a:focus, #skip-nav.show-on-focus a:hover, #skip-nav.show-on-focus a:active {
+	position: absolute;
+	display: block;
+	top: auto;
+	left: -10000px;
+	width: 1px;
+	height: 1px;
+	background: #444;
+	color: #fff;
+	font-size: 0.94em;
+	text-decoration: none;
+	-khtml-border-radius: 0 0 10px 10px;
+	-moz-border-radius: 0 0 10px 10px;
+	-webkit-border-top-left-radius: 0;
+	-webkit-border-top-right-radius: 0;
+	-webkit-border-bottom-left-radius: 10px;
+	-webkit-border-bottom-right-radius: 10px;
+	border-radius:0 0 10px 10px;
 }
-#skip-nav.show-on-focus a:hover,
-#skip-nav.show-on-focus a:active,
-#skip-nav.show-on-focus a:focus {
-  position: static;
-  width: auto;
-  height: auto;
-  overflow: visible;
-  outline: 0;
-  padding: 1px 10px 2px 10px;
+#skip-nav.show-on-focus a:hover, #skip-nav.show-on-focus a:active, #skip-nav.show-on-focus a:focus {
+	position: static;
+	width: auto;
+	height: auto;
+	overflow: visible;
+	outline: 0;
+	padding: 1px 10px 2px 10px;
 }
-
 /* Tabs */
 .local-tasks {
-  margin-bottom:1em;
+	margin-bottom:1em;
 }
 ul.primary {
-  border-bottom-color:#CCC;
-  margin:1.5em 0 0;
-  padding:0 0 .2em .3em;
+	border-bottom-color:#CCC;
+	margin:1.5em 0 0;
+	padding:0 0 .2em .3em;
 }
 ul.primary li a {
-  background-color:#F5F5F5;
-  margin-right:.08em;
-  border-color:#CCC;
-  padding:.1em .75em .2em;
+	background-color:#F5F5F5;
+	margin-right:.08em;
+	border-color:#CCC;
+	padding:.1em .75em .2em;
 }
 .local-tasks ul.primary li a:hover {
-  background-color:#F7F7F7;
-  border-color:#DDD;
+	background-color:#F7F7F7;
+	border-color:#DDD;
 }
 .local-tasks ul.primary li.active a {
-  background-color:#FFF;
-  border-bottom-color:#FFF;
+	background-color:#FFF;
+	border-bottom-color:#FFF;
 }
 ul.secondary {
-  border-bottom:1px solid #CCC;
-  margin:1em 0 0;
-  padding:0 .3em 1em;
+	border-bottom:1px solid #CCC;
+	margin:1em 0 0;
+	padding:0 .3em 1em;
 }
 ul.secondary li {
-  border-right:0;
-  list-style:none;
-  padding:0 2em 0 0;
+	border-right:0;
+	list-style:none;
+	padding:0 2em 0 0;
 }
-ul.secondary li a:hover,
-ul.secondary li a.active {
-  border-bottom:none;
-  text-decoration:underline;
+ul.secondary li a:hover, ul.secondary li a.active {
+	border-bottom:none;
+	text-decoration:underline;
 }
-
 /* Pager */
 ul.pager {
-  clear:both;
-  margin:0;
-  text-align:center;
+	clear:both;
+	margin:0;
+	text-align:center;
 }
 .item-list ul.pager li {
-  margin:0;
+	margin:0;
 }
 ul.pager li {
-  background-image:none;
-  display:inline;
-  list-style-type:none;
-  padding:.5em;
+	background-image:none;
+	display:inline;
+	list-style-type:none;
+	padding:.5em;
 }
 ul.pager li.pager-current {
-  font-weight:700;
+	font-weight:700;
 }
 .block ul.pager li {
-  margin:0;
+	margin:0;
 }
-
 /* Theme the various states of pager links. */
-ul.pager li a:link    {}
-ul.pager li a:visited {}
-ul.pager li a:hover   {}
-
+ul.pager li a:link {
+}
+ul.pager li a:visited {
+}
+ul.pager li a:hover {
+}
 /* Note: .pager-current is for the current page. */
-ul.pager li.pager-item     {}
-ul.pager li.first          {}
-ul.pager li.last           {}
-ul.pager li.pager-current  {}
-ul.pager li.pager-first    {}
-ul.pager li.pager-previous {}
-ul.pager li.pager-next     {}
-ul.pager li.pager-last     {}
-
-
+ul.pager li.pager-item {
+}
+ul.pager li.first {
+}
+ul.pager li.last {
+}
+ul.pager li.pager-current {
+}
+ul.pager li.pager-first {
+}
+ul.pager li.pager-previous {
+}
+ul.pager li.pager-next {
+}
+ul.pager li.pager-last {
+}
 /* User menu */
 #user-menu {
-  float: right;
-  width: 760px;
+	float: right;
+	width: 760px;
 }
 #user-menu ul {
-  float: right;
-  margin: 0;
+	float: right;
+	margin: 0;
 }
 #user-menu ul li {
-  display:inline;
-  float:left;
-  margin: 0 0 0 1em;
-  padding: 0;
+	display:inline;
+	float:left;
+	margin: 0 0 0 1em;
+	padding: 0;
 }

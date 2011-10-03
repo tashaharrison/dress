@@ -1,0 +1,52 @@
+/* CSS Document */
+
+/* General elements */
+
+#header-region .block {
+	margin:0;
+	padding:0;
+}
+
+#header-region #block-block-1 {
+	position: absolute;
+    right: 150px;
+    top: -7px;
+}
+
+#header-region #block-block-2 {
+	position: absolute;
+    right: 0;
+    top: 0;
+}
+
+/* Social links */
+
+.social-links {
+	height:16px;
+}
+
+.social-links a {
+	display: inline-block;
+    height: 16px;
+    width: 16px;
+	margin-right: 6px;
+}
+
+.social-links a span {
+    display: block;
+    height: 0;
+    overflow: hidden;
+}
+
+.facebook-follow {
+	background:url(../images/sprite1.png) no-repeat 0 0;
+}
+
+.twitter-follow {
+	background:url(../images/sprite1.png) no-repeat -16px 0;
+
+}
+
+.rss-follow {
+	background:url(../images/sprite1.png) no-repeat -32px 0;
+}
