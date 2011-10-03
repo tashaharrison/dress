@@ -89,8 +89,8 @@
  *   $db_url = 'mysqli://username:password@localhost/databasename';
  *   $db_url = 'pgsql://username:password@localhost/databasename';
  */
-$db_url = 'mysql://username:password@localhost/dressitalian';
-$db_prefix = '';
+#$db_url = 'mysql://username:password@localhost/dressitalian';
+#$db_prefix = '';
 
 /**
  * Database default collation.
@@ -258,6 +258,7 @@ ini_set('url_rewriter.tags',        '');
 #   '@count min' => '@count minutes',
 # );
 
+require('/var/www/site-php/dressitalian/dressitalian-settings.inc');
 
   include "sites/all/modules/contrib/fb/fb_url_rewrite.inc";
   include "sites/all/modules/contrib/fb/fb_settings.inc";
