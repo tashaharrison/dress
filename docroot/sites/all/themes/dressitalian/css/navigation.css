@@ -139,6 +139,56 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 }
 .secondary-links li.active-trail a {
 }
+#footer-region .block {
+	margin-bottom:0;
+}
+/* Class on the ul */
+#footer-region ul.menu {
+	height: 36px;
+    margin-left: 170px;
+    text-align: center;
+}
+/* Modify the margin to set tab spacings. */
+#footer-region ul.menu li {
+	width: 160px;
+	display: inline;
+	float: left;
+	list-style: none;
+}
+#footer-region ul.menu li.terms-and-conditions {
+	width: 200px;
+}
+#footer-region ul.menu li a {
+	color:#7D7D7D;
+	font-size: 1.19em;
+	padding: 6px 20px;
+}
+/* Set pseudo class styles. */
+#footer-region ul.menu li a:link {
+}
+#footer-region ul.menu li a:visited {
+}
+#footer-region ul.menu li a:hover {
+	font-weight:bold;
+	font-size: 1.21em;
+	text-decoration:none;
+}
+#footer-region ul.menu li a:focus {
+}
+#footer-region ul.menu li a:active {
+}
+/* Primary first and last classes. */
+#footer-region ul.menu li.first {
+}
+#footer-region ul.menu li.last {
+}
+/* Active trail classes. */
+#footer-region ul.menu li.active {
+}
+#footer-region ul.menu li.active-trail {
+}
+#footer-region ul.menu li.active-trail a {
+}
 /* Menus */
 .menu, .menu ul, .menu ul ul, .menu ul ul ul {
 }

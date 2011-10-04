@@ -59,6 +59,8 @@ h1#page-title {
 }
 /* Footer */
 #footer {
+	border-top: 1px solid #C2C2C2;
+	padding-top:10px;
 }
 #footer-region {
 }
