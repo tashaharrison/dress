@@ -10,7 +10,6 @@
 #header-region #block-block-1 {
 	position: absolute;
     right: 150px;
-    top: -7px;
 }
 
 #header-region #block-fb_connect-login_dress_italian {
@@ -22,13 +21,13 @@
 /* Social links */
 
 .social-links {
-	height:16px;
+	height:20px;
 }
 
 .social-links a {
 	display: inline-block;
-    height: 16px;
-    width: 16px;
+    height: 20px;
+    width: 20px;
 	margin-right: 6px;
 }
 
@@ -36,17 +35,4 @@
     display: block;
     height: 0;
     overflow: hidden;
-}
-
-.facebook-follow {
-	background:url(../images/sprite1.png) no-repeat 0 0;
-}
-
-.twitter-follow {
-	background:url(../images/sprite1.png) no-repeat -16px 0;
-
-}
-
-.rss-follow {
-	background:url(../images/sprite1.png) no-repeat -32px 0;
 }

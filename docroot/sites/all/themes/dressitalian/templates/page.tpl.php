@@ -146,8 +146,6 @@
         <div id="header-region"><?php print $header; ?></div>
       <?php endif; ?>
 
-    </div> <!-- /header -->
-
     <?php if ($menu_bar || $primary_menu): ?>
       <div id="primary-menu" class="nav">
         <h2 class="element-invisible"><?php print t('Main Menu'); ?></h2>
@@ -165,6 +163,10 @@
         <?php print $secondary_menu; ?>
       </div>
     <?php endif; ?>
+
+    </div> <!-- /header -->
+
+
 
     <?php if ($breadcrumb): ?>
       <div id="breadcrumb">

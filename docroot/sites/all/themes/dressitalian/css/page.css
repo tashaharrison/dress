@@ -3,8 +3,9 @@
  */
 
 #header {
-	clear: both;
-	position: relative;
+    clear: both;
+    height: 130px;
+    position: relative;
 }
 #branding {
 	position: absolute;
@@ -34,11 +35,11 @@ h1.logo-site-name {
 #site-name a:active {
 }
 #header-region {
-	float: right;
-    height: 34px;
-	overflow: hidden;
-	position:relative;
-	width: 830px;	
+	height: 34px;
+    left: 134px;
+    overflow: hidden;
+    position: relative;
+    width: 830px;
 }
 #mission {
 	font-weight: 700;

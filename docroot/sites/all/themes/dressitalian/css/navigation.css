@@ -58,7 +58,7 @@ a:active, a:focus {
 .primary-links li a {
 	color:#7D7D7D;
 	font-size: 1.19em;
-    padding: 6px 20px;
+	padding: 6px 20px;
 }
 /* Set pseudo class styles. */
 .primary-links li a:link {
@@ -98,7 +98,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 	background: linear-gradient(top, rgba(255,255,255,1) 0%, rgba(226,226,226,1) 2%, rgba(255,255,255,1) 100%); /* W3C */
 	margin-left: -19px;
 	padding-left: 200px;
-	width: 772px;
+	width: 787px;
 }
 /* Class on the ul */
 .secondary-links {
@@ -109,9 +109,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 	width: 168px;
 }
 .secondary-links li a {
-    color: #7D7D7D;
-    font-size: 1.19em;
-    padding: 6px 26px;
+	color: #7D7D7D;
+	font-size: 1.19em;
+	padding: 6px 26px;
 }
 /* Set pseudo class styles. */
 .secondary-links li a:link {
@@ -120,7 +120,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 }
 .secondary-links li a:hover {
 	font-weight:bold;
-  	font-size: 1.21em;
+	text-decoration:none;
+	font-size: 1.21em;
 }
 .secondary-links li a:focus {
 }
