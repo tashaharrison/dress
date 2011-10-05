@@ -26,6 +26,7 @@ h5,
 h6 {
   font-size:1em;
 }
+
 a img {
   border:none;
 }
@@ -122,4 +123,22 @@ dd {
 .item-list ol {
   margin:0 0 0 1.667em;
   padding:0;
+}
+.clearleft {
+	clear:left;
+}
+.clearright {
+	clear:right;
+}
+.clearboth {
+	clear:both;
+}
+.nofloat {
+	float:none;
+}
+.floatleft {
+	float:left;
+}
+.floatright {
+	float:right;
 }

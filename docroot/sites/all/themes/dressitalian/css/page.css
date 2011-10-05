@@ -47,8 +47,29 @@ h1.logo-site-name {
 }
 h1#page-title {
 }
+.page-type-page	h1#page-title {
+	color:#004101;
+}
 .in-maintenance h1#page-title {
 	padding:10px;
+}
+.page-section-title {
+	color:white;
+	border-radius:4px;
+	padding:4px;
+	text-align:center;
+	margin-bottom:10px;
+}
+.page-section-title-green {
+	background-color:#004101;
+}
+.page-section-title-red {
+	background-color:#7E0001;
+}
+.page-section-title-white {
+	background-color:white;
+	color:black;
+	border:1px solid #ccc;
 }
 /* Sidebars */
 .sidebar {
@@ -433,3 +454,29 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 	padding: 20px 50px;
 	top: -6px;
 }
+
+.boxout {	
+	color:white;
+	border-radius:4px;
+	text-align:center;
+	margin-bottom:10px;
+}
+.boxout a {	
+	color:white;
+}
+.boxout-green {
+	background-color:#004101;
+}
+.boxout-white {	
+	background-color:white;
+	color:black;
+	border:1px solid #ccc;
+}
+.boxout-white a {	
+	color:black;
+}
+.boxout-red {
+	background-color:#7E0001;
+}
+.asideleft {width:500px;}
+.asideright {width:500px;}
