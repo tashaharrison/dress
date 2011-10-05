@@ -69,6 +69,7 @@ a:active, a:focus {
 	font-weight:bold;
 	font-size: 1.21em;
 	text-decoration:none;
+	color:black;
 }
 .primary-links li a:focus {
 }
@@ -122,6 +123,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 	font-weight:bold;
 	text-decoration:none;
 	font-size: 1.21em;
+	color:black;
 }
 .secondary-links li a:focus {
 }
@@ -139,6 +141,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 }
 .secondary-links li.active-trail a {
 }
+
+/* Footer menu */
 #footer-region .block {
 	margin-bottom:0;
 }
@@ -156,7 +160,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 	list-style: none;
 }
 #footer-region ul.menu li.terms-and-conditions {
-	width: 200px;
+	width: 220px;
 }
 #footer-region ul.menu li a {
 	color:#7D7D7D;
@@ -172,6 +176,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 	font-weight:bold;
 	font-size: 1.21em;
 	text-decoration:none;
+	color:black;
 }
 #footer-region ul.menu li a:focus {
 }
@@ -369,4 +374,68 @@ ul.pager li.pager-last {
 	float:left;
 	margin: 0 0 0 1em;
 	padding: 0;
+}
+/* Recipe categories menu */
+.recipe-categories-menu {
+}
+.recipe-categories-links {
+	width: 800px;
+	margin:0 auto;
+}
+/* Modify the margin to set tab spacings. */
+.recipe-categories-links li {
+	width:160px;
+}
+.recipe-categories-links li a {
+	background: url("../images/recipe-categories.png") no-repeat scroll 0 0 #999;
+    color: #FFFFFF;
+    font-size: 1.5em;
+    font-weight: bold;
+    height: 30px;
+    padding-top: 340px;
+    text-align: center;
+	opacity: .9;
+	-khtml-opacity: .9;  
+    -moz-opacity: .9;  
+}
+.recipe-categories-links li.recipe-category-1 a {
+	background: url("../images/recipe-categories.png") no-repeat scroll -160px 0 #999;
+}
+.recipe-categories-links li.recipe-category-2 a {
+	background: url("../images/recipe-categories.png") no-repeat scroll -320px 0 #999;
+}
+.recipe-categories-links li.recipe-category-3 a {
+	background: url("../images/recipe-categories.png") no-repeat scroll -480px 0 #999;
+}
+.recipe-categories-links li.recipe-category-4 a {
+	background: url("../images/recipe-categories.png") no-repeat scroll -640px 0 #999;
+}
+/* Set pseudo class styles. */
+.recipe-categories-links li a:link {
+}
+.recipe-categories-links li a:visited {
+}
+.recipe-categories-links li a:hover {
+	font-weight:bold;
+	text-decoration:none;
+	background-color:#4C4C4C;
+	opacity:1;
+	-khtml-opacity: 1;  
+    -moz-opacity: 1;  
+}
+.recipe-categories-links li a:focus {
+}
+.recipe-categories-links li a:active {
+}
+/* Secondary first and last classes. */
+.recipe-categories-links li.first {
+}
+.recipe-categories-links li.last {
+}
+/* Active trail classes. */
+.recipe-categories-links li.active {
+}
+.recipe-categories-links li.active-trail {
+}
+.recipe-categories-links li.active-trail a {
 }
