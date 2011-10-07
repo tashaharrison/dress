@@ -16,6 +16,16 @@ input.title {
 input.text, input.title, textarea, select {
 	border:1px solid silver;
 	margin:.375em 0;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	padding: 4px;
+    text-shadow: 0 0 1px rgba(0, 0, 0, 0.01);
+	font:1.2em normal 'CantarellRegular', Arial, Helvetica, sans-serif;
+	background: url("../images/form-bg.png") repeat-x scroll left top white;
+}
+textarea:disabled, input:not([type]):disabled, input[type="color"]:disabled, input[type="date"]:disabled, input[type="datetime"]:disabled, input[type="datetime-local"]:disabled, input[type="email"]:disabled, input[type="month"]:disabled, input[type="password"]:disabled, input[type="number"]:disabled, input[type="search"]:disabled, input[type="tel"]:disabled, input[type="text"]:disabled, input[type="time"]:disabled, input[type="url"]:disabled, input[type="week"]:disabled {
+	background: #DDD;
 }
 .form-text:focus, .form-checkbox:focus, .form-radio:focus, .form-select:focus {
 	border:1px solid #000;
@@ -31,17 +41,17 @@ input.text, input.title {
 	padding:.375em;
 }
 input.form-text, textarea {
-	border:1px solid #CCC;
+	border:1px solid silver;
 	border-radius: 4px;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
     height: auto;
-    padding: 6px;
+    padding: 4px;
     text-shadow: 0 0 1px rgba(0, 0, 0, 0.01);
     width: 98%;
 }
 textarea, input {
-	font:1.4em normal Arial, Helvetica, sans-serif;
+	font:1.3em normal 'CantarellRegular', Arial, Helvetica, sans-serif;
 	background: url("../images/form-bg.png") repeat-x scroll left top white;
 }
 div.form-item {
@@ -73,10 +83,13 @@ div.resizable-textarea textarea {
 	padding:.1875em .375em .1875em 1.5em;
 }
 fieldset {
-	background:transparent;
+	background: #DDD;
 	border:1px solid #dadada;
 	margin:1.5em 0;
-	padding:.75em;
+	padding:1.4em;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
 }
 *:first-child+html fieldset {
 	background-color:transparent;
@@ -90,6 +103,24 @@ fieldset legend {
 	display:block;
 	font-weight:700;
 	padding:0 1em 0 0;
+	background: black;
+	color: white;
+	padding: 4px 8px;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+fieldset legend a {
+	color:white
+}
+html.js fieldset.collapsible legend a {
+background: url(../images/menu-expanded.png) 2px 50% no-repeat;
+}
+html.js fieldset.collapsed legend a {
+background-image: url(../images/menu-collapsed.png);
+}
+html.js input.form-autocomplete {
+background-position: 100% 18px;
 }
 *:first-child+html fieldset legend, *:first-child+html fieldset.collapsed legend {
 	display:inline;
@@ -144,15 +175,23 @@ html.js #user-login-form li.openid-link, html.js #user-login li.openid-link, #us
 
 /* Individual field */
 
-#webform-component-attachment input {
-}
-
 .button input {
 	border: none;
 	background: none;
 		cursor: pointer;
 }
-
+/* Create Recipe form */
+#edit-field-recipe-preptime-0-value-wrapper .form-text, #edit-field-recipe-cookingtime-0-value-wrapper .form-text, #edit-field-recipe-serves-0-value-wrapper .form-text {
+	width: 50px;
+	text-align: center;
+	display:inline;
+}
+.content-add-more {
+	margin-top:10px;
+}
+#edit-field-recipe-image-0-upload-wrapper {
+	width: 600px;
+}
 /* Individual form css */
 
 /* Contact us form */

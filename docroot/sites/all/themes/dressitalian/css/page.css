@@ -46,6 +46,8 @@ h1.logo-site-name {
 	margin: .3em 0 1.5em;
 }
 h1#page-title {
+	border-bottom: 2px solid #CCCCCC;
+    margin-bottom: 20px;
 }
 .page-type-page	h1#page-title {
 	color:#004101;

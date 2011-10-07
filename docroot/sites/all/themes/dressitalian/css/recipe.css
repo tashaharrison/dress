@@ -1,0 +1,135 @@
+/* CSS Document */
+
+/* Recipe categories menu */
+.recipe-categories-menu {
+}
+.recipe-categories-links {
+	width: 800px;
+	margin:0 auto;
+}
+/* Modify the margin to set tab spacings. */
+.recipe-categories-links li {
+	width:160px;
+}
+.recipe-categories-links li a {
+	background: url("../images/recipe-categories.png") no-repeat scroll 0 0 #999;
+    color: #FFFFFF;
+    font-size: 1.5em;
+    font-weight: bold;
+    height: 30px;
+    padding-top: 340px;
+    text-align: center;
+	opacity: .9;
+	-khtml-opacity: .9;  
+    -moz-opacity: .9;  
+}
+.recipe-categories-links li.recipe-category-1 a {
+	background: url("../images/recipe-categories.png") no-repeat scroll -160px 0 #999;
+}
+.recipe-categories-links li.recipe-category-2 a {
+	background: url("../images/recipe-categories.png") no-repeat scroll -320px 0 #999;
+}
+.recipe-categories-links li.recipe-category-3 a {
+	background: url("../images/recipe-categories.png") no-repeat scroll -480px 0 #999;
+}
+.recipe-categories-links li.recipe-category-4 a {
+	background: url("../images/recipe-categories.png") no-repeat scroll -640px 0 #999;
+}
+/* Set pseudo class styles. */
+.recipe-categories-links li a:link {
+}
+.recipe-categories-links li a:visited {
+}
+.recipe-categories-links li a:hover {
+	font-weight:bold;
+	text-decoration:none;
+	background-color:#4C4C4C;
+	opacity:1;
+	-khtml-opacity: 1;  
+    -moz-opacity: 1;  
+}
+.recipe-categories-links li a:focus {
+}
+.recipe-categories-links li a:active {
+}
+/* Secondary first and last classes. */
+.recipe-categories-links li.first {
+}
+.recipe-categories-links li.last {
+}
+/* Active trail classes. */
+.recipe-categories-links li.active {
+}
+.recipe-categories-links li.active-trail {
+}
+.recipe-categories-links li.active-trail a {
+}
+
+/* Recipe page */
+
+.page-type-recipe #page-title {
+	height:0;
+	overflow:hidden;
+	display:none;
+}
+.page-type-recipe .nd-region-middle {
+	padding-right:10px;
+}
+.section-recipes {
+}
+.subsection-pesce {
+}
+.subsection-pesce .nd-region-header {
+	border-bottom: 2px solid #CCC;
+	margin-bottom: 14px;
+}
+.subsection-pesce .field-terms a {
+	font-size:2em;
+	color:#FF8000;
+	font-weight:bold;
+}
+.subsection-pesce .field-recipe-italian-title {
+	font-size:2em;
+	color:#FF8000;
+	font-weight:bold;
+	margin-bottom: -0.4em;
+}
+.subsection-pesce .field-recipe-serves, .subsection-pesce .field-recipe-preptime, .subsection-pesce .field-recipe-cookingtime {
+	color:#FF8000;
+}
+.subsection-pesce .field-recipe-incredients {
+	margin-top: 18px;
+}
+.subsection-pesce .field-recipe-incredients .field-label {
+color: #FF8000;
+font-size: 1.7em;
+margin-bottom: 4px;
+}
+.subsection-pesce .field-recipe-incredients .field-items {
+	line-height: 1.3;
+	font-size: 1.2em;
+}
+.subsection-pesce .field-recipe-incredients .field-items .field-item{
+}
+
+
+
+.subsection-pesce .field-recipe-instructioins {
+	margin-top: 18px;
+}
+.subsection-pesce .field-recipe-instructioins .field-label {
+color: #FF8000;
+font-size: 1.7em;
+margin-bottom: 4px;
+}
+.subsection-pesce .field-recipe-instructioins {
+	line-height: 1.3;
+	font-size: 1.2em;
+}
+.subsection-pesce .field-recipe-image {
+	text-align:right;
+}
+.subsection-pesce .field-links {
+	position: absolute;
+    right: 0;
+}

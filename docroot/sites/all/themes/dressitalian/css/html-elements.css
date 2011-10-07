@@ -2,9 +2,10 @@
  * $Id: html-elements.css,v 1.1.2.1 2010/09/14 20:13:12 jmburnz Exp $
  */
 html {
-  font-size:75%; /* 16px x 75% = 12px */
+  font-size:80%; /* 16px x 75% = 12px */
 }
 body {
+  color: #666666;
   font-family:'CantarellRegular',Verdana,Geneva,"DejaVu Sans",sans-serif;
   line-height:1.5;
 }
