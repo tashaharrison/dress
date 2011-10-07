@@ -17,6 +17,7 @@ input.text, input.title, textarea, select {
 	border:1px solid silver;
 	margin:.375em 0;
 	border-radius: 4px;
+	-khtml-border-radius: 4px;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 	padding: 4px;
@@ -43,6 +44,7 @@ input.text, input.title {
 input.form-text, textarea {
 	border:1px solid silver;
 	border-radius: 4px;
+	-khtml-border-radius: 4px;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
     height: auto;
@@ -88,6 +90,7 @@ fieldset {
 	margin:1.5em 0;
 	padding:1.4em;
 	border-radius: 4px;
+	-khtml-border-radius: 4px;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 }
@@ -107,6 +110,7 @@ fieldset legend {
 	color: white;
 	padding: 4px 8px;
 	border-radius: 4px;
+	-khtml-border-radius: 4px;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 }
@@ -201,7 +205,8 @@ html.js #user-login-form li.openid-link, html.js #user-login li.openid-link, #us
 }
 #webform-client-form-6 {
 	background: none repeat scroll 0 0 #EEEEEE;	
-    border-radius: 4px 4px 4px 4px;
+	border-radius: 4px;
+	-khtml-border-radius: 4px;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 	float: left;
