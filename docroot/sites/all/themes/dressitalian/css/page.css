@@ -497,3 +497,18 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 	width: 600px;
 	margin: 0 auto;
 }
+.links .print_html a img {
+	padding-left:50px;
+}
+.links .print_html a {
+	background: url("../images/print-icon.png") no-repeat scroll left top white;
+	display: inline-block;
+	width: 50px;
+	height: 47px;
+	overflow:hidden;
+	margin-top: 12px;
+	margin-right:14px;
+}
+.links .print_html a:hover {
+	background: url("../images/print-icon.png") no-repeat scroll -50px top white;
+}

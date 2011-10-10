@@ -73,6 +73,9 @@
 }
 .subsection-pesce {
 } */
+.node-type-recipe {
+	margin-top: 20px;
+}
 .page-type-recipe #page-title {
 	height:0;
 	overflow:hidden;
@@ -122,7 +125,19 @@
 .page-type-recipe .field-links {
 	position: absolute;
     right: 0;
-	top: 4px;
+	top: -32px;
+}
+.page-type-recipe .field-links li {
+ 	padding:0;
+}
+.page-type-recipe .dff_like {
+    margin-top: -1px;
+}
+.page-type-recipe .tweetbutton {
+    margin-top: -1px;
+}
+.page-type-recipe .google_plusone .g-plusone-wrapper {
+	margin: 0.12em 0.75em 1em 0.7em; !important
 }
 /* Category specific colors */
 
