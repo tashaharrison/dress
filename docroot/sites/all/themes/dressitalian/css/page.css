@@ -462,7 +462,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 	padding: 20px 50px;
 	top: -6px;
 }
-
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+div.container {
+width: 974px !important;
+}
+}
 .boxout {	
 	color:white;
 	border-radius: 4px;
@@ -511,7 +515,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 	width: 50px;
 	height: 47px;
 	overflow:hidden;
-	margin-top: 12px;
+	margin-top: 15px;
 	margin-right:14px;
 }
 .links .print_html a:hover {

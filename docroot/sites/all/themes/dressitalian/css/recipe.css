@@ -74,7 +74,7 @@
 .subsection-pesce {
 } */
 .node-type-recipe {
-	margin-top: 20px;
+	margin-top: 26px;
 }
 .page-type-recipe #page-title {
 	height:0;
@@ -125,7 +125,7 @@
 .page-type-recipe .field-links {
 	position: absolute;
     right: 0;
-	top: -32px;
+	top: -34px;
 }
 .page-type-recipe .field-links li {
  	padding:0;
