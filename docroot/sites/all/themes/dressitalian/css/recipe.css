@@ -131,13 +131,11 @@
  	padding:0;
 }
 .page-type-recipe .dff_like {
-    margin-top: -1px;
 }
 .page-type-recipe .tweetbutton {
-    margin-top: -1px;
 }
 .page-type-recipe .google_plusone .g-plusone-wrapper {
-	margin: 0.12em 0.75em 1em 0.7em; !important
+	margin: 0.12em 0.75em 1em 0.7em !important;
 }
 /* Category specific colors */
 

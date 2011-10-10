@@ -499,6 +499,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 }
 .links .print_html a img {
 	padding-left:50px;
+	outline:none;
 }
 .links .print_html a {
 	background: url("../images/print-icon.png") no-repeat scroll left top white;
