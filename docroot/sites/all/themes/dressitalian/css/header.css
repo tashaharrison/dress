@@ -23,14 +23,16 @@
 .social-links {
 	height:20px;
 }
-
 .social-links a {
 	display: inline-block;
     height: 20px;
     width: 20px;
 	margin-right: 6px;
+	opacity: .8;
 }
-
+.social-links a:hover {
+	opacity: 1;
+}
 .social-links a span {
     display: block;
     height: 0;

@@ -39,7 +39,7 @@ h1.logo-site-name {
     left: 134px;
     overflow: hidden;
     position: relative;
-    width: 830px;
+    width: 816px;
 }
 #mission {
 	font-weight: 700;
@@ -499,6 +499,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 }
 .links .print_html {
 	float:right;
+	margin-left: 0;
 }
 .links .print_html a img {
 	padding-left:50px;

@@ -130,13 +130,7 @@
 .page-type-recipe .field-links li {
  	padding:0;
 }
-.page-type-recipe .dff_like {
-	float:right;
-}
-.page-type-recipe .tweetbutton {
-	float:right;
-}
-.page-type-recipe .google_plusone {
+.page-type-recipe .dff_like, .page-type-recipe .tweetbutton, .page-type-recipe .google_plusone {
 	float:right;
 }
 .page-type-recipe .google_plusone .g-plusone-wrapper {
