@@ -497,6 +497,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 	width: 600px;
 	margin: 0 auto;
 }
+.links .print_html {
+	float:right;
+}
 .links .print_html a img {
 	padding-left:50px;
 	outline:none;
