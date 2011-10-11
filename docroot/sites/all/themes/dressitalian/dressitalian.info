@@ -26,6 +26,7 @@
   ;stylesheets[all][] = css/dark.css
 
 ;----------// IE Conditional Stylesheets
+  conditional-stylesheets[if lte IE 9][all][] = css/ie/ie-lte-9.css
   ;conditional-stylesheets[if lte IE 7][all][] = css/ie/ie-lte-7.css
 
 ;----------// Regions
