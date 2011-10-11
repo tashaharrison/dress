@@ -2,6 +2,7 @@
 
 /* Recipe categories menu */
 .recipe-categories-menu {
+	margin-top: 20px;
 }
 .recipe-categories-links {
 	width: 800px;
@@ -73,15 +74,13 @@
 }
 .subsection-pesce {
 } */
-.node-type-recipe {
+.node-type-recipe .field-title h1 {
+	border-bottom: none;
+}
+.node-type-recipe, .node-type-page {
 	margin-top: 26px;
 }
-.page-type-recipe #page-title {
-	height:0;
-	overflow:hidden;
-	display:none;
-}
-.page-type-recipe .nd-region-middle {
+.node-type-recipe.nd-region-middle {
 	padding-right:10px;
 }
 .page-type-recipe .nd-region-header {
@@ -122,20 +121,7 @@
 .page-type-recipe .field-recipe-image {
 	text-align:right;
 }
-.page-type-recipe .field-links {
-	position: absolute;
-    right: 0;
-	top: -34px;
-}
-.page-type-recipe .field-links li {
- 	padding:0;
-}
-.page-type-recipe .dff_like, .page-type-recipe .tweetbutton, .page-type-recipe .google_plusone {
-	float:right;
-}
-.page-type-recipe .google_plusone .g-plusone-wrapper {
-	margin: 0.12em 0.75em 1em 0.7em !important;
-}
+
 /* Category specific colors */
 
 .subsection-pesce .field-recipe-serves,
@@ -154,7 +140,7 @@
 .subsection-antipasti .field-recipe-cookingtime,
 .subsection-antipasti .field-recipe-instructioins .field-label,
 .subsection-antipasti .field-recipe-incredients .field-label,
-.subsection-antipasti .field-recipe-italian-title,
+.subsection-antipasti .field-recipe-italian-title,id
 .subsection-antipasti .field-terms a,
 .subsection-antipasti #page-title,
 .subsection-antipasti .recipe-category-page-italian-title a {

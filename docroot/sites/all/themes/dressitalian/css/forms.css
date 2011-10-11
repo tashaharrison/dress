@@ -200,8 +200,6 @@ html.js #user-login-form li.openid-link, html.js #user-login li.openid-link, #us
 
 /* Contact us form */
 #company-address {
-	float: left;
-    width: 400px;
 }
 #webform-client-form-6 {
 	background: none repeat scroll 0 0 #EEEEEE;	
@@ -209,8 +207,5 @@ html.js #user-login-form li.openid-link, html.js #user-login li.openid-link, #us
 	-khtml-border-radius: 4px;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
-	float: left;
-	margin-left: 40px;
     padding: 11px 30px 10px 24px;
-    width: 400px;
 }

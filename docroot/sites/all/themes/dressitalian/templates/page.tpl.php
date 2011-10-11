@@ -198,13 +198,18 @@
         <?php if ($content_top): ?>
           <div id="content-top"><?php print $content_top; ?></div>
         <?php endif; ?>
-
+        
+       <?php if ($tabs): ?>
+            <div id="main-content-tabs">
+              <?php if ($tabs): ?><div class="local-tasks"><?php print $tabs; ?></div><?php endif; ?>
+            </div>
+          <?php endif; ?>
+          
         <div id="main-content">
 
-          <?php if ($title or $tabs): ?>
+          <?php if ($title): ?>
             <div id="main-content-header">
               <?php if ($title): ?><h1 id="page-title"><?php print $title; ?></h1><?php endif; ?>
-              <?php if ($tabs): ?><div class="local-tasks"><?php print $tabs; ?></div><?php endif; ?>
             </div>
           <?php endif; ?>
 
