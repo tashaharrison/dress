@@ -53,7 +53,7 @@ input.form-text, textarea {
     width: 98%;
 }
 textarea, input {
-	font:1.3em normal 'CantarellRegular', Arial, Helvetica, sans-serif;
+	font:1.25em normal 'CantarellRegular', Arial, Helvetica, sans-serif;
 	background: url("../images/form-bg.png") repeat-x scroll left top white;
 }
 div.form-item {
@@ -201,11 +201,11 @@ html.js #user-login-form li.openid-link, html.js #user-login li.openid-link, #us
 /* Contact us form */
 #company-address {
 }
-#webform-client-form-6 {
+.webform-client-form {
 	background: none repeat scroll 0 0 #EEEEEE;	
 	border-radius: 4px;
 	-khtml-border-radius: 4px;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
-    padding: 11px 30px 10px 24px;
+    padding: 11px 30px 26px 24px;
 }

@@ -57,7 +57,7 @@ a:active, a:focus {
 }
 .primary-links li a {
 	color:#7D7D7D;
-	font-size: 1.19em;
+	font-size: 1.1em;
 	padding: 6px 20px;
 }
 /* Set pseudo class styles. */
@@ -67,7 +67,6 @@ a:active, a:focus {
 }
 .primary-links li a:hover {
 	font-weight:bold;
-	font-size: 1.21em;
 	text-decoration:none;
 	color:black;
 }
@@ -117,7 +116,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#E2E2E2', end
 }
 .secondary-links li a {
 	color: #7D7D7D;
-	font-size: 1.19em;
+	font-size: 1.1em;
 	padding: 6px 26px;
 }
 /* Set pseudo class styles. */
@@ -128,7 +127,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#E2E2E2', end
 .secondary-links li a:hover {
 	font-weight:bold;
 	text-decoration:none;
-	font-size: 1.21em;
 	color:black;
 }
 .secondary-links li a:focus {
@@ -170,8 +168,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#E2E2E2', end
 }
 #footer-region ul.menu li a {
 	color:#7D7D7D;
-	font-size: 1.19em;
 	padding: 6px 20px;
+	font-size:1.1em;
 }
 /* Set pseudo class styles. */
 #footer-region ul.menu li a:link {
@@ -180,7 +178,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#E2E2E2', end
 }
 #footer-region ul.menu li a:hover {
 	font-weight:bold;
-	font-size: 1.21em;
 	text-decoration:none;
 	color:black;
 }
@@ -266,7 +263,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#E2E2E2', end
 	height: 1px;
 	background: #444;
 	color: #fff;
-	font-size: 0.94em;
+	font-size: 0.9em;
 	text-decoration: none;
 	-khtml-border-radius: 0 0 10px 10px;
 	-moz-border-radius: 0 0 10px 10px;

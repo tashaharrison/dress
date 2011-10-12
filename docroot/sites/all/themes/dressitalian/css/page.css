@@ -4,7 +4,7 @@
 
 #header {
     clear: both;
-    height: 130px;
+    height: 154px;
     position: relative;
 }
 #branding {
@@ -12,7 +12,7 @@
 	width: 110px;
 }
 h1.logo-site-name {
-	font-size:1em;
+	font-size:1.4em;
 }
 .logo-site-name span {
 	display: block;

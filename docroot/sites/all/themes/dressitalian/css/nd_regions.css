@@ -28,7 +28,7 @@
 /* default region dimensions */
 
 .nd-region-left {
-  width: 48%;
+  width: 25%;
 }
 
 .nd-region-right {
@@ -41,7 +41,7 @@
 }
 
 .nd-sidebar-left .nd-region-middle {
-  margin-left: 50%;
+  margin-left: 25%;
 }
 
 .nd-sidebar-right .nd-region-middle {
@@ -50,7 +50,7 @@
 
 .nd-two-sidebars .nd-region-middle {
   margin-left: 25%;
-  margin-right: 25%;
+  margin-right: 50%;
 }
 
 /* Fix for IE */

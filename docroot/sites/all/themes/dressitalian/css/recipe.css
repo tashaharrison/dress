@@ -15,7 +15,7 @@
 .recipe-categories-links li a {
 	background: url("../images/recipe-categories.png") no-repeat scroll 0 0 #999;
     color: #FFFFFF;
-    font-size: 1.5em;
+    font-size: 1.3em;
     font-weight: bold;
     height: 30px;
     padding-top: 340px;
@@ -77,9 +77,6 @@
 .node-type-recipe .field-title h1 {
 	border-bottom: none;
 }
-.node-type-recipe, .node-type-page {
-	margin-top: 26px;
-}
 .node-type-recipe.nd-region-middle {
 	padding-right:10px;
 }
@@ -88,11 +85,11 @@
 	margin-bottom: 14px;
 }
 .page-type-recipe .field-terms a {
-	font-size:2em;
+	font-size:1.75em;
 	font-weight:bold;
 }
 .page-type-recipe .field-recipe-italian-title {
-	font-size:2em;
+	font-size:1.75em;
 	font-weight:bold;
 	margin-bottom: -0.4em;
 }
@@ -100,23 +97,23 @@
 	margin-top: 18px;
 }
 .page-type-recipe .field-recipe-incredients .field-label {
-	font-size: 1.7em;
+	font-size: 1.45em;
 	margin-bottom: 4px;
 }
 .page-type-recipe .field-recipe-incredients .field-items {
 	line-height: 1.3;
-	font-size: 1.2em;
+	font-size: 1.1em;
 }
 .page-type-recipe .field-recipe-instructioins {
 	margin-top: 18px;
 }
 .page-type-recipe .field-recipe-instructioins .field-label {
-	font-size: 1.7em;
+	font-size: 1.45em;
 	margin-bottom: 4px;
 }
-.page-type-recipe .field-recipe-instructioins p {
+.page-type-recipe .field-recipe-instructioins {
 	line-height: 1.3;
-	font-size:1.2em;
+	font-size:1.1em;
 }
 .page-type-recipe .field-recipe-image {
 	text-align:right;
