@@ -46,3 +46,22 @@
 .subsection-pasta-sauces #page-title {
 	color:#540E16;
 }
+.page-section-title-8 {
+	background-color:#7E0001;
+}
+.page-section-title-9 {
+	background-color:#004101;
+}
+.page-section-title-10 {
+	background-color:white;
+	color:black;
+	border:1px solid #ccc;
+}
+.section-products .view-product-categories {
+	margin-top: 26px;
+}
+.section-products .view-product-categories .views-fluid-grid p {
+	float: left;
+	margin-top: 16px;
+	width: 350px;
+}
