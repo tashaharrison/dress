@@ -18,9 +18,9 @@ class views_plugin_row_vcd extends views_plugin_ds_object_view {
     return $options;
   }
 
-  function options_form(&$form, &$form_state) {
+  function options_form($form, $form_state) {
     // @todo We load the original DS options but these are not fully functional (yet)
-    parent::options_form(&$form, &$form_state);
+    parent::options_form($form, $form_state);
 
     // Load all available build modes for this view
     $views_base_table = $this->view->base_table;
