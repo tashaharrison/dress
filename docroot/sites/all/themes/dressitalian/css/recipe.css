@@ -74,8 +74,15 @@
 }
 .subsection-pesce {
 } */
+.page-type-recipe .node-type-recipe .nd-sidebar-right .nd-region-middle {
+	margin-right: 52%;
+}
+.page-type-recipe .node-type-recipe .nd-region-right {
+	width: 50%;
+}
 .node-type-recipe .field-title h1 {
 	border-bottom: none;
+	margin-top:4px;
 }
 .node-type-recipe.nd-region-middle {
 	padding-right:10px;
@@ -92,6 +99,7 @@
 	font-size:1.75em;
 	font-weight:bold;
 	margin-bottom: -0.4em;
+	line-height:1;
 }
 .page-type-recipe .field-recipe-incredients {
 	margin-top: 18px;
@@ -129,7 +137,7 @@
 .subsection-pesce .field-recipe-italian-title,
 .subsection-pesce .field-terms a,
 .subsection-pesce #page-title,
-.subsection-pesce .recipe-category-page-italian-title a {
+.subsection-pesce .field-recipe-italian-title a {
 	color:#3570c7;
 }
 .subsection-antipasti .field-recipe-serves,
@@ -179,23 +187,38 @@
 
 /* Recipe category page */
 
-img.imagecache-recipe-category-page {
+.section-recipes .view-taxonomy-term  img.imagecache-recipe-category-page {
 	border-radius: 4px;
 	-khtml-border-radius: 4px;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 	outline:none;
 }
-.view-id-recipe_category_pages a:hover {
+.section-recipes .view-taxonomy-term a:hover {
 	text-decoration:none;
 }
-.no-grid-style li {
-	border:none;
-	background:none;
-}
-.recipe-category-page-english-title a {
+.section-recipes .view-taxonomy-term .field-title a h2 {
 	color:#666666;
-}
-.recipe-category-page-english-title {
 	margin-top:-4px;
+	font-size: 1.1em;
+}
+.section-recipes .view-taxonomy-term .field-title {
+}
+.section-recipes .view-taxonomy-term .field-recipe-italian-title a {
+	font-size: 1.1em;
+	font-weight: bold;
+}
+.section-recipes .view-taxonomy-term ul.taxonomy-page-list {
+	list-style:none;
+}
+.section-recipes .view-taxonomy-term li.taxonomy-page-item {
+	color: #444;
+	display: inline-block;
+	list-style-type: none;
+	margin: 0 10px;
+	overflow: hidden;
+	padding: 3px;
+	text-align: center;
+	vertical-align: top;
+	width: 300px;
 }

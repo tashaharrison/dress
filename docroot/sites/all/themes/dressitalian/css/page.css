@@ -542,3 +542,13 @@ a.boxout:hover {
 .links .print_html a:hover {
 	background: url("../images/print-icon.png") no-repeat scroll -50px top white;
 }
+.no-grid-style li {
+	border:none;
+	background:none;
+}
+.node-type-webform .nd-sidebar-right .nd-region-middle {
+	margin-right: 52%;
+}
+.node-type-webform .nd-region-right {
+	width: 50%;
+}

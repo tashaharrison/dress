@@ -3,6 +3,16 @@
 .section-products {
 }
 */
+.nd-region-left {
+	width: 20%;
+}
+.page-type-product .nd-two-sidebars .nd-region-middle {
+	margin-left: 21%;
+	margin-right: 34%;
+}
+.page-type-product .nd-region-right {
+	width: 35%;
+}
 .section-products .field-title h1 {
 	color:#7D0000;
 }
@@ -12,36 +22,30 @@
 .section-products .field-body a {
 	color:#7D0000;
 }
-
 .page-type-product .field-ds-group-product-info-boxout {
 	border:2px solid silver;
 	border-radius: 4px;
 	-khtml-border-radius: 4px;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
-	padding:10px 18px 0;
+	padding:4px 10px 0;
 	line-height: 1.3;
 	margin-left: 24px;
     margin-top: 6px;
 }
-.page-type-product .field-ds-group-product-info-boxout .field-label {
-	font-size: 1.45em;
-	margin-bottom: 4px;
-}
-.page-type-product .field-product-nutritionalinfo .field-label, .page-type-product .field-product-ingredients .field-label {
-	font-size: 1.4em;
+.page-type-product .field-product-nutritionalinfo .field-label, 
+.page-type-product .field-product-ingredients .field-label,
+.page-type-product .field-body .field-label {
+	font-size: 1.5em;
 	margin-bottom: 4px;
 }
 .page-type-product .field-product-nutritionalinfo .field-items, .page-type-product .field-product-ingredients .field-label {
 	line-height: 1.3;
 }
-
 .page-type-product .field-product-nutritionalinfo {
 	margin-top: 18px;
 }
-
-.subsection-pasta-sauces .field-product-ingredients .field-label,
-.subsection-pasta-sauces .field-product-nutritionalinfo .field-label,
+.subsection-pasta-sauces .field-body .field-label,
 .subsection-pasta-sauces .field-ds-group-product-info-boxout .field-label,
 .subsection-pasta-sauces #page-title {
 	color:#540E16;
