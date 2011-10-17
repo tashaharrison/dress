@@ -22,7 +22,7 @@ input.text, input.title, textarea, select {
 	-webkit-border-radius: 4px;
 	padding: 4px;
     text-shadow: 0 0 1px rgba(0, 0, 0, 0.01);
-	font:1.2em normal 'CantarellRegular', Arial, Helvetica, sans-serif;
+
 	background: url("../images/form-bg.png") repeat-x scroll left top white;
 }
 textarea:disabled, input:not([type]):disabled, input[type="color"]:disabled, input[type="date"]:disabled, input[type="datetime"]:disabled, input[type="datetime-local"]:disabled, input[type="email"]:disabled, input[type="month"]:disabled, input[type="password"]:disabled, input[type="number"]:disabled, input[type="search"]:disabled, input[type="tel"]:disabled, input[type="text"]:disabled, input[type="time"]:disabled, input[type="url"]:disabled, input[type="week"]:disabled {
@@ -53,7 +53,9 @@ input.form-text, textarea {
     width: 98%;
 }
 textarea, input {
-	font:1.25em normal 'CantarellRegular', Arial, Helvetica, sans-serif;
+	font-size:1.2em ;
+	font-weight:normal ;
+	font-family:'CantarellRegular', Arial, Helvetica, sans-serif;	
 	background: url("../images/form-bg.png") repeat-x scroll left top white;
 }
 div.form-item {
