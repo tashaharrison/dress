@@ -53,9 +53,8 @@ input.form-text, textarea {
     width: 98%;
 }
 textarea, input {
-	font-size:1.2em ;
+	font-size:1.25em ;
 	font-weight:normal ;
-	font-family:'CantarellRegular', Arial, Helvetica, sans-serif;	
 	background: url("../images/form-bg.png") repeat-x scroll left top white;
 }
 div.form-item {
@@ -184,7 +183,7 @@ html.js #user-login-form li.openid-link, html.js #user-login li.openid-link, #us
 .button input {
 	border: none;
 	background: none;
-		cursor: pointer;
+	cursor: pointer;
 }
 /* Create Recipe form */
 #edit-field-recipe-preptime-0-value-wrapper .form-text, #edit-field-recipe-cookingtime-0-value-wrapper .form-text, #edit-field-recipe-serves-0-value-wrapper .form-text {
