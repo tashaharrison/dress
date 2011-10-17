@@ -552,3 +552,9 @@ a.boxout:hover {
 .node-type-webform .nd-region-right {
 	width: 50%;
 }
+.main-content-tabs {
+	margin-bottom: 42px;
+}
+#sidebar-last {
+    width: 230px;
+}

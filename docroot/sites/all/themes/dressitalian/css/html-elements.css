@@ -14,12 +14,17 @@ h1 {
   margin:0 0 .5em;
   padding:0;
 }
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+	color: #666;
+}
 h2 {
   font-size:1.45em;
 }
+
 h3 {
   font-size:1.25em;
 }
+
 h4 {
   font-size:1.1em;
 }

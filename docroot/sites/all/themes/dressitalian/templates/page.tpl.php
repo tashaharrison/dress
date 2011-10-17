@@ -182,12 +182,24 @@
         <?php if ($help): print $help; endif; ?>
       </div>
     <?php endif; ?>
+    
+           <?php if ($tabs): ?>
+            <div id="main-content-tabs">
+              <?php if ($tabs): ?><div class="local-tasks"><?php print $tabs; ?></div><?php endif; ?>
+            </div>
+          <?php endif; ?>
 
     <?php if ($secondary_content): ?>
       <div id="secondary-content"><?php print $secondary_content; ?></div>
     <?php endif; ?>
 
     <div id="columns"><div class="columns-inner clearfix">
+
+          <?php if ($title): ?>
+            <div id="main-content-header">
+              <?php if ($title): ?><h1 id="page-title"><?php print $title; ?></h1><?php endif; ?>
+            </div>
+          <?php endif; ?>
 
       <div id="content-column"><div class="content-inner">
 
@@ -198,20 +210,10 @@
         <?php if ($content_top): ?>
           <div id="content-top"><?php print $content_top; ?></div>
         <?php endif; ?>
-        
-       <?php if ($tabs): ?>
-            <div id="main-content-tabs">
-              <?php if ($tabs): ?><div class="local-tasks"><?php print $tabs; ?></div><?php endif; ?>
-            </div>
-          <?php endif; ?>
           
         <div id="main-content">
 
-          <?php if ($title): ?>
-            <div id="main-content-header">
-              <?php if ($title): ?><h1 id="page-title"><?php print $title; ?></h1><?php endif; ?>
-            </div>
-          <?php endif; ?>
+
 
           <?php if ($content_aside): ?>
             <div id="content-aside"><?php print $content_aside; ?></div>

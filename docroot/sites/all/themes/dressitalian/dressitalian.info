@@ -22,6 +22,7 @@
   stylesheets[all][] = css/fonts.css
   stylesheets[all][] = css/recipe.css
   stylesheets[all][] = css/product.css
+  stylesheets[all][] = css/travel-blog.css
   ;stylesheets[all][] = css/dark.css
 
 ;----------// IE Conditional Stylesheets
