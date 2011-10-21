@@ -20,15 +20,15 @@
 	font-weight:bold;
 	text-align:left;
 }
-#block-menu-menu-travel-blog-categories .menu li.active-trail a {
+#section-travel-blog .sidebar .menu li.active-trail a {
 	font-weight:bold;
 }
-#block-menu-menu-travel-blog-categories .menu li a:hover {
+#section-travel-blog .sidebar .menu li a:hover {
 	font-weight:bold;
 	text-decoration:none;
 	color:black;
 }
-#block-menu-menu-travel-blog-categories .menu li {
+#section-travel-blog .sidebar .menu li {
 	margin:10px 0;
 }
 .section-travel-blog .sidebar .block h3 {
