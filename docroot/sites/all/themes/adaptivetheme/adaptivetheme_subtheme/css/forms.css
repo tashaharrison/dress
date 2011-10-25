@@ -1,11 +1,14 @@
 /** 
- * $Id: forms.css,v 1.1.2.1 2010/09/14 20:13:12 jmburnz Exp $
+ * $Id: forms.css,v 1.1.2.2 2010/10/14 05:38:00 jmburnz Exp $
  */
 
 /* Forms */
 form {
   margin:0 0 1.667em;
   padding:0;
+}
+.form-item label {
+  font-weight: bold;
 }
 input {
   margin:.375em 0;

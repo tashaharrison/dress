@@ -1,4 +1,4 @@
-<?php // $Id: page.tpl.php,v 1.2.2.1 2010/09/14 20:13:12 jmburnz Exp $
+<?php // $Id: page.tpl.php,v 1.2.2.3 2010/10/14 16:15:10 jmburnz Exp $
 
 /**
  * @file
@@ -114,27 +114,21 @@
 
     <div id="header" class="clearfix">
 
-      <?php if ($linked_site_logo or $linked_site_name or $site_slogan): ?>
+      <?php if ($linked_site_logo || $linked_site_name || $site_slogan): ?>
         <div id="branding">
-
-          <?php if ($linked_site_logo or $linked_site_name): ?>
-            <?php if ($title): ?>
-              <div class="logo-site-name"><strong>
-                <?php if ($linked_site_logo): ?><span id="logo"><?php print $linked_site_logo; ?></span><?php endif; ?>
-                <?php if ($linked_site_name): ?><span id="site-name"><?php print $linked_site_name; ?></span><?php endif; ?>
-              </strong></div>
-            <?php else: ?>
-              <h1 class="logo-site-name">
-                <?php if ($linked_site_logo): ?><span id="logo"><?php print $linked_site_logo; ?></span><?php endif; ?>
-                <?php if ($linked_site_name): ?><span id="site-name"><?php print $linked_site_name; ?></span><?php endif; ?>
-              </h1>
-            <?php endif; ?>
+          <?php if ($title): ?>
+            <div class="brand-elements"><strong>
+              <?php if ($linked_site_logo): ?><span id="logo"><?php print $linked_site_logo; ?></span><?php endif; ?>
+              <?php if ($linked_site_name): ?><span id="site-name"><?php print $linked_site_name; ?></span><?php endif; ?>
+              <?php if ($site_slogan): ?><span id="site-slogan"><?php print $site_slogan; ?></span><?php endif; ?>
+            </strong></div>
+          <?php else: ?>
+            <h1 class="brand-elements">
+              <?php if ($linked_site_logo): ?><span id="logo"><?php print $linked_site_logo; ?></span><?php endif; ?>
+              <?php if ($linked_site_name): ?><span id="site-name"><?php print $linked_site_name; ?></span><?php endif; ?>
+              <?php if ($site_slogan): ?><span id="site-slogan"><?php print $site_slogan; ?></span><?php endif; ?>
+            </h1>
           <?php endif; ?>
-
-          <?php if ($site_slogan): ?>
-            <div id="site-slogan"><?php print $site_slogan; ?></div>
-          <?php endif; ?>
-
         </div> <!-- /branding -->
       <?php endif; ?>
 
@@ -149,7 +143,7 @@
     </div> <!-- /header -->
 
     <?php if ($menu_bar || $primary_menu): ?>
-      <div id="primary-menu" class="nav">
+      <div id="primary-menu" class="nav clearfix">
         <h2 class="element-invisible"><?php print t('Main Menu'); ?></h2>
         <?php if ($menu_bar) { ?>
           <?php print $menu_bar; ?>
@@ -160,7 +154,7 @@
     <?php endif; ?>
 
     <?php if ($secondary_menu): ?>
-      <div id="secondary-menu" class="nav">
+      <div id="secondary-menu" class="nav clearfix">
         <h2 class="element-invisible"><?php print t('Secondary Menu'); ?></h2>
         <?php print $secondary_menu; ?>
       </div>
@@ -173,7 +167,7 @@
       </div>
     <?php endif; ?>
 
-    <?php if ($messages or $help): ?>
+    <?php if ($messages || $help): ?>
       <div id="messages-and-help">
         <h2 class="element-invisible"><?php print t('System Messages'); ?></h2>
         <?php if ($messages): print $messages; endif; ?>
@@ -199,7 +193,7 @@
 
         <div id="main-content">
 
-          <?php if ($title or $tabs): ?>
+          <?php if ($title || $tabs): ?>
             <div id="main-content-header">
               <?php if ($title): ?><h1 id="page-title"><?php print $title; ?></h1><?php endif; ?>
               <?php if ($tabs): ?><div class="local-tasks"><?php print $tabs; ?></div><?php endif; ?>
@@ -234,7 +228,7 @@
       <div id="tertiary-content"><?php print $tertiary_content; ?></div>
     <?php endif; ?>
 
-    <?php if ($footer or $footer_message or $feed_icons): ?>
+    <?php if ($footer || $footer_message || $feed_icons): ?>
       <div id="footer">
 
         <?php if ($footer): ?>

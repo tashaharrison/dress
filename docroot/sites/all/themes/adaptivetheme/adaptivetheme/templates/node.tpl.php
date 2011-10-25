@@ -1,4 +1,4 @@
-<?php // $Id: node.tpl.php,v 1.2.2.1 2010/09/14 20:13:12 jmburnz Exp $
+<?php // $Id: node.tpl.php,v 1.2.2.2 2010/10/14 05:38:00 jmburnz Exp $
 
 /**
  * @file
@@ -57,20 +57,22 @@
  */
 ?>
 <div id="<?php print $article_id; ?>" class="<?php print $classes; ?>">
-  <?php if (!$page): ?>
-    <h2 class="<?php print $title_classes; ?>">
-      <a href="<?php print $node_url; ?>" rel="bookmark"><?php print $title; ?></a>
-      <?php print $unpublished; ?>
-    </h2>
-  <?php endif; ?>
-  <?php if ($submitted): ?>
-    <p class="submitted"><?php print $submitted; ?></p>
-  <?php endif; ?>
-  <?php if ($picture): print $picture; endif; ?>
-  <?php print $content; ?>
-  <?php if ($terms): print $terms; endif; ?>
-  <?php if ($links): print $links; endif; ?>
-  <?php if ($article_aside && !$teaser): ?>
-    <div id="article-aside" class="aside"><?php print $article_aside; ?></div>
-  <?php endif; ?>
+  <div class="article-inner clearfix">
+    <?php if (!$page): ?>
+      <h2 class="<?php print $title_classes; ?>">
+        <a href="<?php print $node_url; ?>" rel="bookmark"><?php print $title; ?></a>
+        <?php print $unpublished; ?>
+      </h2>
+    <?php endif; ?>
+    <?php if ($submitted): ?>
+      <p class="submitted"><?php print $submitted; ?></p>
+    <?php endif; ?>
+    <?php if ($picture): print $picture; endif; ?>
+    <?php print $content; ?>
+    <?php if ($terms): print $terms; endif; ?>
+    <?php if ($links): print $links; endif; ?>
+    <?php if ($article_aside && !$teaser): ?>
+      <div id="article-aside" class="aside"><?php print $article_aside; ?></div>
+    <?php endif; ?>
+  </div>
 </div>

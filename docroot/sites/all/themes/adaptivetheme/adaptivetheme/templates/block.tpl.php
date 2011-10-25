@@ -1,4 +1,4 @@
-<?php // $Id: block.tpl.php,v 1.2.2.1 2010/09/14 20:13:12 jmburnz Exp $
+<?php // $Id: block.tpl.php,v 1.2.2.2 2010/10/14 05:38:00 jmburnz Exp $
 
 /**
  * @file
@@ -33,7 +33,7 @@
     <?php if ($block->subject): ?>
       <h2 class="<?php print $title_classes; ?>"><?php print $block->subject; ?></h2>
     <?php endif; ?>
-    <div class="content"><?php print $block->content ?></div>
+    <div class="<?php print $content_classes; ?>"><?php print $block->content ?></div>
     <?php print $edit_links; ?>
   </div>
 </div>

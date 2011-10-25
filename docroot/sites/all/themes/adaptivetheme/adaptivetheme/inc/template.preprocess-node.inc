@@ -1,4 +1,4 @@
-<?php // $Id: template.preprocess-node.inc,v 1.2.2.3 2010/09/14 20:13:12 jmburnz Exp $
+<?php // $Id: template.preprocess-node.inc,v 1.2.2.4 2010/10/14 05:38:01 jmburnz Exp $
 
 /**
  * @file
@@ -22,8 +22,9 @@ $classes[] = 'article-type-'. $vars['node']->type;
 if (!$vars['status']) {
   $classes[] = 'article-unpublished';
 }
-if (function_exists('node_skinr_data') && !empty($vars['skinr'])) {
+if (!empty($vars['skinr'])) {
   $classes[] = $vars['skinr'];
+  $classes[] = 'skinr-article';
 }
 if (theme_get_setting('extra_article_classes')) {
   if ($vars['promote']) {
@@ -54,6 +55,9 @@ $vars['title_classes'] = implode(' ', $title_classes);
 
 $vars['article_aside'] = theme('blocks', 'article_aside');
 $vars['template_files'][] = 'node-'.$vars['node']->nid;
+
+$vars['terms'] = theme('links', $vars['taxonomy'], array('class' => 'links term-links'));
+$vars['links'] = theme('links', $vars['node']->links, array('class' => 'links link-links'));
 
 if (!$vars['node']->status) {
   if ($vars['page']) {

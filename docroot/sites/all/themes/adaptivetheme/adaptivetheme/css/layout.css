@@ -1,5 +1,5 @@
 /** 
- * $Id: layout.css,v 1.1.2.1 2010/09/14 20:13:12 jmburnz Exp $
+ * $Id: layout.css,v 1.1.2.2 2010/10/14 05:38:00 jmburnz Exp $
  *
  * @file
  * Fallback layout and helpers.
@@ -224,6 +224,11 @@ div.container {
 .three-col-50-25-25 .col-3,
 .four-col-4x25 .col-4 {
   width:24.5%;
+}
+
+/* Panels */
+.block-panels_mini {
+  padding: 0;
 }
 
 /* Enhanced universal clearfix */

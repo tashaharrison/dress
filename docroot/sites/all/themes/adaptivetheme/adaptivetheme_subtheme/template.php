@@ -1,18 +1,14 @@
-<?php // $Id: template.php,v 1.2.2.1 2010/09/14 20:13:12 jmburnz Exp $
-
-/**
- * @file template.php
- */
+<?php // $Id: template.php,v 1.2.2.4 2010/10/14 16:15:10 jmburnz Exp $
 
 if (db_is_active()) {
   include_once(drupal_get_path('theme', 'adaptivetheme') .'/inc/template.custom-functions.inc');
 }
 
-/*
+// Style Schemes: change 'adaptivetheme_subtheme' to your theme name (see theme-settings.php also).
 if (theme_get_setting('style_enable_schemes') == 'on') {
- drupal_add_css(drupal_get_path('theme', 'adaptivetheme_subtheme') .'/css/'. get_at_styles(), 'theme');
+ drupal_add_css(drupal_get_path('theme', 'adaptivetheme_subtheme') .'/css/schemes/'. get_at_styles(), 'theme');
 }
-*/
+
 
 /**
  * Override or insert variables into all templates.

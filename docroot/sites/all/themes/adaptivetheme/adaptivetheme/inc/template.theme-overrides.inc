@@ -1,4 +1,4 @@
-<?php // $Id: template.theme-overrides.inc,v 1.2.2.3 2010/09/14 20:13:12 jmburnz Exp $
+<?php // $Id: template.theme-overrides.inc,v 1.2.2.5 2010/10/25 08:55:44 jmburnz Exp $
 
 /**
  * @file
@@ -145,20 +145,11 @@ function adaptivetheme_links($links, $attributes = array('class' => 'links')) {
       $i++;
       $output .= '<li'. drupal_attributes(array('class' => $class)) .'>';
       $output .= $link;
-      $output .= "</li>\n";
+      $output .= "</li>";
     }
-    $output .= "</ul>\n";
+    $output .= "</ul>";
   }
   return $output;
-}
-
-/**
- * Generate the HTML output for a menu tree
- *
- * @ingroup themeable
- */
-function adaptivetheme_menu_tree($tree) {
-   return "<ul class=\"menu clearfix\">\n $tree </ul>\n";
 }
 
 // If DHTML module is installed dont override theme_menu_item.
@@ -186,16 +177,13 @@ if (!function_exists('dhtml_menu_init')) {
         $class .= $extra_class;
       }
     }
-    $class .= ' ' . safe_string(strip_tags($link));
+    if (theme_get_setting('extra_menu_classes')) {
+      $class .= ' menu-item-' . safe_string(strip_tags($link));
+    }
     if ($in_active_trail) {
       $class .= ' active-trail';
     }
-    if ($class) {
-      return '<li class="'. $class .'">'. $link . $menu ."</li>\n";
-    }
-    else{
-      return '<li>'. $link . $menu ."</li>\n";
-    }
+    return '<li class="'. $class .'">'. $link . $menu ."</li>";
   }
 }
 
@@ -261,7 +249,7 @@ function adaptivetheme_item_list($items = array(), $title = NULL, $type = 'ul', 
           $attributes['class'] = empty($attributes['class']) ? 'last' : ($attributes['class'] .' last');
         }
       }
-      $output .= '<li'. drupal_attributes($attributes) .'>'. $data ."</li>\n";
+      $output .= '<li'. drupal_attributes($attributes) .'>'. $data ."</li>";
     }
     $output .= "</$type>";
   }
