@@ -6,14 +6,14 @@
 .section-travel-blog ul li {
 	list-style:none;
 }
-.travel-blog-page-list li, .taxonomy-page-list li {
+.travel-blog-page-list li {
 	border-bottom: 2px solid silver;
 	padding: 10px 10px 14px 0;
 }
-.travel-blog-page-list li.last, .taxonomy-page-list li.last {
+.travel-blog-page-list li.last {
 	border-bottom: none;
 }
-.travel-blog-page-list li.first, .taxonomy-page-list li.first {
+.travel-blog-page-list li.first {
 	padding: 0 10px 14px 0;
 }
 .more-link, .field-read-more {

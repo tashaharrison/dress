@@ -230,19 +230,19 @@
 
 /* Recipe category page - GREY */
 
-.section-recipes .grey {
+.page-type-recipe .grey {
 	background-color: #4C4C4C;
 }
-.section-recipes .grey .nd-region-header {
+.page-type-recipe .grey .nd-region-header {
 	background-color: white;
 	margin-bottom: 0;
 }
-.section-recipes .grey .nd-region-middle-wrapper {
+.page-type-recipe .grey .nd-region-middle-wrapper {
 	padding: 14px 14px 0 14px;;
 	color: white;
 	border-top: white 16px solid;
 }
-.section-recipes .grey .nd-region-right {
+.page-type-recipe .grey .nd-region-right {
 	padding: 30px 14px 0 14px;
 	color:white;
 }
