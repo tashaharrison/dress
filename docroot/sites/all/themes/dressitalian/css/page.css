@@ -558,3 +558,10 @@ a.boxout:hover {
 #sidebar-last {
     width: 230px;
 }
+.view-frontpage .views_slideshow_singleframe_slide {
+	width:940px;
+}
+.view-frontpage h2 {
+	font-family:'ShelleyAllegroScriptRegular',Verdana,Geneva,"DejaVu Sans",sans-serif;
+	font-size: 2.4em;
+}
