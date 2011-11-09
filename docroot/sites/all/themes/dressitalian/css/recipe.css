@@ -81,8 +81,9 @@
 	width: 50%;
 }
 .node-type-recipe .field-title h1 {
-	border-bottom: none;
-	margin-top:4px;
+    border-bottom: medium none;
+    line-height: 1;
+    margin-top: 14px;
 }
 .node-type-recipe.nd-region-middle {
 	padding-right:10px;
@@ -209,14 +210,20 @@
 }
 .section-recipes .view-taxonomy-term .field-title a h2 {
 	color:#666666;
-	margin-top:-4px;
 	font-size: 1.1em;
+	line-height:1;
 }
 .section-recipes .view-taxonomy-term .field-title {
+	line-height:1;
+}
+.section-recipes .view-taxonomy-term .field-recipe-italian-title {
+	line-height:1;
+	margin-bottom: 6px;
 }
 .section-recipes .view-taxonomy-term .field-recipe-italian-title a {
 	font-size: 1.1em;
 	font-weight: bold;
+	line-height:1;
 }
 .section-recipes .view-taxonomy-term ul.taxonomy-page-list {
 	list-style:none;
@@ -268,7 +275,7 @@
 .subsection-antipasti .grey .field-recipe-instructioins .field-label,
 .subsection-antipasti .grey .field-recipe-incredients .field-label,
 .subsection-antipasti .grey .field-recipe-italian-title {
-	color:#808080;
+	color:#969696;
 }
 .subsection-carne .grey .field-recipe-serves,
 .subsection-carne .grey .field-recipe-preptime,
@@ -276,7 +283,7 @@
 .subsection-carne .grey .field-recipe-instructioins .field-label,
 .subsection-carne .grey .field-recipe-incredients .field-label,
 .subsection-carne .grey .field-recipe-italian-title {
-	color:#800000;
+	color:#F79999;
 }
 .subsection-primi-piatti .grey .field-recipe-serves,
 .subsection-primi-piatti .grey .field-recipe-preptime,
@@ -292,5 +299,5 @@
 .subsection-verdure .grey .field-recipe-instructioins .field-label,
 .subsection-verdure .grey .field-recipe-incredients .field-label,
 .subsection-verdure .grey .field-recipe-italian-title {
-	color:#034d03;
+	color:#82E582;
 }
