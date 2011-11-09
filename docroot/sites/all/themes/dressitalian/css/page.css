@@ -515,6 +515,11 @@ a.boxout:hover {
 .field-links {
 	position: absolute;
     right: 0;
+	top: -95px;
+}
+.page-type-recipe .field-links {
+	position: absolute;
+    right: 0;
 	top: -34px;
 }
 .field-links .links li {
