@@ -135,6 +135,7 @@
 .subsection-pesce .field-recipe-instructioins .field-label,
 .subsection-pesce .field-recipe-incredients .field-label,
 .subsection-pesce .field-recipe-italian-title,
+.subsection-pesce .field-recipe-italian-title a,
 .subsection-pesce .field-terms a,
 .subsection-pesce .field-terms,
 .subsection-pesce #page-title,
@@ -146,7 +147,8 @@
 .subsection-antipasti .field-recipe-cookingtime,
 .subsection-antipasti .field-recipe-instructioins .field-label,
 .subsection-antipasti .field-recipe-incredients .field-label,
-.subsection-antipasti .field-recipe-italian-title,id
+.subsection-antipasti .field-recipe-italian-title,
+.subsection-antipasti .field-recipe-italian-title a,
 .subsection-antipasti .field-terms a,
 .subsection-antipasti .field-terms,
 .subsection-antipasti #page-title,
@@ -159,6 +161,7 @@
 .subsection-carne .field-recipe-instructioins .field-label,
 .subsection-carne .field-recipe-incredients .field-label,
 .subsection-carne .field-recipe-italian-title,
+.subsection-carne .field-recipe-italian-title a,
 .subsection-carne .field-terms a,
 .subsection-carne .field-terms,
 .subsection-carne #page-title,
@@ -171,6 +174,7 @@
 .subsection-primi-piatti .field-recipe-instructioins .field-label,
 .subsection-primi-piatti .field-recipe-incredients .field-label,
 .subsection-primi-piatti .field-recipe-italian-title,
+.subsection-primi-piatti .field-recipe-italian-title a,
 .subsection-primi-piatti .field-terms a,
 .subsection-primi-piatti .field-terms,
 .subsection-primi-piatti #page-title,
@@ -183,6 +187,7 @@
 .subsection-verdure .field-recipe-instructioins .field-label,
 .subsection-verdure .field-recipe-incredients .field-label,
 .subsection-verdure .field-recipe-italian-title,
+.subsection-verdure .field-recipe-italian-title a,
 .subsection-verdure .field-terms a,
 .subsection-verdure .field-terms,
 .subsection-verdure #page-title,
@@ -215,12 +220,13 @@
 }
 .section-recipes .view-taxonomy-term ul.taxonomy-page-list {
 	list-style:none;
+	margin:0;
 }
 .section-recipes .view-taxonomy-term li.taxonomy-page-item {
 	color: #444;
 	display: inline-block;
 	list-style-type: none;
-	margin: 0 10px;
+	margin: 0 2px;
 	overflow: hidden;
 	padding: 3px;
 	text-align: center;
