@@ -512,12 +512,12 @@ a.boxout:hover {
 	margin: 0 auto;
 }
 /* Social links: Page */
-.field-links {
+.page-type-product .field-links {
 	position: absolute;
     right: 0;
 	top: -95px;
 }
-.page-type-recipe .field-links {
+.field-links {
 	position: absolute;
     right: 0;
 	top: -34px;
