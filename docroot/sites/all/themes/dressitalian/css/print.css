@@ -49,7 +49,10 @@ img.print-logo {border: 40px;}
 	color: #666666;
 	font-size:18pt;
 	font-weight: bold;
-	margin-bottom:20px;
+	margin-bottom:0;
+}
+.print-content .field-title h2 {
+	margin-top:0;
 }
 .print-content .field-recipe-incredients {
 	border: 6px dashed #DDDDDD;
@@ -92,13 +95,11 @@ img.print-logo {border: 40px;}
 	text-align: center;
 	clear: right;
 }
-.print-content ul.links.inline {
+.print-content .field-terms {
     display: inline;
-    left: 124px;
+    left: 140px;
     position: absolute;
-    top: 110px;
-}
-.print-content ul.links.inline a {
+    top: 112px;
 	color: #666666;
     font-size: 18pt;
     font-weight: normal;

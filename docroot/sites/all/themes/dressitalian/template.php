@@ -68,4 +68,21 @@ function dressitalian_preprocess_comment(&$vars, $hook) {
 function dressitalian_preprocess_block(&$vars, $hook) {
 }
 */
+function dressitalian_preprocess_print_node(&$variables, $hook) {
+  $format = $variables['type'];
+$type = $variables['node']->type;
+$additions = _content_field_invoke_default('preprocess_node', $variables['node']);
+$variables = array_merge($variables, $additions);
 
+$variables['node']->render_by_ds = TRUE; //extra line
+  
+  template_preprocess_node($variables);
+if (function_exists('_nd_preprocess_node')) {
+  _nd_preprocess_node($variables, $hook);
+}
+  $variables['template_files'][] = "node";
+  $variables['template_files'][] = "node-$type";
+  $variables['template_files'][] = "print_node";
+  $variables['template_files'][] = "print_node_$format";
+  $variables['template_files'][] = "print_node_$format.node-$type";
+}
