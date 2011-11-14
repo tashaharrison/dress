@@ -1,5 +1,4 @@
 <?php
-// $Id: nd.regions.test,v 1.1.2.7.2.7 2010/07/05 20:27:29 swentel Exp $
 
 /**
  * @file
@@ -23,6 +22,15 @@ class NodeDisplaysRegions extends DrupalWebTestCase {
    */
   function setUp() {
     parent::setUp('ds', 'ds_ui', 'nd');
+  }
+
+  /**
+   * Debug helper function. Writes values away to a text file in the files directory.
+   */
+  function _debugHelper($value, $writetype = 'a+') {
+    $debug = fopen($this->originalFileDirectory .'/simpletestdebug.txt', 'a+');
+    fwrite($debug, print_r($value, TRUE) ."\n");
+    fclose($debug);
   }
 
   /**
@@ -90,6 +98,9 @@ class NodeDisplaysRegions extends DrupalWebTestCase {
     $this->assertTrue(in_array('links', array_keys($page_object->regions['footer'])), t('Links is in footer region'), t('Rendering tests'));
     $this->assertTrue($this->_nd_field_not_found('post_date', $page_object->regions), t('Post date is disabled'), t('Rendering tests'));
 
+    // Just surf to a page to reset the static cache of ds_get_settings();
+    $this->drupalGet('node');
+
     // Let's do another one..
     $edit = array(
       'title[full][region]' => 'disabled',
@@ -99,7 +110,13 @@ class NodeDisplaysRegions extends DrupalWebTestCase {
       'post_date[full][region]' => 'footer',
     );
     $this->drupalPost('admin/build/ds/layout/page/full', $edit, t('Save'));
+
+    // Reset the static cache.
+    $settings = ds_get_settings('nd', 'page', 'full', 'settings', TRUE);
+
+    // Now verify.
     $page_object = $this->_nd_build_object($page_node);
+
     $this->assertTrue(in_array('post_date', array_keys($page_object->regions['footer'])), t('Post date is in footer region'), t('Rendering tests'));
     $this->assertTrue(in_array('author', array_keys($page_object->regions['right'])), t('Author is in right region'), t('Rendering tests'));
     $this->assertTrue(in_array('body', array_keys($page_object->regions['middle'])), t('Body is in middle region'), t('Rendering tests'));
