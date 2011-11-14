@@ -1,5 +1,4 @@
 <?php
-// $Id: nd.tools.test,v 1.1.2.4 2010/06/08 00:20:08 swentel Exp $
 
 /**
  * @file
@@ -26,6 +25,15 @@ class NodeDisplaysDefaults extends DrupalWebTestCase {
   }
 
   /**
+   * Debug helper function. Writes values away to a text file in the files directory.
+   */
+  function _debugHelper($value, $writetype = 'a+') {
+    $debug = fopen($this->originalFileDirectory .'/simpletestdebug.txt', 'a+');
+    fwrite($debug, print_r($value, TRUE) ."\n");
+    fclose($debug);
+  }
+
+  /**
    * Test defaults.
    */
   function testDefaults() {
@@ -36,8 +44,8 @@ class NodeDisplaysDefaults extends DrupalWebTestCase {
     $this->drupalLogin($admin_user);
 
     // Verify settings are default.
-    $settings = variable_get('nd_display_settings_page', array());
-    $this->assertEqual($settings['full']['status'], DS_SETTINGS_DEFAULT, t('Settings for page full are default'), t('Default settings'));
+    $settings = ds_get_settings('nd', 'page', 'full', 'settings', TRUE);
+    $this->assertEqual($settings['status'], DS_SETTINGS_DEFAULT, t('Settings for page full are default'), t('Default settings'));
 
     // Verify that test key is available on page but not on story.
     $this->drupalGet('admin/build/ds/layout/page/full');
@@ -62,8 +70,8 @@ class NodeDisplaysDefaults extends DrupalWebTestCase {
     $this->assertNoText('Test key: '. $page_node->nid, t('Test key not rendered.'), t('Default fields'));
 
     // Verify display settings are overriden.
-    $settings = variable_get('nd_display_settings_page', array());
-    $this->assertEqual($settings['full']['status'], DS_SETTINGS_OVERRIDDEN, t('Settings for page full are overriden'), t('Default settings'));
+    $settings = ds_get_settings('nd', 'page', 'full', 'settings', TRUE);
+    $this->assertEqual($settings['status'], DS_SETTINGS_OVERRIDDEN, t('Settings for page full are overriden'), t('Default settings'));
 
     // Verify we can revert to default settings and se test key is rendered again.
     $this->drupalPost('admin/build/ds/tools/revert/nd/page/full', array(), t('Confirm'));
@@ -71,8 +79,7 @@ class NodeDisplaysDefaults extends DrupalWebTestCase {
     $this->assertText('Test key: '. $page_node->nid, t('Test key rendered.'), t('Default fields'));
 
     // Verify settings are default again.
-    $settings = variable_get('nd_display_settings_page', array());
-    $this->assertEqual($settings['full']['status'], DS_SETTINGS_DEFAULT, t('Settings for page full are default'), t('Default settings'));
-
+    $settings = ds_get_settings('nd', 'page', 'full', 'settings', TRUE);
+    $this->assertEqual($settings['status'], DS_SETTINGS_DEFAULT, t('Settings for page full are default'), t('Default settings'));
   }
 }

@@ -211,3 +211,6 @@ html.js #user-login-form li.openid-link, html.js #user-login li.openid-link, #us
 	-webkit-border-radius: 4px;
     padding: 11px 30px 26px 24px;
 }
+.node-form .openlayers-container {
+	margin-top: 34px
+}

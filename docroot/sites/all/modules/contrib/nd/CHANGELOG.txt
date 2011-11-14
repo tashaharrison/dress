@@ -1,5 +1,16 @@
 ------------------------------------------------------------------------------------
-6.x-2.4 2010-xx-xx
+6.x-2.5 2011-10-29
+-------------------------------------------------------------------------------------
+- #1141524 by brunodbo: Display taxonomy terms as a list.
+- #1125858 by netsensei: Rules integration for ND.
+- #1087632 by bettibio, swentel: Check book permissions on access
+- #1316610 by xtfer: Sticky buildmode implementation can conflict with
+  use of Sticky as a state signifier.
+- Fix tests
+- Strip CVS keywords
+
+------------------------------------------------------------------------------------
+6.x-2.4 2010-12-16
 -------------------------------------------------------------------------------------
 - #863380 by morningtime: apachesolr views changed their base table.
 - #857408 by swentel: taxonomy id's during preview triggered notices.
@@ -35,4 +46,3 @@
 6.x-2.0 2010-02-04
 -------------------------------------------------------------------------------------
 
-/* Last updated: $Id: CHANGELOG.txt,v 1.1.2.60.2.22 2010/12/15 21:55:52 swentel Exp $ */

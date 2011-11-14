@@ -60,6 +60,7 @@ a:active, a:focus {
 	color:#7D7D7D;
 	font-size: 1.1em;
 	padding: 6px 20px;
+	font-weight: bold;
 }
 /* Set pseudo class styles. */
 .primary-links li a:link {
@@ -119,6 +120,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#E2E2E2', end
 	color: #7D7D7D;
 	font-size: 1.1em;
 	padding: 6px 26px;
+	font-weight: bold;
 }
 /* Set pseudo class styles. */
 .secondary-links li a:link {
