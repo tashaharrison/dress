@@ -198,38 +198,46 @@
 
 /* Recipe category page - WHITE */
 
-.section-recipes .view-taxonomy-term  img.imagecache-recipe-category-page {
+.section-recipes .view-taxonomy-term img.imagecache-recipe-category-page,
+.section-recipes .view-recommended-recipes img.imagecache-recipe-category-page {
 	border-radius: 4px;
 	-khtml-border-radius: 4px;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 	outline:none;
 }
-.section-recipes .view-taxonomy-term a:hover {
+.section-recipes .view-taxonomy-term a:hover,
+.section-recipes .view-recommended-recipes a:hover {
 	text-decoration:none;
 }
-.section-recipes .view-taxonomy-term .field-title a h2 {
+.section-recipes .view-taxonomy-term .field-title a h2,
+.section-recipes .view-recommended-recipes .field-title a h2 {
 	color:#666666;
 	font-size: 1.1em;
 	line-height:1;
 }
-.section-recipes .view-taxonomy-term .field-title {
+.section-recipes .view-taxonomy-term .field-title,
+.section-recipes .view-recommended-recipes .field-title {
 	line-height:1;
 }
-.section-recipes .view-taxonomy-term .field-recipe-italian-title {
+.section-recipes .view-taxonomy-term .field-recipe-italian-title,
+.section-recipes .view-recommended-recipes .field-recipe-italian-title {
 	line-height:1;
 	margin-bottom: 6px;
 }
-.section-recipes .view-taxonomy-term .field-recipe-italian-title a {
+.section-recipes .view-taxonomy-term .field-recipe-italian-title a,
+.section-recipes .view-recommended-recipes .field-recipe-italian-title a {
 	font-size: 1.1em;
 	font-weight: bold;
 	line-height:1;
 }
-.section-recipes .view-taxonomy-term ul.taxonomy-page-list {
+.section-recipes .view-taxonomy-term ul.taxonomy-page-list,
+.section-recipes .view-recommended-recipes ul.taxonomy-page-list {
 	list-style:none;
 	margin:0;
 }
-.section-recipes .view-taxonomy-term li.taxonomy-page-item {
+.section-recipes .view-taxonomy-term li.taxonomy-page-item,
+.section-recipes .view-recommended-recipes li.taxonomy-page-item {
 	color: #444;
 	display: inline-block;
 	list-style-type: none;
