@@ -225,9 +225,13 @@
 	line-height:1;
 	margin-bottom: 6px;
 }
-.section-recipes .view-taxonomy-term .field-recipe-italian-title a,
-.section-recipes .view-recommended-recipes .field-recipe-italian-title a {
+.section-recipes .view-taxonomy-term .field-recipe-italian-title a {
 	font-size: 1.1em;
+	font-weight: bold;
+	line-height:1;
+}
+.section-recipes .view-recommended-recipes .field-recipe-italian-title a {
+	font-size: 0.65em;
 	font-weight: bold;
 	line-height:1;
 }
@@ -248,7 +252,13 @@
 	vertical-align: top;
 	width: 300px;
 }
-
+.page-type-recipe .view-recommended-recipes .grey {
+	background-color: transparent;
+}
+.page-type-recipe .view-recommended-recipes .grey .nd-region-middle-wrapper {
+	padding: 0;
+	display: inline;
+}
 /* Recipe category page - GREY */
 
 .page-type-recipe .grey {
