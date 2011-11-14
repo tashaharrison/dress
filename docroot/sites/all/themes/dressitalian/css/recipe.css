@@ -259,6 +259,9 @@
 	padding: 0;
 	display: inline;
 }
+.view-recommended-recipes {
+	margin-top: 24px;
+}
 /* Recipe category page - GREY */
 
 .page-type-recipe .grey {
