@@ -92,6 +92,10 @@
 	border-bottom: 2px solid #CCC;
 	margin-bottom: 14px;
 }
+.page-type-recipe .nd-region-footer {
+	background-color: white;
+	
+}
 .page-type-recipe .field-terms {
 	font-size:1.75em;
 	font-weight:bold;
@@ -255,7 +259,7 @@
 .page-type-recipe .view-recommended-recipes .grey {
 	background-color: transparent;
 }
-.page-type-recipe .view-recommended-recipes .grey .nd-region-middle-wrapper {
+.page-type-recipe .view-recommended-recipes .nd-region-middle-wrapper {
 	padding: 0;
 	display: inline;
 }
