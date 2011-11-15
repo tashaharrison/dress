@@ -259,7 +259,8 @@
 .page-type-recipe .view-recommended-recipes .grey {
 	background-color: transparent;
 }
-.page-type-recipe .view-recommended-recipes .nd-region-middle-wrapper {
+.page-type-recipe .view-recommended-recipes .nd-region-middle-wrapper,
+.page-type-recipe .grey .view-recommended-recipes .nd-region-middle-wrapper {
 	padding: 0;
 	display: inline;
 }
