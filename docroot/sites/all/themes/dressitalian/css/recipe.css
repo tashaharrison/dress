@@ -255,7 +255,10 @@
 .view-recommended-recipes .grey {
 	background-color: transparent;
 }
+.view-recommended-recipes .grey{
+}
 .view-recommended-recipes .nd-region-middle-wrapper,
+.page-type-recipe .grey .view-recommended-recipes .nd-region-middle-wrapper,
 .grey .view-recommended-recipes .nd-region-middle-wrapper {
 	padding: 0;
 	display: inline;
@@ -265,7 +268,7 @@
 }
 /* Recipe category page - GREY */
 
-.page-type-recipe .grey {
+.grey {
 	background-color: #4C4C4C;
 }
 .page-type-recipe .grey .nd-region-header {
