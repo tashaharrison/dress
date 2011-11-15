@@ -203,7 +203,7 @@
 /* Recipe category page - WHITE */
 
 .section-recipes .view-taxonomy-term img.imagecache-recipe-category-page,
-.section-recipes .view-recommended-recipes img.imagecache-recipe-category-page {
+.view-recommended-recipes img.imagecache-recipe-category-page {
 	border-radius: 4px;
 	-khtml-border-radius: 4px;
 	-moz-border-radius: 4px;
@@ -211,41 +211,37 @@
 	outline:none;
 }
 .section-recipes .view-taxonomy-term a:hover,
-.section-recipes .view-recommended-recipes a:hover {
+.view-recommended-recipes a:hover {
 	text-decoration:none;
 }
 .section-recipes .view-taxonomy-term .field-title a h2,
-.section-recipes .view-recommended-recipes .field-title a h2 {
+.view-recommended-recipes .field-title a h2 {
 	color:#666666;
-	font-size: 1.1em;
+	font-size: 16px;
 	line-height:1;
 }
 .section-recipes .view-taxonomy-term .field-title,
-.section-recipes .view-recommended-recipes .field-title {
+.view-recommended-recipes .field-title {
 	line-height:1;
 }
 .section-recipes .view-taxonomy-term .field-recipe-italian-title,
-.section-recipes .view-recommended-recipes .field-recipe-italian-title {
+.view-recommended-recipes .field-recipe-italian-title {
 	line-height:1;
 	margin-bottom: 6px;
 }
-.section-recipes .view-taxonomy-term .field-recipe-italian-title a {
-	font-size: 1.1em;
-	font-weight: bold;
-	line-height:1;
-}
-.section-recipes .view-recommended-recipes .field-recipe-italian-title a {
-	font-size: 0.65em;
+.section-recipes .view-taxonomy-term .field-recipe-italian-title a,
+.view-recommended-recipes .field-recipe-italian-title a {
+	font-size: 16px;
 	font-weight: bold;
 	line-height:1;
 }
 .section-recipes .view-taxonomy-term ul.taxonomy-page-list,
-.section-recipes .view-recommended-recipes ul.taxonomy-page-list {
+.view-recommended-recipes ul.taxonomy-page-list {
 	list-style:none;
 	margin:0;
 }
 .section-recipes .view-taxonomy-term li.taxonomy-page-item,
-.section-recipes .view-recommended-recipes li.taxonomy-page-item {
+.view-recommended-recipes li.taxonomy-page-item {
 	color: #444;
 	display: inline-block;
 	list-style-type: none;
@@ -256,16 +252,16 @@
 	vertical-align: top;
 	width: 300px;
 }
-.page-type-recipe .view-recommended-recipes .grey {
+.view-recommended-recipes .grey {
 	background-color: transparent;
 }
-.page-type-recipe .view-recommended-recipes .nd-region-middle-wrapper,
-.page-type-recipe .grey .view-recommended-recipes .nd-region-middle-wrapper {
+.view-recommended-recipes .nd-region-middle-wrapper,
+.grey .view-recommended-recipes .nd-region-middle-wrapper {
 	padding: 0;
 	display: inline;
 }
 .view-recommended-recipes {
-	margin-top: 24px;
+	padding-top: 24px;
 }
 /* Recipe category page - GREY */
 

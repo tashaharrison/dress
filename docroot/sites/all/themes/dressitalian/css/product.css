@@ -3,15 +3,15 @@
 .section-products {
 }
 */
-.nd-region-left {
-	width: 24%;
+.page-type-product .nd-region-left {
+	width: 20%;
 }
 .page-type-product .nd-two-sidebars .nd-region-middle {
-	margin-left: 24%;
+	margin-left: 20%;
 	margin-right: 34%;
 }
 .page-type-product .nd-region-right {
-	width: 35%;
+	width: 33%;
 }
 .section-products .field-title h1 {
 	color:#7D0000;
