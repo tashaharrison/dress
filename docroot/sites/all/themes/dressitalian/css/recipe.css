@@ -266,6 +266,10 @@
 .view-recommended-recipes {
 	padding-top: 24px;
 }
+.view-recommended-recipes .view-title {
+	line-height: 1.3;
+	font-size: 1.1em;
+}
 /* Recipe category page - GREY */
 
 .grey {
