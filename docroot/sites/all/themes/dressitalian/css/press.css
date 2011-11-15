@@ -1,0 +1,23 @@
+/* Press */
+
+.views_slideshow_thumbnailhover_div_breakout_teaser {
+  display: inline-block;
+	padding: 5px 5px 25px;
+}
+
+.views_slideshow_thumbnailhover_div_breakout_teaser img {
+  box-shadow: 5px 5px 5px #888888;
+	border: none;
+}
+
+.imagecache-press_page {
+	padding: 2px;
+}
+
+#views_slideshow_thumbnailhover_main_press-page {
+	width: 940px;
+}
+
+#views_slideshow_thumbnailhover_teaser_section_press-page {
+  margin: 0 auto;
+}
