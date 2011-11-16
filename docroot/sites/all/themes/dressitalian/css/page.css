@@ -581,13 +581,12 @@ a.boxout:hover {
     left: 306px;
     top: -192px;
     padding: 4px 10px 0;
-	position:absolute;
 }
 .front #block-views-recommended_recipes-block_1 {
 	width: 270px;
 	left: 636px;
     top: -605px;
-	position:absolute;
+	margin-bottom: -460px;
 }
 .front #block-block-4 {
 	width: 270px;
