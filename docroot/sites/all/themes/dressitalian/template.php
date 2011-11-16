@@ -48,7 +48,6 @@ $vars['classes'] = trim(implode(' ', $classes));
 }
 
 
-
 /**
  * Override or insert variables into the node templates.
  */
@@ -85,4 +84,36 @@ if (function_exists('_nd_preprocess_node')) {
   $variables['template_files'][] = "print_node";
   $variables['template_files'][] = "print_node_$format";
   $variables['template_files'][] = "print_node_$format.node-$type";
+}
+
+/**
+ * Theme function to render the field content.
+ *
+ * @param string $content The content to render.
+ * @param array $field Collection of field properties.
+ */
+function dressitalian_ds_field($content, $field) {
+  $output = '';
+
+  if (!empty($content)) {
+    if ($field['type'] == 'ds') {
+
+      $output .= '<div class="field '. $field['class'] .'">';
+      // Above label.
+      if ($field['labelformat'] == 'above') {
+        $output .= '<div class="field-label">'. $field['title'] .' </div>';
+      }
+      // Inline label
+      if ($field['labelformat'] == 'inline') {
+        $output .= '<div class="field-label-inline-first">'. $field['title'] .': </div>';
+      }
+      $output .= $content;
+      $output .= '</div>';
+    }
+    else {
+      $output = $content;
+    }
+  }
+
+  return $output;
 }

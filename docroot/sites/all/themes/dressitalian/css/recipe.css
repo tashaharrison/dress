@@ -128,7 +128,12 @@
 .page-type-recipe .field-recipe-image {
 	text-align:right;
 }
-
+.page-type-product .field-recommended-recipes-node-content-1 {
+	margin-top: 26px;
+}
+.page-type-recipe .field-recommended-recipes-node-content-1 {
+	padding-top: 14px;
+}
 /* Category specific colors */
 
 .subsection-pesce .field-recipe-serves,
@@ -142,6 +147,7 @@
 .subsection-pesce .field-terms,
 .subsection-pesce #page-title,
 .subsection-pesce .field-recipe-italian-title a,
+.subsection-pesce .field-recommended-recipes-node-content-1 .field-label,
 .field-recipe-italian-title a span.Pesce {
 	color:#3570c7;
 }
@@ -156,6 +162,7 @@
 .subsection-antipasti .field-terms,
 .subsection-antipasti #page-title,
 .subsection-antipasti .recipe-category-page-italian-title a,
+.subsection-antipasti .field-recommended-recipes-node-content-1 .field-label,
 .field-recipe-italian-title a span.Antipasti {
 	color:#808080;
 }
@@ -170,6 +177,7 @@
 .subsection-carne .field-terms,
 .subsection-carne #page-title,
 .subsection-carne .recipe-category-page-italian-title a,
+.subsection-carne .field-recommended-recipes-node-content-1 .field-label,
 .field-recipe-italian-title a span.Carne {
 	color:#800000;
 }
@@ -184,6 +192,7 @@
 .subsection-primi-piatti .field-terms,
 .subsection-primi-piatti #page-title,
 .subsection-primi-piatti .recipe-category-page-italian-title a,
+.subsection-primi-piatti .field-recommended-recipes-node-content-1 .field-label,
 .field-recipe-italian-title a span.Primi {
 	color:#d2ab6b;
 }
@@ -198,6 +207,7 @@
 .subsection-verdure .field-terms,
 .subsection-verdure #page-title,
 .subsection-verdure .recipe-category-page-italian-title a,
+.subsection-verdure .field-recommended-recipes-node-content-1 .field-label,
 .field-recipe-italian-title a span.Verdure {
 	color:#034d03;
 }
