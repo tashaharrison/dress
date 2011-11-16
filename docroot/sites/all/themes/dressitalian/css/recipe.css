@@ -109,8 +109,9 @@
 .page-type-recipe .field-recipe-incredients {
 	margin-top: 18px;
 }
-.page-type-recipe .field-recipe-incredients .field-label {
-	font-size: 1.45em;
+.page-type-recipe .field-recipe-incredients .field-label,
+.page-type-recipe .field-recipe-instructioins .field-label {
+	font-size: 23px;
 	margin-bottom: 4px;
 }
 .page-type-recipe .field-recipe-incredients .field-items {
@@ -119,10 +120,6 @@
 }
 .page-type-recipe .field-recipe-instructioins {
 	margin-top: 18px;
-}
-.page-type-recipe .field-recipe-instructioins .field-label {
-	font-size: 1.45em;
-	margin-bottom: 4px;
 }
 .page-type-recipe .field-recipe-instructioins {
 	line-height: 1.3;
@@ -144,7 +141,8 @@
 .subsection-pesce .field-terms a,
 .subsection-pesce .field-terms,
 .subsection-pesce #page-title,
-.subsection-pesce .field-recipe-italian-title a {
+.subsection-pesce .field-recipe-italian-title a,
+.field-recipe-italian-title a span.Pesce {
 	color:#3570c7;
 }
 .subsection-antipasti .field-recipe-serves,
@@ -157,7 +155,8 @@
 .subsection-antipasti .field-terms a,
 .subsection-antipasti .field-terms,
 .subsection-antipasti #page-title,
-.subsection-antipasti .recipe-category-page-italian-title a {
+.subsection-antipasti .recipe-category-page-italian-title a,
+.field-recipe-italian-title a span.Antipasti {
 	color:#808080;
 }
 .subsection-carne .field-recipe-serves,
@@ -170,7 +169,8 @@
 .subsection-carne .field-terms a,
 .subsection-carne .field-terms,
 .subsection-carne #page-title,
-.subsection-carne .recipe-category-page-italian-title a {
+.subsection-carne .recipe-category-page-italian-title a,
+.field-recipe-italian-title a span.Carne {
 	color:#800000;
 }
 .subsection-primi-piatti .field-recipe-serves,
@@ -183,7 +183,8 @@
 .subsection-primi-piatti .field-terms a,
 .subsection-primi-piatti .field-terms,
 .subsection-primi-piatti #page-title,
-.subsection-primi-piatti .recipe-category-page-italian-title a {
+.subsection-primi-piatti .recipe-category-page-italian-title a,
+.field-recipe-italian-title a span.Primi {
 	color:#d2ab6b;
 }
 .subsection-verdure .field-recipe-serves,
@@ -196,7 +197,8 @@
 .subsection-verdure .field-terms a,
 .subsection-verdure .field-terms,
 .subsection-verdure #page-title,
-.subsection-verdure .recipe-category-page-italian-title a {
+.subsection-verdure .recipe-category-page-italian-title a,
+.field-recipe-italian-title a span.Verdure {
 	color:#034d03;
 }
 
@@ -215,19 +217,24 @@
 	text-decoration:none;
 }
 .section-recipes .view-taxonomy-term .field-title a h2,
-.view-recommended-recipes .field-title a h2 {
+.view-recommended-recipes h2.field-title a {
 	color:#666666;
 	font-size: 16px;
 	line-height:1;
 }
-.section-recipes .view-taxonomy-term .field-title,
-.view-recommended-recipes .field-title {
+.section-recipes .view-taxonomy-term .field-title {
 	line-height:1;
 }
-.section-recipes .view-taxonomy-term .field-recipe-italian-title,
-.view-recommended-recipes .field-recipe-italian-title {
+.view-recommended-recipes .field-title {
+	line-height:0.2;
+}
+.section-recipes .view-taxonomy-term .field-recipe-italian-title {
 	line-height:1;
 	margin-bottom: 6px;
+}
+.view-recommended-recipes .field-recipe-italian-title {
+	line-height:0.5;
+	margin-bottom: 2px;
 }
 .section-recipes .view-taxonomy-term .field-recipe-italian-title a,
 .view-recommended-recipes .field-recipe-italian-title a {
@@ -245,17 +252,18 @@
 	color: #444;
 	display: inline-block;
 	list-style-type: none;
-	margin: 0 2px;
+	margin: 0 2px 10px;
 	overflow: hidden;
 	padding: 3px;
 	text-align: center;
 	vertical-align: top;
 	width: 300px;
 }
-.view-recommended-recipes .grey {
-	background-color: transparent;
+.view-recommended-recipes .views_slideshow_singleframe_slide {
+	text-align:center;
 }
-.view-recommended-recipes .grey{
+.view-taxonomy-term .grey {
+	background-color: transparent;
 }
 .view-recommended-recipes .nd-region-middle-wrapper,
 .page-type-recipe .grey .view-recommended-recipes .nd-region-middle-wrapper,
@@ -264,11 +272,12 @@
 	display: inline;
 }
 .view-recommended-recipes {
-	padding-top: 24px;
+	padding-top: 10px;
 }
+.field-recommended-recipes-node-content-1 .field-label,
 .view-recommended-recipes .view-title {
 	line-height: 1.3;
-	font-size: 1.1em;
+	font-size: 23px;
 }
 /* Recipe category page - GREY */
 
