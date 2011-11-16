@@ -571,5 +571,11 @@ a.boxout:hover {
 	font-size: 2.4em;
 }
 
+/* Front page footer boxes */
 
-
+.front .block-mailchimp {
+	width: 270px;
+}
+.front #block-views-recommended_recipes-block_1 {
+	width: 270px;
+}
