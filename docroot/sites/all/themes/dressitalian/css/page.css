@@ -590,4 +590,8 @@ a.boxout:hover {
 }
 .front #block-block-4 {
 	width: 270px;
+	background-color: black;
+	padding: 6px 10px;
+	color: white;
+	border-radius: 8px;
 }
