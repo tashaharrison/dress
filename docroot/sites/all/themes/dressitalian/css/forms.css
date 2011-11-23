@@ -217,3 +217,6 @@ html.js #user-login-form li.openid-link, html.js #user-login li.openid-link, #us
 .node-form .noderelationships[field_recipe_recommended_recipes] {
 	width: 81%;
 }
+.form-item .noderelationships-nodereference-autocomplete, .content-add-more .noderelationships-nodereference-add-more {
+	width:80%;
+}
