@@ -482,15 +482,28 @@ width: 974px !important;
 	text-align:center;
 	margin-bottom:10px;
 	display:block;
+	padding: 8px;
 }
 .boxout a {	
 	color:white;
 }
-a.boxout:hover {	
+a:hover.boxout {	
 	border-color:black;
+	background-color:#000000;
+	text-decoration:none;
 }
 .boxout-green {
 	background-color:#004101;
+}
+.boxout-grey {	
+	background-color:#7D7D7D;
+	color:white;
+	border:1px solid #black;
+}
+.boxout-black {	
+	background-color:black;
+	color:white;
+	border:1px solid #ccc;
 }
 .boxout-white {	
 	background-color:white;

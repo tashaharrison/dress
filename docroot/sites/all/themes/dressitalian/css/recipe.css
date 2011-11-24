@@ -194,7 +194,7 @@
 .subsection-primi-piatti .recipe-category-page-italian-title a,
 .subsection-primi-piatti .field-recommended-recipes-node-content-1 .field-label,
 .field-recipe-italian-title a span.Primi {
-	color:#d2ab6b;
+	color:#F2C530;
 }
 .subsection-verdure .field-recipe-serves,
 .subsection-verdure .field-recipe-preptime,
@@ -315,7 +315,7 @@
 .subsection-pesce .grey .field-recipe-instructioins .field-label,
 .subsection-pesce .grey .field-recipe-incredients .field-label,
 .subsection-pesce .grey .field-recipe-italian-title {
-	color:#8DC0DD;
+	color:#2FB3F9;
 }
 .subsection-antipasti .grey .field-recipe-serves,
 .subsection-antipasti .grey .field-recipe-preptime,
@@ -331,7 +331,7 @@
 .subsection-carne .grey .field-recipe-instructioins .field-label,
 .subsection-carne .grey .field-recipe-incredients .field-label,
 .subsection-carne .grey .field-recipe-italian-title {
-	color:#F79999;
+	color:#EA2C2C;
 }
 .subsection-primi-piatti .grey .field-recipe-serves,
 .subsection-primi-piatti .grey .field-recipe-preptime,
@@ -339,7 +339,7 @@
 .subsection-primi-piatti .grey .field-recipe-instructioins .field-label,
 .subsection-primi-piatti .grey .field-recipe-incredients .field-label,
 .subsection-primi-piatti .grey .field-recipe-italian-title {
-	color:#d2ab6b;
+	color:#F2C530;
 }
 .subsection-verdure .grey .field-recipe-serves,
 .subsection-verdure .grey .field-recipe-preptime,
@@ -347,5 +347,5 @@
 .subsection-verdure .grey .field-recipe-instructioins .field-label,
 .subsection-verdure .grey .field-recipe-incredients .field-label,
 .subsection-verdure .grey .field-recipe-italian-title {
-	color:#82E582;
+	color:#1A9E06;
 }
