@@ -587,7 +587,7 @@ a:hover.boxout {
 /* Front page footer boxes */
 
 .front .block-mailchimp {
-	border: 2px solid silver;
+	border: 2px solid black;
     border-radius: 4px 4px 4px 4px;
     line-height: 1.3;
     padding: 4px 10px 0;

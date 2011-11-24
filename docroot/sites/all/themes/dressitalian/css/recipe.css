@@ -13,7 +13,7 @@
 	width:160px;
 }
 .recipe-categories-links li a {
-	background: url("../images/recipe-categories.png") no-repeat scroll 0 0 #999;
+	background: url("../images/recipe-categories.png") no-repeat scroll 0 0 #4C4C4C;
     color: #FFFFFF;
     font-size: 1.3em;
     font-weight: bold;
@@ -25,16 +25,16 @@
     -moz-opacity: .9;  
 }
 .recipe-categories-links li.recipe-category-1 a {
-	background: url("../images/recipe-categories.png") no-repeat scroll -160px 0 #999;
+	background: url("../images/recipe-categories.png") no-repeat scroll -160px 0 #4C4C4C;
 }
 .recipe-categories-links li.recipe-category-2 a {
-	background: url("../images/recipe-categories.png") no-repeat scroll -320px 0 #999;
+	background: url("../images/recipe-categories.png") no-repeat scroll -320px 0 #4C4C4C;
 }
 .recipe-categories-links li.recipe-category-3 a {
-	background: url("../images/recipe-categories.png") no-repeat scroll -480px 0 #999;
+	background: url("../images/recipe-categories.png") no-repeat scroll -480px 0 #4C4C4C;
 }
 .recipe-categories-links li.recipe-category-4 a {
-	background: url("../images/recipe-categories.png") no-repeat scroll -640px 0 #999;
+	background: url("../images/recipe-categories.png") no-repeat scroll -640px 0 #4C4C4C;
 }
 /* Set pseudo class styles. */
 .recipe-categories-links li a:link {
@@ -44,7 +44,7 @@
 .recipe-categories-links li a:hover {
 	font-weight:bold;
 	text-decoration:none;
-	background-color:#4C4C4C;
+	background-color:black;
 	opacity:1;
 	-khtml-opacity: 1;  
     -moz-opacity: 1;  
@@ -292,7 +292,7 @@
 /* Recipe category page - GREY */
 
 .grey {
-	background-color: #4C4C4C;
+	background-color: black;
 }
 .page-type-recipe .grey .nd-region-header {
 	background-color: white;
