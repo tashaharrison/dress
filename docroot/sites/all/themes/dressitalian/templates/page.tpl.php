@@ -166,8 +166,6 @@
 
     </div> <!-- /header -->
 
-
-
     <?php if ($breadcrumb): ?>
       <div id="breadcrumb">
         <h2 class="element-invisible"><?php print t('You are here:'); ?></h2>

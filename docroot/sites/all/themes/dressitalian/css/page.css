@@ -591,14 +591,15 @@ a:hover.boxout {
     border-radius: 4px 4px 4px 4px;
     line-height: 1.3;
     padding: 4px 10px 0;
-	margin-right: 30px;
+	margin:0 10px;
 }
 .front #block-views-recommended_recipes-block_1 {
+	margin:0 10px;
 }
 .front #block-block-4 {
 	background-color: black;
 	padding: 6px 10px;
 	color: white;
 	border-radius: 8px;
-	margin-right: 40px;
+	margin:0 10px;
 }
