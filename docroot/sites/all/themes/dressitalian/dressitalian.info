@@ -48,6 +48,11 @@
   regions[footer]            = Footer
   regions[article_aside]     = Article Aside
 
+; DesignKit ===========================================================
+
+; Maps
+designkit[color][map_color][title] = "Maps"
+designkit[color][map_color][default] = "#b3b3b3"
 
 ;----------// Gpanel Regions
   ; 2 col 2x50
