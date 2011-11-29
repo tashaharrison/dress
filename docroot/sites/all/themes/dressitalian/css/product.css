@@ -33,12 +33,8 @@
 	margin-left: 24px;
     margin-top: 38px;
 }
-.page-type-product .field-recommended-recipes-node-content-1 .field-label {
+.page-type-product .field-label {
 	color: #540E16;
-}
-.page-type-product .field-product-nutritionalinfo .field-label, 
-.page-type-product .field-product-ingredients .field-label,
-.page-type-product .field-body .field-label {
 	font-size: 1.5em;
 	margin-bottom: 4px;
 }
