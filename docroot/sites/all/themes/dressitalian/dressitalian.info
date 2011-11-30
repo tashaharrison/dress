@@ -23,6 +23,7 @@
   stylesheets[all][] = css/recipe.css
   stylesheets[all][] = css/product.css
   stylesheets[all][] = css/travel-blog.css
+  stylesheets[all][] = css/openlayers.css
 	stylesheets[all][] = css/modalframe.child.css
 	stylesheets[all][] = css/modalframe.parent.css
 	stylesheets[all][] = css/press.css
