@@ -1,0 +1,8 @@
+/* CSS Document */
+
+.section-regions-of-italy .view-regions-of-italy {
+	width:620px;
+}
+.section-regions-of-italy .view-regions-of-italy .popup-content, .section-regions-of-italy .view-regions-of-italy .popup-pager {
+	display:none;
+}
