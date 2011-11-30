@@ -23,7 +23,6 @@
   stylesheets[all][] = css/recipe.css
   stylesheets[all][] = css/product.css
   stylesheets[all][] = css/travel-blog.css
-  stylesheets[all][] = css/openlayers.css
 	stylesheets[all][] = css/modalframe.child.css
 	stylesheets[all][] = css/modalframe.parent.css
 	stylesheets[all][] = css/press.css
@@ -48,12 +47,6 @@
   regions[tertiary_content]  = Tertiary Content
   regions[footer]            = Footer
   regions[article_aside]     = Article Aside
-
-; DesignKit ===========================================================
-
-; Maps
-designkit[color][map_color][title] = "Maps"
-designkit[color][map_color][default] = "#b3b3b3"
 
 ;----------// Gpanel Regions
   ; 2 col 2x50

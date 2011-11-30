@@ -117,17 +117,3 @@ function dressitalian_ds_field($content, $field) {
 
   return $output;
 }
-
-/**
- * Override of theme_openlayers_styles().
- * Supply DesignKit colors to OpenLayers styles.
- */
-function dressitalian_openlayers_styles($styles = array(), $map = array()) {
-  $color = variable_get('designkit_color', array());
-  if (isset($styles['default'])) {
-    $styles['default']['fillColor'] = !empty($color['foreground_color']) ? $color['foreground_color'] : '#ace';
-    $styles['default']['strokeColor'] = !empty($color['foreground_color']) ? $color['foreground_color'] : '#ace';
-  }
-  return $styles;
-}
-
