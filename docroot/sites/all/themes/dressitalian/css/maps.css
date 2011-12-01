@@ -1,12 +1,98 @@
 /* CSS Document */
 
 .section-regions-of-italy .view-regions-of-italy {
+	margin-bottom: 60px;
 	width:620px;
 }
-.section-regions-of-italy .view-regions-of-italy .popup-content, .section-regions-of-italy .view-regions-of-italy .popup-pager {
+.section-regions-of-italy .view-regions-of-italy .popup-pager {
 	display:none;
 }
-.openlayers-popupbox, .openlayers-tooltip {
-position: relative;
-left: 650px;
-top: -320px;
+.section-regions-of-italy .openlayers-popupbox {
+	position: relative;
+	left: 650px;
+	top: -298px;
+	width: 300px;
+}
+.section-regions-of-italy .openlayers-popupbox .popup-close {
+	font-weight: bold;
+}
+.section-regions-of-italy .openlayers-tooltip {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width:620px;
+	z-index:1000;
+}
+.section-regions-of-italy .openlayers-tooltip .openlayers-tooltip-name {
+	text-align: center;
+	background-color: black;
+	padding: 5px;
+	font-size: 18px;
+	color: white;
+	font-weight: bold;
+}
+.section-regions-of-italy .openlayers-tooltip .openlayers-tooltip-name a {
+	background-color: black;
+	color: white;
+}
+.section-regions-of-italy .olControlPanZoom {
+	margin-top: 38px;
+}
+.section-regions-of-italy .popup-count {
+	display:none;
+}
+.section-regions-of-italy .openlayers-tooltip {
+}
+.section-regions-of-italy .openlayers-tooltip-name {
+}
+.section-regions-of-italy .openlayers-tooltip-description {
+	display:none;
+}
+.section-regions-of-italy #sidebar-last .block {
+	width:300px;
+	margin-left: -74px;
+	background:none;
+}
+.section-regions-of-italy #sidebar-last .base, .section-regions-of-italy #sidebar-last .data {
+	margin: 0 0 20px;
+	background: #ffffff; /* Old browsers */
+	background: -moz-linear-gradient(top, #ffffff 27%, #c6c6c6 68%, #212121 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(27%,#ffffff), color-stop(68%,#c6c6c6), color-stop(100%,#212121)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #ffffff 27%,#c6c6c6 68%,#212121 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #ffffff 27%,#c6c6c6 68%,#212121 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #ffffff 27%,#c6c6c6 68%,#212121 100%); /* IE10+ */
+	background: linear-gradient(top, #ffffff 27%,#c6c6c6 68%,#212121 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#212121',GradientType=0 ); /* IE6-9 */
+	padding: 0 3px 3px;
+}
+.sidebar .layers-content {
+	background-color:white;
+}
+.section-regions-of-italy #sidebar-last .data div.form-item {
+	padding: 10px 16px;
+	margin:0;
+}	
+.section-regions-of-italy #sidebar-last .base div.form-item {
+	text-align: center;
+	padding: 10px 0;
+	margin:0;
+}
+.section-regions-of-italy #sidebar-last .base div.activated {
+	background: black;
+	color: white;
+}
+.section-regions-of-italy #sidebar-last .base div:hover.form-option {
+	background-color: black;
+	color: white;
+	cursor:pointer;	
+}
+.section-regions-of-italy #sidebar-last .base div:hover.form-option label {
+	cursor:pointer;	
+}
+.section-regions-of-italy #sidebar-last .openlayers-blockswitcher .data span.key {
+	/*width: 17px;
+	height: 16px;
+	margin-left: 3px;
+	margin-top: 4px;*/
+	display:none;
+}
