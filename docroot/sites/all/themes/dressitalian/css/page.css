@@ -496,7 +496,7 @@ a:hover.boxout {
 .boxout-green {
 	background-color:#004101;
 }
-.boxout-grey {	
+a.boxout-grey {	
 	background-color:#4C4C4C;
 	color:white;
 	border:1px solid #black;
@@ -630,4 +630,7 @@ a:hover.boxout {
 	position: absolute !important;
 	clip: rect(1px 1px 1px 1px);
 	clip: rect(1px, 1px, 1px, 1px);
+}
+.chevron {
+	color:black;
 }
