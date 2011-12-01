@@ -5,7 +5,7 @@ html {
   font-size:90%; /* 16px x 75% = 12px */
 }
 body {
-  color: #2C2C2C;
+  color: #000000;
   font-family:'CantarellRegular',Verdana,Geneva,"DejaVu Sans",sans-serif;
   line-height:1.5;
 }
