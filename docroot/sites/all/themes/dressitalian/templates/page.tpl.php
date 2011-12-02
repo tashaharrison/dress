@@ -262,6 +262,5 @@
   </div> <!-- /page -->
 
   <?php print $closure ?>
-
 </body>
 </html>
