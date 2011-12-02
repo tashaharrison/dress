@@ -95,15 +95,13 @@ h1#page-title {
 }
 /* Footer */
 #footer {
-
 }
 #footer-region {
 	border-top: 1px solid #C2C2C2;
 	padding-top:10px;
-	margin-top:30px;
 }
 .front #footer-region {
-	margin-top: 300px;
+	padding-top:30px;
 }
 #footer-region a {
 }
