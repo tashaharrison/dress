@@ -6,7 +6,7 @@
 // you can change the number of snow flakes if you like
 
 var num_flakes = 15;
-var snowflakes = new Array("sites/all/themes/dressitalian/images/snowflake.gif","sites/all/themes/dressitalian/images/snowflake1.gif");
+var snowflakes = new Array("sites/all/themes/dressitalian/images/snowflake.png","sites/all/themes/dressitalian/images/snowflake1.png");
 
 // DOM test
 var aDOM = 0, ieDOM = 0, nsDOM = 0; var stdDOM = document.getElementById;
