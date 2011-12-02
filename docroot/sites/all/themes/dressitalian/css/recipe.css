@@ -301,6 +301,16 @@
 	color: white;
 	border-top: white 16px solid;
 }
+.page-type-recipe .nd-region-middle-wrapper a {
+	font-size:18px;
+	font-weight:bold
+}
+.page-type-recipe .grey .nd-region-middle-wrapper a {
+	color: #AFAFAF;
+}
+.page-type-recipe .grey .nd-region-middle-wrapper a:hover {
+	color: #FFF;
+}
 .page-type-recipe .grey .nd-region-right {
 	padding: 30px 14px 0 14px;
 	color:white;
