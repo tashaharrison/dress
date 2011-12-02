@@ -493,6 +493,7 @@ width: 974px !important;
 a:hover.boxout {	
 	border-color:black;
 	background-color:#000000;
+	color:white;
 	text-decoration:none;
 }
 .boxout-green {
