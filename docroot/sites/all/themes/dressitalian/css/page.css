@@ -579,6 +579,11 @@ a.boxout-grey {
 .view-frontpage .views_slideshow_singleframe_slide {
 	width:940px;
 }
+
+.front .columns-inner {
+  margin-top: -34px;
+}
+
 .view-frontpage h2 {
 	font-family:'ShelleyAllegroScriptRegular',Verdana,Geneva,"DejaVu Sans",sans-serif;
 	font-size: 2.4em;
