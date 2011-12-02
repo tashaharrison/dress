@@ -33,8 +33,9 @@
   scripts[] = scripts/snow.js
 
 ;----------// IE Conditional Stylesheets
+  conditional-stylesheets[if IE 7][all][] = css/ie/ie-7.css
+  conditional-stylesheets[if IE 8][all][] = css/ie/ie-8.css
   conditional-stylesheets[if lte IE 9][all][] = css/ie/ie-lte-9.css
-  ;conditional-stylesheets[if lte IE 7][all][] = css/ie/ie-lte-7.css
 
 ;----------// Regions
   regions[left]              = Sidebar First
