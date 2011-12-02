@@ -22,6 +22,11 @@
 }
 .section-recipes .view-taxonomy-term li.taxonomy-page-item {
     float: right;
+}
+.view-recommended-recipes li.taxonomy-page-item .node-type-recipe {
+	padding-bottom:10px;
+}
+.section-recipes .view-taxonomy-term li.taxonomy-page-item .node-type-recipe {
 	padding-bottom:10px;
 }
 .tweetbutton {
