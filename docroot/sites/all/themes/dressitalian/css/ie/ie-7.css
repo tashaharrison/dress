@@ -13,3 +13,19 @@
  * The module is not included in the base theme, you must download and install it.
  */
 
+.view-recommended-recipes li.taxonomy-page-item {
+    float: right;
+	padding-bottom:10px;
+}
+.views_slideshow_thumbnailhover_div_breakout_teaser {
+    float: right;
+}
+.section-recipes .view-taxonomy-term li.taxonomy-page-item {
+    float: right;
+	padding-bottom:10px;
+}
+.tweetbutton {
+	position:relative;
+	top:-76px;
+	right:126px;
+}
