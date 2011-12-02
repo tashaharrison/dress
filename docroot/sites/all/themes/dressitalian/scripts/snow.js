@@ -5,8 +5,8 @@
 // comments) is used without any alteration
 // you can change the number of snow flakes if you like
 
-var num_flakes = 10;
-var snowflakes = new Array("snowflake.gif","snowflake1.gif");
+var num_flakes = 15;
+var snowflakes = new Array("sites/all/themes/dressitalian/images/snowflake.gif","sites/all/themes/dressitalian/images/snowflake1.gif");
 
 // DOM test
 var aDOM = 0, ieDOM = 0, nsDOM = 0; var stdDOM = document.getElementById;

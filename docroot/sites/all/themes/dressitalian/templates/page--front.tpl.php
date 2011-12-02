@@ -243,29 +243,13 @@
       <div id="tertiary-content"><?php print $tertiary_content; ?></div>
     <?php endif; ?>
 
-    <?php if ($footer or $footer_message or $feed_icons): ?>
-      <div id="footer">
-
-        <?php if ($footer): ?>
-          <div id="footer-region"><?php print $footer; ?></div>
-        <?php endif; ?>
-
-        <?php if ($footer_message): ?>
-          <div id="footer-message"><?php print $footer_message; ?></div>
-        <?php endif; ?>
-
-        <?php if ($feed_icons): ?>
-          <div id="feed-icons"><?php print $feed_icons; ?></div>
-        <?php endif; ?>
-
-      </div> <!-- /footer -->
-    <?php endif; ?>
+   
 
   </div> <!-- /page -->
 
   <?php print $closure ?>
 	
-	<script type="text/javascript">
+<script type="text/javascript">
 startSnow();
 </script>
 

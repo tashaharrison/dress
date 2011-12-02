@@ -95,11 +95,13 @@ h1#page-title {
 }
 /* Footer */
 #footer {
-	border-top: 1px solid #C2C2C2;
-	padding-top:10px;
-	margin-top:30px;
 }
 #footer-region {
+	border-top: 1px solid #C2C2C2;
+	padding-top:10px;
+}
+.front #footer-region {
+	padding-top:30px;
 }
 #footer-region a {
 }
@@ -519,6 +521,7 @@ a.boxout-grey {
 }
 .asideleft {width:500px;}
 .asideright {width:500px;}
+
 /* Social links: Page */
 .page-type-product .field-links {
 	position: absolute;
@@ -638,4 +641,27 @@ a.boxout-grey {
 }
 .chevron {
 	color:black;
+}
+
+/* Blog */
+
+.section-travel-blog .sidebar .menu li a {
+	padding: 7px 0;
+	display: block;
+	text-align:center;
+	font-size: 1.1em;
+	font-weight: bold;
+}
+.section-travel-blog .sidebar .menu li a:hover {
+	color:white;
+	background-color:black;
+	text-decoration:none;
+}
+.section-travel-blog .sidebar ul.menu {
+	margin: 0;
+	padding: 0;
+}
+.section-travel-blog .sidebar .menu li {
+	margin: 0;
+	padding: 0;
 }
