@@ -46,6 +46,10 @@
   background-color: #f8f8f8;
 }
 
+modalframe-page-content {
+  text-align: center;
+}
+
 /**
  * ui-dialog overlay.
  */
