@@ -92,9 +92,7 @@
   <?php print $head; ?>
   <?php print $styles; ?>
   <?php print $layout_settings; ?>
-  <?php print $scripts; ?>
-	<script src="../scripts/snow.js" type="text/javascript">
-</script> 
+  <?php print $scripts; ?> 
 </head>
 <body class="<?php print $classes; ?>">
   <div id="page" class="container">
@@ -249,9 +247,6 @@
 
   <?php print $closure ?>
 	
-<script type="text/javascript">
-startSnow();
-</script>
 
 </body>
 </html>
