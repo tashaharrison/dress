@@ -29,4 +29,17 @@
 
 .node-type-kingbomba .field-links {
   top: -89px;
+	right: -234px;
+}
+
+.section-king-bomba #sidebar-last {
+  width: 211px;
+	margin-left: -238px;
+	padding-top: 20px;
+}
+
+.section-king-bomba #sidebar-last h3 {
+  font-size: 1em;
+	padding-bottom: 5px;
+	padding-top: 8px;
 }
