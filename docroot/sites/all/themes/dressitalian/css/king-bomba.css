@@ -1,0 +1,28 @@
+/* CSS Document */
+
+.view-king-bomba ul {
+  list-style-type: none;
+	margin-left:0;
+}
+
+.section-king-bomba h1#page-title {
+  background-image: url('/sites/all/themes/dressitalian/images/king-bomba.jpg');
+	background-repeat:no-repeat;
+	color: transparent;
+	padding-bottom: 66px;
+	margin-left: 723px;
+	border: none;
+	margin-bottom: 0px;
+}
+
+.bombahead {
+  width: 677px;
+	margin-top: -104px;
+	background: #000;
+	color: #fff;
+	padding: 8px;
+	font-size: 16px;
+	border-radius: 4px 4px 4px 4px;
+	box-shadow: 5px 5px 5px #888888;
+	text-transform: uppercase;
+}
