@@ -28,6 +28,7 @@
 	stylesheets[all][] = css/modalframe.parent.css
 	stylesheets[all][] = css/press.css
 	stylesheets[all][] = css/king-bomba.css
+	stylesheets[all][] = css/latest-news.css
   ;stylesheets[all][] = css/dark.css
 	
 ;----------// Scripts
