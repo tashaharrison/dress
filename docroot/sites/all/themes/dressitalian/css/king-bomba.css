@@ -26,3 +26,7 @@
 	box-shadow: 5px 5px 5px #888888;
 	text-transform: uppercase;
 }
+
+.node-type-kingbomba .field-links {
+  top: -89px;
+}
