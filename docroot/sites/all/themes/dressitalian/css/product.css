@@ -72,6 +72,13 @@
 	width: 335px;
 }
 .section-products .field-product-buy-on {
+	text-align: center;
 }
 .section-products .field-product-buy-on a {
+	background: url(../images/asda-logo.gif) no-repeat 0 0 transparent;
+	text-indent: -10000px;
+	overflow: hidden;
+	width: 120px;
+	display: inline-block;
+	height: 40px;
 }
