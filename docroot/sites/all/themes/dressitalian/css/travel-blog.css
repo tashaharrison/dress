@@ -1,4 +1,24 @@
 /* CSS Document */
+.section-travel-blog .sidebar .menu li a {
+	padding: 7px 0;
+	display: block;
+	text-align:center;
+	font-size: 1.1em;
+	font-weight: bold;
+}
+.section-travel-blog .sidebar .menu li a:hover {
+	color:white;
+	background-color:black;
+	text-decoration:none;
+}
+.section-travel-blog .sidebar ul.menu {
+	margin: 0;
+	padding: 0;
+}
+.section-travel-blog .sidebar .menu li {
+	margin: 0;
+	padding: 0;
+}
 .section-travel-blog ul {
 	list-style-type:none;
 	margin-left: 0;
