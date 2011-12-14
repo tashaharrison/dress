@@ -30,9 +30,6 @@
 	stylesheets[all][] = css/king-bomba.css
 	stylesheets[all][] = css/latest-news.css
   ;stylesheets[all][] = css/dark.css
-	
-;----------// Scripts
-  scripts[] = scripts/snow.js
 
 ;----------// IE Conditional Stylesheets
   conditional-stylesheets[if IE 7][all][] = css/ie/ie-7.css
