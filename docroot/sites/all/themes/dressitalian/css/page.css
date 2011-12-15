@@ -605,7 +605,9 @@ a.boxout-grey {
 	border-radius: 8px;
 	margin:0 10px;
 }
-
+.front #block-block-4 a:hover {
+	color: #ED1B24;
+}
 /* Front page slideshow */
 
 .view-frontpage .views_slideshow_singleframe_previous, .view-frontpage .views_slideshow_singleframe_next {
