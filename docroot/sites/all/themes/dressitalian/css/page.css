@@ -643,3 +643,9 @@ a.boxout-grey {
 .chev {
 	color:black;
 }
+img {
+	border-radius: 4px;
+	-khtml-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
