@@ -17,6 +17,12 @@ h1.logo-site-name {
 .logo-site-name span {
 	display: block;
 }
+#logo img {
+	border-radius: 0;
+	-khtml-border-radius: 0;
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+}
 #site-name {
     font-size: 2em;
     font-weight: 700;
