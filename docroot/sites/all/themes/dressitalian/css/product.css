@@ -82,3 +82,9 @@
 	display: inline-block;
 	height: 40px;
 }
+.views-fluid-grid {
+	clear:both;
+}
+.views-fluid-grid h2 {
+	clear:both;
+}
