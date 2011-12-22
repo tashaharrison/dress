@@ -15,10 +15,11 @@ FB_Devel.sanityCheck = function() {
     // before fb.js has a chance to initilize it!  To fix: use browser
     // to view page source, find all <script> tags that include all.js
     // and get rid of them.
+    // NOTE: this seems to get triggered sometimes, even when set up correctly.  Race condition?
+    debugger; // not verbose.
     if (Drupal.settings.fb_devel.verbose) {
       alert("fb_devel.js: Facebook JS SDK initialized witout app id!"); // verbose
     }
-    debugger; // Failed sanity check.
   }
 
   var root = jQuery('#fb-root');
@@ -34,7 +35,8 @@ FB_Devel.sanityCheck = function() {
  * Called when fb.js triggers the 'fb_init' event.
  */
 FB_Devel.initHandler = function() {
-  //FB_Devel.sanityCheck(); // This is now done in footer.
+  //alert("FB_Devel.initHandler");
+  FB_Devel.sanityCheck();
 
   // Facebook events that may be of interest...
   //FB.Event.subscribe('auth.login', FB_Devel.debugHandler);
@@ -54,5 +56,5 @@ FB_JS.debugHandler = function(response) {
 Drupal.behaviors.fb_devel = function(context) {
   jQuery(document).bind('fb_init', FB_Devel.initHandler);
 
-  //FB_Devel.sanityCheck(); // This is now done in page footer.
+  FB_Devel.sanityCheck();
 };

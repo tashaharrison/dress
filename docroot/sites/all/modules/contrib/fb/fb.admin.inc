@@ -30,7 +30,6 @@ function fb_admin_page() {
       t('Local Operations'),
       t('Remote Settings'),
     );
-    $protocol = fb_protocol();
 
     foreach ($apps as $fb_app) {
       // Get properties from facebook.
@@ -41,7 +40,7 @@ function fb_admin_page() {
       $row[] = $fb_app->label . ($fb_app->status ? '' : ' ' . t('(<em>not enabled</em>)'));
 
       // About.
-      $row[] = l(isset($fb_app->application_name) ? $fb_app->application_name : $fb_app->label, $protocol . '://www.facebook.com/apps/application.php?id=' . $fb_app->id);
+      $row[] = l(isset($fb_app->application_name) ? $fb_app->application_name : $fb_app->label, 'http://www.facebook.com/apps/application.php?id=' . $fb_app->id);
 
       // Canvas Page.
       if (isset($fb_app->canvas_name) &&
@@ -49,7 +48,7 @@ function fb_admin_page() {
         drupal_set_message(t('Canvas page for %label is out of sync!  Facebook believes it is %fbcanvas, while our database believes %canvas.  Edit and save the application to remedy this.', array('%label' => $fb_app->label, '%fbcanvas' => $fb_app->canvas_name, '%canvas' => $fb_app->canvas)), 'error');
       }
       if ($fb_app->canvas) {
-        $row[] = l($fb_app->canvas, $protocol . '://apps.facebook.com/' . $fb_app->canvas);
+        $row[] = l($fb_app->canvas, 'http://apps.facebook.com/' . $fb_app->canvas);
       }
       else {
         $row[] = t('n/a');
@@ -73,7 +72,7 @@ function fb_admin_page() {
       $row[] = theme('links', $links);
 
       // Remote Settings
-      $row[] = l($fb_app->id, 'https://www.facebook.com/developers/editapp.php?app_id=' . $fb_app->id);
+      $row[] = l($fb_app->id, 'http://www.facebook.com/developers/editapp.php?app_id=' . $fb_app->id);
 
       $rows[] = $row;
     }
@@ -194,12 +193,11 @@ function fb_admin_get_app_options($include_current = FALSE, $key = 'label') {
   if ($include_current)
     $options[FB_APP_CURRENT] = t('<current>');
   foreach ($apps as $app) {
-    $title = !empty($app->title) ? $app->title : $app->label;
     if ($key == 'id') { // Still needed?
-      $options[$app->id] = $title;
+      $options[$app->id] = $app->label;
     }
     else {
-      $options[$app->label] = $title;
+      $options[$app->label] = $app->label;
     }
   }
   return $options;
@@ -296,24 +294,6 @@ function fb_admin_set_properties_form_submit($form, &$form_state) {
 function fb_admin_settings() {
   $form = array();
 
-  // @TODO would be nice to automatically test whether HTTPS is supported.
-  $form['fb_admin_secure'] = array(
-    '#title' => t('Secure URLs'),
-    '#type' => 'fieldset',
-    '#description' => t('Canvas Pages and Page Tabs require a server that supports SSL encrypted HTTPS.  Without HTTPS, those features will only work in "sandbox mode."'),
-  );
-  $form['fb_admin_secure'][FB_VAR_SECURE_URLS] = array(
-    '#type' => 'radios',
-    '#title' => t('Use Secure URLs'),
-    '#default_value' => variable_get(FB_VAR_SECURE_URLS, FB_SECURE_URLS_SOMETIMES),
-    '#description' => t('This setting affects your applications\' connect_url, callback_url, secure_callback_url, profile_tab_url, and secure_page_tab_url properties.'),
-    '#options' => array(
-      FB_SECURE_URLS_NEVER => t('Never use HTTPS. (I.e. this server does not support it.)'),
-      FB_SECURE_URLS_SOMETIMES => t('Use HTTPS only when Facebook expects a secure URL. (Recommended.)'),
-      FB_SECURE_URLS_ALWAYS => t('Always use HTTPS for both secure urls and also other url callbacks.'),
-    ),
-  );
-
   $form['fb_admin_session'] = array(
     '#title' => t('Sessions'),
     '#type' => 'fieldset',
@@ -325,9 +305,9 @@ function fb_admin_settings() {
 
   $form['fb_admin_session'][FB_VAR_USE_COOKIE] = array(
     '#type' => 'checkbox',
-    '#title' => t('Use FB Cookie'),
+    '#title' => t('Set FB Cookie'),
     '#default_value' => variable_get(FB_VAR_USE_COOKIE, TRUE),
-    '#description' => t('Tell Facebook\'s libraries to set and honor a cookie when user connects.  Makes facebook applications run smoother, but fails when third-party cookies are denied by user\'s browser.'),
+    '#description' => t('Tell Facebook\'s libraries to set a cookie, named fbs_<em>ID</em>, when user connects.  Makes facebook applications run smoother, but fails when third-party cookies are denied by user\'s browser.'),
   );
 
   $form['fb_admin_session'][FB_VAR_USE_SESSION] = array(
@@ -336,15 +316,6 @@ function fb_admin_settings() {
     '#default_value' => variable_get(FB_VAR_USE_SESSION, TRUE),
     '#description' => t('Store tokens and data needed by facebook\'s libraries in Drupal\'s session.  Helps applications work even when third-party cookies are denied.'),
   );
-
-  /* Does not appear to work, disabling...
-  $form['fb_admin_session'][FB_VAR_TRY_TO_SET_COOKIE] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Really set FB Cookie'),
-    '#default_value' => variable_get(FB_VAR_TRY_TO_SET_COOKIE, TRUE),
-    '#description' => t('Try to set the facebook cookie when facebook\'s javascript fails to do so (when third-party cookies are disabled).  The format of these cookies is not documented, so this attempt to set the cookie may not always succeed.  Check this <em>in addition to</em> the tokens in session box above.'),
-  );
-  */
 
   $form['fb_admin_session'][FB_VAR_RELOAD_APPEND_HASH] = array(
     '#type' => 'checkbox',

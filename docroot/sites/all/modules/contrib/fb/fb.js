@@ -1,43 +1,3 @@
-/**
- * @file
- * Javascript behaviors and helpers for modules/fb.
- */
-
-FB_JS = function(){};
-FB_JS.fbu = null;
-
-/**
- * Drupal behaviors hook.
- *
- * Called when page is loaded, or content added via javascript.
- */
-Drupal.behaviors.fb = function(context) {
-  // Respond to our jquery pseudo-events
-  var events = jQuery(document).data('events');
-  if (!events || !events.fb_session_change) {
-    jQuery(document).bind('fb_session_change', FB_JS.sessionChangeHandler);
-  }
-
-  // Once upon a time, we initialized facebook's JS SDK here, but now that is done in fb_footer().
-  if (typeof(FB) != 'undefined') {
-    // Render any XFBML markup that may have been added by AJAX.
-    $(context).each(function() {
-      var elem = $(this).get(0);
-      FB.XFBML.parse(elem);
-    });
-  }
-
-  FB_JS.showConnectedMarkup(Drupal.settings.fb.fbu, context);
-
-  // Markup with class .fb_show should be visible if javascript is enabled.  .fb_hide should be hidden.
-  jQuery('.fb_hide', context).hide();
-  jQuery('.fb_show', context).show();
-};
-
-if (typeof(window.fbAsyncInit) != 'undefined') {
-  // There should be only one definition of fbAsyncInit!
-  debugger;
-};
 
 // This function called by facebook's javascript when it is loaded.
 // http://developers.facebook.com/docs/reference/javascript/
@@ -48,43 +8,30 @@ window.fbAsyncInit = function() {
   }
 
   if (FB._apiKey) {
-    if (typeof(Drupal.settings.fb.fb_init_settings.authResponse) == 'undefined') {
-      // Check the login status.  If offline_access granted, this
-      // is the only way to know if user has logged out of facebook.
-      FB.getLoginStatus(function(response) {
-        FB_JS.initFinal(response);
-      });
-    }
-    else {
-      // With third party cookies disabled, calling getLoginStatus doesnt seem to work.
-      // @TODO: figure out why getLoginStatus fails!  Bug on facebook's side?
-      FB_JS.initFinal({'authResponse' : Drupal.settings.fb.fb_init_settings.authResponse});
-      FB.api('/me', function(response) {
-        // Calling FB.api is unfortunate overhead, but no other way to detect if user has logged out of facebook.
-        if (typeof(response.error) != 'undefined') {
-          // Fake an auth response change so Drupal knows user is logged out.
-          FB_JS.authResponseChange({'authResponse' : null});
-        }
-      });
-    }
+    // Check the login status.  If offline_access granted, this
+    // is the only whay to know if user has logged out of facebook.
+    FB.getLoginStatus(function(response) {
+      FB_JS.initFinal(response);
+    });
   }
   else {
     // No application.  Not safe to call FB.getLoginStatus().
     // We still want to initialize XFBML, third-party modules, etc.
-    FB_JS.initFinal({'authResponse' : null});
+    FB_JS.initFinal({'session' : null});
   }
 };
 
+FB_JS = function(){};
 
 /**
  * Finish initializing, whether there is an application or not.
  */
 FB_JS.initFinal = function(response) {
   var status = {
+    'session' : response.authResponse, // deprecated
     'auth': response.authResponse,
     'response': response
   };
-
   jQuery.event.trigger('fb_init', status);  // Trigger event for third-party modules.
 
   FB_JS.authResponseChange(response); // This will act only if fbu changed.
@@ -177,7 +124,7 @@ FB_JS.reload = function(destination) {
   // Use window.top for iframe canvas pages.
   destination = vars.length ? (path + '?' + vars.join('&')) : path;
 
-  if (Drupal.settings.fb.reload_url_fragment) {
+  if(Drupal.settings.fb.reload_url_fragment) {
     destination = destination + "#" + Drupal.settings.fb.reload_url_fragment;
   }
 
@@ -188,8 +135,6 @@ FB_JS.reload = function(destination) {
   window.top.location = destination;
   //alert(destination);
 };
-
-
 
 // Facebook pseudo-event handlers.
 FB_JS.authResponseChange = function(response) {
@@ -216,6 +161,12 @@ FB_JS.authResponseChange = function(response) {
   else if (Drupal.settings.fb && Drupal.settings.fb.fbu) {
     // A user has logged out.
     status.changed = true;
+
+    // Sometimes Facebook's invalid cookies are left around.  Let's try to clean up their crap.
+    // Can get left behind when third-party cookies disabled.
+    // @TODO: Still needed with new oauth??? Have cookies been renamed (fbsr_...)???
+    FB_JS.deleteCookie('fbs_' + FB._apiKey, '/', '');
+    FB_JS.deleteCookie('fbs_' + Drupal.settings.fb.apikey, '/', '');
   }
 
   if (status.changed) {
@@ -224,9 +175,8 @@ FB_JS.authResponseChange = function(response) {
 
     // Remember the fbu.
     Drupal.settings.fb.fbu = status.fbu;
-
-    FB_JS.showConnectedMarkup(status.fbu);
   }
+
 };
 
 // edgeCreate is handler for Like button.
@@ -239,18 +189,13 @@ FB_JS.edgeCreate = function(href, widget) {
 FB_JS.sessionChangeHandler = function(context, status) {
   // Pass data to ajax event.
   var data = {
-    'event_type': 'session_change',
-    'is_anonymous': Drupal.settings.fb.is_anonymous
+    'event_type': 'session_change'
   };
 
   if (status.session) {
     data.fbu = status.session.userID;
-
     // Suppress facebook-controlled session.
     data.fb_session_handoff = true;
-
-    // Facebook's PHP SDK should find this.  We can't rely on cookies being set.
-    //data.signed_request = status.response.authResponse.signedRequest;
   }
 
   FB_JS.ajaxEvent(data.event_type, data);
@@ -281,15 +226,6 @@ FB_JS.ajaxEvent = function(event_type, request_data) {
       request_data.fb_controls = Drupal.settings.fb.controls;
     }
 
-    // In case cookies are not accurate, always pass in signed request.
-    response = FB.getAuthResponse();
-    if (response) {
-      request_data.signed_request = response.signedRequest;
-    }
-    else {
-      request_data.signedRequest = '';
-    }
-
     jQuery.ajax({
       url: Drupal.settings.fb.ajax_event_url + '/' + event_type,
       data : request_data,
@@ -303,8 +239,8 @@ FB_JS.ajaxEvent = function(event_type, request_data) {
         }
         else {
           if (event_type == 'session_change') {
-            // No instructions from ajax.  Notify interested parties
-            jQuery.event.trigger('fb_session_change_done');
+            // No instructions from ajax, reload entire page.
+            FB_JS.reload();
           }
         }
       },
@@ -319,30 +255,39 @@ FB_JS.ajaxEvent = function(event_type, request_data) {
   }
 };
 
-
-/**
- * Called when we first learn the currently logged in user's Facebook ID.
- *
- * Responsible for showing/hiding markup not intended for the current
- * user.  Some sites will choose to render pages with fb_connected and
- * fb_not_connected classes, rather than reload pages when user's
- * connect/disconnect.
- */
-FB_JS.showConnectedMarkup = function(fbu, context) {
-  if (context || fbu != FB_JS.fbu) {
-    if (fbu) {
-      FB_JS.fbu = fbu;
-      // Show markup intended only for connected users.
-      jQuery('.fb_not_connected', context).hide();
-      jQuery('.fb_connected', context).show();
-    }
-    else {
-      FB_JS.fbu = null;
-      // Show markup intended only for not connected users.
-      jQuery('.fb_connected', context).hide();
-      jQuery('.fb_not_connected', context).show();
-    }
-  }
+// Delete a cookie.
+// Facebook's JS SDK attempts to delete, but I'm not convinced it always works.
+FB_JS.deleteCookie = function( name, path, domain ) {
+  document.cookie = name + "=" +
+    ( ( path ) ? ";path=" + path : "") +
+    ( ( domain ) ? ";domain=" + domain : "" ) +
+    ";expires=Thu, 01-Jan-1970 00:00:01 GMT";
 };
 
+/**
+ * Drupal behaviors hook.
+ *
+ * Called when page is loaded, or content added via javascript.
+ */
+Drupal.behaviors.fb = function(context) {
+  // Respond to our jquery pseudo-events
+  var events = jQuery(document).data('events');
+  if (!events || !events.fb_session_change) {
+    jQuery(document).bind('fb_session_change', FB_JS.sessionChangeHandler);
+  }
 
+  // Once upon a time, we initialized facebook's JS SDK here, but now that is done in fb_footer().
+
+  if (typeof(FB) != 'undefined') {
+    // Render any XFBML markup that may have been added by AJAX.
+    $(context).each(function() {
+      var elem = $(this).get(0);
+      FB.XFBML.parse(elem);
+    });
+  }
+
+  // Markup with class .fb_show should be visible if javascript is enabled.  .fb_hide should be hidden.
+  jQuery('.fb_hide', context).hide();
+  jQuery('.fb_show', context).show();
+
+};

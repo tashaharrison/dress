@@ -51,15 +51,8 @@ define('FB_VAR_APIKEY', 'fb_apikey'); // Deprecated.  Use FB_VAR_ID
 define('FB_VAR_ID', 'fb_id');
 define('FB_VAR_USE_COOKIE', 'fb_use_cookie');
 define('FB_VAR_USE_SESSION', 'fb_use_session');
-define('FB_VAR_TRY_TO_SET_COOKIE', 'fb_try_set_cookie');
 define('FB_VAR_RELOAD_APPEND_HASH', 'fb_reload_append_hash');
 define('FB_VAR_CURL_NOVERIFY', 'fb_curl_noverify');
-define('FB_VAR_SECURE_URLS', 'fb_secure_urls');
-
-// Possible choices for secure urls.
-define('FB_SECURE_URLS_ALWAYS', 1);
-define('FB_SECURE_URLS_SOMETIMES', 0);
-define('FB_SECURE_URLS_NEVER', -1);
 
 // node_access realms (belongs here?)
 define('FB_GRANT_REALM_FRIEND', 'fb_friend');
@@ -145,22 +138,17 @@ function fb_init() {
   }
 
   // Javascript settings needed by fb.js.
-  fb_js_settings('base_url', trim(url('', array('absolute' => TRUE)), '/'));
   fb_js_settings('ajax_event_url', url(FB_PATH_AJAX_EVENT, array(
                                          'absolute' => TRUE,
                                        )));
-  fb_js_settings('is_anonymous', !user_is_logged_in());
 
   // Data structure to pass to FB.init();
   $fb_init_settings = array(
     'xfbml' => FALSE,
     'status' => FALSE,
+    'cookie' => variable_get(FB_VAR_USE_COOKIE, TRUE),
     'oauth' => TRUE,
   );
-
-  if (variable_get(FB_VAR_USE_COOKIE, TRUE)) {
-    $fb_init_settings['cookie'] = TRUE;
-  }
 
   // Figure out which app the current request is for.
   $_fb_app = fb_invoke(FB_OP_CURRENT_APP);
@@ -168,50 +156,19 @@ function fb_init() {
   if ($_fb_app) {
     // An App is configured.
 
-    // Javascript settings needed by fb.js and/or other modules.
+    // Javascript settings needed by fb.js.
+    //fb_js_settings('apikey', $_fb_app->apikey); // deprecated XXX
     fb_js_settings('label', $_fb_app->label);
-    fb_js_settings('namespace', $_fb_app->canvas);
     fb_js_settings('page_type', fb_settings(FB_SETTINGS_TYPE)); // canvas or connect.
-
-    // Add perms to settings, for calling FB.login().
-    $perms = array();
-    drupal_alter('fb_required_perms', $perms);
-    fb_js_settings('perms', implode(',', $perms));
-
     //$fb_init_settings['apiKey'] = $_fb_app->apikey;
     $fb_init_settings['appId'] = $_fb_app->id;
-
-    // Add perms to settings, for calling FB.login().
-    $perms = array();
-    drupal_alter('fb_required_perms', $perms);
-    fb_js_settings('perms', implode(',', $perms));
 
     // Initialize the PHP API.
     $_fb = fb_api_init($_fb_app);
 
     if ($_fb) {
 
-      // This helps when third party cookies disabled.
-      if (isset($_SESSION['_fb_' . $_fb_app->id])) {
-        // Facebook and their damned undocumented data structures.
-        $php_sr = $_fb->getSignedRequest();
-        $js_sr = array(
-          'accessToken' => $_fb->getAccessToken(),
-          'userID' => $php_sr['user_id'],
-          'signedRequest' => $_SESSION['_fb_' . $_fb_app->id],
-          'expiresIn' => 6988, // ???
-        );
-        $fb_init_settings['authResponse'] = (object) $js_sr;
-
-        // Try setting cookie explicitly.
-        /* This does not appear to work, disabling...
-        if (variable_get(FB_VAR_TRY_TO_SET_COOKIE, TRUE) &&
-            variable_get(FB_VAR_USE_COOKIE, TRUE)) {
-          dpm('setting cookie.', __FUNCTION__);
-          setcookie('fbsr_' . $_fb_app->id, $_SESSION['_fb_' . $_fb_app->id], time() + 6988, '/');
-        }
-        */
-      }
+      // @TODO: test this code with third party cookies disabled.
 
       // @TODO: test if this is still true: Sometimes when canvas page is open in one tab, and user logs out of
       // facebook in another, the canvas page has bogus session info when
@@ -231,7 +188,12 @@ function fb_init() {
                     'fbu' => $fbu,
                   ));
         fb_js_settings('fbu', $fbu);
-
+      }
+      else {
+        // Add perms to settings, for calling FB.login().
+        $perms = array();
+        drupal_alter('fb_required_perms', $perms);
+        fb_js_settings('perms', implode(',', $perms));
       }
     }
     else
@@ -356,7 +318,7 @@ function fb_api_init($fb_app) {
                      '!drupal_for_facebook' => l(t('Drupal for Facebook'), 'http://drupal.org/project/fb'),
                      // This link should work with clean URLs disabled.
                      '!readme' => '<a href='. base_path() . '/' . drupal_get_path('module', 'fb') . '/README.txt>README.txt</a>',
-                     '%filename' => $fb_platform,
+                     '%filename' => $filename,
                    ));
       drupal_set_message($message, 'error');
       watchdog('fb', $message);
@@ -371,12 +333,6 @@ function fb_api_init($fb_app) {
       }
       watchdog('fb', $message, $args, WATCHDOG_ERROR);
       return NULL;
-    }
-
-    // Hack.  In case third-party cookies disabled, put signed request where facebook's SDK will find it.
-    if (variable_get(FB_VAR_USE_SESSION, TRUE) &&
-        !isset($_REQUEST['signed_request']) && isset($_SESSION['_fb_' . $fb_app->id])) {
-      $_REQUEST['signed_request'] = $_SESSION['_fb_' . $fb_app->id];
     }
 
     // We don't have a cached resource for this app, so we're going to create one.
@@ -395,11 +351,6 @@ function fb_api_init($fb_app) {
 
     // Cache the result, in case we're called again.
     $cache[$fb_app->id] = $fb;
-
-    // Tell Drupal not to store the current page in the cache when user is logged into facebook.
-    if (!user_is_logged_in() && fb_facebook_user($fb)) {
-      $GLOBALS['conf']['cache'] = 0;
-    }
 
     return $fb;
   }
@@ -444,63 +395,6 @@ function fb_vars() {
     'fb_app' => $GLOBALS['_fb_app'],
     'fbu' => fb_facebook_user(),
   );
-}
-
-/**
- * Helper function to work with facebook "open" graph.
- */
-function fb_graph($path, $params, $method = 'GET', $fb = NULL) {
-  if (!$fb) {
-    $fb = $GLOBALS['_fb'];
-  }
-  if ($method == 'GET') {
-    $url = url("https://graph.facebook.com/$path", array(
-                 'query' => $params,
-               ));
-    $http = drupal_http_request($url);
-  }
-  else {
-    $url = "https://graph.facebook.com/$path";
-    $headers = array('Content-Type' => 'application/x-www-form-urlencoded'); // Needed??
-    $data = http_build_query($params, '', '&');
-
-    $http = drupal_http_request($url, $headers, $method, $data);
-  }
-
-  if (!isset($http->error) && isset($http->data)) {
-    $data = json_decode($http->data, TRUE);
-    /*
-    // Yes, it's double encoded.  At least sometimes.
-    if (is_string($data)) {
-      $data = json_decode($data, TRUE);
-    }
-    */
-    if (is_array($data)) {
-      if (isset($data['error_code'])) {
-        throw new FacebookApiException($data);
-      }
-    }
-    elseif ($http->data == 'true' || $http->code == 200) {
-      // No problems.
-    }
-    else {
-      // Never reach this???
-      if (function_exists('dpm')) dpm($http, __FUNCTION__ . " unexpected result from $url"); // XXX
-    }
-    return $data;
-  }
-  else {
-    // Should we throw FacebookApiException, or plain old exception?
-    throw new FacebookApiException(
-      array(
-        'error_msg' => t('fb_graph failed querying !path.  !detail', array(
-                           '!path' => $path,
-                           '!detail' => $http->error,
-                         )),
-        'error_code' => $http->code,
-      ));
-  }
-
 }
 
 
@@ -677,24 +571,19 @@ function fb_footer($is_front) {
 
   $output .= "<script type=\"text/javascript\">\n";
   $output .= "<!--//--><![CDATA[//><!--\n";
-
-  // Pending javascript that needs to execute after FB is initialized.
+  $output .= "if (typeof(FB) == 'undefined') {\n";
+  $output .= "  jQuery.extend(Drupal.settings, " . json_encode(array('fb' => fb_js_settings())) . ");\n";
   $js_array = fb_invoke(FB_OP_JS, array('fb' => $GLOBALS['_fb'], 'fb_app' => $GLOBALS['_fb_app']), array());
   if (count($js_array)) {
     // The function we define in the footer will be called after FB is initialized.
-    $output .= "FB_JS.initHandler = function() {\n";
+    $output .= "  FB_JS.initHandler = function() {\n";
     //$output .= "debugger;\n";
     $output .= implode("\n  ", $js_array);
-    $output .= "};\n";
-    $output .= "jQuery(document).bind('fb_init', FB_JS.initHandler);\n\n";
+    $output .= "  };\n";
+    $output .= "  jQuery(document).bind('fb_init', FB_JS.initHandler);\n";
   }
 
-  // Our settings.  We add them here, as late during request as possible.
-  $output .= "  jQuery.extend(Drupal.settings, " . json_encode(array('fb' => fb_js_settings())) . ");\n\n";
-
-  // Initialize FB.
-  $output .= "if (typeof(FB) == 'undefined') {\n";
-  // Load the JS SDK asynchronously.
+    // Load the JS SDK asynchronously.
   // http://developers.facebook.com/docs/reference/javascript/
   $output .= "  var e = document.createElement('script');\n";
   $output .= "  e.async = true;\n";
@@ -726,7 +615,9 @@ function fb_is_canvas() {
 }
 
 /**
- * Is the current page a profile tab?
+ * Is the current page a profile tab.
+ *
+ * Only works when "Canvas Session Parameter" is disabled.
  */
 function fb_is_tab() {
   global $_fb;
@@ -744,29 +635,6 @@ function fb_is_tab() {
   }
   return FALSE;
 }
-
-/**
- * Does the current user like the current page?
- *
- * Expect this to work only when fb_is_tab() returns TRUE.
- */
-function fb_is_page_liked() {
-  global $_fb;
-  $sr = $_fb->getSignedRequest();
-  return (isset($sr['page']) && $sr['page']['liked']);
-}
-
-/**
- * Does the current user administer the current page?
- *
- * Expect this to work only when fb_is_tab() returns TRUE.
- */
-function fb_is_page_admin() {
-  global $_fb;
-  $sr = $_fb->getSignedRequest();
-  return (isset($sr['page']) && $sr['page']['admin']);
-}
-
 
 
 /**
@@ -803,6 +671,12 @@ function fb_api_check_session($fb) {
     // Unsetting the javasript fbu can be helpful when third-party cookies disabled.
     //fb_js_settings('fbu', 0); @TODO still needed? helpful?
 
+    // Might as well try to clean up the mess.
+    // @TODO: Are facebook cookies renamed (fbsr_...)??? Is this even needed anymore???
+    if (isset($_COOKIE['fbs_' . $fb->getAppId()])) {
+      setcookie('fbs_' . $fb->getAppId(), '', time() - 42000, '/');
+    }
+
   }
   return $success;
 }
@@ -820,6 +694,16 @@ function _fb_logout() {
   // Unsetting the javasript fbu can be helpful when third-party cookies disabled.
   //fb_js_settings('fbu', 0); @TODO still needed?? helpful???
 
+  // Clean up facebook cookies.
+  // @TODO: Are facebook cookies renamed (fbsr_...)??? Is this even needed anymore???
+  if (isset($GLOBALS['_fb_app'])) {
+    if (isset($_COOKIE['fbs_' . $GLOBALS['_fb_app']->apikey])) { // still needed?
+      setcookie('fbs_' . $GLOBALS['_fb_app']->apikey, '', time() - 42000, '/');
+    }
+    if (isset($_COOKIE['fbs_' . $GLOBALS['_fb_app']->id])) {
+      setcookie('fbs_' . $GLOBALS['_fb_app']->id, '', time() - 42000, '/');
+    }
+  }
 }
 
 
@@ -1523,14 +1407,6 @@ function fb_theme() {
         'options' => NULL),
       'file' => 'fb.theme.inc',
     ),
-    'fb_markup' => array(
-      'arguments' => array(
-        'not_connected_markup' => NULL,
-        'connected_markup' => '<fb:profile-pic linked=false uid=loggedinuser></fb:profile-pic>',
-        'options' => NULL,
-      ),
-      'file' => 'fb.theme.inc',
-    ),
   );
 }
 
@@ -1568,16 +1444,6 @@ function fb_ajax_event($event_type) {
 
   if (isset($_REQUEST['appId'])) {
     $_fb_app = fb_get_app(array('id' => $_REQUEST['appId']));
-
-    // Remember signed_request in session, in case third party cookies are disabled.
-    if (isset($_REQUEST['signed_request']) && $_REQUEST['signed_request'] &&
-        variable_get(FB_VAR_USE_SESSION, TRUE)) {
-      $_SESSION['_fb_' . $_fb_app->id] = $_REQUEST['signed_request'];
-    }
-    else {
-      unset($_SESSION['_fb_' . $_fb_app->id]);
-    }
-
     if ($_fb_app) {
       $_fb = fb_api_init($_fb_app);
       // Data to pass to hook_fb.
@@ -1588,7 +1454,7 @@ function fb_ajax_event($event_type) {
         'event_data' => $_POST, // POSTed via ajax.
       );
 
-      $js_array = fb_invoke(FB_OP_AJAX_EVENT, $data, $js_array);
+      $js_array = fb_invoke(FB_OP_AJAX_EVENT, $data, array());
 
     }
     else {
@@ -1614,8 +1480,8 @@ function fb_ajax_event($event_type) {
                ), WATCHDOG_ERROR);
     }
   }
-  drupal_json(array_values($js_array));
-  //exit();
+  drupal_json($js_array);
+  exit();
 }
 
 /**
@@ -1658,3 +1524,4 @@ function fb_access_denied() {
   drupal_access_denied();
   exit();
 }
+

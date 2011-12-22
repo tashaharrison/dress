@@ -7,7 +7,7 @@
  * In this code we set up special session management and url
  * rewriting.  These things must be done before modules are loaded, so
  * the code is here instead of fb.module. And that is why this
- * must be included from settings.php.
+ * must be include from settings.php.
  *
  */
 
@@ -68,9 +68,8 @@ function _fb_settings_base64_url_decode($input) {
 }
 
 /**
- * See https://developers.facebook.com/docs/authentication/signed_request/ for
- * a more reliable version of this function.  We skip validation because we do
- * not yet know the app secret.
+ * See facebook.php for a more reliable version of this function.  We skip
+ * validation because we do not yet know the app secret.
  */
 function _fb_settings_parse_signed_request($signed_request) {
   list($encoded_sig, $payload) = explode('.', $signed_request, 2);
@@ -115,7 +114,7 @@ function _fb_settings_honor_signed_request($sr) {
     if (!fb_settings(FB_SETTINGS_ID)) {
       // Prefer app id learned from url rewriting over that learned from signed request (because sr may be encrypted).
       $tokens = explode('|', $sr['oauth_token']);
-      if (($app_id = $tokens[0]) && !empty($tokens[1])) {
+      if ($app_id = $tokens[0]) {
         fb_settings(FB_SETTINGS_ID, $app_id);
       }
     }
@@ -123,17 +122,36 @@ function _fb_settings_honor_signed_request($sr) {
 }
 
 /**
- * The current format of the cookie is a signed request.
- *
- * Facebook doesn't document the cookie name or format, so basically we just
- * have to hope this works.
+ * Parse a facebook session cookie.  Based on sample code
+ * http://developers.facebook.com/docs/guides/web.
  */
 function fb_settings_get_facebook_cookie($app_id, $application_secret = NULL) {
-  if (!isset($_COOKIE['fbsr_' . $app_id]))
+  if (!isset($_COOKIE['fbs_' . $app_id]))
     return;
 
-  $sr = _fb_settings_parse_signed_request($_COOKIE['fbsr_' . $app_id]);
-  return $sr;
+  $args = array();
+  parse_str(trim($_COOKIE['fbs_' . $app_id], '\\"'), $args);
+  if ($application_secret) {
+    ksort($args);
+    $payload = '';
+    foreach ($args as $key => $value) {
+      if ($key != 'sig') {
+        $payload .= $key . '=' . $value;
+      }
+    }
+    if (md5($payload . $application_secret) != $args['sig']) {
+      return NULL;
+    }
+  }
+  if (!isset($args['session_key'])) {
+    // Session key missing first time facebook connect page is loaded (?)
+    if ($access_token = $args['access_token']) {
+      $tokens = explode('|', $access_token);
+      $args['session_key'] = $tokens[1] . '|' . $tokens[2];
+    }
+  }
+  //print(__FUNCTION__); print_r($args); flush(); // debug
+  return $args;
 }
 
 
@@ -194,8 +212,12 @@ else {
   $id = isset($conf['fb_id']) ? $conf['fb_id'] : NULL;
   $secret = isset($conf['fb_secret']) ? $conf['fb_secret'] : NULL;
   if ($id) {
-    if ($sr = fb_settings_get_facebook_cookie($id, $secret)) {
-      _fb_settings_honor_signed_request($sr);
+    $session = fb_settings_get_facebook_cookie($id, $secret);
+    // Honor connect session only when cookie is set.
+    if (count($session)) {
+      fb_settings(FB_SETTINGS_ID, $id);
+      fb_settings(FB_SETTINGS_TYPE, FB_SETTINGS_TYPE_CONNECT);
+      fb_settings(FB_SETTINGS_FBU, $session['uid']);
     }
   }
 }
@@ -208,8 +230,7 @@ if (fb_settings(FB_SETTINGS_TYPE) &&
     fb_settings(FB_SETTINGS_TYPE) . $unique_id;
   fb_settings(FB_SETTINGS_COOKIE_DOMAIN, $cookie_domain); // for debugging.
 }
-
 if (fb_settings(FB_SETTINGS_FBU)) {
-  // Tells Drupal, don't pull from (or save to) cache when logged into facebook.
+  // Disable Drupal cache when logged into facebook.
   $conf['cache'] = 0;
 }
