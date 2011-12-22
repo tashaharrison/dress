@@ -36,10 +36,13 @@ FB_Connect = function(){};
 FB_Connect.sessionChangeHandler = function(context, status) {
   jQuery('.block-fb_connect')
     .ajaxStart(function() {
-      jQuery(this).html('<div class="progress fb_connect_pb"><div class="bar"><div class="filled"></div></div></div>');
+      // This is an attempt to trigger the drupal progress indicator.  Not convinced that it works.
+      jQuery(this).wrap('<div class="bar filled"></div>').wrap('<div class="bar filled"></div>');
     })
     .ajaxStop(function() {
-      jQuery(this).html('');
+      //jQuery(this).html('');
+      // unwrap() not defined.
+      jQuery(this).parent().removeClass('bar filled').parent().removeClass('bar filled');
     })
   ;
 
