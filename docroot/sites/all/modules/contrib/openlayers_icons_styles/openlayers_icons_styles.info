@@ -1,4 +1,0 @@
-name = Openlayers Icons Styles
-description = Add Openlayers Icons Styles in a easy way without the hassle to create a module.
-core = 6.x
-dependencies[] = openlayers

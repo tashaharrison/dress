@@ -1,11 +1,18 @@
-; $Id:
-name = Mailchimp
-description = Mailchimp email service integration.
+name = MailChimp
+description = MailChimp email service integration.
 package = MailChimp
-core = 6.x
-; Information added by drupal.org packaging script on 2011-09-26
-version = "6.x-2.6"
-core = "6.x"
+core = 7.x
+
+files[] = MCAPI.class.php
+files[] = mailchimp.drush.inc
+files[] = mailchimp.admin.inc
+files[] = mailchimp.install
+files[] = mailchimp.module
+
+configure = admin/config/services/mailchimp
+; Information added by drupal.org packaging script on 2011-12-09
+version = "7.x-2.4"
+core = "7.x"
 project = "mailchimp"
-datestamp = "1317068507"
+datestamp = "1323452443"
 

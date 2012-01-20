@@ -4,8 +4,8 @@ ABOUT CONDITIONAL STYLESHEETS
 Internet Explorer implements a proprietary technology called Conditional
 Comments. While web developers frown upon technologies that aren't cross-browser
 supported, many CSS developers have found Conditional Comments very useful since
-they can be used to fix the broken rendering of CSS in IE by placing IE-only CSS
-inside conditional comments.
+they can be used to fix the rendering of CSS in IE by placing IE-only CSS inside
+conditional comments.
 
 This module allows themes to easily add conditional stylesheets to the theme's
 .info file.
@@ -22,27 +22,70 @@ requiring it. You don't need to configure anything.
 THEME DEVELOPERS
 ----------------
 
-Before this module was available the only way to have IE conditional stylesheets
-was to hard-code them into your page.tpl.php. This module allows you to add
-"conditional-stylesheets" lines to your theme's .info file.
+Without this module, the only way to have IE conditional stylesheets was to add
+35 lines of code (more if you want to add more than one stylesheet) in two
+horribly-difficult-to-remember function calls to your theme's template.php file:
 
-The syntax for that is:
-  conditional-stylesheets[CONDITIONAL][MEDIA][] = stylesheet.css
+  /**
+   * Implements hook_preprocess_html().
+   */
+  function MYTHEME_preprocess_html(&$variables) {
+    // Add conditional stylesheets for IE.
+    drupal_add_css(
+      path_to_theme() . '/css/ie.css',
+      array(
+        'group' => CSS_THEME,
+        'browsers' => array(
+          'IE' => 'lte IE 7',
+          '!IE' => FALSE,
+        ),
+        'every_page' => TRUE,
+      )
+    );
+  }
+
+  /**
+   * Implements hook_preprocess_maintenance_page().
+   */
+  function MYTHEME_preprocess_maintenance_page(&$variables) {
+    // Add conditional stylesheets for IE.
+    drupal_add_css(
+      path_to_theme() . '/css/ie.css',
+      array(
+        'group' => CSS_THEME,
+        'browsers' => array(
+          'IE' => 'lte IE 7',
+          '!IE' => FALSE,
+        ),
+        'every_page' => TRUE,
+      )
+    );
+  }
+
+Blech. Who wants to do that?
+
+This module allows you to add "conditional-stylesheets" in a much simpler
+manner, by adding lines to your theme's.info file. The syntax for that is:
+
+  stylesheets-conditional[EXPRESSION][MEDIA][] = stylesheet.css
 
   where
-    CONDITION can be any of the conditions specified in:
+    EXPRESSION can be any of the "downlevel-hidden" expressions specified in:
       http://msdn.microsoft.com/en-us/library/ms537512.aspx
     MEDIA can be any of the normal CSS media keywords.
 
 For example, to add a stylesheet that only targets IE 6 and below, use:
-  conditional-stylesheets[if lt IE 7][all][] = ie6-and-below.css
+  stylesheets-conditional[lt IE 7][all][] = ie6-and-below.css
 
-And to add a print stylesheet for IE8 only, use:
-  conditional-stylesheets[if IE 8][print][] = ie8.css
+To add a print stylesheet for IE9 only, use:
+  stylesheets-conditional[IE 9][print][] = ie9.css
+
+And to add a print stylesheet for all version of IE, use:
+  stylesheets-conditional[IE][print][] = ie.css
 
 
 *** IMPORTANT ***
 
-Drupal 6 also stores a cache of the data in .info files. If you modify any lines
-in your theme's .info file, you MUST refresh Drupal 6's cache by simply visiting
-the admin/build/themes page.
+Drupal 7 stores a cache of the data in .info files. If you modify any lines in
+your theme's .info file, you MUST refresh Drupal 7's cache by simply visiting
+the Appearance page at admin/appearance.

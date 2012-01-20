@@ -5,13 +5,6 @@
  *
  */
 
-/**
- * Implementation of hook_install().
- */
-function fb_user_app_install() {
-  // Create tables.
-  drupal_install_schema('fb_user_app');
-}
 
 /**
  * Implementation of hook_uninstall().
@@ -50,7 +43,7 @@ function fb_user_app_schema() {
       'time_access' => array(
         'type' => 'int', 'unsigned' => TRUE, 'not null' => TRUE,
       ),
-      'session_key' => array(
+      'session_key' => array( // Called session_key for historical reasons.  Now access_token.
         'type' => 'varchar', 'length' => 255, 'not null' => FALSE,
         'description' => 'Historically this was a session key, now an access token.',
       ),
@@ -158,8 +151,9 @@ function fb_user_app_update_6007() {
   return $ret;
 }
 
-function fb_user_app_update_6008() {
+// fb_user_app_update_6008
+function fb_user_app_update_7001() {
   $ret = array();
-  db_add_index($ret, 'fb_user_app', 'time_cron', array('time_cron'));
+  db_add_index('fb_user_app', 'time_cron', array('time_cron'));
   return $ret;
 }

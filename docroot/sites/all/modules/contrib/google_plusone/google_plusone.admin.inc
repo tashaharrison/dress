@@ -10,34 +10,34 @@
  *
  * @ingroup forms
  */
-function google_plusone_admin_settings() {
+function google_plusone_admin_settings($form) {
 
   // Custom javascript code to preview in real-time the button
   drupal_add_js(drupal_get_path('module', 'google_plusone') . '/google_plusone.admin.js');
-  // not good performance in <head>, but anyway, it's only for the admin page and can help for debugging purposes.
-  $script = '<script type="text/javascript" src="http://apis.google.com/js/plusone.js">';
-  drupal_set_html_head('<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>');
+  drupal_add_js('https://apis.google.com/js/plusone.js', 'external');
 
-  $locations = array(
-    'full' => t('Full node'),
-    'teaser' => t('Teaser'),
-    'link' => t('Node links'),
-  );
+  $locations = array();
+  $entity_info = entity_get_info('node');
+  $view_modes = $entity_info['view modes'];
+  foreach ($view_modes as $name => $info) {
+    $locations[$name] = $info['label'];
+  }
+
   $form['display'] = array(
     '#type' => 'fieldset',
     '#title' => t('Display Settings for nodes'),
-    '#description' => t('These settings will render a button <strong>for each node</strong>, using its URL. If you only need a block with a fixed URL like your homepage, or dynamic URL for generic pages, better go to the <a href="@blocks">blocks</a> page to enable and configure the <em>Google +1 Button</em> block.', array('@blocks' => url('admin/build/block'))),
+    '#description' => t('These settings will render a button <strong>for each node</strong>, using its URL. If you only need a block with a fixed URL like your homepage, or dynamic URL for generic pages, better go to the <a href="@blocks">blocks</a> page to enable and configure the <em>Google +1 Button</em> block.', array('@blocks' => url('admin/structure/block'))),
   );
   $form['display']['google_plusone_node_types'] = array(
     '#type' => 'checkboxes',
     '#title' => t('Display the button on these content types:'),
-    '#options' => node_get_types('names'),
+    '#options' => node_type_get_names(),
     '#default_value' => variable_get('google_plusone_node_types', array()),
   );
   $form['display']['google_plusone_node_location'] = array(
     '#type' => 'checkboxes',
     '#title' => t('Display the button in these view modes:'),
-    '#options' => $locations,
+    '#options' => $locations + array('link' => t('Node links')),
     '#default_value' => variable_get('google_plusone_node_location', array('full')),
   );
   $form['display']['google_plusone_weight'] = array(
@@ -47,7 +47,6 @@ function google_plusone_admin_settings() {
     '#default_value' => variable_get('google_plusone_weight', '-10'),
     '#description' => t('Heavier items will sink. The default weight -10 will show the button at the top of the node content.'),
   );
-
 
   $available_sizes = array(
     'small' => t('Small (15px)'),
@@ -99,7 +98,7 @@ function google_plusone_admin_settings() {
     '#title' => t('Optional wrapper with CSS'),
     '#maxlength' => 256,
     '#default_value' => $button_settings['css'],
-    '#description' => t('The button is wrapped in a div &lt;div class="g-plusone-wrapper"&gt;[button]&lt;/div&gt;<br/>. Here you can enter CSS rules to style this wrapper. By default <em>margin: 0 1em 1em 1em;float:right</em><br />To disable totally the wrapper, input the word <em>nowrapper</em>'),
+    '#description' => t('The button is wrapped in a div	&lt;div class="g-plusone-wrapper"&gt;[button]&lt;/div&gt;<br/>. Here you can enter CSS rules to style this wrapper. By default <em>margin: 0 1em 1em 1em;float:right</em><br />To disable totally the wrapper, input the word <em>nowrapper</em>'),
   );
   $form['google_plusone_button_settings']['syntax'] = array(
     '#type' => 'radios',
@@ -116,12 +115,11 @@ function google_plusone_admin_settings() {
     '#description' => t('By default <em>Aliased</em>. If you change this setting, <strong>be aware</strong> that Google+ will see them as different URLs, so the button will not keep the previous counting.'),
   );
 
-
   $default_advanced = array(
-    'lang' => '',
-    'scope_location' => 'footer',
-    'parsetags' => 'onload',
-    'async' => 1,
+   'lang' => '',
+   'scope' => 'page_bottom',
+   'parsetags' => 'onload',
+   'async' => 1,
   );
   $config = array_merge($default_advanced, variable_get('google_plusone_advanced_settings', $default_advanced));
   $form['google_plusone_advanced_settings'] = array(
@@ -138,12 +136,12 @@ function google_plusone_admin_settings() {
     '#default_value' => $config['lang'],
     '#description' => t('Input the language code you want from <a href="@api-doc">this list</a>. Leave empty to use the default <em>en-Us</em> language.<br/>If, and only if, you have a multi-lingual site using Locale module, then you can input a list of <strong>Google +1 language codes</strong> separated by commas. For example: <em>pt-br,fr,ru</em>', array('@api-doc' => 'https://developers.google.com/+/plugins/+1button/#available-languages')),
   );
-  $form['google_plusone_advanced_settings']['scope_location'] = array(
+  $form['google_plusone_advanced_settings']['scope'] = array(
     '#type' => 'radios',
     '#title' => t('Scope'),
-    '#options' => array('footer' => t('Footer'), 'header' => t('Header')),
-    '#default_value' => $config['scope_location'],
-    '#description' => t('Location of the script file. By default: <em>Footer</em>, for performance reasons.'),
+    '#options' => array('page_bottom' => t('page_bottom'), 'header' => t('header')),
+    '#default_value' => $config['scope'],
+    '#description' => t('Location of the script file. By default: <em>page_bottom</em>, for performance reasons. Your theme <strong>must</strong> have the same region name.'),
   );
   $form['google_plusone_advanced_settings']['async'] = array(
     '#type' => 'checkbox',
@@ -160,7 +158,6 @@ function google_plusone_admin_settings() {
   );
   return system_settings_form($form);
 }
-
 
 /**
  * Returns HTML for a preview button in the admin settings page.

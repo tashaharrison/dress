@@ -18,7 +18,7 @@ function template_preprocess_vcd_row_object(&$vars) {
     // This is not necessarily bad because Context loads them in a static cached object.
     module_invoke_all('context_page_condition');
     foreach (context_active_contexts() as $key => $context) {
-      // When multiple contexts are active, only the last active context will set the build mode
+      // When multiple contexts are active, only the last active context will set the view mode
       if (in_array('context_' . $key, array_keys($options))) {
         $plugin->execute($options, $options['context_' . $key]);
       }

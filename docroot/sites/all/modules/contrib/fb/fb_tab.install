@@ -7,21 +7,16 @@
  */
 
 /**
- * hook_install()
+ * Implements hook_install()
  */
 function fb_tab_install() {
-  // Create tables.
-  drupal_install_schema('fb_tab');
-
-  drupal_set_message(st('Facebook Tab module installed.', array('!perm' => url('admin/user/permissions'), '!create' => url('admin/build/fb') /* FB_PATH_ADMIN */)));
+  drupal_set_message(st('Facebook Tab module installed.', array('!perm' => url('admin/people/permissions'), '!create' => url('admin/structure/fb') /* FB_PATH_ADMIN */)));
 }
 
 /**
- * hook_uninstall()
+ * Implement hook_uninstall()
  */
 function fb_tab_uninstall() {
-  // Remove tables.
-  drupal_uninstall_schema('fb_tab');
 }
 
 function fb_tab_schema() {
@@ -63,12 +58,4 @@ function fb_tab_schema() {
   );
 
   return $schema;
-}
-
-function fb_tab_update_6300() {
-  $ret = array();
-  // introducing fb_tab table.
-  $schema = fb_tab_schema();
-  db_create_table($ret, 'fb_tab', $schema['fb_tab']);
-  return $ret;
 }

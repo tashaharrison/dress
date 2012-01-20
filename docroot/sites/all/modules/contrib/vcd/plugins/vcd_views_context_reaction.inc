@@ -33,7 +33,7 @@ class vcd_views_context_reaction extends context_reaction {
 	 * @param array $options the options array of the subject view
 	 * @param string $build_mode The build mode which overrules the default build_mode
 	 */
-  function execute(&$options, $build_mode) {
-    $options['build_mode'] = $build_mode;
+  function execute(&$view_mode, $build_mode) {
+    $view_mode = $build_mode;
   }
 }

@@ -4,7 +4,7 @@
  *
  * Javascript specific to facebook connect pages.  This means pages
  * which are not canvas pages, and where fb_connect.module has
- * initialized the facebook api.  The user may or may not have
+ * initialized the facebook api. The user may or may not have
  * authorized the app, this javascript will still be loaded.
  *
  * Note (!) much of the work done here is deprecated, and moved to fb.js
@@ -13,22 +13,22 @@
  * use case to our issue queue (http://drupal.org/project/issues/fb),
  * otherwise these features may go away...
  */
+(function ($) {
+  Drupal.behaviors.fb_connect = {
+    attach: function(context, settings) {
+      // Logout of facebook when logging out of drupal.
+      jQuery("a[href^='" + Drupal.settings.basePath + "user/logout']", context).click(FB_Connect.logoutHandler);
 
-Drupal.behaviors.fb_connect = function(context) {
+      // Support markup for dialog boxes.
+      FB_Connect.enablePopups(context);
 
-  // Logout of facebook when logging out of drupal.
-  jQuery("a[href^='" + Drupal.settings.basePath + "logout']", context).click(FB_Connect.logoutHandler);
-
-  // Support markup for dialog boxes.
-  FB_Connect.enablePopups(context);
-
-  var events = jQuery(document).data('events');
-  if (!events || !events.fb_session_change) {
-    jQuery(document).bind('fb_session_change', FB_Connect.sessionChangeHandler);
-  }
-};
-
-
+      var events = jQuery(document).data('events');
+      if (!events || !events.fb_session_change) {
+        jQuery(document).bind('fb_session_change', FB_Connect.sessionChangeHandler);
+      }
+    }
+  };
+})(jQuery);
 
 FB_Connect = function(){};
 
@@ -91,7 +91,7 @@ FB_Connect.enablePopups = function(context) {
   // Support for easy fbml popup markup which degrades when javascript not enabled.
   // Markup is subject to change.  Currently...
   // <div class=fb_fbml_popup_wrap><a title="POPUP TITLE">LINK MARKUP</a><div class=fb_fbml_popup><fb:SOME FBML>...</fb:SOME FBML></div></div>
-  $('.fb_fbml_popup:not(.fb_fbml_popup-processed)', context).addClass('fb_fbml_popup-processed').prev().each(
+  jQuery('.fb_fbml_popup:not(.fb_fbml_popup-processed)', context).addClass('fb_fbml_popup-processed').prev().each(
     function() {
       this.fbml_popup = $(this).next().html();
       this.fbml_popup_width = parseInt($(this).next().attr('width'));
@@ -101,9 +101,9 @@ FB_Connect.enablePopups = function(context) {
     })
     // Handle clicks on the link element.
     .bind('click',
-          function (e) {
-            var popup;
-            //console.log('Clicked!  Will show ' + this.fbml_popup); // debug
+	  function (e) {
+	    var popup;
+	    //console.log('Clicked!  Will show ' + this.fbml_popup); // debug
 
 	    // http://forum.developers.facebook.net/viewtopic.php?pid=243983
 	    var size = FB.UIServer.Methods["fbml.dialog"].size;
@@ -135,7 +135,8 @@ FB_Connect.enablePopups = function(context) {
 	    // @TODO - avoid starting timer more than once.
 	    window.setInterval(FB_Connect.centerPopups, 500);
 
-            e.preventDefault();
-          })
+	    e.preventDefault();
+	  })
     .parent().show();
 };
+

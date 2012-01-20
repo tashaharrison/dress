@@ -7,10 +7,9 @@
  * In this code we set up special session management and url
  * rewriting.  These things must be done before modules are loaded, so
  * the code is here instead of fb.module. And that is why this
- * must be include from settings.php.
+ * must be included from settings.php.
  *
  */
-
 
 // Each of these are things we can learn and store in fb_settings().
 // The CB (callback) values are learned via URL rewriting.
@@ -68,8 +67,9 @@ function _fb_settings_base64_url_decode($input) {
 }
 
 /**
- * See facebook.php for a more reliable version of this function.  We skip
- * validation because we do not yet know the app secret.
+ * See https://developers.facebook.com/docs/authentication/signed_request/ for
+ * a more reliable version of this function.  We skip validation because we do
+ * not yet know the app secret.
  */
 function _fb_settings_parse_signed_request($signed_request) {
   list($encoded_sig, $payload) = explode('.', $signed_request, 2);
@@ -114,7 +114,7 @@ function _fb_settings_honor_signed_request($sr) {
     if (!fb_settings(FB_SETTINGS_ID)) {
       // Prefer app id learned from url rewriting over that learned from signed request (because sr may be encrypted).
       $tokens = explode('|', $sr['oauth_token']);
-      if ($app_id = $tokens[0]) {
+      if (($app_id = $tokens[0]) && !empty($tokens[1])) {
         fb_settings(FB_SETTINGS_ID, $app_id);
       }
     }
@@ -230,7 +230,8 @@ if (fb_settings(FB_SETTINGS_TYPE) &&
     fb_settings(FB_SETTINGS_TYPE) . $unique_id;
   fb_settings(FB_SETTINGS_COOKIE_DOMAIN, $cookie_domain); // for debugging.
 }
+
 if (fb_settings(FB_SETTINGS_FBU)) {
-  // Disable Drupal cache when logged into facebook.
+  // Tells Drupal, don't pull from (or save to) cache when logged into facebook.
   $conf['cache'] = 0;
 }

@@ -11,22 +11,33 @@ window.fbAsyncInit = function() {
     // Check the login status.  If offline_access granted, this
     // is the only whay to know if user has logged out of facebook.
     FB.getLoginStatus(function(response) {
+      // Note this callback is often not called, due to bugs in facebook's JS SDK.
       FB_JS.initFinal(response);
     });
+
+    // getLoginStatus is broken and may never call its callback!
+    setTimeout("FB_JS.initFinal({'session' : null})", 500);
   }
   else {
     // No application.  Not safe to call FB.getLoginStatus().
     // We still want to initialize XFBML, third-party modules, etc.
     FB_JS.initFinal({'session' : null});
   }
+
 };
 
 FB_JS = function(){};
-
+FB_JS._calledInitFinal = false; // workaround broken FB.getLoginStatus.
 /**
  * Finish initializing, whether there is an application or not.
  */
 FB_JS.initFinal = function(response) {
+  // This semaphore prevents this function from being called more than once.
+  if (FB_JS._calledInitFinal && response.session == null) {
+    return;
+  }
+  FB_JS._calledInitFinal = true;
+
   var status = {
     'session' : response.authResponse, // deprecated
     'auth': response.authResponse,
@@ -37,7 +48,6 @@ FB_JS.initFinal = function(response) {
   FB_JS.authResponseChange(response); // This will act only if fbu changed.
 
   FB_JS.eventSubscribe();
-
   FB.XFBML.parse();
 }
 
@@ -145,14 +155,16 @@ FB_JS.authResponseChange = function(response) {
 
   var status = {
     'changed': false,
-    'fbu': null,
+    'fbu': FB.getUserID(),
     'session': response.authResponse, // deprecated,  still needed???
     'auth': response.authResponse, // still needed???
     'response' : response
   };
 
-  if (response.authResponse) {
-    status.fbu = response.authResponse.userID;
+  // Note that FB.getUserID() is more accurate than
+  // response.authResponse.UserID when third party cookies are disabled.
+
+  if (response.authResponse || status.fbu) {
     if (Drupal.settings.fb.fbu != status.fbu) {
       // A user has logged in.
       status.changed = true;
@@ -226,6 +238,15 @@ FB_JS.ajaxEvent = function(event_type, request_data) {
       request_data.fb_controls = Drupal.settings.fb.controls;
     }
 
+    // In case cookies are not accurate, always pass in signed request.
+    response = FB.getAuthResponse();
+    if (response) {
+      request_data.signed_request = response.signedRequest;
+    }
+    else {
+      request_data.signedRequest = '';
+    }
+
     jQuery.ajax({
       url: Drupal.settings.fb.ajax_event_url + '/' + event_type,
       data : request_data,
@@ -264,30 +285,35 @@ FB_JS.deleteCookie = function( name, path, domain ) {
     ";expires=Thu, 01-Jan-1970 00:00:01 GMT";
 };
 
+
 /**
  * Drupal behaviors hook.
  *
  * Called when page is loaded, or content added via javascript.
  */
-Drupal.behaviors.fb = function(context) {
-  // Respond to our jquery pseudo-events
-  var events = jQuery(document).data('events');
-  if (!events || !events.fb_session_change) {
-    jQuery(document).bind('fb_session_change', FB_JS.sessionChangeHandler);
-  }
+(function ($) {
+  Drupal.behaviors.fb = {
+    attach : function(context) {
+      // Respond to our jquery pseudo-events
+      var events = jQuery(document).data('events');
+      if (!events || !events.fb_session_change) {
+	jQuery(document).bind('fb_session_change', FB_JS.sessionChangeHandler);
+      }
 
-  // Once upon a time, we initialized facebook's JS SDK here, but now that is done in fb_footer().
+      // Once upon a time, we initialized facebook's JS SDK here, but now that is done in fb_footer().
 
-  if (typeof(FB) != 'undefined') {
-    // Render any XFBML markup that may have been added by AJAX.
-    $(context).each(function() {
-      var elem = $(this).get(0);
-      FB.XFBML.parse(elem);
-    });
-  }
+      if (typeof(FB) != 'undefined') {
+        // Render any XFBML markup that may have been added by AJAX.
+        $(context).each(function() {
+          var elem = $(this).get(0);
+          FB.XFBML.parse(elem);
+        });
+      }
 
-  // Markup with class .fb_show should be visible if javascript is enabled.  .fb_hide should be hidden.
-  jQuery('.fb_hide', context).hide();
-  jQuery('.fb_show', context).show();
+      // Markup with class .fb_show should be visible if javascript is enabled.  .fb_hide should be hidden.
+      jQuery('.fb_hide', context).hide();
+      jQuery('.fb_show', context).show();
+    }
+  };
 
-};
+})(jQuery);

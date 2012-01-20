@@ -1,21 +1,24 @@
 Drupal for Facebook
 -------------------
 
-More information:
+Project Home:
 http://www.drupalforfacebook.org, http://drupal.org/project/fb
 
 Primary author and maintainer: Dave Cohen (http://www.dave-cohen.com/contact)
 Do  NOT contact  the  maintainer  with a question  that  can be  easily
 answered with a web search.  You may not receive a reply.
 
-Branch: 6.x-3.x (version 3.x for Drupal 6.x)
+Branch: master (version 3.x for Drupal 7.x)
 
 This file is more current than online documentation.  When in doubt,
 trust this file.  Online documentation: http://drupal.org/node/195035,
 has more detail and you should read it next..
 
-To upgrade:
+To upgrade from Drupal 6 to Drupal 7:
+- Upgrade your D6 version to RC7 or later.  Run update.php and make sure everything seems to work.  Then upgrade drupal and all modules to D7 branch.
 
+
+To upgrade from on D7 version to the next:
 - Read the upgrade instructions: http://drupal.org/node/936958
 
 To install:
@@ -38,15 +41,6 @@ To install:
 
   See also http://drupal.org/node/923804
 
-- Your theme needs the following attribute at the end of the <html> tag:
-
-  xmlns:fb="http://www.facebook.com/2008/fbml"
-
-  Typically, this means editing your theme's page.tpl.php file.  See
-  http://www.drupalforfacebook.org/node/1106.  Note this applies to
-  themes used for Facebook Connect, iframe Canvas Pages, and Social
-  Plugins (i.e. like buttons).  Without this attribute, IE will fail.
-
 - To support canvas pages and/or page tabs, url rewriting and other
   settings must be initialized before modules are loaded, so you must
   add this code to your settings.php.  This is done by adding these
@@ -67,8 +61,8 @@ To install:
   Enable fb.module for Social Plugins.
 
   Enable fb_devel.module and keep it enabled until you have everything
-  set up.  You should disable this on your live server once you are
-  certain facebook features are working.  (Note this requires
+  set up. You should disable this on your live server once you are
+  certain facebook features are working. (Note this requires
   http://drupal.org/project/devel, which is well worth installing
   anyway.)
 
@@ -78,6 +72,10 @@ To install:
   Enable fb_connect.module for Facebook Connect and/or
   fb_canvas.module for Canvas Page apps.
 
+  Create a new Text Format that does not restrict/clean HTML tags and use it
+  in blocks and nodes. Other Text Formats (formerly called Input Formats in D6)
+  like the built-in Full HTML Text Format actually mangle FB tags like <fb:like>.
+
   Pages at http://drupal.org/node/932690 will help you decide which
   other modules you need to enable for your particular needs.
 
@@ -85,12 +83,12 @@ To install:
 To support Facebook Connect, Canvas Pages, and/or Social Plugins that
 require an Application, read on...
 
-- You must enable clean URLs.  If you don't, some links that drupal
+- You must enable clean URLs. If you don't, some links that drupal
   creates will not work properly on canvas pages.
 
 - Create an application on Facebook, currently at
-  http://www.facebook.com/developers/editapp.php?new.  Fill in the
-  minimum required to get an apikey and secret.  If supporting canvas
+  http://www.facebook.com/developers/createapp.php. Fill in the
+  minimum required to get an apikey and secret. If supporting canvas
   pages, specify a canvas name, too.  You may ignore other settings
   for now.
 
@@ -139,9 +137,9 @@ http://drupal.org/project/issues/fb
 
 If you do submit an issue, start the description with "I read the
 README.txt from start to finish," and you will get a faster, more
-thoughtful response.  Seriously, prove that you read this far.
+thoughtful response. Seriously, prove that you read this far.
 
-Below are more options for your settings.php.  Add the PHP shown below
+Below are more options for your settings.php. Add the PHP shown below
 to the very end of your settings.php, and modify the paths accordingly
 (i.e. where this example has "sites/all/modules/fb", you might need
 "profiles/custom/modules/fb").

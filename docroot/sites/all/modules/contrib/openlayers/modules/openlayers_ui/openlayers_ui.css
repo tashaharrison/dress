@@ -18,24 +18,8 @@
 }
 
 #openlayers-form-proj-msg {
-  display:none;
+  display: none;
 }
-
-/**
- * Preset form
- */
-div.openlayers-column-right input.form-text,
-div.openlayers-column-left input.form-text { width:90%; }
-
-div.openlayers-column-left {
-  width:20%;
-  float:left;
-  }
-
-div.openlayers-column-right {
-  width:80%;
-  float:right;
-  }
 
 span.openlayers-dependency-value {
   display: none;
@@ -45,63 +29,92 @@ span.openlayers-dependency-broken {
   font-size: smaller;
   display: none;
   color: red;
-  }
+}
 
 /**
- * Panel links
+ * Overriding for vertical tabs
  */
-div.openlayers-column-left ul#openlayers-panel-links,
-div.openlayers-column-left ul#openlayers-panel-links li,
-div.openlayers-column-left ul#openlayers-panel-links li a {
-  display:block;
-  float:none;
-  padding:0px;
-  margin:0px;
-  }
+div.vertical-tabs fieldset {
+  border: 1px solid #CCCCCC;
+  margin: 1em 0;
+  padding: 2.5em 0 0;
+  position: relative;
+}
 
-  div.openlayers-column-left ul#openlayers-panel-links { margin:0px 0px 10px; }
+div.vertical-tabs .vertical-tabs-panes legend {
+  display: block;
+}
+ 
+div.vertical-tabs .vertical-tabs-panes > fieldset {
+  border: 0 none;
+  margin: 0;
+  padding: 0;
+}
 
-  div.openlayers-column-left ul#openlayers-panel-links li a {
-    background:#f8f8f8;
-    padding:5px 5px 4px 4px;
-    border-left:1px solid #eee;
-    border-bottom:1px solid #eee;
-    cursor:pointer;
-    }
+div.vertical-tabs .vertical-tabs-panes > fieldset > legend {
+  display: none;
+}
 
-  div.openlayers-column-left ul#openlayers-panel-links li a.openlayers-panel-active {
-    padding:4px 5px 4px 4px;
-    background:#fff;
-    border:1px solid #ccc;
-    border-right:0px;
-    margin-right:-1px;
-    }
-
-/* Panels */
-div.openlayers-panel {
-  border:1px solid #ccc;
-  background:#fff;
-  padding:10px;
-  margin:0px 0px 20px;
-  display:none;
-  }
-
-  div.openlayers-panel-active { display:block; }
-  
 /**
  * Behaviors table
  */
- /*
-.openlayers-form-behaviors-table .openlayers-form-behaviors-enable {
-  width: 15%;
+div.vertical-tabs table tbody tr fieldset {
+  font-size: .85em;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding: 10px;
+  background-color: #EEEEEE;
+  position: inherit;
 }
-.openlayers-form-behaviors-table .openlayers-form-behaviors-title {
-  width: 35%;
+
+div.vertical-tabs table tbody tr.odd .form-item, 
+div.vertical-tabs table tbody tr.even .form-item {
+  white-space: normal;
 }
-.openlayers-form-behaviors-table .openlayers-form-behaviors-options {
-  width: 50%;
+
+/**
+ * Style previews
+ */
+.openlayers-ui-style-preview {
+  width: 60px;
+  height: 60px;
+  background-color: #DDDDDD;
+  border: 1px solid #222222;
 }
-*/
-div.openlayers-column-right .openlayers-form-behaviors-table .openlayers-form-behaviors-options input.form-text {
+
+#openlayers-ui-styles-form .openlayers-ui-style-preview {
   width: 200px;
+  height: 200px;
+}
+
+#openlayers-ui-styles-form #edit-preview-style-container {
+  float: right;
+  width: 210px;
+  margin: 0 0 10px 10px;
+}
+
+.openlayers-ui-style-preview .openlayers-ui-style-preview-top,
+.openlayers-ui-style-preview .openlayers-ui-style-preview-left {
+  position: absolute;
+  z-index: 999999;
+}
+
+.openlayers-ui-style-preview .openlayers-ui-style-preview-top {
+  top: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  border-bottom: 1px solid rgb(33, 33, 33);
+  border-bottom: 1px solid rgba(33, 33, 33, .2);
+
+}
+.openlayers-ui-style-preview .openlayers-ui-style-preview-left {
+  top: 0;
+  right: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  border-right: 1px solid rgb(33, 33, 33);
+  border-right: 1px solid rgba(33, 33, 33, .2);
 }

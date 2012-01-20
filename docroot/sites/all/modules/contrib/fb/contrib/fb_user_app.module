@@ -23,7 +23,7 @@ function fb_user_app_menu() {
   $items = array();
 
   // Admin pages overview.
-  $items[FB_PATH_ADMIN . "/tracking"] = array(
+  $items[FB_PATH_ADMIN . "/fb_user_app"] = array(
     'title' => 'Tracking',
     'description' => 'Settings that track statistics in Drupal for Facebook',
     'page callback' => 'drupal_get_form',
@@ -54,7 +54,7 @@ function fb_user_app_fb($op, $data, &$return) {
     // in FB_OP_AJAX_EVENT, because it turns out this hook is invoked even on
     // page not found and access denied pages.
 
-    fb_user_app_track_user($fb, $fb_app, $user);
+    fb_user_app_track($fb, $fb_app, $user);
   }
   elseif ($op == FB_APP_OP_EVENT) {
 
@@ -64,14 +64,16 @@ function fb_user_app_fb($op, $data, &$return) {
 
     // Ensure fb_user_app table accurately reflects whether user has authorized.
     if ($event_type == FB_APP_EVENT_POST_AUTHORIZE) {
-      // Track new facebook user, $GLOBAL['user'] not valid dufing post-autorize.
-      fb_user_app_track_user($fb, $fb_app);
+      // Track new facebook user, $GLOBAL['user'] not valid during post-authorize.
+      fb_user_app_track($fb, $fb_app);
     }
     elseif ($event_type == FB_APP_EVENT_POST_REMOVE) {
       $fbu = fb_settings(FB_SETTINGS_FBU);
       // User has removed the app from their account.
-      db_query("DELETE FROM {fb_user_app} WHERE apikey='%s' AND fbu=%d",
-               $fb_app->apikey, $fbu);
+      db_query("DELETE FROM {fb_user_app} WHERE apikey=:apikey AND fbu=:fbu", array(
+                 ':apikey' => $fb_app->apikey,
+                 ':fbu' => $fbu,
+               ));
     }
   }
   elseif ($op == FB_OP_GET_USER_SESSION) {
@@ -81,8 +83,11 @@ function fb_user_app_fb($op, $data, &$return) {
     // to provide it, depending on whether the user has logged in, and whether
     // the session has expired.
     $fbu = $data['fbu'];
-    $result = db_query("SELECT * FROM {fb_user_app} WHERE apikey = '%s' and fbu = %d", $fb_app->apikey, $fbu);
-    $data = db_fetch_object($result);
+    $result = db_query("SELECT * FROM {fb_user_app} WHERE apikey = :apikey and fbu = :fbu", array(
+                         ':apikey' => $fb_app->apikey,
+                         ':fbu' => $fbu,
+                       ));
+    $data = $result->fetchObject();
 
     if ($data && $data->session_key)
       // Return array with FB id and apikey.
@@ -98,23 +103,23 @@ function fb_user_app_fb($op, $data, &$return) {
     // fb.js has notified us of an event via AJAX.  Not the same as facebook event callback above.
     if ($data['event_type'] == 'session_change' && isset($data['event_data']['fbu'])) {
       // A user has logged in.
-      fb_user_app_track_user($fb, $fb_app, $user);
+      fb_user_app_track($fb, $fb_app, $user);
     }
   }
 }
 
 /**
- * Implements hook_user().
+ * Implements hook_user_delete().
  *
  * @TODO confirm there is no race condition between this module and fb_user.
  * That is, during delete, does fb_get_fbu() still work?
  */
-function fb_user_app_user($op, &$edit, &$account, $category = NULL) {
-  if ($op == 'delete') {
-    // Given the uid, fetch the fbu so that we can delete
-    $fbu = fb_get_fbu($account->uid);
-    db_query('DELETE FROM {fb_user_app} WHERE fbu=%d', $fbu);
-  }
+function fb_user_app_user_delete($account) {
+  // Given the uid, fetch the fbu so that we can delete
+  $fbu = fb_get_fbu($account->uid);
+  db_query('DELETE FROM {fb_user_app} WHERE fbu=:fbu', array(
+             ':fbu' => $fbu,
+           ));
 }
 
 /**
@@ -129,7 +134,7 @@ function fb_user_app_user($op, &$edit, &$account, $category = NULL) {
  * support them).  So this tracking will work best for canvas page apps and
  * less reliably for connect.
  */
-function fb_user_app_track_user($fb, $fb_app) {
+function fb_user_app_track($fb, $fb_app) {
   // Coming from a user adding the app or a page adding the app?
   $fb_user_type = "user";
   $fbu = fb_facebook_user($fb);
@@ -152,7 +157,6 @@ function fb_user_app_track_user($fb, $fb_app) {
     return;
   }
 
-
   // when 'expires' == 0 app has been granted offline access
   if ($fb_user_type == 'user' &&
       $expires <> 0 &&
@@ -166,39 +170,44 @@ function fb_user_app_track_user($fb, $fb_app) {
   if ((variable_get(FB_USER_APP_VAR_TRACK_USERS, TRUE) && $fb_user_type = "user") ||
       (variable_get(FB_USER_APP_VAR_TRACK_PAGES, TRUE) && $fb_user_type = "page")) {
 
-    $result = db_query("UPDATE {fb_user_app} SET time_access=%d, session_key='%s', session_key_expires=%d, user_type='%s' WHERE apikey='%s' AND fbu=%d",
-                       time(),
-                       $access_token, $expires,
-                       $fb_user_type,
-                       $fb_app->id,
-                       $fbu);
+    $result1 = db_query("UPDATE {fb_user_app} SET time_access=:time, session_key=:token, session_key_expires=:expires, user_type=:type WHERE apikey=:apikey AND fbu=:fbu", array(
+                          ':time' => REQUEST_TIME,
+                          ':token' => $access_token,
+                          ':expires' => $expires,
+                          ':type' => $fb_user_type,
+                          ':apikey' => $fb_app->id,
+                          ':fbu' => fb_facebook_user($fb),
+                        ));
 
-    if ($result && !db_affected_rows()) {
+    if ($result1 && $result1->rowCount() == 0) {
       // The row for this user was never inserted, or it was deleted, or the times were the same.
+      $fbu = fb_facebook_user($fb);
       if ($fbu) {
         // First make sure it was not just the same time
-        $result = db_query("SELECT * FROM {fb_user_app} WHERE apikey='%s' AND fbu=%d",
-                           $fb_app->apikey,
-                           $fbu);
-        if (!db_fetch_object($result)) {
+        $result = db_query("SELECT * FROM {fb_user_app} WHERE apikey=:apikey AND fbu=:fbu", array(
+                             ':apikey' => $fb_app->apikey,
+                             ':fbu' => $fbu,
+                           ));
+        if (!$result->fetchObject()) {
           //This row does not exist, even with the same time.  Insert now
-          $info = fb_users_getInfo(array($fbu), $fb);
-          $data = $info[0];
+          list($data) = fb_fql_query($fb, "SELECT name, is_app_user, email, proxied_email FROM user WHERE uid=$fbu", array('access_Token' => $fb_session_key));
+          //watchdog('fb_user_app', "fb user data <pre>" . print_r($data, 1) . '</pre>');
           $fb_user_type = "user";
-          $result = db_query("INSERT INTO {fb_user_app} (apikey, fbu, added, user_type, session_key, session_key_expires, time_access, proxied_email, time_cron) VALUES ('%s', %d, %d, '%s', '%s', %d, %d, '%s', %d)",
-                             $fb_app->apikey, $fbu,
-                             $data['is_app_user'],
-                             $fb_user_type,
-                             $access_token,
-                             $expires,
-                             time(),
-                             $data['proxied_email'],
-                             0 // time_cron
-          );
+          $result = db_query("INSERT INTO {fb_user_app} (apikey, fbu, added, user_type, session_key, session_key_expires, time_access, proxied_email, time_cron) VALUES (:apikey, :fbu, :added, :user_type, :session_key, :session_key_expires, :time_access, :proxied_email, :time_cron)", array(
+                               ':apikey' => $fb_app->apikey,
+                               ':fbu' => $fbu,
+                               ':added' => $data['is_app_user'],
+                               ':user_type' => $fb_user_type,
+                               ':session_key' => $access_token,
+                               ':session_key_expires' => $expires,
+                               ':time_access' => REQUEST_TIME,
+                               ':proxied_email' => $data['email'] ? $data['email'] : ($data['proxied_email'] ? $data['proxied_email'] : ''), // test accounts will not have
+                               ':time_cron' => 0,
+                             ));
         }
       }
     }
-    if ($result === FALSE) {
+    if (FALSE && $result === FALSE) { // XXX upgrade to D7???
       watchdog('fb_user_app', "Failed to update fb_user_app table.", array(), WATCHDOG_ERROR);
     }
   }
@@ -210,10 +219,11 @@ function fb_user_app_track_user($fb, $fb_app) {
  */
 function fb_user_app_get_proxied_email($fbu, $fb_app) {
   // Try to learn from local database
-  $result = db_query("SELECT * FROM {fb_user_app} WHERE apikey='%s' AND fbu=%d",
-                     $fb_app->apikey,
-                     $fbu);
-  if ($data = db_fetch_object($result)) {
+  $result = db_query("SELECT * FROM {fb_user_app} WHERE apikey=:apikey AND fbu=:fbu", array(
+                       ':apikey' => $fb_app->apikey,
+                       ':fbu' => $fbu,
+                     ));
+  if ($data = $result->fetchObject()) {
     $mail = $data->proxied_email;
   }
 
@@ -225,8 +235,11 @@ function fb_user_app_get_proxied_email($fbu, $fb_app) {
     $mail = $data['proxied_email'];
     if ($mail && variable_get(FB_USER_APP_VAR_TRACK_USERS, TRUE)) {
       // Store locally.
-      $result = db_query("UPDATE {fb_user_app} SET proxied_email='%s' WHERE apikey='%s' AND fbu=%d",
-                         $mail, $fb_app->apikey, $fbu);
+      $result = db_query("UPDATE {fb_user_app} SET proxied_email=:mail WHERE apikey=:apikey AND fbu=:fbu", array(
+                           ':mail' => $mail,
+                           ':apikey' => $fb_app->apikey,
+                           ':fbu' => $fbu,
+                         ));
     }
   }
   return $mail;

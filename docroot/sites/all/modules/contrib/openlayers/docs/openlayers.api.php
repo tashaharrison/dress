@@ -76,9 +76,9 @@ function hook_openlayers_layer_types() {
  *
  * IMPORTANT:
  *
- * In order to support styles, presets, and layers in an external module,
+ * In order to support styles, maps, and layers in an external module,
  * one must notify the CTools module that that module provides implementations 
- * of the hooks for styles, presets, and/or layers.
+ * of the hooks for styles, maps, and/or layers.
  *
  * This function is just an example implementation of 
  * hook_ctools_plugin_api() and should be alter according to
@@ -97,7 +97,7 @@ function hook_openlayers_layer_types() {
 function openlayers_example_ctools_plugin_api($module, $api) {
   if ($module == "openlayers") {
     switch ($api) {
-      case 'openlayers_presets':
+      case 'openlayers_maps':
         return array('version' => 1);
 
       case 'openlayers_layers':
@@ -233,9 +233,9 @@ function hook_openlayers_styles() {
 }
 
 /**
- * OpenLayers Presets
+ * OpenLayers maps
  *
- * Define map presets.
+ * Define map objects.
  *
  * @return
  *   Return an associative array with index being a unique string 
@@ -245,14 +245,14 @@ function hook_openlayers_styles() {
  *   - "title": 
  *   - "data":
  */
-function hook_openlayers_presets() {
-  // Taken from openlayers.presets.inc
+function hook_openlayers_maps() {
+  // Taken from openlayers.maps.inc
 
   $default = new stdClass();
   $default->api_version = 1;
   $default->name = 'default';
   $default->title = t('Default Map');
-  $default->description = t('This is the default map preset that comes with the OpenLayers module.');
+  $default->description = t('This is the default map that comes with the OpenLayers module.');
   $default->data = array(
     'projection' => '900913',
     'width' => 'auto',
@@ -280,34 +280,4 @@ function hook_openlayers_presets() {
     )
   );
   return array('default' => $default);
-}
-
-/**
- * CTools Registration Hook (Style Plugins)
- *
- * IMPORTANT:
- *
- * In order to support style plugins, the first step is to
- * tell CTools where to find the plugin.
- *
- * This function is just an example implementation of 
- * hook_ctools_plugin_directory() and should be alter according to
- * your module's name.
- *
- * For an example, please see the openlayers_test.module
- *
- * @param $module
- *   Name of a module that supports CTools exportables.
- * @param $plugin
- *   Name of the kind of plugin supported.
- * @return
- *  If $module is 'openlayers', and $api is a type of exportable that
- *  your module provides, and you are using Openlayers 2.x, then
- *  return the directory relative to a module to look for this
- *  particular plugin.
- */
-function openlayers_ctools_plugin_directory($module, $plugin) {
-  if ($module == 'openlayers' && $plugin == 'style_plugin') {
-    return 'plugins/style_plugin';
-  }
 }

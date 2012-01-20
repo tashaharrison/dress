@@ -18,6 +18,8 @@
 
 document.namespaces;
 
+(function($) {
+
 Drupal.settings.openlayers = {};
 Drupal.settings.openlayers.maps = {};
 
@@ -25,84 +27,89 @@ Drupal.settings.openlayers.maps = {};
  * Minimal OpenLayers map bootstrap.
  * All additional operations occur in additional Drupal behaviors.
  */
-Drupal.behaviors.openlayers = function(context) {
-  if (typeof(Drupal.settings.openlayers) === 'object' && Drupal.settings.openlayers.maps && !$(context).data('openlayers')) {
-    $('.openlayers-map:not(.openlayers-processed)').each(function() {
-      $(this).addClass('openlayers-processed');
-      var map_id = $(this).attr('id');
-
-      // Use try..catch for error handling.
-      try {
-        if (Drupal.settings.openlayers.maps[map_id]) {
-          // Set OpenLayers language based on document language,
-          // rather than browser language
-          OpenLayers.Lang.setCode($('html').attr('lang'));
-
+Drupal.behaviors.openlayers = {
+  'attach': function(context, settings) {
+    if (typeof(Drupal.settings.openlayers) === 'object' &&
+        Drupal.settings.openlayers.maps &&
+        !$(context).data('openlayers')) {
+      $('.openlayers-map:not(.openlayers-processed)').each(function() {
+        // By setting the stop_render variable to TRUE, this will
+        // halt the render process.  If set, one could remove this setting
+        // then call Drupal.attachBehaviors again to get it started
+        var map_id = $(this).attr('id');
+        if (Drupal.settings.openlayers.maps[map_id] && Drupal.settings.openlayers.maps[map_id].stop_render != true) {
           var map = Drupal.settings.openlayers.maps[map_id];
+          $(this).addClass('openlayers-processed');
 
-          $(this)
-            // @TODO: move this into markup in theme function, doing this dynamically is a waste.
-            .css('width', map.width)
-            .css('height', map.height);
+          // Use try..catch for error handling.
+          try {
+            // Set OpenLayers language based on document language,
+            // rather than browser language
+            OpenLayers.Lang.setCode($('html').attr('lang'));
 
-          var options = {};
-          // This is necessary because the input JSON cannot contain objects
-          options.projection = new OpenLayers.Projection('EPSG:' + map.projection);
-          options.displayProjection = new OpenLayers.Projection('EPSG:' + map.displayProjection);
+            $(this)
+              // @TODO: move this into markup in theme function, doing this dynamically is a waste.
+              .css('width', map.width)
+              .css('height', map.height);
 
-          // TODO: work around this scary code
-          if (map.projection === '900913') {
-            options.maxExtent = new OpenLayers.Bounds(
-              -20037508.34, -20037508.34, 20037508.34, 20037508.34);
-             options.units = 'm';
+            var options = {};
+            // This is necessary because the input JSON cannot contain objects
+            options.projection = new OpenLayers.Projection('EPSG:' + map.projection);
+            options.displayProjection = new OpenLayers.Projection('EPSG:' + map.displayProjection);
+
+            // TODO: work around this scary code
+            if (map.projection === '900913') {
+              options.maxExtent = new OpenLayers.Bounds(
+                -20037508.34, -20037508.34, 20037508.34, 20037508.34);
+            }
+            if (map.projection === '4326') {
+              options.maxExtent = new OpenLayers.Bounds(-180, -90, 180, 90);
+            }
+
+            options.maxResolution = 1.40625;
+            options.controls = [];
+
+            // Change image, CSS, and proxy paths if specified
+            if (map.image_path) {
+              OpenLayers.ImgPath = Drupal.openlayers.relatePath(map.image_path,
+                Drupal.settings.basePath);
+            }
+            if (map.css_path) {
+              options.theme = Drupal.openlayers.relatePath(map.css_path,
+                Drupal.settings.basePath);
+            }
+            if (map.proxy_host) {
+              OpenLayers.ProxyHost = Drupal.openlayers.relatePath(map.proxy_host,
+                Drupal.settings.basePath);
+            }
+
+            // Initialize openlayers map
+            var openlayers = new OpenLayers.Map(map.id, options);
+
+            // Run the layer addition first
+            Drupal.openlayers.addLayers(map, openlayers);
+
+            // Attach data to map DOM object
+            $(this).data('openlayers', {'map': map, 'openlayers': openlayers});
+
+            // Finally, attach behaviors
+            Drupal.attachBehaviors(this);
+
+            if ($.browser.msie) {
+              Drupal.openlayers.redrawVectors();
+            }
           }
-          if (map.projection === '4326') {
-            options.maxExtent = new OpenLayers.Bounds(-180, -90, 180, 90);
-          }
-
-          options.maxResolution = 1.40625;
-          options.controls = [];
-
-          // Change image, CSS, and proxy paths if specified
-          if (map.image_path) {
-            OpenLayers.ImgPath = Drupal.openlayers.relatePath(map.image_path,
-              Drupal.settings.basePath);
-          }
-          if (map.css_path) {
-            options.theme = Drupal.openlayers.relatePath(map.css_path,
-              Drupal.settings.basePath);
-          }
-          if (map.proxy_host) {
-            OpenLayers.ProxyHost = Drupal.openlayers.relatePath(map.proxy_host,
-              Drupal.settings.basePath);
-          }
-
-          // Initialize openlayers map
-          var openlayers = new OpenLayers.Map(map.id, options);
-
-          // Run the layer addition first
-          Drupal.openlayers.addLayers(map, openlayers);
-
-          // Attach data to map DOM object
-          $(this).data('openlayers', {'map': map, 'openlayers': openlayers});
-
-          // Finally, attach behaviors
-          Drupal.attachBehaviors(this);
-
-          if ($.browser.msie) {
-            Drupal.openlayers.redrawVectors();
+          catch (e) {
+            if (typeof console != 'undefined') {
+              console.log(e);
+            }
+            else {
+              $(this).text('Error during map rendering: ' + e);
+            }
           }
         }
-      }
-      catch (e) {
-        if (typeof console != 'undefined') {
-          console.log(e);
-        }
-        else {
-          $(this).text('Error during map rendering: ' + e);
-        }
-      }
-    });
+      });
+    }
   }
 };
 
@@ -110,10 +117,7 @@ Drupal.behaviors.openlayers = function(context) {
  * Collection of helper methods.
  */
 Drupal.openlayers = {
-
-  /**
-   * Determine path based on format.
-   */
+  // Determine path based on format.
   'relatePath': function(path, basePath) {
     // Check for a full URL or an absolute path.
     if (path.indexOf('://') >= 0 || path.indexOf('/') == 0) {
@@ -123,8 +127,7 @@ Drupal.openlayers = {
       return basePath + path;
     }
   },
-
-  /**
+  /*
    * Redraw Vectors.
    * This is necessary because various version of IE cannot draw vectors on
    * $(document).ready()
@@ -134,7 +137,8 @@ Drupal.openlayers = {
       function() {
         var map;
         for (map in Drupal.settings.openlayers.maps) {
-          $.each($('#' + map).data('openlayers').openlayers.getLayersByClass('OpenLayers.Layer.Vector'),
+          $.each($('#' + map).data('openlayers')
+            .openlayers.getLayersByClass('OpenLayers.Layer.Vector'),
             function(i, layer) {
               layer.redraw();
             }
@@ -143,7 +147,6 @@ Drupal.openlayers = {
       }
     );
   },
-
   /**
    * Add layers to the map
    *
@@ -157,14 +160,14 @@ Drupal.openlayers = {
       sorted.push({'name': name, 'weight': map.layers[name].weight });
     }
     sorted.sort(function(a, b) {
-      var x = a.weight; var y = b.weight;
+      var x = a.weight, y = b.weight;
       return ((x < y) ? -1 : ((x > y) ? 1 : 0));
     });
 
     for (var i = 0; i < sorted.length; ++i) {
-      var layer;
-      var name = sorted[i].name;
-      var options = map.layers[name];
+      var layer,
+        name = sorted[i].name,
+        options = map.layers[name];
 
       // Add reference to our layer ID
       options.drupalID = name;
@@ -175,10 +178,8 @@ Drupal.openlayers = {
 
         layer.visibility = !!(!map.layer_activated || map.layer_activated[name]);
 
-        if (layer.isBaseLayer == false) {
-          layer.displayInLayerSwitcher = !!(!map.layer_switcher || map.layer_switcher[name]);
-        } else {
-          layer.displayInLayerSwitcher = true;
+        if (layer.isBaseLayer === false) {
+          layer.displayInLayerSwitcher = (!map.layer_switcher || map.layer_switcher[name]);
         }
 
         if (map.center.wrapdateline === '1') {
@@ -227,19 +228,15 @@ Drupal.openlayers = {
         var newFeatureSet = [];
 
         // Check to see if it is a new feature, or an array of new features.
-        if ('geometry' in newFeatureObject) {
+        if (typeof(newFeatureObject[0]) === 'undefined') {
           newFeatureSet[0] = newFeatureObject;
         }
         else {
           newFeatureSet = newFeatureObject;
         }
 
-        if (newFeatureSet.length == 1 && newFeatureSet[0] == undefined) {
-          newFeatureSet = [];
-        }
-
         // Go through new features
-        for (var i=0; i<newFeatureSet.length; i++) {
+        for (var i in newFeatureSet) {
           var newFeature = newFeatureSet[i];
 
           // Transform the geometry if the 'projection' property is different from the map projection
@@ -259,17 +256,18 @@ Drupal.openlayers = {
             // "pseudofeatures".
             //
             // In order to identify the real feature each geometry belongs to
-            // we then add a 'drupalFID' parameter to the "pseudofeature".
+            // we then add a 'fid' parameter to the "pseudofeature".
             // NOTE: 'drupalFID' is only unique within a single layer.
             newFeature.attributes = feature.attributes;
-            // See http://drupal.org/node/949434 before wiping out
-            //newFeature.data = feature.attributes;
+            newFeature.data = feature.attributes;
             newFeature.drupalFID = key;
           }
 
           // Add style information
           if (feature.style) {
-            newFeature.style = jQuery.extend({}, OpenLayers.Feature.Vector.style['default'], feature.style);
+            newFeature.style = jQuery.extend({},
+                OpenLayers.Feature.Vector.style['default'],
+                feature.style);
           }
 
           // Push new features
@@ -283,101 +281,45 @@ Drupal.openlayers = {
       layer.addFeatures(newFeatures);
     }
   },
-  /**
-   * Build an OpenLayers style from a drupal style object
-   *
-   * @param map Drupal settings object for the map (const).
-   * @param style_in Drupal settings object for the style (const).
-   */
-  'buildStyle': function(map, style_in) {
-      // Build context object and callback values (if needed)
-      var style_out = {};
-      var newContext = {};
-      for (var propname in style_in) {
-        if (typeof style_in[propname] == 'object') {
-          var plugin_spec = style_in[propname];
-          var plugin_name = plugin_spec['plugin'];
-          var plugin_class = Drupal.openlayers.style_plugin[plugin_name];
-          if (typeof plugin_class !== 'function') {
-            throw 'Style plugin ' + plugin_name +
-              ' did not install a constructor in Drupal.openlayers.style_plugin["' + plugin_name + '"]';
-          }
-
-          var plugin_options = plugin_spec['conf'];
-          var plugin_method_name = plugin_spec['method'];
-          if (typeof plugin_method_name === 'undefined') {
-            throw "Name of method handler for property '" + propname +
-              "' of style plugin '" + plugin_name + "' is undefined";
-          }
-
-          var plugin_context = new plugin_class(plugin_options);
-
-          var plugin_method = plugin_context[plugin_method_name];
-          if (typeof plugin_method !== 'function') {
-            throw "Style plugin '" + plugin_name + "' advertised method '" +
-              plugin_method_name + "' as an handler for property " + propname +
-              ' but that method is not found in instance of plugin class';
-          }
-
-          var new_method_name = plugin_name + '_' +
-                                propname + '_' +
-                                plugin_method_name;
-          newContext[new_method_name] =
-            OpenLayers.Function.bind(plugin_method, plugin_context);
-
-          style_out[propname] = '${' + new_method_name + '}';
-        } else {
-          style_out[propname] = style_in[propname];
-        }
-      }
-
-      // Instantiate an OL style object.
-      var olStyle = new OpenLayers.Style(style_out, { context: newContext });
-      return olStyle;
-  },
+  
   'getStyleMap': function(map, layername) {
     if (map.styles) {
-
       var stylesAdded = {};
-      var roles = ['default', 'delete', 'select', 'temporary'];
+      
       // Grab and map base styles.
-      for (var i = 0; i < roles.length; ++i) {
-        role = roles[i];
-        if (map.styles[role]) {
-          var style = map.styles[role];
-          stylesAdded[role] = this.buildStyle(map, style);
-        }
+      for (var style in map.styles) {
+        stylesAdded[style] = new OpenLayers.Style(map.styles[style]);
       }
-      // Override with layer-specific styles.
+      
+      // Implement layer-specific styles.  First default, then select.
       if (map.layer_styles !== undefined && map.layer_styles[layername]) {
-        var layer_styles = map.layer_styles[layername];
-        for (var i = 0; i < roles.length; ++i) {
-          role = roles[i];
-          if (layer_styles[role]) {
-            var style_name = layer_styles[role];
-            var style = map.styles[style_name]; // TODO: skip if undef
-            stylesAdded[role] = this.buildStyle(map, style);
-          }
-        }
+        var style = map.layer_styles[layername];
+        stylesAdded['default'] = new OpenLayers.Style(map.styles[style]);
       }
-
+      if (map.layer_styles_select !== undefined && map.layer_styles_select[layername]) {
+        var style = map.layer_styles_select[layername];
+        stylesAdded['select'] = new OpenLayers.Style(map.styles[style]);
+      }
+      
       return new OpenLayers.StyleMap(stylesAdded);
     }
-    // Default styles
-    return new OpenLayers.StyleMap({
-      'default': new OpenLayers.Style({
-        pointRadius: 5,
-        fillColor: '#ffcc66',
-        strokeColor: '#ff9933',
-        strokeWidth: 4,
-        fillOpacity: 0.5
-      }),
-      'select': new OpenLayers.Style({
-        fillColor: '#66ccff',
-        strokeColor: '#3399ff'
-      })
-    });
+    else {
+      return new OpenLayers.StyleMap({
+        'default': new OpenLayers.Style({
+          pointRadius: 5,
+          fillColor: '#ffcc66',
+          strokeColor: '#ff9933',
+          strokeWidth: 4,
+          fillOpacity: 0.5
+        }),
+        'select': new OpenLayers.Style({
+          fillColor: '#66ccff',
+          strokeColor: '#3399ff'
+        })
+      });
+    }
   },
+  
   'objectFromFeature': function(feature) {
     var wktFormat = new OpenLayers.Format.WKT();
     // Extract geometry either from wkt property or lon/lat properties
@@ -387,8 +329,62 @@ Drupal.openlayers = {
     else if (feature.lon) {
       return wktFormat.read('POINT(' + feature.lon + ' ' + feature.lat + ')');
     }
+  },
+  
+  /**
+   * Add Behavior.
+   *
+   * This is a wrapper around adding behaviors for OpenLayers.
+   * a module does not have to use this, but it helps cut
+   * down on code.
+   *
+   * @param id
+   *   The identifier of the behavior that is attached to
+   *   the map.
+   * @param attach
+   *   The callback function for the attach part of the
+   *   Drupal behavior.
+   * @param detach
+   *   The callback function for the detach part of the
+   *   Drupal behavior.
+   */
+  'addBehavior': function(id, attach, detach) {
+    // Add as a Drupal behavior.  Add a prefix, just to be safe.
+    Drupal.behaviors['openlayers_auto_' + id] = {
+      attach: function (context, settings) {
+        var data = $(context).data('openlayers');
+        
+        // Ensure that there is a map and that the appropriate
+        // behavior exists.  Need "data &&" to avoid js crash 
+        // when data is empty
+        var localBehavior = data && data.map.behaviors[id];
+        
+        // Ensure scope in the attach callback
+        var that = this;
+        if (localBehavior) {
+          $(context).once('openlayers-' + id, function () {
+            attach.apply(that, [data, data.map.behaviors[id], context, settings]);
+          });
+        }
+      },
+      // Maybe we need a little more handling here.
+      detach: detach
+    };
+  },
+  
+  /**
+   * Add Control.
+   *
+   * This is a wrapper around adding controls to maps.  It
+   * is not needed but saves some code.
+   */
+  'addControl': function(openlayers, controlName, options) {
+    var control = new OpenLayers.Control[controlName](options);
+    openlayers.addControl(control);
+    control.activate();
+    return control;
   }
 };
 
 Drupal.openlayers.layer = {};
-Drupal.openlayers.style_plugin = {};
+})(jQuery);

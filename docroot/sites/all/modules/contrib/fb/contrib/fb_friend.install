@@ -22,7 +22,7 @@ function fb_friend_uninstall() {
   // Remove tables.
   drupal_uninstall_schema('fb_friend');
 
-  db_query("DELETE FROM {blocks} WHERE module = 'fb_friend'");
+  db_query("DELETE FROM {block} WHERE module = 'fb_friend'");
 }
 
 function fb_friend_schema() {

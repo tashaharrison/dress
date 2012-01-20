@@ -5,7 +5,6 @@
  *
  */
 
-
 /**
  * Implementation of hook_requirements().
  *
@@ -14,10 +13,12 @@
  */
 function fb_devel_requirements($phase) {
   $t = get_t();
-  $items = array();
+   $items = array();
   if ($phase == 'runtime') {
-    $result = db_query('SELECT count(uid) FROM {users} WHERE data LIKE "%\"app_specific\"%" OR data LIKE "%\"is_app_user\"%" OR data LIKE "\"fbu\"%"');
-    $count = db_result($result);
+    $count = db_query('SELECT count(uid) FROM {users} WHERE data LIKE :as OR data LIKE :iau OR data LIKE :fbu',
+      array(':as' => '%\"app_specific\"%',
+        ':iau' => '%\"is_app_user\"%',
+        ':fbu' => '%\"fbu\"%'))->fetchField();
     if ($count) {
       $status = array(
         'title' => $t('Drupal for Facebook obsolete data.'),
@@ -31,8 +32,8 @@ function fb_devel_requirements($phase) {
 
     // Confirm no accounts without authmap.  The problem caused by old bug, should only occur on sites that have been upgraded.
     if (module_exists('fb_user')) {
-      $result = db_query('SELECT count(u.uid) FROM {users} u LEFT JOIN {fb_user} a ON u.uid=a.uid WHERE u.name LIKE "%@facebook%" AND a.uid IS NULL');
-      $count = db_result($result);
+      $count = db_query('SELECT count(u.uid) FROM {users} u LEFT JOIN {fb_user} a ON u.uid=a.uid WHERE u.name LIKE :fb AND a.uid IS NULL',
+                        array(':fb' => '"%@facebook%"'))->fetchField();
       if ($count) {
         $status = array(
           'title' => $t('Accounts named NNN@facebook without fb_user map'),
@@ -79,6 +80,7 @@ function fb_devel_requirements($phase) {
 /**
  * Implements hook_uninstall().
  */
+// TODO AVA Confirm this query
 function fb_devel_uninstall() {
-  db_query("DELETE FROM {blocks} WHERE module = 'fb_devel'");
+  db_query("DELETE FROM {block} WHERE module = 'fb_devel'");
 }

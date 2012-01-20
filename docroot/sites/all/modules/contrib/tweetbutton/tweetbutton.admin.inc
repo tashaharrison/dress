@@ -1,12 +1,13 @@
 <?php
-// $Id: tweetbutton.admin.inc,v 1.1.4.5 2010/11/02 10:02:41 jasonleon Exp $
+
+
 
 function tweetbutton_admin_settings() {
 	$form = array();
   
   $form['button'] = array(
     '#type' => 'fieldset',
-    '#title' => t('Choose your button. Customize it'),
+    '#title' => t('Default settings for tweetbutton'),
   );
   
   $form['button']['tweetbutton_button'] = array(
@@ -24,19 +25,30 @@ function tweetbutton_admin_settings() {
   $form['button']['tweetbutton_tweet_text'] = array(
     '#type'          => 'textfield',
     '#title'         => t('Tweet Text'),
-    '#default_value' => variable_get('tweetbutton_tweet_text',''),
-    '#description'   => t('This is the text that people will include in their Tweet when they share from your website. If left empty title will be used. NOTE: Twitter will generate short url.'),
-  );
-  
-  $form['button']['tweetbutton_text'] = array(
-    '#type'          => 'fieldset',
-    '#title'         => t('Available Tokens'),
-    '#collapsible'   => TRUE,
-    '#collapsed'     => TRUE,
+    '#default_value' => variable_get('tweetbutton_tweet_text'),
+    '#description'  => t('Tweet text to use as a default text, if no values are passed, leave this to blank to use page title as tweet text.')
   );
 
-  $form['button']['tweetbutton_text']['tokens'] = array(
-    '#value'  => theme('token_help', 'node'),
+  $form['button']['tokens'] = array(
+    '#token_types' => array('node'),
+    '#theme' => 'token_tree',
+  );  
+
+  $form['button']['tweetbutton_size'] = array(
+    '#title' => t('Tweetbutton size'),
+    '#type' => 'select',
+    '#options' => array(
+      'medium' => t('Medium'),
+      'large' => t('Large'),
+    ),
+    '#default_value' => variable_get('tweetbutton_size'),
+  );
+  
+  $form['button']['tweetbutton_hashtags'] = array(
+    '#title' => t('Hashtags'),
+    '#type' => 'textfield',
+    '#default_value' => variable_get('tweetbutton_hashtags'),
+    '#description' => t('Comma separated hashtags to be used in every tweet'),
   );
   
   $form['button']['tweetbutton_language'] = array(
@@ -44,70 +56,86 @@ function tweetbutton_admin_settings() {
     '#description' => t('This is the language that the button will render in on your website. People will see the Tweet dialog in their selected language for Twitter.com.'),
     '#type' => 'select',
     '#options' => array(
-      'en' => t('English'),
-      'fr' => t('French'),
-      'de' => t('German'),
-      'es' => t('Spanish'),
-      'ja' => t('Japanese'),
+      'en'   => t('English'),
+      'fr'   => t('French'),
+      'de'   => t('German'),
+      'es'   => t('Spanish'),
+      'ja'   => t('Japanese'),
+      'auto' => t('Automatic'),
     ),
-    '#default_value' => variable_get('tweetbutton_language',''),
+    '#default_value' => variable_get('tweetbutton_language'),
   );
   
-  $form['follow'] = array(
+  if (module_exists('shorten')) {
+
+    $services = array();
+    $services[0] = t('Use t.co twitter default url shortener');
+    $all_services = module_invoke_all('shorten_service');
+    foreach (array_keys($all_services) as $value) {
+      $services[$value] = $value;
+    }
+    
+    $form['button']['tweetbutton_shorten_service'] = array(
+      '#title' => t('Shorten service to use to add custom url'),
+      '#type' => 'select',
+      '#options' => $services,
+      '#default_value' => variable_get('tweetbutton_shorten_service', 0),
+    );
+  }
+  
+  $form['button']['follow'] = array(
     '#type' => 'fieldset',
     '#title' => t('Recommend people to follow'),
   );
   
-  $form['follow']['tweetbutton_account'] = array(
+  $form['button']['follow']['tweetbutton_account'] = array(
     '#type' => 'textfield',
     '#title' => t('Twitter account to follow'),
-    '#description' => t('This user will be @mentioned in the suggested'),
-    '#default_value' => variable_get('tweetbutton_account',''),
+    '#description' => t('This user will be @mentioned in the suggested. Will be used as default if tweetbutton fields author twitter account is not set'),
+    '#default_value' => variable_get('tweetbutton_account'),
     '#id' => 'tweetbutton-account',
   );
   
-  $form['follow']['tweetbutton_rel_account_name'] = array(
+  $form['button']['follow']['tweetbutton_rel_account_name'] = array(
     '#type' => 'textfield',
     '#title' => t('Related Account'),
-    '#default_value' => variable_get('tweetbutton_rel_account_name',''),
+    '#default_value' => variable_get('tweetbutton_rel_account_name'),
+    '#description' => t('This should be site default twitter account'),
   );
   
-  $form['follow']['tweetbutton_rel_account_description'] = array(
+  $form['button']['follow']['tweetbutton_rel_account_description'] = array(
     '#type' => 'textfield',
     '#title' => t('Related Account Description'),
-    '#default_value' => variable_get('tweetbutton_rel_account_description',''),
+    '#default_value' => variable_get('tweetbutton_rel_account_description'),
   );
-  
-  return system_settings_form($form);
-}
 
-function tweetbutton_node_settings() {
-	$form = array();
   
-  $form['tweetbutton_node_types'] = array(
-    '#type' => 'checkboxes',
-    '#title' => t('Node Types'),
-    '#options' => node_get_types('names'),
-    '#default_value' => variable_get('tweetbutton_node_types', array('story')),
+  
+  $form['follow_button'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Follow button settings'),
   );
   
-  $form['tweetbutton_node_location'] = array(
-    '#type'    => 'checkboxes',
-    '#title'   => t('Locations'),
+  $form['follow_button']['tweetbutton_follow_show_count'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Show follow count'),
+    '#default_value' => variable_get('tweetbutton_follow_show_count', TRUE),
+  );
+  
+  $form['follow_button']['tweetbutton_follow_screen_name'] = array(
+    '#type'           => 'textfield',
+    '#title'          => t('Screen name to follow'),
+    '#default_value'  => variable_get('tweetbutton_follow_screen_name'),
+  );
+  
+  $form['follow_button']['tweetbutton_follow_size'] = array(
+    '#title' => t('Tweetbutton size'),
+    '#type' => 'select',
     '#options' => array(
-      'full'    => t('Full View'),
-      'teaser'  => t('Teasers'),
-      'links'   => t('Node links'),
+      'medium' => t('Medium'),
+      'large' => t('Large'),
     ),
-    '#default_value' => variable_get('tweetbutton_node_location', array('full')),
-  );
-  
-  
-  $form['tweetbutton_node_weight'] = array(
-    '#type'          => 'weight',
-    '#title'         => t('Weight'),
-    '#default_value' => variable_get('tweetbutton_node_weight', -5),
-    '#description'   => t('Heavier weight will sink button to bottom on node view. This is also configurable per content type'),
+    '#default_value' => variable_get('tweetbutton_follow_size'),
   );
   
   return system_settings_form($form);

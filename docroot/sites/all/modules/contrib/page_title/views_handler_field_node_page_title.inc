@@ -16,19 +16,22 @@ class views_handler_field_node_page_title extends views_handler_field {
    */
   function construct() {
     parent::construct();
-    $this->additional_fields['nid'] = array('table' => 'node', 'field' => 'nid');
+    //$this->additional_fields['nid'] = 'nid';
+
     // Page Title: Load the node title for later.
-    $this->additional_fields['title'] = array('table' => 'node', 'field' => 'title');
+    //$this->additional_fields['title'] = 'title';
     if (module_exists('translation')) {
-      $this->additional_fields['language'] = array('table' => 'node', 'field' => 'language');
+      $this->additional_fields['language'] = 'language';
     }
   }
 
   function option_definition() {
     $options = parent::option_definition();
     $options['link_to_node'] = array('default' => FALSE);
+
     // Page Title: Adding the node title fallback option and default value.
     $options['use_node_title'] = array('default' => FALSE);
+
     return $options;
   }
 
@@ -37,12 +40,14 @@ class views_handler_field_node_page_title extends views_handler_field {
    */
   function options_form(&$form, &$form_state) {
     parent::options_form($form, $form_state);
+
     $form['link_to_node'] = array(
       '#title' => t('Link this field to its node'),
       '#description' => t('This will override any other link you have set.'),
       '#type' => 'checkbox',
       '#default_value' => !empty($this->options['link_to_node']),
     );
+
     // Page Title: Adding the form field for the node title fallback option.
     $form['use_node_title'] = array(
       '#title' => t('Fall back on to Node: Title'),

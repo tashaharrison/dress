@@ -8,7 +8,7 @@
 include drupal_get_path('module', 'fb') . '/fb.admin.inc';
 
 /**
- * Implementation of hook_fb_admin().
+ * Implements hook_fb_admin().
  */
 function fb_app_fb_admin($op, $data, &$return) {
   $fb = isset($data['fb']) ? $data['fb'] : NULL;
@@ -40,7 +40,7 @@ function fb_app_fb_admin($op, $data, &$return) {
  *
  * This form supports both create and edit.
  */
-function fb_app_edit_form($form_state, $fb_app = NULL) {
+function fb_app_edit_form($form, $form_state, $fb_app = NULL) {
   // If app is managed by this module, it has fba_id.
   if (isset($fb_app) && !$fb_app->fba_id) {
     drupal_set_message(t('Application %label not found.', array(
@@ -85,8 +85,7 @@ function fb_app_edit_form($form_state, $fb_app = NULL) {
 </ol>';
 
     $form['helptext'] = array(
-      '#type' => 'markup',
-      '#value' => t($helptext),
+      '#markup' => t($helptext),
       '#weight' => -10,
     );
     $form['helptext2'] = array(
@@ -144,9 +143,9 @@ function fb_app_edit_form($form_state, $fb_app = NULL) {
     '#type' => 'submit',
     '#value' => t('Save'),
     '#weight' => 5,
+    '#submit' => array('fb_app_admin_form_submit'),
   );
 
-  $form['#submit'] = array('fb_app_admin_form_submit');
   if ($fb_app->fba_id) {
     $form['buttons']['delete'] = array(
       '#type' => 'submit',
@@ -200,51 +199,80 @@ function fb_app_admin_form_submit($form, &$form_state) {
   fb_admin_get_app_properties($fb_app);
 
   $orig_app = $form['#fb_app'];
+
   if ($orig_app->fba_id) {
     // Updating.
+    try {
+      db_update('fb_app')
+        ->fields(array(
+          'label' => $fb_app->label,
+          'status' => $fb_app->status,
+          'apikey' => $fb_app->id, // Note, apikey deprecated.  Using ID.
+          'secret' => $fb_app->secret,
+          'id' => $fb_app->id,
+          // Canvas and title are learned from facebook, not the form.
+          'canvas' => $fb_app->canvas_name ? $fb_app->canvas_name : '',
+          'title' => $fb_app->application_name ? $fb_app->application_name : $fb_app->label,
+          'data' => $fb_app->data,
+        ))
+        ->condition('fba_id', $orig_app->fba_id)
+        ->execute();
 
-    db_query("UPDATE {fb_app} SET label='%s', status = %d, apikey='%s', secret='%s', id='%s', canvas='%s', title='%s',data='%s' WHERE fba_id = %d",
-             $fb_app->label,
-             $fb_app->status,
-             $fb_app->id, // $fb_app->apikey, deprecated! XXX
-             $fb_app->secret,
-             $fb_app->id,
-             $fb_app->canvas_name, // From facebook, not form.
-             $fb_app->application_name, // From facebook, not form.
-             $fb_app->data,
-             $orig_app->fba_id);
+      watchdog('fb_app', 'Updated Facebook Application %label.',
+               array('%label' => $fb_app->label,
+               ),
+               WATCHDOG_NOTICE,
+               l(t('view apps'), FB_PATH_ADMIN_APPS));
 
-    watchdog('fb_app', 'Updated Facebook Application %label.',
-             array('%label' => $fb_app->label,
-             ),
-             WATCHDOG_NOTICE,
-             l(t('view apps'), FB_PATH_ADMIN_APPS));
+      drupal_set_message(t('Saved changes to facebook application %title (%label).',
+                           array('%title' => $fb_app->application_name,
+                                 '%label' => $fb_app->label)));
+    }
+    catch (Exception $e) {
+      // Log the exception to watchdog.
+      watchdog_exception('fb_app', $e);
 
-    drupal_set_message(t('Saved changes to facebook application %title (%label).',
-                         array('%title' => $fb_app->application_name,
-                               '%label' => $fb_app->label)));
+      drupal_set_message(t('Failed to save changes to facebook application %title (%label). Check the log.',
+                           array('%label' => $fb_app->label,
+                                 '%title' => $fb_app->application_name)));
+    }
   }
   else {
     // Inserting.
-    db_query("INSERT INTO {fb_app} (label, status, apikey, secret, id, canvas, title, data) VALUES ('%s', %d, '%s', '%s', '%s', '%s', '%s', '%s')",
-             $fb_app->label,
-             $fb_app->status,
-             $fb_app->id, // $fb_app->apikey, deprecated XXX
-             $fb_app->secret,
-             $fb_app->id,
-             $fb_app->canvas_name, // From facebook, not form.
-             $fb_app->application_name, // From facebook, not form.
-             $fb_app->data);
+    try {
+      db_insert('fb_app')
+        ->fields(array(
+                   'label' => $fb_app->label,
+                   'status' => $fb_app->status,
+                   'apikey' => $fb_app->id, // Note, apikey deprecated.  Using ID.
+                   'secret' => $fb_app->secret,
+                   'id' => $fb_app->id,
+                   // Canvas and title are learned from facebook, not the form.
+                   'canvas' => $fb_app->canvas_name ? $fb_app->canvas_name : '',
+                   'title' => $fb_app->application_name ? $fb_app->application_name : $fb_app->label,
+                   'data' => $fb_app->data,
+                 ))
+        ->execute();
 
-    watchdog('fb_app', 'Created Facebook Application %label.',
-             array('%label' => $fb_app->label,
-             ),
-             WATCHDOG_NOTICE,
-             l(t('view apps'), FB_PATH_ADMIN_APPS));
+      watchdog('fb_app', 'Created Facebook Application %label.', array(
+                 '%label' => $fb_app->label,
+               ),
+               WATCHDOG_NOTICE,
+               l(t('view apps'), FB_PATH_ADMIN_APPS));
 
-    drupal_set_message(t('Created facebook application %title (%label).',
-                         array('%label' => $fb_app->label,
-                               '%title' => $fb_app->application_name)));
+      drupal_set_message(t('Created facebook application %title (%label).', array(
+                             '%label' => $fb_app->label,
+                             '%title' => $fb_app->application_name,
+                           )));
+    }
+    catch (Exception $e) {
+      // Log the exception to watchdog.
+      watchdog_exception('fb_app', $e);
+
+      drupal_set_message(t('Failed to create facebook application %title (%label). Check the log.',
+                           array('%label' => $fb_app->label,
+                                 '%title' => $fb_app->application_name)));
+    }
   }
 
   if ($fb_app->status) {
@@ -264,14 +292,14 @@ function fb_app_admin_form_delete_submit($form, &$form_state) {
     unset($_REQUEST['destination']);
   }
   $fb_app = $form['#fb_app'];
-  $form_state['redirect'] = array(FB_PATH_ADMIN_APPS . '/' . $fb_app->label . '/fb_app/delete', $destination);
+  $form_state['redirect'] = array(FB_PATH_ADMIN_APPS . '/' . $fb_app->label . '/fb_app/delete', array('query' => $destination));
 }
 
 
 /**
  * Form creator -- ask for confirmation of deletion
  */
-function fb_app_admin_delete_confirm_form(&$form_state, $fb_app) {
+function fb_app_admin_delete_confirm_form($form, &$form_state, $fb_app) {
   $form['fba_id'] = array(
     '#type' => 'value',
     '#value' => $fb_app->fba_id,
@@ -295,8 +323,9 @@ function fb_app_admin_delete_confirm_form_submit($form, &$form_state) {
 
     // @TODO: invoke hooks so that third-party modules may act.
 
-    db_query("DELETE FROM {fb_app} WHERE fba_id = %d",
-             $fba_id);
+    db_delete('fb_app')
+      ->condition('fba_id', $fba_id)
+      ->execute();
   }
 
   $form_state['redirect'] = FB_PATH_ADMIN_APPS;
@@ -310,6 +339,7 @@ function fb_app_admin_delete_confirm_form_submit($form, &$form_state) {
 function fb_app_set_app_properties($fb_app) {
   $data = fb_get_app_data($fb_app);
   $fb_app_data = $data['fb_app'];
+  // Collect properties from all modules.
   $props = fb_invoke(FB_ADMIN_OP_SET_PROPERTIES, array('fb_app' => $fb_app), array(), FB_ADMIN_HOOK);
   if (count($props)) {
     if ($fb_app_data['set_app_props']) {
@@ -327,6 +357,13 @@ function fb_app_set_app_properties($fb_app) {
                      WATCHDOG_NOTICE,
                      l(t('view apps'), FB_PATH_ADMIN));
           }
+
+          // Allow third-parties to set additional "properties" such as restrictions.
+          fb_invoke(FB_ADMIN_OP_POST_SET_PROPERTIES, array(
+                      'fb_app' => $fb_app,
+                      'fb' => $fb,
+                      'properties' => $props,
+                    ), array(), FB_ADMIN_HOOK);
         } catch (Exception $e) {
           drupal_set_message(t('Failed to set the following properties for %label application.  You may need to manually editing remote settings!<br/><pre>!props</pre>', array('%label' => $fb_app->label, '!props' => print_r($props, 1))), 'error');
           fb_log_exception($e, t('Failed to set application properties on Facebook'));

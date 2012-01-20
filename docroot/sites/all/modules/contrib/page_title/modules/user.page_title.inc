@@ -23,7 +23,6 @@ function user_page_title_alter(&$title) {
  * Implementation of hook_page_title_pattern_alter().
  */
 function user_page_title_pattern_alter(&$pattern, &$types) {
-  // User Page Pattern
   if ($user = menu_get_object('user')) {
     $types['user'] = $user;
     $pattern = variable_get('page_title_user', '');

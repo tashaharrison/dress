@@ -21,7 +21,7 @@ define('FB_APP_PATH_EVENT_ARGS', 2);
 define('FB_APP_OP_EVENT', 'fb_app_event');
 
 /**
- * Implementation of hook_fb().
+ * Implements hook_fb().
  */
 function fb_app_fb($op, $data, &$return) {
   $fb = isset($data['fb']) ? $data['fb'] : NULL;
@@ -34,43 +34,43 @@ function fb_app_fb($op, $data, &$return) {
 
     // We also support these ways to query an app.  Columns in fb_app table.
     foreach (array(
-               'fba_id' => '%d',
-               'id' => "'%s'", // varchar, not int, in db schema
-               'apikey' => "'%s'", // deprecated
-               'label' => "'%s'",
-             ) as $key => $type) {
+               'fba_id' => ':fba_id',
+               'id' => ':id',
+               'apikey' => ':apikey', // deprecated
+               'label' => ':label',
+             )  as $key => $placeholder) {
       if (isset($data[$key])) {
-        $where[] = "$key = $type";
-        $args[] = $data[$key];
+        $where[] = "$key = $placeholder";
+        $args[$placeholder] = $data[$key];
       }
     }
+
     // Status is a special query.  Admin pages include disabled apps.
     if (isset($data['status'])) {
-      $where[] = "status >= %d";
-      $args[] = $data['status'];
+      $where[] = "status >= :status";
+      $args[':status'] = $data['status'];
     }
     else {
       $where[] = "status > 0";
     }
 
     if (count($args)) {
-      $fb_app = db_fetch_object(db_query("SELECT * FROM {fb_app} fba WHERE " . implode(' AND ', $where), $args));
+      $fb_app = db_query("SELECT * FROM {fb_app} fba WHERE " . implode(' AND ', $where), $args)->fetchObject();
     }
-    if ($fb_app) {
+
+    if (!empty($fb_app)) {
       $return = $fb_app;
     }
   }
   elseif ($op == FB_OP_GET_ALL_APPS) {
     // Return all known applications, including disabled.
     $result = db_query("SELECT fba.* FROM {fb_app} fba");
-    while ($app = db_fetch_object($result)) {
-      $return[] = $app;
-    }
+    $return = $result->fetchAll();
   }
   elseif ($op == FB_OP_POST_INIT) {
     // Include our admin hooks.
     if (fb_is_fb_admin_page()) {
-      require drupal_get_path('module', 'fb_app') . '/fb_app.admin.inc';
+      require DRUPAL_ROOT . '/' . drupal_get_path('module', 'fb_app') . '/fb_app.admin.inc';
     }
   }
   elseif ($op == FB_OP_CURRENT_APP) {
@@ -88,7 +88,7 @@ function fb_app_fb($op, $data, &$return) {
 
 
 /**
- * Implementation of hook_menu().
+ * Implements hook_menu().
  */
 function fb_app_menu() {
   $items = array();
@@ -169,7 +169,7 @@ function fb_app_event_cb($label, $event_type) {
 
   // It's facebook calling us, not the user.  And fb_sig params make it look
   // like a canvas page, but it could be connect.  So bad idea to save session.
-  session_save_session(FALSE);
+  drupal_save_session(FALSE);
   exit();
 }
 
@@ -201,7 +201,7 @@ function theme_fb_app($fb_app) {
 
 
 /**
- * Implementation of hook_user.
+ * Implements hook_user.
  */
 function fb_app_user($op, &$edit, &$account, $category = NULL) {
   $items = array();
@@ -251,7 +251,7 @@ function fb_app_user($op, &$edit, &$account, $category = NULL) {
 function theme_fb_app_user_info($fb_app, $info) {
   $output = '';
   if (isset($info['pic_big']))
-    $output .= '<p><img src="'. $info['pic_big'] .'" /></p>';
+    $output .= '<p><img src="' . $info['pic_big'] .'" /></p>';
 
   $fb_link = l($info['name'], 'http://www.facebook.com/profile.php', array(
                  'query' => 'id=' . $info['uid']));
@@ -262,7 +262,7 @@ function theme_fb_app_user_info($fb_app, $info) {
           '%title' => $fb_app->title)) .
       '</p>';
   else
-    $output .= '<p>'.
+    $output .= '<p>' .
       t('!fb_link does not use %title', array(
           '!fb_link' => $fb_link,
           '%title' => $fb_app->title)) .
@@ -284,7 +284,7 @@ function fb_app_token_values($type = 'all', $object = NULL) {
   if ($type == 'fb_app' && $object) {
     $fb_app = $object;
     $values['fb-app-label'] = $fb_app->label;
-    $values['fb-app-url'] = 'http://apps.facebook.com/'. $fb_app->canvas;
+    $values['fb-app-url'] = fb_protocol() . '://apps.facebook.com/'. $fb_app->canvas;
   }
   return $values;
 }

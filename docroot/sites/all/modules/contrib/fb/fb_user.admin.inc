@@ -15,12 +15,11 @@
  * @see system_settings_form()
  */
 function fb_user_admin_settings() {
-  $options = array(0 => t('<none>')) +
-    fb_admin_get_app_options(FALSE);
+  $options = array(0 => t('<none>')) + fb_admin_get_app_options(FALSE);
   if (count($options) == 1) {
     $message = t('You must create an app first!');
     drupal_set_message($message, 'error');
-    return array('help' => array('#value' => $message));
+    return array('help' => array('#markup' => $message));
   }
 
   $form[FB_USER_VAR_CHECK_SESSION] = array(
@@ -62,7 +61,7 @@ function fb_user_admin_settings() {
     '#type' => 'textfield',
     '#title' => t('Registration form button text'),
     '#size' => 60,
-    '#default_value' => _fb_user_button_text('user_register'),
+    '#default_value' => _fb_user_button_text('user_register_form'),
     '#description' => t('Leave blank for facebook\'s default, currently "Login".'),
   );
   $form['fb_user_alter']['login'] = array(

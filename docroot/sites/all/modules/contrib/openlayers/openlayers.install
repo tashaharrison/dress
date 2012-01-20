@@ -9,68 +9,65 @@
  */
 
 /**
- * Implementation of hook_install().
+ * Implements hook_install().
  */
 function openlayers_install() {
-  // Create tables
-  drupal_install_schema('openlayers');
 }
 
 /**
- * Implementation of hook_uninstall().
+ * Implements hook_uninstall().
  */
 function openlayers_uninstall() {
-  // Remove tables
-  drupal_uninstall_schema('openlayers');
-
   // Get module variables
-  $results = db_query("SELECT v.name FROM {variable} AS v WHERE v.name LIKE '%s%%'", 'openlayers_');
+  $variables = db_query("SELECT v.name FROM {variable} AS v WHERE v.name LIKE ':pattern'",
+    array(':pattern' => db_like('openlayers_') . '%'))->fetchAll();
   // Remove variables
-  while ($row = db_fetch_array($results)) {
-    variable_del($row['name']);
+  foreach ($variables as $v) {
+    variable_del($v);
   }
 }
 
 /**
- * Implementation of hook_schema().
+ * Implements hook_schema().
  */
 function openlayers_schema() {
   $schema = array();
-
   // Maps table (ctools extras)
-  $schema['openlayers_map_presets'] = array(
-    'description' => 'Storage for User defined OpenLayers map presets.',
+  $schema['openlayers_maps'] = array(
+    'description' => 'Storage for User defined OpenLayers maps.',
     'export' => array(
       'key' => 'name',
-      'identifier' => 'openlayers_presets',
-      'default hook' => 'openlayers_presets',
+      'key name' => 'Name',
+      'primary key' => 'name',
+      'identifier' => 'openlayers_maps',
+      'default hook' => 'openlayers_maps',
       'api' => array(
         'owner' => 'openlayers',
-        'api' => 'openlayers_presets',
+        'api' => 'openlayers_maps',
         'minimum_version' => 1,
         'current_version' => 1,
       ),
     ),
     'fields' => array(
       'name' => array(
-        'description' => t('The primary identifier for the preset.'),
+        'description' => 'The primary identifier for the map.',
         'type' => 'varchar',
         'length' => 255,
         'not null' => TRUE,
       ),
       'title' => array(
-        'description' => t('The title of the preset.'),
+        'description' => 'The title of the map.',
         'type' => 'varchar',
         'length' => 255,
         'not null' => TRUE,
       ),
       'description' => array(
-        'description' => t('The description of the preset.'),
+        'description' => 'The description of the map.',
         'type' => 'text',
         'not null' => TRUE,
       ),
       'data' => array(
-        'description' => t('The serialized map.'),
+        'description' => 'The serialized map.',
         'type' => 'text',
         'not null' => TRUE,
         'serialize' => TRUE,
@@ -78,12 +75,13 @@ function openlayers_schema() {
     ),
     'primary key' => array('name'),
   );
-
   // Layer table (ctools extras)
   $schema['openlayers_layers'] = array(
     'description' => 'Storage for user defined OpenLayers layers.',
     'export' => array(
       'key' => 'name',
+      'key name' => 'Name',
+      'primary key' => 'name',
       'identifier' => 'openlayers_layers',
       'default hook' => 'openlayers_layers',
       'api' => array(
@@ -125,12 +123,13 @@ function openlayers_schema() {
       'name' => array('name'),
     ),
   );
-
   // Styles table (ctools extras)
   $schema['openlayers_styles'] = array(
     'description' => 'Storage for user defined OpenLayers styles.',
     'export' => array(
       'key' => 'name',
+      'key name' => 'Name',
+      'primary key' => 'name',
       'identifier' => 'openlayers_styles',
       'default hook' => 'openlayers_styles',
       'api' => array(
@@ -172,343 +171,128 @@ function openlayers_schema() {
       'name' => array('name'),
     ),
   );
-
   return $schema;
 }
 
 /**
- * Implementation of hook_update_N().
+ * Implements hook_requirements().
  */
-function openlayers_update_6200(&$sandbox) {
-  $ret = array();
-
-  // Because we already have two different versions of this
-  // module that are not meant to be compatible, we have to
-  // check what version we are coming from and do the correct
-  // update.  Unfortunately Drupal will not tell us what schema
-  // we are coming from, so we have set a variable in the 1.x
-  // modules.
-  $openlayers_version = variable_get('openlayers_schema_version', NULL);
-  if (!empty($openlayers_version) && $openlayers_version >= 6100 && $openlayers_version < 6200) {
-    // 1.x to 2.x upgrade.
-    $ret = _openlayers_upgrade_1xto2x();
-  }
-
-  return $ret;
-}
-
-/**
- * Implementation of hook_update_N().
- */
-function openlayers_update_6201(&$sandbox) {
-  $message = 'Did not alter OpenLayers source.';
-
-  // Due to some changes in the OpenLayers JS in
-  // version 2.10, errors crop up, so we will
-  // manually set to 2.9.  Assume change if
-  // not set or set to http://openlayers.org/api/OpenLayers.js
-  $current = variable_get('openlayers_source', FALSE);
-  if (!$current || $current == 'http://openlayers.org/api/OpenLayers.js') {
-    variable_set('openlayers_source', 'http://openlayers.org/api/2.9/OpenLayers.js');
-    $message = 'Set OpenLayers source to hosted 2.9 version.';
-  }
+function openlayers_requirements($phase) {
+  $req = array();
+  $t = get_t();
   
-  // Add simple note
-  $ret[] = array(
-    'success' => TRUE,
-    'query' => $message,
-  );
-  
-  return $ret;
-}
-
-/**
- * Function to handle upgrading from 1.x to 2.x
- *
- * @return
- *   Valid return array for Drupal update functions
- */
-function _openlayers_upgrade_1xto2x() {
-  $ret = array();
-
-  // Add simple note
-  $ret[] = array(
-    'success' => TRUE,
-    'query' => 'Upgrading OpenLayers from 1.x to 2.x',
-  );
-
-  // Update preset table
-  db_drop_field($ret, 'openlayers_map_presets', 'preset_id');
-  db_change_field($ret, 'openlayers_map_presets', 'preset_name', 'name',
-    array('type' => 'varchar', 'length' => 255, 'not null' => TRUE),
-    array('primary key' => array('name'))
-  );
-  db_change_field($ret, 'openlayers_map_presets', 'preset_title', 'title',
-    array('type' => 'varchar', 'length' => 255, 'not null' => TRUE),
-    array()
-  );
-  db_change_field($ret, 'openlayers_map_presets', 'preset_description', 'description',
-    array('type' => 'text', 'not null' => TRUE),
-    array()
-  );
-  db_change_field($ret, 'openlayers_map_presets', 'preset_data', 'data',
-    array('type' => 'text', 'not null' => TRUE),
-    array()
-  );
-  // Add new tables
-  $schema = drupal_get_schema_unprocessed('openlayers');
-  foreach ($schema as $name => $table) {
-    if (!db_table_exists($name)) {
-      db_create_table($ret, $name, $table);
+  // We should not require a specfic version of the OpenLayers library, but
+  // we should tell the administrator that specific versions are more
+  // compatible than others.
+  if ($phase == 'runtime') {
+    $ol_library_version = 0;
+    $current_library = variable_get('openlayers_source', OPENLAYERS_DEFAULT_LIBRARY);
+    
+    // As of 2.11, the hosted version supports the newest hosted
+    // stable with an actual version number.  This used to be just under
+    // the 'api' path.
+    if (strpos($current_library, (string) OPENLAYERS_SUGGESTED_LIBRARY) !== FALSE) {
+      $ol_library_version = OPENLAYERS_SUGGESTED_LIBRARY;
     }
-  }
-
-  // The only thing we can really do in the upgrade process
-  // is to attempt to automate the conversion of the
-  // changes in the map preset/array to the new version,
-  // and we can only do this for presets in the database,
-  // so get all the presets currently in the database.
-  $results = db_query("SELECT * FROM {openlayers_map_presets}");
-  while ($row = db_fetch_array($results)) {
-    $new_map = unserialize($row['data']);
-
-    // Process map parts.
-    _openlayers_upgrade_1xto2x_convert_general($new_map, $ret);
-    _openlayers_upgrade_1xto2x_convert_layers($new_map, $ret);
-    _openlayers_upgrade_1xto2x_convert_behaviors($new_map, $ret);
-    _openlayers_upgrade_1xto2x_convert_styles($new_map, $ret);
-
-    // Save new Map back into the database.
-    $result = db_query("UPDATE {openlayers_map_presets} SET data='%s' WHERE name='%s'", serialize($new_map), $row['name']);
-
-    // Debug map array
-    // $ret[] = array('success' => TRUE, 'query' => '<pre>' . var_export($new_map, TRUE) . '</pre>');
-
-    // Add some output to user.
-    $ret[] = array(
-      'success' => $result,
-      'query' => 'Updated preset: ' . $row['name'] . '. Please ensure to read handbook pages on Drupal.org for manual changes when upgrading.',
-      'rows' => 1,
-    );
-  }
-
-  return $ret;
-}
-
-/**
- * Converting general map propoerties for the
- * upgrade from 1.x to 2.x
- *
- * @param $map
- *   Reference to map array
- * @param $ret
- *   Reference to return array
- */
-function _openlayers_upgrade_1xto2x_convert_general(&$map = array(), &$ret = array()) {
-  // Change center
-  if (isset($map['center']) && is_array($map['center'])) {
-    $map['center'] = array(
-      'initial' => array(
-        'centerpoint' => $map['center']['lat'] . ',' . $map['center']['lon'],
-        'zoom' => $map['center']['zoom'],
-      ),
-    );
-  }
-
-  // Options
-  if (isset($map['options']) && is_array($map['options'])) {
-    // maxExtent
-    // Is this a requirement for 2.x?
-    if (isset($map['options']['maxExtent']) && is_array($map['options']['maxExtent'])) {
-      $map['options']['maxExtent'] = array(
-        $map['options']['maxExtent']['left'],
-        $map['options']['maxExtent']['bottom'],
-        $map['options']['maxExtent']['right'],
-        $map['options']['maxExtent']['top'],
+    
+    // Check if it is the default hosted.
+    if ($current_library == 'http://openlayers.org/api/OpenLayers.js') {
+      $ol_library_version = OPENLAYERS_HOSTED_API_LIBRARY;
+    }
+    
+    // Finally, let's see if the client has sent us a value
+    // from the UI module AJAX magic.
+    $client = variable_get('openlayers_ui_version_check', '');
+    if (strpos($client, (string) OPENLAYERS_SUGGESTED_LIBRARY) !== FALSE) {
+      $ol_library_version = OPENLAYERS_SUGGESTED_LIBRARY;
+    }
+    
+    // Check if suggest version.
+    if ($ol_library_version == OPENLAYERS_SUGGESTED_LIBRARY) {
+      $req['openlayers_old_presets'] = array(
+        'title' => $t('OpenLayers library version'), 
+        'value' => $t('Using suggested compatible version %suggested.',
+          array(
+            '%suggested' => OPENLAYERS_SUGGESTED_LIBRARY,
+          )),
+        'severity' => REQUIREMENT_OK,
+      );
+    }
+    else {
+      $req['openlayers_old_presets'] = array(
+        'title' => $t('OpenLayers library version'), 
+        'value' => $t('Not suggested compatible version.'),
+        'description' => $t('Though you are very welcome to use whatever version of the OpenLayers library you want, it is suggested that you use version %suggested.  You are currently not using that version or we are unable to determine which version you are using.  Update your library settings at !settings.',
+          array(
+            '%suggested' => OPENLAYERS_SUGGESTED_LIBRARY,
+            '!settings' => l(t('OpenLayers settings'), 'admin/structure/openlayers'),
+          )), 
+        'severity' => REQUIREMENT_WARNING,
       );
     }
   }
-}
 
-/**
- * Converting layer arrays for the
- * upgrade from 1.x to 2.x
- *
- * @param $map
- *   Reference to map array
- * @param $ret
- *   Reference to return array
- */
-function _openlayers_upgrade_1xto2x_convert_layers(&$map = array(), &$ret = array()) {
-  // Array to associate named layers to 2.x
-  $layer_convert = array(
-    'openlayers_default_wms',
-    'openlayers_layers_nasa_global_mosaic' => '',
-    'openlayers_layers_nasa_daily_planet' => '',
-    'openlayers_layers_nasa_global_mosaic' => '',
-    'openlayers_layers_nasa_daily_planet' => '',
-    'openlayers_layers_nasa_blue_marble' => '',
-    'openlayers_layers_open_aerial' => '',
-    'openlayers_layers_google_street' => 'google_normal',
-    'openlayers_layers_google_satellite' => 'google_satellite',
-    'openlayers_layers_google_hybrid' => 'google_hybrid',
-    'openlayers_layers_google_physical' => 'google_physical',
-    'openlayers_layers_yahoo_street' => 'yahoo_street',
-    'openlayers_layers_yahoo_satellite' => 'yahoo_satellite',
-    'openlayers_layers_yahoo_hybrid' => 'yahoo_hybrid',
-    'openlayers_layers_virtual_earth_street' => 'virtualearth_street',
-    'openlayers_layers_virtual_earth_satellite' => 'virtualearth_satellite',
-    'openlayers_layers_virtual_earth_hybrid' => 'virtualearth_hybrid',
-    'openlayers_layers_osm_mapnik' => 'osm_mapnik',
-    'openlayers_layers_osm_tah' => 'osm_tah',
-    'openlayers_layers_osm_cycle' => 'osm_cycle',
-    'openlayers_layers_osm_4326_hybrid' => 'osm_4326_hybrid',
-    'openlayers_layers_cloudmade' => '',
-    'openlayers_default_wms' => 'wms_default',
-  );
-
-  // Array to associate layer types to 2.x
-  $layer_type_convert = array(
-    'WMS' => 'openlayers_layer_type_wms',
-    'Vector' => '', // ??
-    'KML' => 'openlayers_layer_type_kml',
-    'XYZ' => 'openlayers_layer_type_xyz',
-    'Google' => 'openlayers_layer_type_google',
-    'VirtualEarth' => 'openlayers_layer_type_virtualearth',
-    'Yahoo' => 'openlayers_layer_type_yahoo',
-    'Cloudmade' => 'openlayers_layer_type_cloudmade',
-  );
-
-  // Check that there are layers
-  if (isset($map['layers']) && is_array($map['layers'])) {
-    // Go through layers
-    foreach ($map['layers'] as $id => $layer) {
-      // Convert named layers
-      if (is_string($layer)) {
-        if (!empty($layer_convert[$layer])) {
-          unset($map['layers'][$id]);
-          $map['layers'][$layer_convert[$layer]] = $layer_convert[$layer];
-        }
-        // What to do with named layers that dont translate ??
-
-      }
-      elseif (is_array($layer)) {
-        // Save new layer in DB, then map to preset
-
-
-      }
-    }
-  }
-
-  // Check default layer
-  if (!empty($map['default_layer']) && is_string($map['default_layer']) && !empty($layer_convert[$map['default_layer']])) {
-    $map['default_layer'] = $layer_convert[$map['default_layer']];
-    // Ensure that layer is in layer array
-    if (empty($map['layers'][$map['default_layer']])) {
-      $map['layers'][$map['default_layer']] = $map['default_layer'];
-    }
-  }
-}
-
-/**
- * Converting behaviors for the
- * upgrade from 1.x to 2.x
- *
- * @param $map
- *   Reference to map array
- * @param $ret
- *   Reference to return array
- */
-function _openlayers_upgrade_1xto2x_convert_behaviors(&$map = array(), &$ret = array()) {
-  // Control behavior conversion array
-  $control_convert = array(
-    'LayerSwitcher' => 'openlayers_behavior_layerswitcher',
-    'Navigation' => 'openlayers_behavior_navigation',
-    'PanZoomBar' => 'openlayers_behavior_panzoombar',
-    'MousePosition' => 'openlayers_behavior_mouseposition',
-    'Attribution' => 'openlayers_behavior_attribution',
-    'KeyboardDefaults' => 'openlayers_behavior_keyboarddefaults',
-    'Permalink' => 'openlayers_behavior_permalink',
-    'ScaleLine' => 'openlayers_behavior_scaleline',
-    'ZoomBox' => 'openlayers_behavior_zoombox',
-    'ZoomToMaxExtent' => 'openlayers_behavior_zoomtomaxextent',
-  );
-
-  // Convert controls
-  if (isset($map['controls']) && is_array($map['controls'])) {
-    foreach ($map['controls'] as $control => $enabled) {
-      if ($enabled && !empty($control_convert[$control])) {
-        $map['behaviors'][$control_convert[$control]] = array();
-      }
-
-      // Get rid of controls array
-      unset($map['controls']);
-    }
-  }
-
-  // Go through behaviors
-  if (isset($map['behaviors']) && is_array($map['behaviors'])) {
-    foreach ($map['behaviors'] as $id => $behavior) {
-      // Full screen
-      if ($behavior['type'] == 'openlayers_behaviors_fullscreen') {
-        $map['behaviors']['openlayers_behavior_fullscreen'] = array();
-        unset($map['behaviors'][$id]);
-      }
-
-      // Zoom to Layer
-      if ($behavior['type'] == 'openlayers_behaviors_zoom_to_layer' && !empty($behavior['layer'])) {
-        $map['behaviors']['openlayers_behaviors_zoomtolayer'] = array(
-          'zoomtolayer' => $behavior['layer'],
-        );
-        unset($map['beahviors'][$id]);
-      }
-
-      // Cluster
-      // Zoom to Feature
-      // Tooltip
-      // Popup
-      // Draw Features
-      // Declutter
-
-    }
-  }
-}
-
-/**
- * Converting styles for the
- * upgrade from 1.x to 2.x
- *
- * @param $map
- *   Reference to map array
- * @param $ret
- *   Reference to return array
- */
-function _openlayers_upgrade_1xto2x_convert_styles(&$map = array(), &$ret = array()) {
-  // Go through styles
-  if (isset($map['styles']) && is_array($map['style'])) {
-    foreach ($map['styles'] as $id => $style) {
-      // Named styles are the same
-
-      // Convert style arrays and store in DB
-      if (is_array($style)) {
-        // Create new object
-        $new_style = new stdClass();
-        $new_style->api_version = 1;
-        $new_style->name = $id;
-        $new_style->title = ucwords(str_replace('_', ' ', $id));
-        $new_style->description = ucwords(str_replace('_', ' ', $id));
-        $new_style->data = $style;
-        // Save new style object
-        $success = drupal_write_record('openlayers_styles', $style);
-        $ret[] = array(
-          'success' => ($success) ? TRUE : FALSE,
-          'query' => 'Attempt to save style: ' . $id,
-        );
-        // Now put back in map array
-        if ($success) {
-          $map['style'][$id] = $id;
+  // There are some backwards compability for the shift from
+  // preset to maps.  We want to communicate to administrators
+  // that this will not be there forever.
+  if ($phase == 'runtime') {
+    // Check preset hook
+    $presets = module_invoke_all('openlayers_presets');
+    $found_presets = (count($presets) > 0) ? TRUE : FALSE;
+    
+    // Check features
+    $feature_names = array();
+    $found_features = FALSE;
+    if (module_exists('features')) {
+      $features = features_get_features();
+      foreach ($features as $feature) {
+        // Only utilize enabled features and look for presets
+        if ($feature->status > 0 && !empty($feature->info['features']['openlayers_map_presets'])) {
+          $feature_names[] = $feature->name;
+          $found_features = TRUE;
         }
       }
     }
+    
+    // Create requirement entries
+    if ($found_presets) {
+      $req['openlayers_old_presets'] = array(
+        'title' => $t('OpenLayers Presets'), 
+        'value' => $t('Found old presets.'),
+        'description' => $t('With the 7.x-2.x version of the OpenLayers module, map presets were renamed to just maps.  This has some implications on APIs and hooks.  One or more of of the modules installed on this site is utilizing the deprecated %hook.  Please <a href="@url">read the upgrade page</a>, then contact the module owner or fix the custom module yourself.',
+          array(
+            '%hook' => 'hook_openlayers_presets()',
+            '@url' => url('http://drupal.org/node/1136810'),
+          )), 
+        'severity' => REQUIREMENT_ERROR,
+      );
+    }
+    if ($found_features) {
+      $req['openlayers_old_features'] = array(
+        'title' => $t('OpenLayers Presets'), 
+        'value' => $t('Found Features with presets.'),
+        'description' => $t('With the 7.x-2.x version of the OpenLayers module, map presets were renamed to just maps.  This has some implications on APIs and hooks.  There are Features on this site that contain the old map presets.  Please <a href="@url">read the upgrade page</a>, and rebuild the following Features: %features',
+          array(
+            '@url' => url('http://drupal.org/node/1136810'),
+            '%features' => implode(',', $feature_names),
+          )), 
+        'severity' => REQUIREMENT_ERROR,
+      );
+    }
   }
+  
+  return $req;
+}
+
+/**
+ * Implements hook_update_N().
+ *
+ * Rename of presets to maps.
+ */
+function openlayers_update_7201() {
+  // Change table name
+  db_rename_table('openlayers_map_presets', 'openlayers_maps');
+  // Set default map variable
+  variable_set('openlayers_default_map', variable_get('openlayers_default_preset', 'default'));
+  variable_del('openlayers_default_preset');
 }

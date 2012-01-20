@@ -1,11 +1,11 @@
 name = Tweetbutton
 description = Add tweet button to  your website without having to leave the page
-core = 6.x
+core = 7.x
 dependencies[] = token
-
-; Information added by drupal.org packaging script on 2010-11-02
-version = "6.x-1.4"
-core = "6.x"
+configure = admin/config/services/tweetbutton
+; Information added by drupal.org packaging script on 2011-12-19
+version = "7.x-2.0-beta1"
+core = "7.x"
 project = "tweetbutton"
-datestamp = "1288693861"
+datestamp = "1324327545"
 

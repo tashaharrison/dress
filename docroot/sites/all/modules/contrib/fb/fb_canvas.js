@@ -7,18 +7,27 @@
 /**
  * Enable canvas page specific javascript on this page.
  */
-Drupal.behaviors.fb_canvas = function(context) {
-  // Resize if body class includes fb_canvas-resizable.
-  $('body.fb_canvas-resizable:not(.fb_canvas-processed)').each(function () {
-    $(this).addClass('fb_canvas-processed');
-    jQuery(document).bind('fb_init', FB_Canvas.setAutoResize);
-  });
+Drupal.behaviors.fb_canvas = {
+  attach: function(context, settings) {
+    // Resize if body class includes fb_canvas-resizable.
+    jQuery('body.fb_canvas-resizable:not(.fb_canvas-processed)').each(function () {
+      jQuery(this).addClass('fb_canvas-processed');
+      if (typeof(FB) == 'undefined') {
+        // FB not yet initialized.
+        jQuery(document).bind('fb_init', FB_Canvas.setAutoResize);
+      }
+      else {
+        // FB already initialized.
+        FB_Canvas.setAutoResize();
+      }
+    });
 
-  // Logout of facebook when logging out of drupal.
-  jQuery("a[href^='http://apps.facebook.com/" + Drupal.settings.fb_canvas.canvas + "/logout']", context).click(FB_Canvas.logout);
+    // Logout of facebook when logging out of drupal.
+    jQuery("a[href^='https://apps.facebook.com/" + Drupal.settings.fb_canvas.canvas + "/logout']", context).click(FB_Canvas.logout);
 
-  // Change 'user/login' links to popup fb connect dialog.
-  jQuery("a[href^='http://apps.facebook.com/" + Drupal.settings.fb_canvas.canvas + "/user/']", context).click(FB_Canvas.login);
+    // Change 'user/login' links to popup fb connect dialog.
+    jQuery("a[href^='https://apps.facebook.com/" + Drupal.settings.fb_canvas.canvas + "/user/']", context).click(FB_Canvas.login);
+  }
 };
 
 FB_Canvas = function(){};

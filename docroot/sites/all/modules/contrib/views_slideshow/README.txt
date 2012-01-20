@@ -1,4 +1,3 @@
-$Id: README.txt,v 1.4.4.1 2010/02/23 23:07:04 psynaptic Exp $
 
 Views Slideshow
 ===============
@@ -24,7 +23,7 @@ Further details about each can be found within their respective directories.
 Requirements
 ============
 
-Views 2 is required for this module to be of any use.
+Views 3 is required for this module to be of any use.
 
 
 Description

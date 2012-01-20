@@ -46,7 +46,7 @@ function fb_registration_form_alter(&$form, &$form_state, $form_id) {
     return;
   }
 
-  if ($form_id == 'user_register') {
+  if ($form_id == 'user_register_form') {
     // Replace regular form with fb_registration.
     $form['#fb_registration'] = TRUE;
 
@@ -97,13 +97,13 @@ function fb_registration_form_alter(&$form, &$form_state, $form_id) {
 
     _fb_registration_extract_fb_fields($fb_fields, $form);
 
-    $redirect_url = url(fb_scrub_urls($_REQUEST['q']), array('absolute' => TRUE));
+    $redirect_url = url(request_path(), array('absolute' => TRUE));
     $fields = json_encode($fb_fields);
 
     if (FALSE) {
       // Use <fb:registration> XFBML.
       // In testing, I could never get this to work._
-      $attrs = "fields='" . json_encode($fb_fields) . "' redirect-uri='" . url(fb_scrub_urls($_REQUEST['q']), array('absolute' => TRUE)) . "'";
+      $attrs = "fields='" . json_encode($fb_fields) . "' redirect-uri='" . $redirect_url . "'";
       $form['fb_registration'] = array(
         '#type' => 'markup',
         '#value' => '<fb:registration ' . $attrs . '></fb:registration>',

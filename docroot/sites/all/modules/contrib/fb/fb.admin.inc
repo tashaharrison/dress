@@ -9,8 +9,8 @@
 define('FB_ADMIN_HOOK', 'fb_admin');
 
 define('FB_ADMIN_OP_SET_PROPERTIES', 'set_props'); // build props for admin.setAppProperties
+define('FB_ADMIN_OP_POST_SET_PROPERTIES', 'post_set_props'); // build props for admin.setAppProperties
 define('FB_ADMIN_OP_LIST_PROPERTIES', 'list_props'); // list of known properties for admin.getAppProperties
-
 
 // Pages which may or may not be supported by the app implementation.
 define('FB_ADMIN_OP_LOCAL_LINKS', 'fb_admin_links');
@@ -20,7 +20,8 @@ define('FB_ADMIN_OP_LOCAL_LINKS', 'fb_admin_links');
  */
 function fb_admin_page() {
   $apps = fb_get_all_apps();
-  $output = ''; // Avoid PHP notice.
+
+  $output = array();
 
   if (count($apps)) {
     $header = array(
@@ -30,6 +31,7 @@ function fb_admin_page() {
       t('Local Operations'),
       t('Remote Settings'),
     );
+    $protocol = fb_protocol();
 
     foreach ($apps as $fb_app) {
       // Get properties from facebook.
@@ -40,7 +42,7 @@ function fb_admin_page() {
       $row[] = $fb_app->label . ($fb_app->status ? '' : ' ' . t('(<em>not enabled</em>)'));
 
       // About.
-      $row[] = l(isset($fb_app->application_name) ? $fb_app->application_name : $fb_app->label, 'http://www.facebook.com/apps/application.php?id=' . $fb_app->id);
+      $row[] = l(isset($fb_app->application_name) ? $fb_app->application_name : $fb_app->label, $protocol . '://www.facebook.com/apps/application.php?id=' . $fb_app->id);
 
       // Canvas Page.
       if (isset($fb_app->canvas_name) &&
@@ -48,7 +50,7 @@ function fb_admin_page() {
         drupal_set_message(t('Canvas page for %label is out of sync!  Facebook believes it is %fbcanvas, while our database believes %canvas.  Edit and save the application to remedy this.', array('%label' => $fb_app->label, '%fbcanvas' => $fb_app->canvas_name, '%canvas' => $fb_app->canvas)), 'error');
       }
       if ($fb_app->canvas) {
-        $row[] = l($fb_app->canvas, 'http://apps.facebook.com/' . $fb_app->canvas);
+        $row[] = l($fb_app->canvas, $protocol . '://apps.facebook.com/' . $fb_app->canvas);
       }
       else {
         $row[] = t('n/a');
@@ -69,25 +71,32 @@ function fb_admin_page() {
           'href' => $href,
         );
       }
-      $row[] = theme('links', $links);
+      $row[] = theme('links', array('links' => $links));
 
       // Remote Settings
-      $row[] = l($fb_app->id, 'http://www.facebook.com/developers/editapp.php?app_id=' . $fb_app->id);
+      $row[] = l($fb_app->id, 'https://www.facebook.com/developers/editapp.php?app_id=' . $fb_app->id);
 
       $rows[] = $row;
     }
 
-    $output .= theme('table', $header, $rows);
+    $output['apps_table'] = array(
+      '#theme' => 'table',
+      '#header' => $header,
+      '#rows' => $rows,
+    );
 
   }
   else {
-    $output = t('Start by creating an application.');
+    $output['intro'] = array('#markup' => t('Start by creating an application.'));
     if (!module_exists('fb_app')) {
-      $output .= t('Ensure the Facebook Application module is enabled.');
+      $output['module_enabled'] = array('#markup' => t('Ensure the Facebook Application module is enabled.'));
     }
     else {
-      $output .= t('Click <a href="!url">Add Application</a> to continue.',
-                   array('!url' => url('admin/build/fb/fb_app_create')));
+      $output['add_app'] = array(
+        '#markup' => t('Click <a href="!url">Add Application</a> to continue.',
+                       array('!url' => url(FB_PATH_ADMIN . '/fb_app_create'))),
+        '#prefix' => '<p>', '#suffix' => '</p>',
+      );
     }
   }
   return $output;
@@ -127,8 +136,19 @@ function fb_admin_app_page($fb_app = NULL) {
   }
 
   // Render additional properties
-  $output .= '<dt>' . t('Access Token') . '</dt><dd>' . fb_get_token($fb) . "</dd>\n";
-
+  $token = fb_get_token($fb);
+  $output .= '<dt>' . t('Access Token') . '</dt><dd>' . $token . "</dd>\n";
+  // Still more properties, i.e. restrictions.
+  $result = fb_graph($fb_app->id, array(
+                       'fields' => 'restrictions,migrations',
+                       'access_token' => fb_get_token($fb),
+                     ), $fb);
+  unset($result['id']); // redundant.
+  foreach ($result as $key => $value) {
+    if (!empty($value)) {
+      $output .= '<dt>' . t($key) . '</dt><dd><pre>' . print_r($value, 1) . "</pre></dd>\n";
+    }
+  }
   $output .= "</dl>\n";
   //$output .=  '<pre>' . print_r($fb_app, 1) . '</pre>'; // debug
 
@@ -140,12 +160,15 @@ function fb_admin_page_title($fb_app) {
 }
 
 /**
- * Get properties from Facebook.  Fills in the data that we need to
- * know by querying facebook.
+ * Get properties from Facebook.  Fills in the data that we need to know by
+ * querying facebook.  Uses admin.getAppProperties, an older API which may be
+ * replaced by the newer graph api.  Certainly additional "properties" may be
+ * learned via the graph.  In other words, this function works as it does for
+ * historical reasons.
  */
 function fb_admin_get_app_properties(&$fb_app) {
-  static $cache;
-  static $props_map;
+  $cache = &drupal_static('fb_admin:cache');
+  $props_map = &drupal_static('fb_admin:props_map');
   if (!isset($cache)) {
     $cache = array();
     // http://wiki.developers.facebook.com/index.php/ApplicationProperties
@@ -203,7 +226,7 @@ function fb_admin_get_app_options($include_current = FALSE, $key = 'label') {
   return $options;
 }
 
-function fb_admin_set_properties_form(&$form_state, $fb_app) {
+function fb_admin_set_properties_form($form, &$form_state, $fb_app) {
   $form['fba_id'] = array(
     '#type' => 'value',
     '#value' => $fb_app->fba_id,
@@ -222,14 +245,14 @@ function fb_admin_set_properties_form(&$form_state, $fb_app) {
   // @TODO - beautify display of properties.
   $form['props'] = array(
     '#type' => 'markup',
-    '#value' => print_r($props, 1),
+    '#markup' => print_r($props, 1),
     '#prefix' => '<pre>',
     '#suffix' => '</pre>',
   );
 
   $form['desc2'] = array(
     '#type' => 'markup',
-    '#value' => t('Syncing will also update local settings with values learned from facebook (i.e. if you have changed your canvas page).'),
+    '#markup' => t('Syncing will also update local settings with values learned from facebook (i.e. if you have changed your canvas page).'),
     '#prefix' => '<p>',
     '#suffix' => '</p>',
   );
@@ -273,10 +296,10 @@ function fb_admin_set_properties_form_submit($form, &$form_state) {
         fb_admin_get_app_properties($fb_app);
         if ($fb_app->fba_id && $fb_app->canvas_name && module_exists('fb_app')) {
           // @TODO - clean this up or move it to fb_app.module.  fb.module should have no knowledge of fb_app table.
-          db_query("UPDATE {fb_app} SET canvas='%s' WHERE fba_id = %d", array(
-                     $fb_app->canvas_name,
-                     $fb_app->fba_id,
-                   ));
+          db_update('fb_app')
+            ->fields(array('canvas' => $fb_app->canvas_name))
+            ->condition('fba_id', $fb_app->fba_id, '=')
+            ->execute();
         }
 
       } catch (Exception $e) {
@@ -293,6 +316,24 @@ function fb_admin_set_properties_form_submit($form, &$form_state) {
  */
 function fb_admin_settings() {
   $form = array();
+
+  // @TODO would be nice to automatically test whether HTTPS is supported.
+  $form['fb_admin_secure'] = array(
+    '#title' => t('Secure URLs'),
+    '#type' => 'fieldset',
+    '#description' => t('Canvas Pages and Page Tabs require a server that supports SSL encrypted HTTPS.  Without HTTPS, those features will only work in "sandbox mode."'),
+  );
+  $form['fb_admin_secure'][FB_VAR_SECURE_URLS] = array(
+    '#type' => 'radios',
+    '#title' => t('Use Secure URLs'),
+    '#default_value' => variable_get(FB_VAR_SECURE_URLS, FB_SECURE_URLS_SOMETIMES),
+    '#description' => t('This setting affects your applications\' connect_url, callback_url, secure_callback_url, profile_tab_url, and secure_page_tab_url properties.'),
+    '#options' => array(
+      FB_SECURE_URLS_NEVER => t('Never use HTTPS. (I.e. this server does not support it.)'),
+      FB_SECURE_URLS_SOMETIMES => t('Use HTTPS only when Facebook expects a secure URL. (Recommended.)'),
+      FB_SECURE_URLS_ALWAYS => t('Always use HTTPS for both secure urls and also other url callbacks.'),
+    ),
+  );
 
   $form['fb_admin_session'] = array(
     '#title' => t('Sessions'),
@@ -339,7 +380,7 @@ function fb_admin_settings() {
 );
 
   foreach (language_list() as $language) {
-    $form['fb_admin_languages']['fb_language_'. $language->language] = array(
+    $form['fb_admin_languages']['fb_language_' . $language->language] = array(
       '#title'  => t("Assigned Facebook's locale to @language", array('@language' => t($language->name))),
       '#type'  => 'select',
       '#options' => fb_admin_i18n_list(),

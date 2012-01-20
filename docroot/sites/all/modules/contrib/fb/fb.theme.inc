@@ -6,12 +6,17 @@
  * XFBML markup will only work on canvas pages and facebook connect pages.
  */
 
+// @TODO theme function now take only one parameter, an associative array.
 
-function theme_fb_login_button($text = NULL, $options = array()) {
+function theme_fb_login_button($params) {
+  $text = isset($params['text']) ? $params['text'] : '';
+  $options = isset($params['options']) ? $params['options'] : array();
+
   // Facebook used to provide default text.  No longer, apparently.
   if (!$text) {
     $text = t('Connect');
   }
+
   // Merge in defaults
   $options += array(
     'attributes' => array(),
@@ -25,13 +30,18 @@ function theme_fb_login_button($text = NULL, $options = array()) {
     }
   }
 
+
   $button = '<fb:login-button ' . drupal_attributes($options['attributes']) . '>' .
     ($text ? '<fb:intl>' . check_plain($text) . '</fb:intl>' : '') . '</fb:login-button>';
+
   return $button;
 }
 
 
-function theme_fb_username($fbu, $object, $orig) {
+function theme_fb_username($params) {
+  $fbu = $params['fbu'];
+  $object = $params['account'];
+  $orig = $params['orig'];
   if (!$fbu || arg(0) == 'admin') {
     return $orig;
   }
@@ -51,9 +61,13 @@ function theme_fb_username($fbu, $object, $orig) {
   return $output;
 }
 
-function theme_fb_user_picture($fbu, $object, $orig) {
-  if (!$fbu)
-    return $orig;
+function theme_fb_user_picture($params) {
+  if (!$params['fbu'])
+    return $params['orig'];
+
+  $fbu = $params['fbu'];
+  $object = $params['account'];
+  $orig = $params['orig'];
 
   // http://developers.facebook.com/docs/reference/fbml/profile-pic
   $fbml = "<fb:profile-pic linked=false uid=\"$fbu\"></fb:profile-pic>";
@@ -74,7 +88,7 @@ function theme_fb_fbml_popup($elem) {
 
   $t .= '<a href="#" title="' . check_plain($elem['#title']) . '" ' .
     (isset($elem['#link_attributes']) ? drupal_attributes($elem['#link_attributes']) : '') .
-    '>' . check_plain($elem['#link_text']) .'</a>';
+    '>' . check_plain($elem['#link_text']) . '</a>';
   $t .= '<div class="fb_fbml_popup" ' . drupal_attributes($elem['#attributes']) . '>';
   $t .= $elem['#children'];
   $t .= "</div></div>\n";

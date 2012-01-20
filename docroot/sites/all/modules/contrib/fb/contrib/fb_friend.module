@@ -185,8 +185,8 @@ function fb_friend_block($op = 'list', $delta = 0, $edit = array()) {
           ), array(
             'hook' => 'fb_friend_invite_page',
             'invite' => TRUE,
-            'action_path' => fb_scrub_urls($_GET['q']), // Where sender goes on submit or skip.
-            'accept_path' => fb_scrub_urls($_GET['q']), // Where recipient goes on accept.
+            'action_path' => request_path(), // Where sender goes on submit or skip.
+            'accept_path' => request_path(), // Where recipient goes on accept.
           ));
 
         return array('subject' => t('Invite friends to visit this page'),
@@ -208,7 +208,7 @@ function fb_friend_block($op = 'list', $delta = 0, $edit = array()) {
           array(
             'module' => 'fb_friend_invite_app',
             'delta' => FB_FRIEND_DELTA_INVITE_APP,
-            'next' => fb_scrub_urls($_GET['q']),
+            'next' => request_path(),
           ), array(
             'hook' => 'fb_friend_invite_app',
             'invite' => TRUE,
@@ -223,7 +223,7 @@ function fb_friend_block($op = 'list', $delta = 0, $edit = array()) {
       elseif ($delta == FB_FRIEND_DELTA_INVITE_APP && FALSE) {
         // Old way...
         $app_url = url('<front>', array('absolute' => TRUE, 'fb_canvas' => fb_is_canvas()));
-        $page_url = url($_GET['q'], array('absolute' => TRUE, 'fb_canvas' => fb_is_canvas()));
+        $page_url = url(request_path(), array('absolute' => TRUE, 'fb_canvas' => fb_is_canvas()));
         $site_name = variable_get('site_name', t('application'));
         // Build the alterable data structure.
         // http://wiki.developers.facebook.com/index.php/Fb:request-form
@@ -345,10 +345,10 @@ function fb_friend_fb_friend($op, $data, &$return) {
 function fb_friend_invite_page_fbml($alter_hook = NULL, $submit_path = NULL, $accept_path = NULL) {
   // Defaults
   if (!isset($submit_path)) {
-    $submit_path = $_GET['q'];
+    $submit_path = request_path();
   }
   if (!isset($accept_path)) {
-    $accept_path = $_GET['q'];
+    $accept_path = request_path();
   }
   $submit_url = url($submit_path, array('absolute' => TRUE));
   $accept_url = url($accept_path, array('absolute' => TRUE));
@@ -515,7 +515,7 @@ function fb_friend_request_content($invite_data, $form_data) {
 
 function fb_friend_write_record(&$row, $update = array()) {
   if (!isset($row['created']))
-    $row['created'] = time();
+    $row['created'] = REQUEST_TIME;
   if (!isset($row['fbu_actor']))
     $row['fbu_actor'] = fb_facebook_user();
   if (!isset($row->label) && isset($GLOBALS['_fb_app'])) {
@@ -526,7 +526,7 @@ function fb_friend_write_record(&$row, $update = array()) {
 
 function fb_friend_write_records($data, $targets) {
   if (!isset($data['created']))
-    $data['created'] = time();
+    $data['created'] = REQUEST_TIME;
   if (!isset($data['fbu_actor']))
     $data['fbu_actor'] = fb_facebook_user();
   if (!isset($row->label) && isset($GLOBALS['_fb_app'])) {

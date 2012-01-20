@@ -18,4 +18,3 @@ FB_Stream.stream_publish = function(json) {
     FB.ui(data);
   }
 };
-
