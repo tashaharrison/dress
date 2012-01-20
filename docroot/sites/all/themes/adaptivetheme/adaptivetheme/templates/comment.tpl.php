@@ -1,54 +1,36 @@
-<?php // $Id: comment.tpl.php,v 1.2.2.1 2010/09/14 20:13:12 jmburnz Exp $
+<article class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
 
-/**
- * @file
- * Default theme implementation for comments.
- *
- * Available variables:
- * - $author: Comment author. Can be link or plain text.
- * - $content: Body of the post.
- * - $date: Date and time of posting.
- * - $links: Various operational links.
- * - $new: New comment marker.
- * - $picture: Authors picture.
- * - $signature: Authors signature.
- * - $status: Comment status. Possible values are:
- *     comment-unpublished, comment-published or comment-preview.
- * - $submitted: By line with date and time.
- * - $title: Linked title.
- *
- * Helper variables:
- * - $classes: Outputs dynamic classes for advanced themeing.
- * - $title_classes: classes for the title element.
- * - $unpublished: prints a message if the comment is unpublished.
- *
- * These two variables are provided for context.
- * - $comment: Full comment object.
- * - $node: Node object the comments are attached to.
- *
- * Optionally add a count id:
- * <span class="comment-id"><?php print '#'. $id; ?></span>
- *
- * @see template_preprocess_comment()
- * @see genesis_preprocess_comment()
- * @see theme_comment()
- */
-?>
-<div class="<?php print $classes; ?>">
-  <?php if ($title): ?>
-    <h3 class="<?php print $title_classes; ?>">
-      <?php print $title; ?>
-      <?php if ($comment->new): ?><span class="new"><?php print $new; ?></span><?php endif; ?>
-      <?php print $unpublished; ?>
-    </h3>
+  <?php print $unpublished; ?>
+
+  <?php print render($title_prefix); ?>
+  <?php if ($title || $new): ?>
+  <header>
+    <h3<?php print $title_attributes; ?>><?php print $title ?></h3>
+    <?php if ($new): ?>
+      <em class="new"><?php print $new ?></em>
+    <?php endif; ?>
+  </header>
   <?php endif; ?>
-  <?php print $picture; ?>
-  <?php if ($submitted): ?>
-    <p class="submitted"><?php print $submitted; ?></p>
-  <?php endif; ?>
-  <?php print $content; ?>
+  <?php print render($title_suffix); ?>
+
+  <footer class="submitted<?php $picture ? print ' with-picture' : ''; ?>">
+    <?php print $picture; ?>
+    <p class="author-datetime"><?php print $submitted; ?></p>
+  </footer>
+
+  <div<?php print $content_attributes; ?>>
+    <?php
+      hide($content['links']);
+      print render($content);
+    ?>
+  </div>
+
   <?php if ($signature): ?>
-    <div class="user-signature"><?php print $signature; ?></div>
+    <div class="user-signature"><?php print $signature ?></div>
   <?php endif; ?>
-  <?php if ($links): print $links; endif; ?>
-</div>
+
+  <?php if ($links = render($content['links'])): ?>
+    <nav class="clearfix"><?php print $links; ?></nav>
+  <?php endif; ?>
+
+</article>

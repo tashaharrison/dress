@@ -1,72 +1,49 @@
-/** 
- * $Id: articles.css,v 1.1.2.1 2010/09/14 20:13:12 jmburnz Exp $
- */
-
 /* Articles (nodes) */
 .article {
-  margin:0 0 1.5em;
+  margin-bottom: 20px;
 }
 
-/* Teaser title. */
+.article > header {}
+
+/* Title */
 .article-title {}
 .article-title a:link,
 .article-title a:visited,
-.article-title a:active {
-  text-decoration: none;
-}
-.article-title a:hover,
-.article-title a:focus {
-  text-decoration: underline;
-}
+.article-title a:active {}
 
-/* User Picture. */
+.article-title a:hover,
+.article-title a:focus {}
+
+/* User Picture */
 .article .user-picture {}
 .article .user-picture img {}
 
 /* Submitted */
-.article .submitted {
-  margin: .375em 0 0.75em;
-}
-.article .submitted em {
-  font-style: normal;
-}
-.article .submitted a {}
-.article .submitted a:hover {}
-.article .submitted .author {}
-.article .submitted .time {}
+.article .submitted {}
+.article .submitted  a {}
+.article .submitted  a:hover {}
+.article .submitted  p.author-datetime {}
+.article .submitted  time {}
 
-/* Taxonomy terms. */
-ul.taxonomy {
-  margin: 0 0 1em;
-}
-ul.taxonomy li {
-  display: inline;
-  list-style: none;
-}
-ul.taxonomy li a {}
+/* Links */
+.article nav {}
+.article ul.links {}
+.article ul.links li {}
+.article ul.links li a {}
+.article ul.links li.node_read_more a {}
+.article ul.links li.comment_add a {}
+.article ul.links li.comment_comments a {}
+.article ul.links li.comment_new_comments a {}
+.article ul.links li.blog_usernames_blog a {}
+.article ul.links li.print_html a {}
+.article ul.links li.print_email a {}
+.article ul.links li.print_pdf a {}
 
-/* Links. */
-ul.links {
-  margin: 0;
-}
-ul.links li {
-  padding: 0 1em 0 0;
-}
-ul.links li a {}
-ul.links li.node_read_more a {}
-ul.links li.comment_add a {}
-ul.links li.comment_comments a {}
-ul.links li.comment_new_comments a {}
-ul.links li.blog_usernames_blog a {}
-ul.links li.print_html a {}
-ul.links li.print_email a {}
-ul.links li.print_pdf a {}
+/* UL link first and last classes */
+.article ul.links li.first {}
+.article ul.links li.last  {}
 
-/* UL link first and last classes. */
-ul.links li.first {}
-ul.links li.last  {}
-
-/* Workflow states. */
+/* Workflow states */
 .article-add    {}
 .article-edit   {}
 .article-delete {}
@@ -74,45 +51,8 @@ ul.links li.last  {}
 .article-sticky   {}
 .article-promoted {}
 
-/* Status. */
+/* Status */
 .article-unpublished {}
 
-/* Theme the teaser. */
+/* Theme the teaser */
 .article-teaser {}
-
-/* Fields */
-h3.label {
-  font-size:1em;
-}
-.field-inline h3,
-.field-inline .item {
-  display:inline;
-}
-/* Wrapper for any CCK field. */
-.field {}
-
-/* Use "datetime" when creating new CCK date fields. */
-.field-type-datetime {}
-
-/* Filefield field. */
-.field-type-filefield {}
-
-/* Node reference field. */
-.field-type-nodereference {}
-
-/* User reference field. */
-.field-type-userreference {}
-
-/* Number fields. */
-.field-type-number-decimal {}
-.field-type-number-float   {}
-.field-type-number-integer {}
-
-/* Text field. */
-.field-type-text {}
-
-/**
- * Specific field names.
- */
-/* Underscores in field name are replaced with dashes. */
-.field-field-FIELDNAME {}

@@ -1,12 +1,8 @@
-/** 
- * $Id: panel-panes.css,v 1.1.4.2 2010/10/14 05:38:00 jmburnz Exp $
- */
-
+/* If using Panels enable this in the info file */
 .panel-pane {}
 .pane-inner {}
 .pane-title {}
 .pane-content {}
-
 .panel-pane .feed {}
 .panel-pane .links {}
 .panel-pane .more-link {}

@@ -1,65 +1,28 @@
-/** 
- * $Id: blocks.css,v 1.1.2.2 2010/10/14 05:38:00 jmburnz Exp $
- */
-
-/* Blocks. */
+/* Blocks */
 .block {
-  margin: 0 0 20px;
+  margin-bottom: 20px;
 }
 
-.block-inner {}
+.block-inner {} /* set block background styles on .block-inner */
 .block-title {}
+.block-content {}
 
+/* Mini panels get a special title class */
 .mini-panel-title {
   margin: 0 10px;
 }
 
+/* Target sidebar blocks */
 .sidebar .block {}
-.sidebar .block h2 {}
 .sidebar .block-inner {}
-
-#sidebar-first .block {}
-#sidebar-first .block h2 {}
-#sidebar-first .block-inner {}
-
-#sidebar-last .block {}
-#sidebar-last .block h2 {}
-#sidebar-last .block-inner {}
-
-.block ul li {
-  margin: 0 0 0 0.5em;
-}
-.block .item-list ul  {
-  margin-left: 1em;
-}
-
-#block-locale-0 ul {
-  margin: 0 0 0 1.5em;
-  padding: 0;
-}
-#block-locale-0 ul li {
-  padding: .35em 0 0;
-}
-#block-node-0 .feed-icon img {
-  padding:10px 0;
-}
-#search-block-form {
-  margin:0;
-}
-#block-user-3 .item-list h3 {
-  font-size:1em;
-}
+.sidebar .block-title {}
+.sidebar .block-content {}
 
 /* Gpanel blocks */
-.gpanel h2 {}
+.gpanel .block {}
 .gpanel .block-inner {}
+.gpanel .block-title {}
 .gpanel .block-content {}
-#main-content .gpanel h2 {}
-#main-content .gpanel .block-inner {}
-#main-content .gpanel .block-content {}
-#footer .block h2 {}
-#footer .block .block-inner {}
-#footer .block .block-content {}
 
 /* Block wrapper for Mini Panels */
 .block-panels_mini {}
@@ -67,4 +30,60 @@
 .block-panels_mini .block-content {}
 .block-panels_mini .mini-panel-title {
   margin: 0 10px;
+}
+
+/* Login block - horizontal (theme setting) basic styles */
+.lb-h {
+  min-width: 320px;
+  margin-top: 1px;
+}
+.region-header .lb-h {
+  float: right;
+}
+.lb-h .block-inner,
+.lb-h .block-content {
+  background: none;
+  padding: 0;
+}
+.lb-h #user-login-form {
+  margin: 0;
+}
+.lb-h #user-login-form label {
+  line-height: 1.2
+}
+.lb-h .form-item {
+  float:left;
+  margin: 0;
+}
+.lb-h input.form-text {
+  margin:0 3px 0 0;
+  width:110px;
+}
+.lb-h #edit-actions {
+  margin: 0;
+}
+.lb-h input.form-submit {
+  position: absolute;
+  margin: 0;
+  top: 1.2em;
+}
+.lb-h .form-required,
+.lb-h .item-list {
+  display: none;
+}
+.lb-h h2 {
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+/* Reset margins and padding for the Help block .block-inner */
+#block-system-help .block-inner {
+  padding: 0;
+  margin: 0;
+}
+
+/* Reset block ul in the dashboard */
+#dashboard .block ul {
+  margin-left: 0;
 }

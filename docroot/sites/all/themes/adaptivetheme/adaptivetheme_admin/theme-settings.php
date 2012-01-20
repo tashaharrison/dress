@@ -1,63 +1,47 @@
-<?php // $Id: theme-settings.php,v 1.2.2.1 2010/08/31 10:18:42 jmburnz Exp $
-// adaptivethemes.com admin
-
-/**
- * @file theme-settings.php
- */
-
-// Include the definition of adaptivetheme_settings() and adaptivetheme_theme_get_default_settings().
-include_once(drupal_get_path('theme', 'adaptivetheme') .'/theme-settings.php');
-
-/**
- * Implementation of themehook_settings() function.
- *
- * @param $saved_settings
- *   An array of saved settings for this theme.
- * @return
- *   A form array.
- */
-function adaptivetheme_admin_settings($saved_settings) {
-
-  // Get the default values from the .info file.
-  $defaults = adaptivetheme_theme_get_default_settings('adaptivetheme_admin');
-
-  // Merge the saved variables and their default values.
-  $settings = array_merge($defaults, $saved_settings);
-
-  // Create the form using Forms API: http://api.drupal.org/api/6
-  $form = array();
-
-  // Style schemes
-  if ($settings['style_enable_schemes'] == 'on') {
-    $form['style'] = array(
-      '#type' => 'fieldset',
-      '#title' => t('Style settings'),
-      '#collapsible' => TRUE,
-      '#collapsed' => TRUE,
-      '#weight' => 90,
-      '#description'   => t('Change the color scheme of your admin theme.'),
-    );
-    $form['style']['style_schemes'] = array(
-      '#type' => 'select',
-      '#title' => t('Color Schemes'),
-      '#default_value' => $settings['style_schemes'],
-      '#options' => array(
-        'style-default.css' => t('Onyx'),
-        'ruby.css' => t('Ruby'),
-        'saphire.css' => t('Saphire'),
-        'amber.css' => t('Amber'),
-        'emerald.css' => t('Emerald'),
-      ),
-    );
-    $form['style']['style_enable_schemes'] = array(
-      '#type' => 'hidden',
-      '#value' => $settings['style_enable_schemes'],
-    );
-  }
-
-  // Add the base theme's settings.
-  $form += adaptivetheme_settings($saved_settings, $defaults);
-
-  // Return the form
-  return $form;
+<?php
+function adaptivetheme_admin_form_system_theme_settings_alter(&$form, &$form_state)  {
+  // some basic font settings for the admin theme
+  $form['at']['font'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Font Settings'),
+    '#description' => t('<h3>Font Settings</h3>'),
+  );
+  $form['at']['font']['font_family'] = array(
+    '#type' => 'select',
+    '#title' => t('Font'),
+    '#default_value' => theme_get_setting('font_family'),
+    '#options' => array(
+      'ff-sss' => t('Candara, Trebuchet MS, Helvetica Neue, Arial, Helvetica, sans-serif'),
+      'ff-ssl' => t('Verdana, Geneva, Arial, Helvetica, sans-serif'),
+      'ff-a'   => t('Arial, Helvetica, sans-serif'),
+      'ff-cc'  => t('Calibri, Candara, Arial, Helvetica, sans-serif'),
+      'ff-m'   => t('Segoe UI, Myriad Pro, Myriad, Arial, Helvetica, sans-serif'),
+      'ff-l'   => t('Lucida Sans Unicode, Lucida Sans, Lucida Grande, Verdana, Geneva, sans-serif'),
+      'ff-ss'  => t('Garamond, Perpetua, Times New Roman, serif'),
+      'ff-sl'  => t('Georgia, Baskerville, Palatino, Palatino Linotype, Book Antiqua, Times New Roman, serif'),
+      'ff-ms'  => t('Consolas, Monaco, Courier New, Courier, monospace'),
+    ),
+  );
+  $form['at']['font']['font_size'] = array(
+    '#type' => 'select',
+    '#title' => t('Size'),
+    '#default_value' => theme_get_setting('font_size'),
+    '#description' => t('This sets a base font-size on the body element - all text will scale relative to this value.'),
+    '#options' => array(
+      'fs-smallest' => t('Smallest'),
+      'fs-small'    => t('Small'),
+      'fs-medium'   => t('Medium'),
+      'fs-large'    => t('Large'),
+      'fs-largest'  => t('Largest'),
+    ),
+  );
+  // Wrangle the theme settings form so it makes sense and avoids any problems with logo's
+  $form['theme_settings']['#collapsible'] = TRUE;
+  $form['theme_settings']['#collapsed'] = TRUE;
+  $form['theme_settings']['toggle_logo']['#type'] = 'hidden';
+  $form['theme_settings']['toggle_logo']['#default_value'] = 0;
+  $form['logo']['#type'] = 'hidden';
+  $form['logo']['#default_value'] = 1;
+  $form['favicon']['#collapsible'] = TRUE;
+  $form['favicon']['#collapsed'] = TRUE;
 }

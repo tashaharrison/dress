@@ -1,44 +1,45 @@
-<?php // $Id: template.php,v 1.2.2.2 2010/09/11 01:38:23 jmburnz Exp $
-// adaptivethemes.com admin
-
+<?php
 /**
- * @file template.php
+ * Override or insert variables into html templates.
  */
-
-// Don't include custom functions if the database is inactive.
-if (db_is_active()) {
-  // Include base theme custom functions.
-  include_once(drupal_get_path('theme', 'adaptivetheme') .'/inc/template.custom-functions.inc');
-}
-
-/**
- * Add the color scheme stylesheet if color_enable_schemes is set to 'on'.
- * Note: you must have at minimum a color-default.css stylesheet in /css/theme/
- */
-if (theme_get_setting('style_enable_schemes') == 'on') {
-  drupal_add_css(drupal_get_path('theme', 'adaptivetheme_admin') .'/css/'. get_at_styles(), 'theme');
-}
-
-// Load collapsed js on blocks pages
-if (arg(2) == 'block') {
-  drupal_add_js('misc/collapse.js', 'core', 'header', FALSE, TRUE, TRUE);
+function adaptivetheme_admin_preprocess_html(&$vars) {
+  $vars['classes_array'][] = theme_get_setting('font_family');
+  $vars['classes_array'][] = theme_get_setting('font_size'); 
 }
 
 /**
  * Override or insert variables into page templates.
- *
- * @param $vars
- *   A sequential array of variables to pass to the theme template.
- * @param $hook
- *   The name of the theme function being called.
  */
-function adaptivetheme_admin_preprocess_page(&$vars, $hook) {
-  global $user;
-  // Admin welcome message with date for the admin theme.
-  if ($vars['logged_in']) {
-    $welcome = t('Welcome') .' '. check_plain($user->name);
-    $conjunction = ', '. t('it\'s') .' ';
-    $todays_date = date("r" , time());
-    $vars['admin_welcome'] = $welcome . $conjunction . $todays_date;
+function adaptivetheme_admin_preprocess_page(&$vars) {
+  $vars['datetime_rfc'] = '';
+  $vars['datetime_iso'] = '';
+  $vars['datetime_rfc'] = date("r" , time()); // RFC2822 date format
+  $vars['datetime_iso'] = gmdate('Y-m-d\TH:i:s\Z'); // ISO 8601 date format   
+}
+
+/**
+* Theme button. Override AT Core because it screws with Views.
+*/
+function adaptivetheme_admin_button($vars) {
+  $element = $vars['element'];
+  $element['#attributes']['type'] = 'submit';
+  element_set_attributes($element, array('id', 'name', 'value'));
+  $element['#attributes']['class'][] = 'form-' . $element['#button_type'];
+  if (!empty($element['#attributes']['disabled'])) {
+    $element['#attributes']['class'][] = 'form-button-disabled';
+  }
+  return '<input' . drupal_attributes($element['#attributes']) . ' />';
+}
+
+/**
+ * Alter the search block form.
+ */
+function adaptivetheme_admin_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'search_block_form') {
+    $form['search_block_form']['#title'] = t('Search');
+    $form['search_block_form']['#title_display'] = 'invisible';
+    $form['search_block_form']['#size'] = 20;
+    $form['search_block_form']['#attributes']['placeholder'] = t('Search');
+    $form['actions']['submit']['#value'] = t('Go');
   }
 }

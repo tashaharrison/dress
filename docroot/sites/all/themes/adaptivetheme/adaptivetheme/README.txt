@@ -1,40 +1,41 @@
 
-  Adaptivetheme 6.x-3.x is built and supported by http://adaptivethemes.com
+-- INFO --
 
-  Project page: http://drupal.org/project/adaptivetheme
-  Issue queue:  http://drupal.org/project/issues/adaptivetheme
+The base theme provides many resources to all subthemes including
+templates, layout CSS, base CSS helper, template overrides, function
+overrides and theme settings. You should not edit this theme - its only
+job is to provide resources to subthemes.
 
-  IMPORTANT :: For basic info and set up guide see: 
-  http://adaptivethemes.com/documentation/adaptivetheme-6x-2x
+-- TEMPLATES --
 
-  Adaptivetheme is an advanced starter theme that includes many theme
-  settings and layout features.
-  
-  The core adaptivetheme is not meant to be used, instead copy and paste
-  the included subtheme and follow the install instructions in the
-  adaptivetheme_subtheme README file.
+All the HTML5 templates are in the /templates/ directory - if you need
+to modify a template for your subtheme copy and paste the template into your
+subtheme and clear your sites cache.
 
-  If you need to override a template from the core theme, copy and paste it
-  into your subtheme so you never hack the core theme.
+-- GPANELS --
 
-  Closely review your subthemes .info file, many of the themes features are
-  controlled via the info file.
-  
-  To use all the major features you need to install the following modules 
-  (these are not required but to use the advanced features you need them):
+Gpanels are multi-column layout helpers for displaying blocks in vertical columns 
+that you can drop into your subtheme. For example you may want a 4 column footer, 
+or a 3 column panel above your main content. Gpanels makes this as easy as copy 
+and paste. See the README in the gpanels directory for instructions.
 
-  http://drupal.org/project/skinr
-  Just install and its ready to use, AT2 has built-in support for the Skinr 
-  module and comes pre-packaged with many useful Skinr styles.
+-- THEME SETTINGS --
 
-  http://drupal.org/project/panels
-  Just install and its ready to use, AT2 comes with 9 additional Panels Layouts 
-  ready to use - NOTE that to use them you must enable both the Base theme and 
-  the Subtheme.
+The base theme provides the core layout settings that provide support for 
+mobile devices and standard desktop and laptop layouts. You do not need to
+add these to your subtheme - it will inherit them automatically from the
+base theme. There are other settings included for breadcrumb, search, comment
+title, CSS classes and extra markup.
 
-  http://drupal.org/project/block_class
-  http://drupal.org/project/blocktheme
-  Optionally you can also test out AT3's support for Block class and Blocktheme modules. 
-  Again, theres nothing more to do other than installing these module and start 
-  using them, AT provides native support out of the box.
+-- CSS CLASSES --
 
+Adaptivetheme removes many standard CSS classes from the Drupals output - we do 
+this to clean up the markup because most times these classes are never used. You
+can add these back (and additional useful classes) using the theme settings for 
+CSS classes.
+
+Any problems please post an issue in the Adaptivethemes issue queue on Drupal.org:
+http://drupal.org/project/issues/adaptivetheme
+
+Maintainer:
+* Jeff Burnz http://drupal.org/user/61393
