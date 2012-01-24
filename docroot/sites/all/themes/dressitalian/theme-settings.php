@@ -1,60 +1,41 @@
-<?php // $Id: theme-settings.php,v 1.2.2.1 2010/08/31 10:18:42 jmburnz Exp $
-// adaptivethemes.com st
+<?php
 
 /**
- * @file theme-settings.php
+ * USAGE:
+ * 1 - To use this file replace "adaptivetheme_subtheme" with the name of
+ *     your theme in the function below.
+ * 2 - Set 'style_enable_schemes' to 'on' in your themes info file (its near the bottom of that file).
+ * 2 - Build or un-comment the forms. The Style Schemes form is ready to use,
+ *     just un-comment it.
  */
 
-// Include the definition of adaptivetheme_settings() and adaptivetheme_theme_get_default_settings().
-include_once(drupal_get_path('theme', 'adaptivetheme') .'/theme-settings.php');
+// Replace 'adaptivetheme_subtheme' with your themes name, eg:
+// function your_themes_name_form_system_theme_settings_alter(&$form, &$form_state)
+function dressitalian_form_system_theme_settings_alter(&$form, &$form_state)  {
 
-/**
-* Implementation of themehook_settings() function.
-*
-* @param $saved_settings
-*   An array of saved settings for this theme.
-* @return
-*   A form array.
-*/
-function dressitalian_settings($saved_settings) {
+  // Style Schemes
+  /* -- Delete this line if you want to use Style Schemes
 
-  // Get the default values from the .info file.
-  $defaults = adaptivetheme_theme_get_default_settings('dressitalian');
-
-  // Merge the saved variables and their default values.
-  $settings = array_merge($defaults, $saved_settings);
-
-  // Create the form using Forms API: http://api.drupal.org/api/6
-  $form = array();
-
-  // You can add settings here - the example uses the style_schemes settings.
-  // Style schemes
-  if ($settings['style_enable_schemes'] == 'on') {
-    $form['style'] = array(
+  if (theme_get_setting('style_enable_schemes') == 'on') {
+    $form['at']['style'] = array(
       '#type' => 'fieldset',
-      '#title' => t('Style settings'),
-      '#collapsible' => TRUE,
-      '#collapsed' => TRUE,
-      '#weight' => 90,
-      '#description'   => t('Use these settings to modify the style - such as the color scheme. If no stylesheet is selected the default styles will apply.'),
+      '#title' => t('Style schemes'),
     );
-    $form['style']['style_schemes'] = array(
+    $form['at']['style']['style_schemes'] = array(
       '#type' => 'select',
       '#title' => t('Styles'),
-      '#default_value' => $settings['style_schemes'],
+      '#default_value' => theme_get_setting('style_schemes'),
       '#options' => array(
+        'none' => t('None'),
         'style-default.css' => t('Default Style'),
+        // 'my-style.css' => t('My Style'), // Add your schemes, these MUST be placed in your subthemes /schemes directory!
       ),
     );
-    $form['style']['style_enable_schemes'] = array(
+    $form['at']['style']['style_enable_schemes'] = array(
       '#type' => 'hidden',
-      '#value' => $settings['style_enable_schemes'],
+      '#value' => theme_get_setting('style_enable_schemes'),
     );
-  } // endif color schemes
+  }
 
-  // Add the base theme's settings.
-  $form += adaptivetheme_settings($saved_settings, $defaults);
-
-  // Return the form
-  return $form;
+  // */
 }

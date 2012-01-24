@@ -20,7 +20,7 @@ class views_plugin_row_vcd extends views_plugin_ds_entity_view {
 
   function options_form(&$form, &$form_state) {
     // @todo We load the original DS options but these are not fully functional (yet)
-    parent::options_form(&$form, &$form_state);
+    parent::options_form($form, $form_state);
 
     $view_mode_options = array();
     $entity_type = $this->view->base_table;
