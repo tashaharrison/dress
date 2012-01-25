@@ -43,54 +43,54 @@ a:active, a:focus {
 	padding: 0;
 }
 /* Primary-links div wrapper */
-#primary-menu {
+#primary-menu-bar {
 	padding-left: 140px;
 }
 /* Class on the ul */
-.primary-links {
+#primary-menu-bar .primary-menu {
 	text-align: center;
 }
 /* Modify the margin to set tab spacings. */
-.primary-links li {
+#primary-menu-bar .primary-menu li {
 	width: 140px;
 }
-.primary-links li.menu-401 {
+#primary-menu-bar .primary-menu li.menu-401 {
 	width: 220px;
 }
-.primary-links li a {
+#primary-menu-bar .primary-menu li a {
 	color:#4C4C4C;
 	font-size: 1.1em;
 	padding: 6px 20px;
 	font-weight: bold;
 }
 /* Set pseudo class styles. */
-.primary-links li a:link {
+#primary-menu-bar .primary-menu li a:link {
 }
-.primary-links li a:visited {
+#primary-menu-bar .primary-menu li a:visited {
 }
-.primary-links li a:hover {
+#primary-menu-bar .primary-menu li a:hover {
 	font-weight:bold;
 	text-decoration:none;
 	color:black;
 }
-.primary-links li a:focus {
+#primary-menu-bar .primary-menu li a:focus {
 }
-.primary-links li a:active {
+#primary-menu-bar .primary-menu li a:active {
 }
 /* Primary first and last classes. */
-.primary-links li.first {
+#primary-menu-bar .primary-menu li.first {
 }
-.primary-links li.last {
+#primary-menu-bar .primary-menu li.last {
 }
 /* Active trail classes. */
-.primary-links li.active {
+#primary-menu-bar .primary-menu li.active {
 }
-.primary-links li.active-trail {
+#primary-menu-bar .primary-menu li.active-trail {
 }
-.primary-links li.active-trail a {
+#primary-menu-bar .primary-menu li.active-trail a {
 }
 /* Secondary-links div wrapper */
-#secondary-menu {
+#secondary-menu-bar {
 	background: rgb(255,255,255); /* Old browsers */
 	background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(200,200,200,1) 2%, rgba(255,255,255,1) 100%); /* FF3.6+ */
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(2%, rgba(200,200,200,1)), color-stop(100%, rgba(255,255,255,1))); /* Chrome,Safari4+ */
@@ -101,65 +101,65 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#E2E2E2', end
 	background: linear-gradient(top, rgba(255,255,255,1) 0%, rgba(200,200,200,1) 2%, rgba(255,255,255,1) 100%); /* W3C */
 	margin-left: -19px;
 	padding-left: 200px;
-	width: 787px;
+	width: 797px;
 }
 @media screen and (-webkit-min-device-pixel-ratio:0) {
-#secondary-menu {
+#secondary-menu-bar {
 	margin-left: -21px;
 	width: 802px;
 }
 }
 /* Class on the ul */
-.secondary-links {
+#secondary-menu-bar .secondary-menu {
 	text-align: center;
 }
 /* Modify the margin to set tab spacings. */
-.secondary-links li {
+#secondary-menu-bar .secondary-menu li {
 	width: 168px;
 }
-.secondary-links li a {
+#secondary-menu-bar .secondary-menu li a {
 	color: #4C4C4C;
 	font-size: 1.1em;
 	padding: 6px 26px;
 	font-weight: bold;
 }
 /* Set pseudo class styles. */
-.secondary-links li a:link {
+#secondary-menu-bar .secondary-menu li a:link {
 }
-.secondary-links li a:visited {
+#secondary-menu-bar .secondary-menu li a:visited {
 }
-.secondary-links li a:hover {
+#secondary-menu-bar .secondary-menu li a:hover {
 	font-weight:bold;
 	text-decoration:none;
 	color:black;
 }
-.secondary-links li a:focus {
+#secondary-menu-bar .secondary-menu li a:focus {
 }
-.secondary-links li a:active {
+#secondary-menu-bar .secondary-menu li a:active {
 }
 /* Secondary first and last classes. */
-.secondary-links li.first {
+#secondary-menu-bar .secondary-menu li.first {
 }
-.secondary-links li.last {
+#secondary-menu-bar .secondary-menu li.last {
 }
 /* Active trail classes. */
-.secondary-links li.active {
+#secondary-menu-bar .secondary-menu li.active {
 }
-.secondary-links li.active-trail {
+#secondary-menu-bar .secondary-menu li.active-trail {
 }
-.secondary-links li.active-trail a {
+#secondary-menu-bar .secondary-menu li.active-trail a {
 }
 /* Footer menus */
-#footer-region .menu, #footer-region .menu ul, #footer-region .menu ul ul, #footer-region .menu ul ul ul {
+.region-footer .menu, .region-footer .menu ul, .region-footer .menu ul ul, .region-footer .menu ul ul ul {
 }
-#footer-region #block-menu-menu-footer-menu {
+.region-footer #block-menu-menu-footer-menu {
 	float:left;
 	width:100%;
 	overflow:hidden;
 	position:relative;
 	margin-bottom: 14px;
 }
-#footer-region #block-menu-menu-footer-menu .menu {
+.region-footer #block-menu-menu-footer-menu .menu {
 	font-size: 14px;
 	z-index: 0;
 	clear:left;
@@ -172,7 +172,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#E2E2E2', end
 	text-align:center;
 }
 /* Menu li styles */
-#footer-region .menu li {
+.region-footer .menu li {
 	float: left;
 	list-style: none;
 	display:block;
@@ -182,13 +182,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#E2E2E2', end
 	position:relative;
 	right:50%;
 }
-#footer-region .menu li.collapsed {
+.region-footer .menu li.collapsed {
 }
-#footer-region .menu li.expanded {
+.region-footer .menu li.expanded {
 }
-#footer-region .menu li.leaf {
+.region-footer .menu li.leaf {
 }
-#footer-region .menu li a {
+.region-footer .menu li a {
 	display: block;
 	white-space: nowrap;
 	font-size: 1em;
@@ -198,25 +198,25 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#E2E2E2', end
 	color:#4C4C4C;
 	width: 184px;
 }
-#footer-region .menu li.last a {
+.region-footer .menu li.last a {
 	border-right: none;
 }
-#footer-region .menu li a:link, #footer-region .menu li a:visited {
+.region-footer .menu li a:link, .region-footer .menu li a:visited {
 }
-#footer-region .menu li a:hover, #footer-region .menu li a:focus, #footer-region .menu li a:active {
+.region-footer .menu li a:hover, .region-footer .menu li a:focus, .region-footer .menu li a:active {
 	font-weight:bold;
 	text-decoration:none;
 	color:black;
 }
-#footer-region .menu li.active a {
+.region-footer .menu li.active a {
 }
-#footer-region .menu li.active-trail a {
+.region-footer .menu li.active-trail a {
 }
-#footer-region .menu li.first {
+.region-footer .menu li.first {
 }
-#footer-region .menu li.last {
+.region-footer .menu li.last {
 }
-.block #footer-region .menu li.content {
+.block .region-footer .menu li.content {
 	padding: 0; /* extra class can equal a standard class */
 }
 

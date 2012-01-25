@@ -2,17 +2,16 @@
 
 /* General elements */
 
-#header-region .block {
+.region-header .block {
 	margin:0;
 	padding:0;
 }
 
-#header-region #block-block-1 {
-	position: absolute;
-    right: 150px;
+.region-header #block-block-1 {
+	float: right;
 }
 
-#header-region #block-fb_connect-login_dress_italian {
+.region-header #block-fb_connect-login_dress_italian {
 	position: absolute;
     right: 0;
     top: 0;
