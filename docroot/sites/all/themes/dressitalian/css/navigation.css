@@ -92,23 +92,17 @@ a:active, a:focus {
 /* Secondary-links div wrapper */
 #secondary-menu-bar {
 	background: rgb(255,255,255); /* Old browsers */
-	background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(200,200,200,1) 2%, rgba(255,255,255,1) 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(2%, rgba(200,200,200,1)), color-stop(100%, rgba(255,255,255,1))); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(200,200,200,1) 2%, rgba(255,255,255,1) 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(200,200,200,1) 2%, rgba(255,255,255,1) 100%); /* Opera11.10+ */
-	background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(200,200,200,1) 2%, rgba(255,255,255,1) 100%); /* IE10+ */
+	background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(200,200,200,1) 2%, rgba(255,255,255,1) 90%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(2%, rgba(200,200,200,1)), color-stop(90%, rgba(255,255,255,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(200,200,200,1) 2%, rgba(255,255,255,1) 90%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(200,200,200,1) 2%, rgba(255,255,255,1) 90%); /* Opera11.10+ */
+	background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(200,200,200,1) 2%, rgba(255,255,255,1) 90%); /* IE10+ */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#E2E2E2', endColorstr='#ffffff', GradientType=0 ); /* IE6-9 */
-	background: linear-gradient(top, rgba(255,255,255,1) 0%, rgba(200,200,200,1) 2%, rgba(255,255,255,1) 100%); /* W3C */
-	margin-left: -19px;
+	background: linear-gradient(top, rgba(255,255,255,1) 0%, rgba(200,200,200,1) 2%, rgba(255,255,255,1) 90%); /* W3C */
+	margin-left: -20px;
 	padding-left: 200px;
-	width: 797px;
+	width: 800px;
 	margin-bottom: 4em;
-}
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-#secondary-menu-bar {
-	margin-left: -21px;
-	width: 802px;
-}
 }
 /* Class on the ul */
 #secondary-menu-bar .secondary-menu {

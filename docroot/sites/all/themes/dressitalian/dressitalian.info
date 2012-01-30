@@ -9,6 +9,7 @@
   base theme  = adaptivetheme
 
 ;----------// Modular stylesheets
+  stylesheets[all][] = css/ie.css
   stylesheets[all][] = css/html-elements.css
   stylesheets[all][] = css/forms.css
   stylesheets[all][] = css/tables.css
@@ -27,17 +28,12 @@
   stylesheets[all][] = css/press.css
   stylesheets[all][] = css/king-bomba.css
 
- ; Disabled styles - un-comment if you need these.
+  ; Disabled styles - un-comment if you need these.
   ;stylesheets[all][] = css/admin-section.css
   ;stylesheets[all][] = css/panel-panes.css
 
   ; Dark stylesheet for building negative or dark designs.
   ;stylesheets[all][] = css/dark.css
-  
-;----------// IE Conditional Stylesheets
-  conditional-stylesheets[if IE 7][all][] = css/ie/ie-7.css
-  conditional-stylesheets[if IE 8][all][] = css/ie/ie-8.css
-  conditional-stylesheets[if lte IE 9][all][] = css/ie/ie-lte-9.css
 
 ;----------// Regions
   regions[sidebar_first]     = Sidebar first
@@ -131,7 +127,7 @@
   settings[bigscreen_sidebar_first]  = 25
   settings[bigscreen_sidebar_second] = 25
   settings[bigscreen_set_max_width]  = 1
-  settings[bigscreen_max_width]      = 1260
+  settings[bigscreen_max_width]      = 960
   settings[bigscreen_media_query]    = 'only screen and (min-width:1025px)'
 
   ; Tablet landscape
