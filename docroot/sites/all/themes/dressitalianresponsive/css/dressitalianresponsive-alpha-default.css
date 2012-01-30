@@ -33,3 +33,7 @@
 	display: inline-block;
 	padding: 0 26px;
 }
+.section-recipes .view-taxonomy-term li.taxonomy-page-item,
+.view-recommended-recipes li.taxonomy-page-item {
+	width: 300px;
+}

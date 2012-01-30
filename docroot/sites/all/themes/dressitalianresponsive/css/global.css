@@ -285,13 +285,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#E2E2E2', end
  * Recipes
 **/
 
-.section-recipes .view-taxonomy-term img.imagecache-recipe-category-page,
-.view-recommended-recipes img.imagecache-recipe-category-page {
+.section-recipes .view-taxonomy-term img,
+.view-recommended-recipes img {
 	border-radius: 4px;
 	-khtml-border-radius: 4px;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 	outline:none;
+	width:100%;
+	height:100%;
 }
 .section-recipes .view-taxonomy-term a:hover,
 .view-recommended-recipes a:hover {
@@ -337,7 +339,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#E2E2E2', end
 	padding: 0;
 	text-align: center;
 	vertical-align: top;
-	width: 300px;
+	width: 100%;
 }
 .view-recommended-recipes .views_slideshow_cycle_slide {
 	text-align:center;
