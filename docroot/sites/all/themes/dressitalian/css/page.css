@@ -661,6 +661,9 @@ hgroup {
 .ie6-7 .view-recommended-recipes li.taxonomy-page-item .article-type-recipe {
 	padding-bottom:20px;
 }
+.ie6-7 .links li {
+	float:right;
+}
  /*
  * IE6-8
  */
