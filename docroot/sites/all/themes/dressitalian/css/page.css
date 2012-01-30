@@ -652,10 +652,13 @@ hgroup {
 .ie6-7 .section-recipes .view-taxonomy-term li.taxonomy-page-item {
     float: right;
 }
-.ie6-7 .page-type-recipe .view-recommended-recipes li.taxonomy-page-item  .article-type-recipe{
+.ie6-7 .section-recipes .view-taxonomy-term li.taxonomy-page-item .article-type-recipe {
 	padding-bottom:20px;
 }
-.view-recommended-recipes li.taxonomy-page-item .article-type-recipe {
+.ie6-7 .page-type-recipe .view-recommended-recipes li.taxonomy-page-item .article-type-recipe{
+	padding-bottom:20px;
+}
+.ie6-7 .view-recommended-recipes li.taxonomy-page-item .article-type-recipe {
 	padding-bottom:20px;
 }
  /*
