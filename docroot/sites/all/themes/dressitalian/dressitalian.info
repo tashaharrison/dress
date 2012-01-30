@@ -9,7 +9,6 @@
   base theme  = adaptivetheme
 
 ;----------// Modular stylesheets
-  stylesheets[all][] = css/ie.css
   stylesheets[all][] = css/html-elements.css
   stylesheets[all][] = css/forms.css
   stylesheets[all][] = css/tables.css
