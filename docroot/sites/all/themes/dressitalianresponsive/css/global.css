@@ -293,7 +293,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#E2E2E2', end
 	-webkit-border-radius: 4px;
 	outline:none;
 	width:100%;
-	height:100%;
 }
 .section-recipes .view-taxonomy-term a:hover,
 .view-recommended-recipes a:hover {
