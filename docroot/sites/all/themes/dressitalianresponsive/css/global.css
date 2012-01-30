@@ -1,1 +1,424 @@
 /* This file will hold the main styles for your website. */
+
+/** 
+ * HTML elements
+**/
+
+html {
+  font-size:90%; /* 16px x 75% = 12px */
+}
+body {
+  color: #000000;
+  font-family:'CantarellRegular',Verdana,Geneva,"DejaVu Sans",sans-serif;
+  line-height:1.5;
+}
+h1 {
+  font-size:1.75em;
+  margin:0 0 .5em;
+  padding:0;
+}
+h1#page-title {
+	border-bottom: 2px solid #CCC;
+	margin-bottom: 20px;
+	color: black;
+}
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+	color: #666;
+	text-decoration:none;
+}
+h2 {
+  font-size:1.45em;
+  color:black;
+}
+
+h3 {
+  font-size:1.25em;
+}
+
+h4 {
+  font-size:1.1em;
+}
+h5,
+h6 {
+  font-size:1em;
+}
+a {
+	text-decoration:none;
+	color: #666;
+}
+a:link {
+	text-decoration:none;
+}
+a:visited {
+	text-decoration:underline;
+}
+a:hover {
+	text-decoration:underline;
+	color:#000;
+}
+a:active {
+}
+a.active {
+}
+/* Global focus style for links. */
+a:active, a:focus {
+}
+
+/** 
+ * Structural elements
+**/
+
+.page {
+}
+#zone-header,
+#zone-content,
+#zone-footer {
+	background: rgb(255,255,255); /* Old browsers */
+	box-shadow: 0 35px 50px #A8A8A8;
+	margin:0 1em;
+}
+#zone-content,
+#zone-footer {
+	padding: 10px 20px 0;
+}
+.region-branding {
+	margin-left:30px;
+}
+.region-header-second {
+	margin-right:40px;
+}
+#zone-header {
+	padding-top: 1em;
+}
+#region-menu {
+	margin: 0;
+}
+.region-footer-second {
+	padding-bottom: 1em;
+}
+
+/** 
+ * Header elements
+**/
+
+.social-links {
+	float:right;
+}
+.social-links a {
+    display: inline-block;
+    margin-right: 6px;
+    opacity: 0.8;
+    width: 20px;
+}
+.social-links a:hover {
+    opacity: 1;
+}
+#region-branding {
+	z-index:1;
+}
+
+/** 
+ * Navigation
+**/
+
+#region-menu {
+	font-weight:bold;
+	text-align:center;
+}
+#region-menu .navigation {
+}
+#region-menu .navigation a {
+	color:#4C4C4C;
+	display: inline-block;
+	font-size: 1.1em;
+    padding: 2px 20px;
+}
+#region-menu .navigation a:hover {
+	font-weight:bold;
+	text-decoration:none;
+	color:black;
+}
+#region-header-second {
+	position:absolute;
+	top:10px;
+	right:0;
+}
+/* Primary-links */
+/* Class on the ul */
+#region-menu .navigation #main-menu {
+	padding:0.6em 0;
+}
+/* Modify the margin to set tab spacings. */
+#region-menu .navigation #main-menu li {
+}
+#region-menu .navigation #main-menu li a {
+}
+/* Set pseudo class styles. */
+#region-menu .navigation #main-menu li a:link {
+}
+#region-menu .navigation #main-menu li a:visited {
+}
+#region-menu .navigation #main-menu li a:hover {
+	font-weight:bold;
+	text-decoration:none;
+	color:black;
+}
+#region-menu .navigation #main-menu li a:focus {
+}
+#region-menu .navigation #main-menu li a:active {
+}
+/* Primary first and last classes. */
+#region-menu .navigation #main-menu li.first {
+}
+#region-menu .navigation #main-menu li.last {
+}
+/* Active trail classes. */
+#region-menu .navigation #main-menu li.active {
+}
+#region-menu .navigation #main-menu li.active-trail {
+}
+#region-menu .navigation #main-menu li.active-trail a {
+}
+
+/* Secondary menu */
+/* Class on the ul */
+#region-menu .navigation #secondary-menu {
+	background: rgb(255,255,255); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(200,200,200,1) 2%, rgba(255,255,255,1) 90%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(2%, rgba(200,200,200,1)), color-stop(90%, rgba(255,255,255,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(200,200,200,1) 2%, rgba(255,255,255,1) 90%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(200,200,200,1) 2%, rgba(255,255,255,1) 90%); /* Opera11.10+ */
+	background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(200,200,200,1) 2%, rgba(255,255,255,1) 90%); /* IE10+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#E2E2E2', endColorstr='#ffffff', GradientType=0 ); /* IE6-9 */
+	background: linear-gradient(top, rgba(255,255,255,1) 0%, rgba(200,200,200,1) 2%, rgba(255,255,255,1) 90%); /* W3C */
+	padding-top: 0.8em;
+}
+/* Modify the margin to set tab spacings. */
+#region-menu .navigation #secondary-menu li {
+}
+#region-menu .navigation #secondary-menu li a {
+}
+/* Set pseudo class styles. */
+#region-menu .navigation #secondary-menu li a:link {
+}
+#region-menu .navigation #secondary-menu li a:visited {
+}
+#region-menu .navigation #secondary-menu li a:hover {
+}
+#region-menu .navigation #secondary-menu li a:focus {
+}
+#region-menu .navigation #secondary-menu li a:active {
+}
+/* Secondary first and last classes. */
+#region-menu .navigation #secondary-menu li.first {
+}
+#region-menu .navigation #secondary-menu li.last {
+}
+/* Active trail classes. */
+#region-menu .navigation #secondary-menu li.active {
+}
+#region-menu .navigation #secondary-menu li.active-trail {
+}
+#region-menu .navigation #secondary-menu li.active-trail a {
+}
+
+/* Footer menus */
+#region-footer-first #block-menu-menu-footer-menu {
+	overflow:hidden;
+	margin-bottom: 14px;
+}
+#region-footer-first #block-menu-menu-footer-menu .menu {
+	font-size: 14px;
+	z-index: 0;
+	clear:left;
+	list-style:none;
+	margin:0;
+	padding:0;
+	text-align:center;
+}
+/* Menu li styles */
+#region-footer-first .menu li {
+	list-style: none;
+	display:block;
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+#region-footer-first .menu li.collapsed {
+}
+#region-footer-first .menu li.expanded {
+}
+#region-footer-first .menu li.leaf {
+}
+#region-footer-first .menu li a {
+	display: block;
+	white-space: nowrap;
+	font-size: 1em;
+	padding: 4px 0;
+	text-decoration: none;
+	text-transform: uppercase;
+	color:#4C4C4C;
+	width: 100%;
+}
+#region-footer-first .menu li a:link, 
+#region-footer-first .menu li a:visited {
+}
+#region-footer-first .menu li a:hover, 
+#region-footer-first .menu li a:focus, 
+#region-footer-first .menu li a:active {
+	text-decoration:none;
+	color:black;
+}
+#region-footer-first .menu li.active a {
+}
+#region-footer-first .menu li.active-trail a {
+}
+#region-footer-first .menu li.first {
+}
+#region-footer-first .menu li.last {
+}
+#region-footer-first .block .menu li.content {
+	padding: 0; /* extra class can equal a standard class */
+}
+
+/** 
+ * Recipes
+**/
+
+.section-recipes .view-taxonomy-term img.imagecache-recipe-category-page,
+.view-recommended-recipes img.imagecache-recipe-category-page {
+	border-radius: 4px;
+	-khtml-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	outline:none;
+}
+.section-recipes .view-taxonomy-term a:hover,
+.view-recommended-recipes a:hover {
+	text-decoration:none;
+}
+.section-recipes .view-taxonomy-term .field-name-title h2 a,
+.view-recommended-recipes h2.field-title a,
+.view-recommended-recipes .views-field-title h2 a,
+.section-recipes .view-taxonomy-term .field-name-italian-title-linked-to-node a,
+.view-recommended-recipes .views-field-field-recipe-italian-title a {
+	font-size: 16px;
+	font-weight: bold;
+}
+.section-recipes .view-taxonomy-term .field-name-title h2 a,
+.view-recommended-recipes h2.field-name-title a,
+.view-recommended-recipes .views-field-title h2 a {
+	color:#666;
+}
+.section-recipes .view-taxonomy-term .field-name-italian-title-linked-to-node {
+	line-height:1.2;
+}
+.view-recommended-recipes .views-field-title h2,
+.section-recipes .view-taxonomy-term .field-name-title h2 {
+	line-height:0.9;
+	padding-bottom: 4px;
+}
+.section-recipes .view-taxonomy-term ul.taxonomy-page-list,
+.view-recommended-recipes ul.taxonomy-page-list {
+	list-style:none;
+	margin:0;
+	text-align:center;
+}
+.section-recipes .view-taxonomy-term ul.taxonomy-page-list .article {
+	margin:0;
+}
+.section-recipes .view-taxonomy-term li.taxonomy-page-item,
+.view-recommended-recipes li.taxonomy-page-item {
+	color: #444;
+	display: inline-block;
+	list-style-type: none;
+	margin: 0 1px 10px;
+	overflow: hidden;
+	padding: 0;
+	text-align: center;
+	vertical-align: top;
+	width: 300px;
+}
+.view-recommended-recipes .views_slideshow_cycle_slide {
+	text-align:center;
+}
+.view-recommended-recipes .view-content {
+	padding-top: 10px;
+}
+.view-recommended-recipes .views-field-field-recipe-italian-title {
+	margin-top:5px;
+}
+/* Category specific colors */
+.views-field-field-recipe-italian-title span.Pesce a {
+	color:#3570c7;
+}
+.views-field-field-recipe-italian-title span.Antipasti a {
+	color:#808080;
+}
+.views-field-field-recipe-italian-title span.Carne a {
+	color:#800000;
+}
+.views-field-field-recipe-italian-title span.Primi-Piatti a {
+	color:#D96704;
+}
+.views-field-field-recipe-italian-title span.Verdure a {
+	color:#034d03;
+}
+/** 
+ * @font-face imports
+**/
+
+@font-face {
+    font-family: 'CantarellRegular';
+    src: url('fonts/Cantarell-Regular-webfont.eot');
+    src: url('fonts/Cantarell-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/Cantarell-Regular-webfont.woff') format('woff'),
+         url('fonts/Cantarell-Regular-webfont.ttf') format('truetype'),
+         url('fonts/Cantarell-Regular-webfont.svg#CantarellRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'CantarellOblique';
+    src: url('fonts/Cantarell-Oblique-webfont.eot');
+    src: url('fonts/Cantarell-Oblique-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/Cantarell-Oblique-webfont.woff') format('woff'),
+         url('fonts/Cantarell-Oblique-webfont.ttf') format('truetype'),
+         url('fonts/Cantarell-Oblique-webfont.svg#CantarellOblique') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'CantarellBold';
+    src: url('fonts/Cantarell-Bold-webfont.eot');
+    src: url('fonts/Cantarell-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/Cantarell-Bold-webfont.woff') format('woff'),
+         url('fonts/Cantarell-Bold-webfont.ttf') format('truetype'),
+         url('fonts/Cantarell-Bold-webfont.svg#CantarellBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'CantarellBoldOblique';
+    src: url('fonts/Cantarell-BoldOblique-webfont.eot');
+    src: url('fonts/Cantarell-BoldOblique-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/Cantarell-BoldOblique-webfont.woff') format('woff'),
+         url('fonts/Cantarell-BoldOblique-webfont.ttf') format('truetype'),
+         url('fonts/Cantarell-BoldOblique-webfont.svg#CantarellBoldOblique') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ShelleyAllegroScriptRegular';
+    src: url('fonts/shelley-allegroscript-webfont.eot');
+    src: url('fonts/shelley-allegroscript-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/shelley-allegroscript-webfont.woff') format('woff'),
+         url('fonts/shelley-allegroscript-webfont.ttf') format('truetype'),
+         url('fonts/shelley-allegroscript-webfont.svg#') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+

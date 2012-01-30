@@ -1,1 +1,6 @@
 /* This file will hold styles that are loaded using the same media query as the narrow grid. */
+#region-menu .navigation #secondary-menu {
+	width: 600px;
+	margin-left: -160px;
+	padding-left: 160px;
+}

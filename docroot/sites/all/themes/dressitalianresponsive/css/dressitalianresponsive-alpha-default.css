@@ -1,1 +1,35 @@
 /* This file will hold styles that are loaded using the same media query as the narrow grid. */
+#region-header-second {
+	position:relative;
+	top:0;
+}
+#zone-header,
+#zone-content,
+#zone-footer {
+	padding: 10px 20px 0;
+	margin:0 auto;
+}
+#region-menu {
+	margin-left: 20px;
+}
+#region-menu .navigation a {
+	color:#4C4C4C;
+	display: inline-block;
+	font-size: 1em;
+}
+#region-menu .navigation #main-menu {
+	padding: 0;
+}
+#region-menu .navigation #main-menu li a {
+    padding: 13px 12px;
+}
+#region-menu .navigation #secondary-menu {
+    padding-top: 0;
+}
+#region-menu .navigation #secondary-menu li a {
+    padding: 14px 12px;
+}
+#region-footer-first .menu li {
+	display: inline-block;
+	padding: 0 26px;
+}

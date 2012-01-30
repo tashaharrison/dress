@@ -1,1 +1,18 @@
 /* This file will hold styles that are loaded using the same media query as the wide grid. */
+#region-menu .navigation #secondary-menu {
+	width: 1040px;
+	margin-left: -200px;
+	padding-left: 200px;
+}
+#region-menu {
+	margin-left: -20px;
+}
+#region-menu .navigation a {
+	font-size: 1.3em;
+}
+#region-menu .navigation #main-menu li a {
+	padding: 10px 30px;
+}
+#region-menu .navigation #secondary-menu li a {
+	padding: 10px 30px;
+}

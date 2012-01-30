@@ -133,10 +133,7 @@
 .field-name-field-recipe-cookingtime h2 {
 	font-size:1em;
 }
-.view-recommended-recipes .field-title,
-.view-recommended-recipes .views-field-field-recipe-italian-title {
-	line-height: 0.9;
-}
+
 /* Category specific colors */
 .subsection-pesce .field-name-italian-title-linked-to-node a,
 .subsection-pesce .field-name-field-recipe-italian-title,
@@ -285,7 +282,10 @@
 .view-recommended-recipes .view-content {
 	padding-top: 10px;
 }
-
+.view-recommended-recipes .field-title,
+.view-recommended-recipes .views-field-field-recipe-italian-title {
+	line-height: 0.9;
+}
 /* Recipe category page - GREY */
 
 .grey .article-type-recipe .group-middle {
