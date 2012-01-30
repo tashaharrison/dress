@@ -652,17 +652,22 @@ hgroup {
 .ie6-7 .section-recipes .view-taxonomy-term li.taxonomy-page-item {
     float: right;
 }
-.ie6-7 .page-type-recipe .view-recommended-recipes li.taxonomy-page-item {
-	padding-bottom:10px;
+.ie6-7 .page-type-recipe .view-recommended-recipes li.taxonomy-page-item  .article-type-recipe{
+	padding-bottom:20px;
 }
-
+.view-recommended-recipes li.taxonomy-page-item .article-type-recipe {
+	padding-bottom:20px;
+}
  /*
  * IE6-8
  */
  
 .ie6-8 div.container {
 	background: url("images/bggradient.png") repeat-y; 
+	padding-left:50px;
+	padding-right:50px;
 }
 .ie6-8 #secondary-menu {
-	margin-left: -17px;
+	margin-left: -18px;
+	width:798px;
 }
