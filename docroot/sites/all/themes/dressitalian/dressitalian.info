@@ -22,13 +22,10 @@
   stylesheets[all][] = css/fonts.css
   stylesheets[all][] = css/recipe.css
   stylesheets[all][] = css/product.css
-  stylesheets[all][] = css/travel-blog.css
   stylesheets[all][] = css/maps.css
-	stylesheets[all][] = css/modalframe.child.css
-	stylesheets[all][] = css/modalframe.parent.css
-	stylesheets[all][] = css/press.css
-	stylesheets[all][] = css/king-bomba.css
-	stylesheets[all][] = css/latest-news.css
+  stylesheets[all][] = css/blog.css
+  stylesheets[all][] = css/press.css
+  stylesheets[all][] = css/king-bomba.css
 
  ; Disabled styles - un-comment if you need these.
   ;stylesheets[all][] = css/admin-section.css

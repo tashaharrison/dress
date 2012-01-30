@@ -1,0 +1,99 @@
+/* CSS Document */
+.section-blog .sidebar .menu li a {
+	padding: 7px 0;
+	display: block;
+	text-align:center;
+	font-size: 1.1em;
+	font-weight: bold;
+}
+.section-blog .sidebar .menu li a:hover {
+	color:white;
+	background-color:black;
+	text-decoration:none;
+}
+.section-blog .sidebar .menu li {
+	margin: 0;
+	padding: 0;
+}
+.section-blog ul {
+	list-style-type:none;
+	margin: 0;
+}
+.section-blog ul li {
+	list-style:none;
+}
+.section-blog .taxonomy-page-list li,
+.blog-page-list li {
+	border-bottom: 2px solid silver;
+	padding: 10px 10px 14px 0;
+}
+.section-blog .block .item-list ul.blog-page-list li {
+	margin-top:1em;
+}
+.section-blog .taxonomy-page-list li.views-row-last,
+.blog-page-list li.views-row-last {
+	border-bottom: none;
+}
+.section-blog .taxonomy-page-list li.views-row-first,
+.blog-page-list li.views-row-first {
+	padding: 0 10px 14px 0;
+}
+.more-link, .views-field-view-node, .field-name-node-link {
+	font-weight:bold;
+	text-align:left;
+	clear:both;
+}
+#section-blog .sidebar .menu li.active-trail a {
+	font-weight:bold;
+}
+#section-blog .sidebar .menu li a:hover {
+	font-weight:bold;
+	text-decoration:none;
+	color:black;
+}
+#section-blog .sidebar .menu li {
+	margin:10px 0;
+}
+.section-blog .sidebar .block h3 {
+	font-size: 1em;
+	color: #999;
+}
+.section-blog .sidebar .block p {
+	font-size: 0.86em;
+	color:#000000;
+}
+.section-blog .sidebar .view-content ul {
+	padding: 0.1em;
+	margin:8px 0 0 0;
+}
+.page-type-blog .node-type-travel_blog .field-links {
+    position: absolute;
+    right: -245px;
+    top: -92px;
+}
+.field-links .links li.comment_forbidden  {
+	display: inline-block;
+    padding: 3em 1em 0 0;
+}
+
+.section-blog .sidebar .menu li a {
+    display: block;
+    font-size: 1.1em;
+    font-weight: bold;
+    padding: 7px 0;
+    text-align: center;
+}
+.section-blog .sidebar .menu li a:hover {
+  background-color: black;
+	color: white;
+	text-decoration: none;
+}
+.section-blog .rpb {
+	display:none;	
+}
+.section-blog .region-sidebar-second {
+	margin-top: 36px;
+}
+.page-type-blog .article ul.links {
+    margin: -100px -266px 0 0;
+}

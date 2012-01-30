@@ -1,11 +1,11 @@
 /* Press */
 
-.views_slideshow_thumbnailhover_div_breakout_teaser {
-  display: inline-block;
+.views-slideshow-pager-field-item {
+	display: inline-block;
 	padding: 5px 5px 25px;
+	float:left;
 }
-
-.views_slideshow_thumbnailhover_div_breakout_teaser img {
+.views-slideshow-pager-field-item img {
   box-shadow: 5px 5px 5px #888888;
 	border: none;
 }
@@ -19,5 +19,21 @@
 }
 
 #views_slideshow_thumbnailhover_teaser_section_press-page {
-  margin: 0 auto;
+	  margin: 0 auto;
+}
+#cboxLoadedContent{
+}
+#cboxTitle,
+#cboxCurrent,
+#cboxNext,
+#cboxPrevious,
+#cboxClose
+{
+	font-size: 1.4em;
+}
+#cboxCurrent {
+	margin-left: 40px;
+}
+.cboxPhoto {
+	margin-bottom: 10px;
 }

@@ -3,26 +3,25 @@
 .section-products {
 }
 */
-.page-type-product .nd-region-left {
+.page-type-product .group-left {
 	width: 29%;
 }
-.page-type-product .nd-two-sidebars .nd-region-middle {
-	margin-left: 29%;
-	margin-right: 38%;
+.page-type-product .group-middle {
+	width: 35%;
 }
-.page-type-product .nd-region-right {
+.page-type-product .group-right {
 	width: 33%;
 }
 .section-products .field-title h1 {
 	color:#7D0000;
 }
-.section-products .field-body h2 {
+.section-products .field-name-body h2 {
 	color:#7D0000;
 }
-.section-products .field-body a {
+.section-products .field-name-body a {
 	color:#7D0000;
 }
-.page-type-product .field-ds-group-product-info-boxout {
+.page-type-product .group-product-info-boxout {
 	border:2px solid silver;
 	border-radius: 4px;
 	-khtml-border-radius: 4px;
@@ -32,7 +31,7 @@
 	line-height: 1.3;
 	margin-left: 24px;
 }
-.page-type-product .field-label {
+.page-type-product .view-recommended-recipes h2 {
 	color: #540E16;
 	font-size: 1.5em;
 	margin-bottom: 4px;
@@ -43,7 +42,7 @@
 .page-type-product .field-product-nutritionalinfo {
 	margin-top: 18px;
 }
-.subsection-pasta-sauces .field-body .field-label,
+.subsection-pasta-sauces .field-name-body .field-label,
 .subsection-pasta-sauces .field-ds-group-product-info-boxout .field-label,
 .subsection-pasta-sauces #page-title {
 	color:#540E16;
@@ -71,10 +70,10 @@
 	margin-top: 16px;
 	width: 335px;
 }
-.section-products .field-product-buy-on {
+.section-products .field-name-field-product-buy-on {
 	text-align: center;
 }
-.section-products .field-product-buy-on a {
+.section-products .field-name-field-product-buy-on a {
 	background: url(../images/asda-logo.gif) no-repeat 0 0 transparent;
 	text-indent: -10000px;
 	overflow: hidden;
@@ -87,4 +86,7 @@
 }
 .views-fluid-grid h2 {
 	clear:both;
+}
+.section-products .article {
+	margin:0;
 }

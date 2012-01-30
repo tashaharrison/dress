@@ -37,11 +37,10 @@
 	width: 816px;
 }
 #columns {
-	margin-top: 4em;
 }
 @media screen and (-webkit-min-device-pixel-ratio:0) {
-.region-header {
-	width: 830px;
+div#secondary-menu-bar {
+	width: 812px;
 }
 }
 #mission {
@@ -537,15 +536,16 @@ a.boxout-grey {
 .field-links .links li {
 	padding:0;
 }
-.field-links .links .dff_like, .field-links .links .tweetbutton, .field-links .links .google_plusone, .field-links .links .print_html {
-	float:right;
-}
 .google_plusone .g-plusone-wrapper {
 	margin: 0.12em 0.75em 1em 0.7em !important;
 }
 .links .print_html a img {
 	padding-left:50px;
 	outline:none;
+}
+.links .print_html {
+	float:right;
+	padding:0;
 }
 .links .print_html a {
 	background: url("../images/print-icon.png") no-repeat scroll left top white;
@@ -554,7 +554,6 @@ a.boxout-grey {
 	height: 47px;
 	overflow:hidden;
 	margin-top: 15px;
-	margin-right:14px;
 }
 .links .print_html a:hover {
 	background: url("../images/print-icon.png") no-repeat scroll -50px top white;
@@ -641,6 +640,7 @@ a.boxout-grey {
 }
 .views_slideshow_cycle_slide {
 	width: 100% !important;
+	text-align:center;
 }
 .chev {
 	color:black;
@@ -650,4 +650,7 @@ img {
 	-khtml-border-radius: 4px;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
+}
+hgroup {
+	height:0;
 }

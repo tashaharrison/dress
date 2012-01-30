@@ -13,6 +13,40 @@ input {
 input.title {
 	font-size:1.5em;
 }
+input.form-submit, a.button {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #E4E4E4 #D2D2D2 #B4B4B4;
+    border-radius: 20px 20px 20px 20px;
+    border-style: solid;
+    border-width: 1px;
+    color: #000000;
+    cursor: pointer;
+    font-family: "Lucida Grande",Verdana,sans-serif;
+    font-size: 1.077em;
+    font-weight: normal;
+    padding: 8px 17px;
+    text-align: center;
+}
+a.button:link, a.button:visited, a.button:hover, a.button:active {
+    color: #5A5A5A;
+    text-decoration: none;
+}
+input.form-submit:active {
+    background: none repeat scroll 0 0 #666666;
+    border-color: #555555;
+    color: #FFFFFF;
+    text-shadow: 0 -1px 0 #222222;
+}
+input.form-button-disabled, input.form-button-disabled:active {
+    background: none repeat scroll 0 0 #EEEEEE;
+    border-color: #EEEEEE;
+    color: #999999;
+    text-shadow: none;
+}
 input.text, input.title, textarea, select {
 	border:1px solid silver;
 	margin:.375em 0;

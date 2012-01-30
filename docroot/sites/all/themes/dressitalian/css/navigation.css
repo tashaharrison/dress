@@ -102,6 +102,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#E2E2E2', end
 	margin-left: -19px;
 	padding-left: 200px;
 	width: 797px;
+	margin-bottom: 4em;
 }
 @media screen and (-webkit-min-device-pixel-ratio:0) {
 #secondary-menu-bar {

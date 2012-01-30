@@ -47,10 +47,15 @@
 
 /* Links. */
 .article ul.links {
-  margin: 0;
+    float: right;
+    margin: -96px 0 0;
 }
 .article ul.links li {
   padding: 0 1em 0 0;
+}
+.article ul.links li.service-links-facebook-like {
+	position: relative;
+    top: 3px;
 }
 .article ul.links li a {}
 .article ul.links li.node_read_more a {}

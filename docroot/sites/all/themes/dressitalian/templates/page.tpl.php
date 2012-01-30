@@ -46,11 +46,7 @@
         <?php print render($title_prefix); ?>
         <?php if ($title || $primary_local_tasks || $secondary_local_tasks || $action_links = render($action_links)): ?>
           <header>
-            <?php if ($title): ?>
-              <h1 id="page-title"><?php print $title; ?></h1>
-            <?php endif; ?>
-
-            <?php if ($primary_local_tasks || $secondary_local_tasks || $action_links): ?>
+             <?php if ($primary_local_tasks || $secondary_local_tasks || $action_links): ?>
               <div id="tasks">
                 <?php if ($primary_local_tasks): ?>
                   <ul class="tabs primary clearfix"><?php print render($primary_local_tasks); ?></ul>
@@ -63,6 +59,12 @@
                 <?php endif; ?>
               </div>
             <?php endif; ?>
+            
+            <?php if ($title): ?>
+              <h1 id="page-title"><?php print $title; ?></h1>
+            <?php endif; ?>
+
+       
           </header>
         <?php endif; ?>
         <?php print render($title_suffix); ?>

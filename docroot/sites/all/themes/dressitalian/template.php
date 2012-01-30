@@ -41,40 +41,26 @@ function dressitalian_preprocess_html(&$vars) {
   );
   load_subtheme_ie_styles($ie_files, 'dressitalian');
   // */
-}
-
-/* -- Delete this line if you want to use this function
-function dressitalian_process_html(&$vars) {
-}
-// */
-
-/**
- * Override or insert variables into the page templates.
+  /**
+ 
+/** 
+ * Add subsection class in the body tag
  */
-/*function dressitalian_preprocess_page(&$vars, $hook) {
-
-$classes = explode(' ', $vars['body_classes']);
-if ($index = array_search(preg_replace('![^abcdefghijklmnopqrstuvwxyz0-9-_]+!s', '', 'page-'. drupal_strtolower(arg(0))), $classes)) {
-  unset($classes[$index]);
+  
+    if (theme_get_setting('extra_page_classes')) {
+    // Classes for body element. Allows advanced theming based on context
+    // (home page, node of certain type, etc.), cheers Zen.
+    if (!$vars['is_front']) {
+	// Add unique class for each page.
+      $path = drupal_get_path_alias($_GET['q']);
+	// Add unique class for each website section.
+	  list($section,$subsection, ) = explode('/', $path);
+	  if (isset ($subsection)) {
+		  $vars['classes_array'][] = drupal_html_class('subsection-' . $subsection);
+	  }
+    }
+  }
 }
-$classes = str_replace('node-type-', 'page-type-', $classes);
-$classes = str_replace('sidebar-left', 'sidebar-first', $classes);
-$classes = str_replace('sidebar-right', 'sidebar-last', $classes);
-$path_alias = drupal_get_path_alias($_GET['q']);
-if (!$vars['is_front']) {
-  list($section, ) = explode('/', $path_alias, 2);
-  $classes[] = safe_string('section-'. $section);
-}
-if (!$vars['is_front']) {
-  list($section,$section2,) = explode('/', $path_alias, 3);
-  $classes[] = safe_string('subsection-'. $section2);
-}
-$vars['classes'] = trim(implode(' ', $classes));
-}*/
-/* -- Delete this line if you want to use these functions
-function dressitalian_process_page(&$vars) {
-}
-// */
 
 /**
  * Override or insert variables into the node templates.
@@ -162,28 +148,24 @@ if (function_exists('_nd_preprocess_node')) {
  * @param string $content The content to render.
  * @param array $field Collection of field properties.
  */
-function dressitalian_ds_field($content, $field) {
+function dressitalian_field($variables) {
   $output = '';
 
-  if (!empty($content)) {
-    if ($field['type'] == 'ds') {
-
-      $output .= '<div class="field '. $field['class'] .'">';
-      // Above label.
-      if ($field['labelformat'] == 'above') {
-        $output .= '<div class="field-label">'. $field['title'] .' </div>';
-      }
-      // Inline label
-      if ($field['labelformat'] == 'inline') {
-        $output .= '<div class="field-label-inline-first">'. $field['title'] .': </div>';
-      }
-      $output .= $content;
-      $output .= '</div>';
-    }
-    else {
-      $output = $content;
-    }
+ // Render the label, if it's not hidden.
+  if (!$variables['label_hidden']) {
+    $output .= '<div class="field-label"' . $variables['title_attributes'] . '>' . $variables['label'] . '&nbsp;</div>';
   }
+
+  // Render the items.
+  $output .= '<div class="field-items"' . $variables['content_attributes'] . '>';
+  foreach ($variables['items'] as $delta => $item) {
+    $classes = 'field-item ' . ($delta % 2 ? 'odd' : 'even');
+    $output .= '<div class="' . $classes . '"' . $variables['item_attributes'][$delta] . '>' . drupal_render($item) . '</div>';
+  }
+  $output .= '</div>';
+
+  // Render the top-level DIV.
+  $output = '<div class="' . $variables['classes'] . '"' . $variables['attributes'] . '>' . $output . '</div>';
 
   return $output;
 }

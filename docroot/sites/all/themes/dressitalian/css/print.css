@@ -45,16 +45,16 @@ img.print-logo {border: 40px;}
 }
 .print-taxonomy li {display: inline;}
 .print-content {}
-.print-content .field-recipe-italian-title {
+.print-content .field-name-field-recipe-italian-title {
 	color: #666666;
 	font-size:18pt;
 	font-weight: bold;
 	margin-bottom:0;
 }
-.print-content .field-title h2 {
+.print-content .field-name-title h2 {
 	margin-top:0;
 }
-.print-content .field-recipe-incredients {
+.print-content .field-name-field-recipe-ingredients {
 	border: 6px dashed #DDDDDD;
     border-radius: 18px;
 	-khtml-border-radius: 18px;
@@ -65,17 +65,17 @@ img.print-logo {border: 40px;}
     padding: 16px;
 	width:280px;
 }
-.print-content .field-recipe-incredients .field-item {
+.print-content .field-name-field-recipe-ingredients .field-item {
 	margin-top:10px;
 }
-.print-content .field-recipe-instructioins p {
-	margin:0;
+.print-content .field-name-field-recipe-instructions p {
+   margin-bottom: 6px
 }
-.print-content .field-recipe-instructioins p br {
+.print-content .field-name-field-recipe-instructions p br {
 	display: block;
    margin-bottom: 6px;
 }
-.print-content .field-recipe-instructioins {
+.print-content .field-name-field-recipe-instructions {
 	margin-top: 20px;
 }
 .print-hr {
@@ -95,15 +95,19 @@ img.print-logo {border: 40px;}
 	text-align: center;
 	clear: right;
 }
-.print-content .field-terms {
+.print-content .field-name-taxonomy-vocabulary-1 {
     display: inline;
-    left: 140px;
+    left: 100px;
     position: absolute;
-    top: 112px;
+    top: 88px;
 	color: #666666;
     font-size: 18pt;
     font-weight: normal;
     text-decoration: none;
+}
+.print-content .field-name-taxonomy-vocabulary-1 li
+{
+list-style: none;
 }
 .print-content .links a {
 	color:#FFFFFF;
