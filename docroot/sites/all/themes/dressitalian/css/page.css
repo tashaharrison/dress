@@ -643,14 +643,14 @@ hgroup {
  * IE6/7
  */
 .ie6-7 .view-recommended-recipes li.taxonomy-page-item {
-    float: right;
+    float: left;
 	padding-bottom:10px;
 }
 .ie6-7 .views-slideshow-pager-field-item {
-    float: right;
+    float: left;
 }
 .ie6-7 .section-recipes .view-taxonomy-term li.taxonomy-page-item {
-    float: right;
+    float: left;
 }
 .ie6-7 .section-recipes .view-taxonomy-term li.taxonomy-page-item .article-type-recipe {
 	padding-bottom:20px;
@@ -673,7 +673,7 @@ hgroup {
 	padding-left:50px;
 	padding-right:50px;
 }
-.ie6-8 #secondary-menu {
+.ie6-8 #secondary-menu-bar {
 	margin-left: -18px;
 	width:798px;
 }
