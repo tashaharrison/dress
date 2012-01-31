@@ -1,9 +1,0 @@
-<?php
-// $Id$
-
-function automodal_full_width_automodal_alter(&$settings, $selector) {
-  if ($selector == '.automodal') {
-    $settings['width'] = '100%';
-    $settings['height'] = 600; 
-  }
-}

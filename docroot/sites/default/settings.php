@@ -506,3 +506,4 @@ require('/var/www/site-php/dressitalian/dressitalian-settings.inc');
 
   include "sites/all/modules/contrib/fb/fb_url_rewrite.inc";
   include "sites/all/modules/contrib/fb/fb_settings.inc";
+  header('P3P: CP="We do not have a P3P policy"');
