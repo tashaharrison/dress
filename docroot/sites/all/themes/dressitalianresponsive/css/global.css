@@ -77,7 +77,13 @@ a:active, a:focus {
 #zone-footer {
 	background: rgb(255,255,255); /* Old browsers */
 	box-shadow: 0 35px 50px #A8A8A8;
+}
+#zone-header,
+#zone-content {
 	margin:0 1em;
+}
+#zone-footer {
+	margin:0 1em 6em;
 }
 #zone-content,
 #zone-footer {
@@ -354,13 +360,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#E2E2E2', end
 }
 
 /* Facebook recipe of the week */
-#zone-content {
-	margin-bottom: 6em;
-}
-.page-recipes-fb-recipe-of-the-week #zone-header, 
-.page-recipes-fb-recipe-of-the-week #zone-content, 
-.page-recipes-fb-recipe-of-the-week #zone-footer {
-    margin: 0 3em;
+.page-recipes-fb-recipe-of-the-week #zone-content {
+    margin: 0 3em 6em;
 }
 .page-recipes-fb-recipe-of-the-week .view-recommended-recipes li.taxonomy-page-item {
 	border-bottom: none;
