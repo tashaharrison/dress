@@ -19,7 +19,7 @@ h1 {
 }
 h1#page-title {
 	border-bottom: 2px solid #CCC;
-	margin-bottom: 20px;
+	margin-bottom: 0.5em;
 	color: black;
 }
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
@@ -70,6 +70,7 @@ a:active, a:focus {
 
 .page {
 }
+
 /* Zones */
 #zone-header,
 #zone-content,
@@ -140,7 +141,7 @@ a:active, a:focus {
 	color:black;
 }
 
-/* Primary-links */
+/* Main menu */
 /* Class on the ul */
 #region-menu .navigation #main-menu {
 	padding:0.6em 0;
@@ -297,10 +298,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#E2E2E2', end
 }
 .section-recipes .view-taxonomy-term .field-name-title h2 a,
 .view-recommended-recipes h2.field-title a,
-.view-recommended-recipes .views-field-title h2 a,
+.view-recommended-recipes .views-field-title h2 a {
+	font-size: 1.1em;
+	font-weight: bold;
+}
 .section-recipes .view-taxonomy-term .field-name-italian-title-linked-to-node a,
 .view-recommended-recipes .views-field-field-recipe-italian-title a {
-	font-size: 16px;
+	font-size: 1.6em;
 	font-weight: bold;
 }
 .section-recipes .view-taxonomy-term .field-name-title h2 a,
@@ -330,12 +334,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#E2E2E2', end
 	color: #444;
 	display: inline-block;
 	list-style-type: none;
-	margin: 0 1px 10px;
+	margin: 0 0 1.2em;
 	overflow: hidden;
-	padding: 0;
+	padding: 0 0 1em 0;
 	text-align: center;
 	vertical-align: top;
 	width: 100%;
+	border-bottom: 2px solid #CCC;
 }
 .view-recommended-recipes .views_slideshow_cycle_slide {
 	text-align:center;

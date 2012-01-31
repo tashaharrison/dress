@@ -1,11 +1,17 @@
 /* This file will hold styles that are loaded using the same media query as the narrow grid. */
 
+/** 
+ * Structural elements
+**/
+
+/* Zones */
 #zone-header,
 #zone-content,
 #zone-footer {
 	padding: 10px 20px 0;
 	margin:0 auto;
 }
+
 /* Regions */
 #region-branding {
 	margin-left:0;
@@ -19,28 +25,52 @@
 #region-menu {
 	margin-left: 30px;
 }
+
+/** 
+ * Navigation
+**/
+
 #region-menu .navigation a {
 	color:#4C4C4C;
 	display: inline-block;
 	font-size: 1em;
 }
+/* Main menu */
 #region-menu .navigation #main-menu {
 	padding: 0;
 }
 #region-menu .navigation #main-menu li a {
     padding: 13px 12px;
 }
+/* Secondary menu */
 #region-menu .navigation #secondary-menu {
     padding-top: 0;
 }
 #region-menu .navigation #secondary-menu li a {
     padding: 14px 12px;
 }
+/* Footer menu */
 #region-footer-first .menu li {
 	display: inline-block;
 	padding: 0 26px;
 }
+
+/** 
+ * Recipes
+**/
+
 .section-recipes .view-taxonomy-term li.taxonomy-page-item,
 .view-recommended-recipes li.taxonomy-page-item {
 	width: 300px;
+}
+.section-recipes .view-taxonomy-term .field-name-title h2 a,
+.view-recommended-recipes h2.field-title a,
+.view-recommended-recipes .views-field-title h2 a {
+	font-size: 0.8em;
+	font-weight: bold;
+}
+.section-recipes .view-taxonomy-term .field-name-italian-title-linked-to-node a,
+.view-recommended-recipes .views-field-field-recipe-italian-title a {
+	font-size: 1.2em;
+	font-weight: bold;
 }
