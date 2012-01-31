@@ -354,6 +354,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#E2E2E2', end
 }
 
 /* Facebook recipe of the week */
+#zone-content {
+	margin-bottom: 6em;
+}
 .page-recipes-fb-recipe-of-the-week #zone-header, 
 .page-recipes-fb-recipe-of-the-week #zone-content, 
 .page-recipes-fb-recipe-of-the-week #zone-footer {
@@ -394,6 +397,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#E2E2E2', end
 .views-field-field-recipe-italian-title span.Verdure a {
 	color:#034d03;
 }
+
 /** 
  * @font-face imports
 **/
