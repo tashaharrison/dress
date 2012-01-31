@@ -349,7 +349,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#E2E2E2', end
 	padding-top: 10px;
 }
 .view-recommended-recipes .views-field-field-recipe-italian-title {
-	margin-top:5px;
+	margin: 8px 0 6px;
+	line-height: 0.9;
 }
 /* Category specific colors */
 .views-field-field-recipe-italian-title span.Pesce a {

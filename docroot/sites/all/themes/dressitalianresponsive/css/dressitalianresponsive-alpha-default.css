@@ -61,6 +61,9 @@
 
 .section-recipes .view-taxonomy-term li.taxonomy-page-item,
 .view-recommended-recipes li.taxonomy-page-item {
+	border-bottom: none;
+	margin:0;
+	padding: 0 0 1em 0;
 	width: 300px;
 }
 .section-recipes .view-taxonomy-term .field-name-title h2 a,
@@ -73,4 +76,8 @@
 .view-recommended-recipes .views-field-field-recipe-italian-title a {
 	font-size: 1.2em;
 	font-weight: bold;
+}
+.view-recommended-recipes .views-field-field-recipe-italian-title {
+	margin: 5px 0 2px;
+	line-height: 1.2;
 }
