@@ -1,8 +1,8 @@
 /* This file will hold styles that are loaded using the same media query as the normal grid. */
 #region-menu .navigation #secondary-menu {
-	width: 820px;
-	margin-left: -180px;
-	padding-left: 180px;
+	width: 830px;
+	margin-left: -170px;
+	padding-left: 170px;
 }
 #region-menu {
 	margin-left: 0;

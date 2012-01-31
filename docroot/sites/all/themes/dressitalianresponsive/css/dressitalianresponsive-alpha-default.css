@@ -1,16 +1,23 @@
 /* This file will hold styles that are loaded using the same media query as the narrow grid. */
-#region-header-second {
-	position:relative;
-	top:0;
-}
+
 #zone-header,
 #zone-content,
 #zone-footer {
 	padding: 10px 20px 0;
 	margin:0 auto;
 }
+/* Regions */
+#region-branding {
+	margin-left:0;
+	z-index:1;
+}
+#region-header-first {
+	margin-right:0;
+	position:relative;
+	top:0;
+}
 #region-menu {
-	margin-left: 20px;
+	margin-left: 30px;
 }
 #region-menu .navigation a {
 	color:#4C4C4C;
