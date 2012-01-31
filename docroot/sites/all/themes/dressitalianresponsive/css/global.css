@@ -352,6 +352,32 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#E2E2E2', end
 	margin: 8px 0 6px;
 	line-height: 0.9;
 }
+
+/* Facebook recipe of the week */
+.page-recipes-fb-recipe-of-the-week #zone-header, 
+.page-recipes-fb-recipe-of-the-week #zone-content, 
+.page-recipes-fb-recipe-of-the-week #zone-footer {
+    margin: 0 3em;
+}
+.page-recipes-fb-recipe-of-the-week .view-recommended-recipes li.taxonomy-page-item {
+	border-bottom: none;
+	margin:0;
+	padding: 0 0 1em 0;
+	width: 300px;
+}
+.page-recipes-fb-recipe-of-the-week .view-recommended-recipes h2.field-title a,
+.page-recipes-fb-recipe-of-the-week .view-recommended-recipes .views-field-title h2 a {
+	font-size: 0.8em;
+	font-weight: bold;
+}
+.page-recipes-fb-recipe-of-the-week .view-recommended-recipes .views-field-field-recipe-italian-title {
+	margin: 5px 0 2px;
+	line-height: 1.2;
+}
+.page-recipes-fb-recipe-of-the-week .view-recommended-recipes .views-field-field-recipe-italian-title a {
+	font-size: 1.2em;
+	font-weight: bold;
+}
 /* Category specific colors */
 .views-field-field-recipe-italian-title span.Pesce a {
 	color:#3570c7;
