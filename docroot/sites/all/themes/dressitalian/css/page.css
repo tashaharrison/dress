@@ -638,7 +638,9 @@ img {
 hgroup {
 	height:0;
 }
-
+.fb-social-comments-plugin {
+	margin-top: 2em;
+}
  /*
  * IE6/7
  */
