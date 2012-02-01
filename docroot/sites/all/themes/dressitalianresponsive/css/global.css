@@ -441,9 +441,13 @@ fieldset legend a, html.js fieldset.collapsible legend a {
 	margin: 0 3em 6em;
 	width: 385px;
 }
-.context-become-dress-italian-blogger .container-12 .grid-12, 
 .page-recipes-fb-recipe-of-the-week .container-12 .grid-12 {
     width: 362px;
+}
+.context-become-dress-italian-blogger .container-12 .grid-12 form {
+    width: 385px;
+	margin-top:10px;
+	margin-bottom:10px;
 }
 .page-recipes-fb-recipe-of-the-week .view-recommended-recipes li.taxonomy-page-item {
 	border-bottom: none;
