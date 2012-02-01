@@ -372,6 +372,9 @@ fieldset legend {
 fieldset legend a, html.js fieldset.collapsible legend a {
 	color:white
 }
+form-textarea-wrapper {
+	margin-top:8px;
+}
 /** 
  * Recipes
 **/
