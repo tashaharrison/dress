@@ -281,7 +281,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#E2E2E2', end
 	line-height: 0.9;
 }
 /* Facebook recipe of the week */
-.page-recipes-fb-recipe-of-the-week #zone-content { margin: 0 3em 6em; }
+.page-recipes-fb-recipe-of-the-week #zone-content { 
+	margin: 0 3em 6em;
+	min-width: 320px;
+}
 .page-recipes-fb-recipe-of-the-week .view-recommended-recipes li.taxonomy-page-item {
 	border-bottom: none;
 	margin:0;
