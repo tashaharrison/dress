@@ -671,7 +671,7 @@ hgroup {
  */
  
 .ie6-8 div.container {
-	background: url("images/bggradient.png") repeat-y; 
+	/*background: url("images/bggradient.png") repeat-y; */
 	padding-left:50px;
 	padding-right:50px;
 }
