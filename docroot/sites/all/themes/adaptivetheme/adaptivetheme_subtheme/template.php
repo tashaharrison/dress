@@ -2,28 +2,32 @@
 
 /**
  * Preprocess and Process Functions SEE: http://drupal.org/node/254940#variables-processor
- * 1. Rename each function and instance of "dressitalian" to match
- *    your subthemes name, e.g. if you name your theme "footheme" then the function
+ * 1. Rename each function and instance of "adaptivetheme_subtheme" to match
+ *    your subthemes name, e.g. if your theme name is "footheme" then the function
  *    name will be "footheme_preprocess_hook". Tip - you can search/replace
- *    on "dressitalian".
+ *    on "adaptivetheme_subtheme".
  * 2. Uncomment the required function to use.
+ * 3. Read carefully, especially within adaptivetheme_subtheme_preprocess_html(), there
+ *    are extra goodies you might want to leverage such as a very simple way of adding
+ *    stylesheets for Internet Explorer and a browser detection script to add body classes.
  */
 
 /**
  * Override or insert variables into the html templates.
  */
-function dressitalian_preprocess_html(&$vars) {
+function adaptivetheme_subtheme_preprocess_html(&$vars) {
   // Load the media queries styles
   // Remember to rename these files to match the names used here - they are
   // in the CSS directory of your subtheme.
   $media_queries_css = array(
-    'dressitalian.responsive.style.css',
-    'dressitalian.responsive.gpanels.css'
+    'adaptivetheme_subtheme.responsive.style.css',
+    'adaptivetheme_subtheme.responsive.gpanels.css'
   );
-  load_subtheme_media_queries($media_queries_css, 'dressitalian');
+  load_subtheme_media_queries($media_queries_css, 'adaptivetheme_subtheme');
 
  /**
-  * Load IE specific stylesheets
+  * Load IE Stylesheets
+  *
   * AT automates adding IE stylesheets, simply add to the array using
   * the conditional comment as the key and the stylesheet name as the value.
   *
@@ -39,40 +43,34 @@ function dressitalian_preprocess_html(&$vars) {
   $ie_files = array(
     'lte IE 7' => 'ie-lte-7.css',
   );
-  load_subtheme_ie_styles($ie_files, 'dressitalian');
+  load_subtheme_ie_styles($ie_files, 'adaptivetheme_subtheme');
   // */
+  
+  // Add class for the active theme name
+  /* -- Delete this line to add a class for the active theme name.
+  $vars['classes_array'][] = drupal_html_class($theme_key);
+  // */
+
+  // Browser/platform sniff - adds body classes such as ipad, webkit, chrome etc.
+  /* -- Delete this line to add a classes for the browser and platform.
+  $vars['classes_array'][] = css_browser_selector();
+  // */
+
 }
 
 /* -- Delete this line if you want to use this function
-function dressitalian_process_html(&$vars) {
+function adaptivetheme_subtheme_process_html(&$vars) {
 }
 // */
 
 /**
  * Override or insert variables into the page templates.
  */
-function dressitalian_preprocess_page(&$vars, $hook) {
-
-$classes = explode(' ', $vars['body_classes']);
-if ($index = array_search(preg_replace('![^abcdefghijklmnopqrstuvwxyz0-9-_]+!s', '', 'page-'. drupal_strtolower(arg(0))), $classes)) {
-  unset($classes[$index]);
-}
-$classes = str_replace('node-type-', 'page-type-', $classes);
-$classes = str_replace('sidebar-left', 'sidebar-first', $classes);
-$classes = str_replace('sidebar-right', 'sidebar-last', $classes);
-$path_alias = drupal_get_path_alias($_GET['q']);
-if (!$vars['is_front']) {
-  list($section, ) = explode('/', $path_alias, 2);
-  $classes[] = safe_string('section-'. $section);
-}
-if (!$vars['is_front']) {
-  list($section,$section2,) = explode('/', $path_alias, 3);
-  $classes[] = safe_string('subsection-'. $section2);
-}
-$vars['classes'] = trim(implode(' ', $classes));
-}
 /* -- Delete this line if you want to use these functions
-function dressitalian_process_page(&$vars) {
+function adaptivetheme_subtheme_preprocess_page(&$vars) {
+}
+
+function adaptivetheme_subtheme_process_page(&$vars) {
 }
 // */
 
@@ -80,10 +78,10 @@ function dressitalian_process_page(&$vars) {
  * Override or insert variables into the node templates.
  */
 /* -- Delete this line if you want to use these functions
-function dressitalian_preprocess_node(&$vars) {
+function adaptivetheme_subtheme_preprocess_node(&$vars) {
 }
 
-function dressitalian_process_node(&$vars) {
+function adaptivetheme_subtheme_process_node(&$vars) {
 }
 // */
 
@@ -91,10 +89,10 @@ function dressitalian_process_node(&$vars) {
  * Override or insert variables into the comment templates.
  */
 /* -- Delete this line if you want to use these functions
-function dressitalian_preprocess_comment(&$vars) {
+function adaptivetheme_subtheme_preprocess_comment(&$vars) {
 }
 
-function dressitalian_process_comment(&$vars) {
+function adaptivetheme_subtheme_process_comment(&$vars) {
 }
 // */
 
@@ -102,10 +100,10 @@ function dressitalian_process_comment(&$vars) {
  * Override or insert variables into the block templates.
  */
 /* -- Delete this line if you want to use these functions
-function dressitalian_preprocess_block(&$vars) {
+function adaptivetheme_subtheme_preprocess_block(&$vars) {
 }
 
-function dressitalian_process_block(&$vars) {
+function adaptivetheme_subtheme_process_block(&$vars) {
 }
 // */
 
@@ -137,53 +135,3 @@ if (theme_get_setting('style_enable_schemes') == 'on') {
   }
 }
 // */
-function dressitalian_preprocess_print_node(&$variables, $hook) {
-  $format = $variables['type'];
-$type = $variables['node']->type;
-$additions = _content_field_invoke_default('preprocess_node', $variables['node']);
-$variables = array_merge($variables, $additions);
-
-$variables['node']->render_by_ds = TRUE; //extra line
-  
-  template_preprocess_node($variables);
-if (function_exists('_nd_preprocess_node')) {
-  _nd_preprocess_node($variables, $hook);
-}
-  $variables['template_files'][] = "node";
-  $variables['template_files'][] = "node-$type";
-  $variables['template_files'][] = "print_node";
-  $variables['template_files'][] = "print_node_$format";
-  $variables['template_files'][] = "print_node_$format.node-$type";
-}
-
-/**
- * Theme function to render the field content.
- *
- * @param string $content The content to render.
- * @param array $field Collection of field properties.
- */
-function dressitalian_ds_field($content, $field) {
-  $output = '';
-
-  if (!empty($content)) {
-    if ($field['type'] == 'ds') {
-
-      $output .= '<div class="field '. $field['class'] .'">';
-      // Above label.
-      if ($field['labelformat'] == 'above') {
-        $output .= '<div class="field-label">'. $field['title'] .' </div>';
-      }
-      // Inline label
-      if ($field['labelformat'] == 'inline') {
-        $output .= '<div class="field-label-inline-first">'. $field['title'] .': </div>';
-      }
-      $output .= $content;
-      $output .= '</div>';
-    }
-    else {
-      $output = $content;
-    }
-  }
-
-  return $output;
-}

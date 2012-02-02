@@ -48,7 +48,7 @@ function adaptivetheme_preprocess_html(&$vars) {
       list($section, ) = explode('/', $path, 2);
       $arg = explode('/', $_GET['q']);
       if ($arg[0] == 'node') {
-        if ($arg[1] == 'add') {
+        if (isset($arg[1]) && $arg[1] == 'add') {
           $section = 'node-add';
         }
         elseif (isset($arg[2]) && is_numeric($arg[1]) && ($arg[2] == 'edit' || $arg[2] == 'delete')) {
@@ -91,11 +91,22 @@ function adaptivetheme_preprocess_html(&$vars) {
     drupal_add_css($filepath, array(
       'preprocess' => variable_get('preprocess_css', '') == 1 ? TRUE : FALSE,
       'group' => CSS_THEME,
-      'media' => 'screen',
+      'media' => 'all',
       'every_page' => TRUE,
       )
     );
   }
+
+  // Ad respond.js to the footer to avoid crashes in IE8
+  drupal_add_js(drupal_get_path('theme', 'adaptivetheme') . '/js/respond.js',
+    array(
+      'type' => 'file',
+      'scope' => 'footer',
+      'group' => JS_THEME,
+      'preprocess' => TRUE,
+      'cache' => TRUE,
+    )
+  );
 
   // add a body class is the site name is hidden
   if (theme_get_setting('toggle_name') == FALSE) {
