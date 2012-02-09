@@ -131,7 +131,7 @@ function geofield_requirements($phase) {
     catch (Exception $e) {
       $geophp_version = 0;
     }
-    if ($geophp_version >= 0.4) {
+    if ($geophp_version >= 0.5) {
       $requirements['geofield_geophp'] = array(
         'title' => t('GeoPHP Library Installed'),
         'severity' => REQUIREMENT_OK,
@@ -170,7 +170,10 @@ function geofield_field_instance_settings_form($field, $instance) {
   $form = array();
   // Add in local solr settings
   if (module_exists('apachesolr')) {
-    $setting = $instance['settings']['solrspatial'];
+
+    if (isset($instance['settings']['solrspatial'])) $setting = $instance['settings']['solrspatial'];
+    else $setting = array();
+
     $form['solrspatial'] = array(
       '#type' => 'fieldset',
       '#title' => t('Local Solr Settings'),
@@ -245,13 +248,13 @@ function geofield_compute_values(&$values, $master_column = 'wkt') {
 
   // If only a wkt string has been passed in, then format it correctly by wrapping it in an array
   if ($master_column == 'wkt' && !is_array($values)) {
-    $values = array($values);
+    $values = array('wkt' => $values);
   }
 
   // Load up geoPHP to do the conversions
   $geophp = geofield_load_geophp();
   if (!$geophp) {
-    drupal_set_message(t("Unable to load geoPHP library. Not all values will be computer correctly"), 'error');
+    drupal_set_message(t("Unable to load geoPHP library. Not all values will be calculated correctly"), 'error');
     return;
   }
 

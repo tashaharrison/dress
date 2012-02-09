@@ -34,8 +34,8 @@
 .blog-page-list li.views-row-last {
 	border-bottom: none;
 }
-.section-blog .taxonomy-page-list li.views-row-first,
-.blog-page-list li.views-row-first {
+.section-blog .taxonomy-page-list li.views-row,
+.blog-page-list li.views-row {
 	padding: 0 10px 14px 0;
 }
 .more-link, .views-field-view-node, .field-name-node-link {

@@ -13,42 +13,42 @@ function geofield_field_formatter_info() {
     'geofield_wkt' => array(
       'label' => t('Well Known Text (WKT)'),
       'field types' => array('geofield'),
-      'settings' => array('data' => ''),
+      'settings' => array('data' => 'full'),
     ),
     'geofield_geojson' => array(
       'label' => t('GeoJSON'),
       'field types' => array('geofield'),
-      'settings' => array('data' => ''),
+      'settings' => array('data' => 'full'),
     ),
     'geofield_kml' => array(
       'label' => t('KML'),
       'field types' => array('geofield'),
-      'settings' => array('data' => ''),
+      'settings' => array('data' => 'full'),
     ),
     'geofield_gpx' => array(
       'label' => t('GPX'),
       'field types' => array('geofield'),
-      'settings' => array('data' => ''),
+      'settings' => array('data' => 'full'),
     ),
     'geofield_latlon' => array(
       'label' => t('Latitude/Longitude'),
       'field types' => array('geofield'),
-      'settings' => array('data' => '', 'format' => ''),
+      'settings' => array('data' => 'full', 'format' => 'decimal_degrees'),
     ),
     'geofield_lat' => array(
       'label' => t('Latitude Only'),
       'field types' => array('geofield'),
-      'settings' => array('data' => '', 'format' => ''),
+      'settings' => array('data' => 'full', 'format' => 'decimal_degrees'),
     ),
     'geofield_lon' => array(
       'label' => t('Longitude Only'),
       'field types' => array('geofield'),
-      'settings' => array('data' => '', 'format' => ''),
+      'settings' => array('data' => 'full', 'format' => 'decimal_degrees'),
     ),
     'geofield_geo_type' => array(
       'label' => t('Geometry Type'),
       'field types' => array('geofield'),
-      'settings' => array('data' => '', 'format' => ''),
+      'settings' => array('data' => 'full'),
     ),
   );
 
@@ -56,7 +56,7 @@ function geofield_field_formatter_info() {
     $formatters['geofield_openlayers'] = array(
       'label' => t('OpenLayers'),
       'field types' => array('geofield'),
-      'settings' => array('map_preset' => '', 'data' => ''),
+      'settings' => array('data' => 'full', 'map_preset' => 'geofield_formatter_map'),
     );
   }
   
@@ -169,14 +169,14 @@ function geofield_field_formatter_settings_summary($field, $instance, $view_mode
 
   // Styles could be lost because of enabled/disabled modules that defines
   // their styles in code.
-  if (isset($data_options[$settings['data']])) {
+  if (!empty($data_options[$settings['data']])) {
     $summary[] = t('Data options: @data', array('@data' => $data_options[$settings['data']]));
   }
   else {
     $summary[] = t('No data options set');
   }
   
-  if ($display['type'] == 'geofield_openlayers' && isset($settings['map_preset'])) {
+  if ($display['type'] == 'geofield_openlayers' && !empty($settings['map_preset'])) {
     $openlayers_presets = openlayers_preset_options();
     $summary[] = t('Openlayers Map: @data', array('@data' => $openlayers_presets[$settings['map_preset']]));
   }
@@ -189,7 +189,7 @@ function geofield_field_formatter_settings_summary($field, $instance, $view_mode
     }
   }
 
-  if (isset($settings['address']) && $settings['address']) {
+  if (!empty($settings['address']) && $settings['address']) {
     $summary[] = t('Including reverse-geocoded address');
   }
 
