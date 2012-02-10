@@ -3,7 +3,7 @@
 body {
   margin: 1em;
   background-color: #fff;
-  font-family:'CantarellRegular',Verdana,Geneva,"DejaVu Sans",sans-serif;
+  font-family:Verdana,Geneva,"DejaVu Sans",sans-serif;
 }
 th {
   text-align: left; /* LTR */

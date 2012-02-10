@@ -57,7 +57,7 @@ input.text, input.title, textarea, select {
 	padding: 4px;
     text-shadow: 0 0 1px rgba(0, 0, 0, 0.01);
    	font-size:1.2em;
-	font-family:'CantarellRegular',Verdana,Geneva,"DejaVu Sans",sans-serif;
+	font-family:Verdana,Geneva,"DejaVu Sans",sans-serif;
 	background: url("../images/form-bg.png") repeat-x scroll left top white;
 }
 textarea:disabled, input:not([type]):disabled, input[type="color"]:disabled, input[type="date"]:disabled, input[type="datetime"]:disabled, input[type="datetime-local"]:disabled, input[type="email"]:disabled, input[type="month"]:disabled, input[type="password"]:disabled, input[type="number"]:disabled, input[type="search"]:disabled, input[type="tel"]:disabled, input[type="text"]:disabled, input[type="time"]:disabled, input[type="url"]:disabled, input[type="week"]:disabled {
