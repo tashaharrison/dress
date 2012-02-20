@@ -6,6 +6,9 @@
 
 /* Smartphone portrait */
 @media only screen and (max-width:320px) {
+.container {
+	width: 100%;
+}
 }
 
 /* Smartphone landscape */
