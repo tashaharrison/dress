@@ -20,7 +20,7 @@ function dressitalian_preprocess_html(&$vars) {
   
     $media_queries_css = array(
     'dressitalian.responsive.style.css',
-    'dressitalian.responsive.gpanels.css'
+    /*'dressitalian.responsive.gpanels.css'*/
   );
   load_subtheme_media_queries($media_queries_css, 'dressitalian');
   
