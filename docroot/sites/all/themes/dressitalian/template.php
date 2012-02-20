@@ -17,13 +17,13 @@ function dressitalian_preprocess_html(&$vars) {
   // Remember to rename these files to match the names used here - they are
   // in the CSS directory of your subtheme.
  
-  /*
+  
     $media_queries_css = array(
     'dressitalian.responsive.style.css',
     'dressitalian.responsive.gpanels.css'
   );
   load_subtheme_media_queries($media_queries_css, 'dressitalian');
-  */
+  
 
  /**
   * Load IE specific stylesheets
