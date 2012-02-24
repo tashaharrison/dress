@@ -39,7 +39,7 @@ Drupal.views.ajaxView = function(settings) {
   var queryString = window.location.search || '';
   if (queryString !== '') {
     // Remove the question mark and Drupal path component if any.
-    var queryString = queryString.slice(1).replace(/q=[^&]+&?|&?render=[^&]+/, '');
+    var queryString = queryString.slice(1).replace(/q=[^&]+&?/, '');
     if (queryString !== '') {
       // If there is a '?' in ajax_path, clean url are on and & should be used to add parameters.
       queryString = ((/\?/.test(ajax_path)) ? '&' : '?') + queryString;
