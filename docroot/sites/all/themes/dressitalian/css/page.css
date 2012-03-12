@@ -680,3 +680,6 @@ hgroup {
 	margin-left: -17px;
 	width:796px;
 }
+.ie6-8 img {
+	max-width:auto;
+}
