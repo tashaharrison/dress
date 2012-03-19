@@ -39,10 +39,10 @@
 	font-size: 1.5em;
 	margin-bottom: 4px;
 }
-.page-type-product .field-product-nutritionalinfo .field-items, .page-type-product .field-product-ingredients .field-label {
+.page-type-product .field-name-field-product-nutritionalinfo .field-items, .page-type-product .field-product-ingredients .field-label {
 	line-height: 1.3;
 }
-.page-type-product .field-product-nutritionalinfo {
+.page-type-product .field-name-field-product-nutritionalinfo {
 	margin-top: 18px;
 }
 .subsection-pasta-sauces .field-name-body .field-label,
