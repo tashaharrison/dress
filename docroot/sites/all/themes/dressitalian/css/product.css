@@ -31,6 +31,9 @@
 	line-height: 1.3;
 	margin-left: 24px;
 }
+.group-product-info-boxout .field-label,
+.field-name-field-product-storage .field-label,
+field-name-field-product-serving .field-label,
 .page-type-product .view-recommended-recipes h2 {
 	color: #540E16;
 	font-size: 1.5em;
@@ -43,7 +46,6 @@
 	margin-top: 18px;
 }
 .subsection-pasta-sauces .field-name-body .field-label,
-.subsection-pasta-sauces .field-ds-group-product-info-boxout .field-label,
 .subsection-pasta-sauces #page-title {
 	color:#540E16;
 }
