@@ -156,6 +156,7 @@ function _print_var_generator($node, $message = NULL, $cid = NULL) {
 
   // print module settings
   $print_css = variable_get('print_css', PRINT_CSS_DEFAULT);
+  $print_keep_theme_css = variable_get('print_keep_theme_css', PRINT_KEEP_THEME_CSS_DEFAULT);
   $print_logo_options = variable_get('print_logo_options', PRINT_LOGO_OPTIONS_DEFAULT);
   $print_logo_url = variable_get('print_logo_url', PRINT_LOGO_URL_DEFAULT);
   $print_html_new_window = variable_get('print_html_new_window', PRINT_HTML_NEW_WINDOW_DEFAULT);
@@ -187,10 +188,12 @@ function _print_var_generator($node, $message = NULL, $cid = NULL) {
     drupal_add_css(drupal_get_path('module', 'print') . '/css/print.css');
   }
   $drupal_css = drupal_add_css();
-  foreach ($drupal_css as $key => $css_file) {
-    if ($css_file['group'] == CSS_THEME) {
-    // Unset the theme's CSS
-      unset($drupal_css[$key]);
+  if (!$print_keep_theme_css) {
+    foreach ($drupal_css as $key => $css_file) {
+      if ($css_file['group'] == CSS_THEME) {
+      // Unset the theme's CSS
+        unset($drupal_css[$key]);
+      }
     }
   }
 
@@ -352,7 +355,7 @@ function _print_rewrite_urls($matches) {
               $path = "node/$path";
             }
             // Printer-friendly URLs is on, so we need to make it absolute
-            $newurl = url($path, array('fragment' => substr($url, 1), 'absolute' => TRUE));
+            $newurl = url($path, array('fragment' => drupal_substr($url, 1), 'absolute' => TRUE));
           }
           // Because base href is the original page, change the link to
           // still be usable inside the print page
@@ -522,35 +525,20 @@ function _print_generate_node($nid, $cid = NULL, $format = PRINT_HTML_FORMAT, $t
 
     $build = $node->content;
     unset($node->content);
-
-    // Disable the AdSense module ads
-//    $content = preg_replace('!<div class=[\'"]adsense[\'"].*?</div>!sim', '', $content);
   }
 
   $print_comments = variable_get('print_comments', PRINT_COMMENTS_DEFAULT);
 
-  if (function_exists('comment_render') && (($cid != NULL) || ($print_comments))) {
+  if (function_exists('comment_node_page_additions') && (($cid != NULL) || ($print_comments))) {
     //Print only the requested comment (or if $cid is NULL, all of them)
-    $comments = comment_render($node, $cid);
 
-    //Remove the comment forms
-    $comments = preg_replace('!<form.*?id="comment-.*?">.*?</form>!sim', '', $comments);
-    //Remove the 'Post new comment' title
-    $comments = preg_replace('!<h2.*?>' . t('Post new comment') . '</h2>!', '', $comments);
-    //Remove the comment title hyperlink
-    $comments = preg_replace('!(<h3.*?>.*?)<a.*?>(.*?)</a>(.*?</h3>)!i', '$1$2$3', $comments);
-    //Remove the comment author link
-    $pattern = '!(<(?:span|div) class="submitted">.*?)<a.*?>(.*?)</a>(.*?</(?:span|div)>)!sim';
-    if (preg_match($pattern, $comments)) {
-      $comments = preg_replace($pattern , '$1$2$3', $comments);
+    $comments = comment_node_page_additions($node);
+    unset($comments['comment_form']);
+    foreach ($comments['comments'] as &$comment) {
+      unset($comment['links']);
     }
-    //Remove the comment links
-    $comments = preg_replace('!\s*<ul class="links">.*?</ul>!sim', '', $comments);
-    if ($cid != NULL) {
-      // Single comment requested, output only the comment
-      unset($node->body);
-    }
-    $node->body .= $comments;
+
+    $build['comments'] = $comments;
   }
 
   $build += array(
@@ -558,9 +546,11 @@ function _print_generate_node($nid, $cid = NULL, $format = PRINT_HTML_FORMAT, $t
     '#node' => $node,
     '#view_mode' => $view_mode,
     '#language' => $langcode,
+    '#print_format' => $format,
   );
 
-  drupal_alter('node_view', $build);
+  $type = 'node';
+  drupal_alter(array('node_view', 'entity_view'), $build, $type);
 
   $content = render($build);
 

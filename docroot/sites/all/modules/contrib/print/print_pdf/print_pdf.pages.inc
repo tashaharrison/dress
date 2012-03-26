@@ -68,6 +68,8 @@ function print_pdf_controller() {
     ))
     ->expression('totalcount', 'totalcount + 1')
     ->execute();
+
+  drupal_exit();
 }
 
 function print_pdf_generate_path($path, $cid = NULL, $pdf_filename = NULL) {
@@ -94,7 +96,7 @@ function print_pdf_generate_path($path, $cid = NULL, $pdf_filename = NULL) {
   $pattern = '!<(a\s[^>]*?)>!is';
   $html = preg_replace_callback($pattern, '_print_rewrite_urls', $html);
   // And make anchor links relative again, to permit in-PDF navigation
-  $html = preg_replace("!${base_url}/" . PRINTPDF_PATH . "/.*?%2523!", '#', $html);
+  $html = preg_replace("!${base_url}/" . PRINTPDF_PATH . '/.*?#!', '#', $html);
 
   return print_pdf_generate_html($print, $html, $pdf_filename);
 }
@@ -108,7 +110,7 @@ function print_pdf_generate_html($print, $html, $filename = NULL) {
   elseif (basename($print_pdf_pdf_tool) == 'tcpdf.php') {
     return _print_pdf_tcpdf($print, $html, $filename);
   }
-  elseif (substr(basename($print_pdf_pdf_tool, '.exe'), 0, 11) == 'wkhtmltopdf') {
+  elseif (drupal_substr(basename($print_pdf_pdf_tool, '.exe'), 0, 11) == 'wkhtmltopdf') {
     return _print_pdf_wkhtmltopdf($print, $html, $filename);
   }
   elseif ($filename) {
@@ -136,6 +138,7 @@ function _print_pdf_file_access_images($html) {
   // TODO: This needs to be rewritten from scratch for Drupal 7
   $lang = '';
 /*
+  TODO
   switch (variable_get('language_negotiation', LANGUAGE_NEGOTIATION_NONE)) {
     case LANGUAGE_NEGOTIATION_PATH_DEFAULT:
     case LANGUAGE_NEGOTIATION_PATH:
@@ -307,7 +310,7 @@ function _print_pdf_tcpdf($print, $html, $filename = NULL) {
   $pdf->SetCreator(variable_get('site_name', 'Drupal'));
   $pdf->SetTitle(html_entity_decode($print['title'], ENT_QUOTES, 'UTF-8'));
   $pdf->setPDFVersion('1.6');
-  $pdf->setFontSubsetting(variable_get('print_pdf_font_subsetting',FALSE));
+  $pdf->setFontSubsetting(variable_get('print_pdf_font_subsetting', FALSE));
 
   if ($language->direction == LANGUAGE_RTL) {
     $pdf->setRTL(TRUE);
@@ -378,7 +381,7 @@ function _print_pdf_wkhtmltopdf($print, $html, $filename = NULL) {
   }
 
   $descriptor = array(0 => array('pipe', 'r'), 1 => array('pipe', 'w'), 2 => array('pipe', 'w'));
-  $cmd = realpath($print_pdf_pdf_tool) . " --page-size $print_pdf_paper_size --orientation $print_pdf_page_orientation --dpi $dpi $print_pdf_wkhtmltopdf_options - -";
+  $cmd = '"' . realpath($print_pdf_pdf_tool) . "\" --page-size $print_pdf_paper_size --orientation $print_pdf_page_orientation --dpi $dpi $print_pdf_wkhtmltopdf_options - -";
 
   $process = proc_open($cmd, $descriptor, $pipes, NULL, NULL);
 

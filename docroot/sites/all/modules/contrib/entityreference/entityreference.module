@@ -59,6 +59,25 @@ function entityreference_field_info() {
 }
 
 /**
+ * Implements hook_flush_caches().
+ */
+function entityreference_flush_caches() {
+  // Because of the intricacies of the info hooks, we are forced to keep a
+  // separate list of the base tables of each entities, so that we can use
+  // it in entityreference_field_schema() without calling entity_get_info().
+  // See http://drupal.org/node/1416558 for details.
+  $base_tables = array();
+  foreach (entity_get_info() as $entity_type => $entity_info) {
+    if (!empty($entity_info['base table']) && !empty($entity_info['entity keys']['id'])) {
+      $base_tables[$entity_type] = array($entity_info['base table'], $entity_info['entity keys']['id']);
+    }
+  }
+  // We are using a variable because cache is going to be cleared right after
+  // hook_flush_caches() is finished.
+  variable_set('entityreference:base-tables', $base_tables);
+}
+
+/**
  * Implements hook_menu().
  */
 function entityreference_menu() {
@@ -239,6 +258,23 @@ function entityreference_field_insert($entity_type, $entity, $field, $instance, 
 }
 
 /**
+ * Implements hook_field_attach_insert().
+ *
+ * Emulates a post-insert hook.
+ */
+function entityreference_field_attach_insert($entity_type, $entity) {
+  list(, , $bundle) = entity_extract_ids($entity_type, $entity);
+  foreach (field_info_instances($entity_type, $bundle) as $field_name => $instance) {
+    $field = field_info_field($field_name);
+    if ($field['type'] == 'entityreference') {
+      foreach (entityreference_get_behavior_handlers($field, $instance) as $handler) {
+        $handler->postInsert($entity_type, $entity, $field, $instance);
+      }
+    }
+  }
+}
+
+/**
  * Implements hook_field_update().
  */
 function entityreference_field_update($entity_type, $entity, $field, $instance, $langcode, &$items) {
@@ -249,12 +285,46 @@ function entityreference_field_update($entity_type, $entity, $field, $instance, 
 }
 
 /**
+ * Implements hook_field_attach_update().
+ *
+ * Emulates a post-update hook.
+ */
+function entityreference_field_attach_update($entity_type, $entity) {
+  list(, , $bundle) = entity_extract_ids($entity_type, $entity);
+  foreach (field_info_instances($entity_type, $bundle) as $field_name => $instance) {
+    $field = field_info_field($field_name);
+    if ($field['type'] == 'entityreference') {
+      foreach (entityreference_get_behavior_handlers($field, $instance) as $handler) {
+        $handler->postUpdate($entity_type, $entity, $field, $instance);
+      }
+    }
+  }
+}
+
+/**
  * Implements hook_field_delete().
  */
 function entityreference_field_delete($entity_type, $entity, $field, $instance, $langcode, &$items) {
   // Invoke the behaviors.
   foreach (entityreference_get_behavior_handlers($field, $instance) as $handler) {
     $handler->delete($entity_type, $entity, $field, $instance, $langcode, $items);
+  }
+}
+
+/**
+ * Implements hook_field_attach_delete().
+ *
+ * Emulates a post-delete hook.
+ */
+function entityreference_field_attach_delete($entity_type, $entity) {
+  list(, , $bundle) = entity_extract_ids($entity_type, $entity);
+  foreach (field_info_instances($entity_type, $bundle) as $field_name => $instance) {
+    $field = field_info_field($field_name);
+    if ($field['type'] == 'entityreference') {
+      foreach (entityreference_get_behavior_handlers($field, $instance) as $handler) {
+        $handler->postDelete($entity_type, $entity, $field, $instance);
+      }
+    }
   }
 }
 
@@ -516,8 +586,10 @@ function entityreference_field_widget_info() {
  * Implements hook_field_widget_info_alter().
  */
 function entityreference_field_widget_info_alter(&$info) {
-  $info['options_select']['field types'][] = 'entityreference';
-  $info['options_buttons']['field types'][] = 'entityreference';
+  if (module_exists('options')) {
+    $info['options_select']['field types'][] = 'entityreference';
+    $info['options_buttons']['field types'][] = 'entityreference';
+  }
 }
 
 /**

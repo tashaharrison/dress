@@ -46,6 +46,7 @@ define('PRINT_LOGO_URL_DEFAULT', '');
 define('PRINT_FOOTER_OPTIONS_DEFAULT', 1);
 define('PRINT_FOOTER_USER_DEFAULT', '');
 define('PRINT_CSS_DEFAULT', '');
+define('PRINT_KEEP_THEME_CSS_DEFAULT', 0);
 define('PRINT_URLS_DEFAULT', 1);
 define('PRINT_URLS_ANCHORS_DEFAULT', 0);
 define('PRINT_COMMENTS_DEFAULT', 0);
@@ -111,7 +112,7 @@ function print_theme() {
       'variables' => array(),
     ),
     'print_node' => array(
-      'variables' => array('node' => NULL, 'teaser' => FALSE, 'page' => FALSE, 'type' => PRINT_HTML_FORMAT),
+      'render element' => 'elements',
       'template' => 'print_node',
     ),
     'print' => array(
@@ -149,16 +150,13 @@ function print_preprocess_print_node(&$variables) {
     }
   }
 
-  $variables['node'] = $variables['elements']['#node'];
-  $type = $variables['node']->type;
-  $format = $variables['type'];
-//  template_preprocess_node($variables);
+  $type = $variables['elements']['#node']->type;
+  $format = $variables['elements']['#print_format'];
 
   $variables['theme_hook_suggestions'][] = "node";
-  $variables['theme_hook_suggestions'][] = "node__{$type}";
   $variables['theme_hook_suggestions'][] = "print_node";
-//  $variables['theme_hook_suggestions'][] = "print_node_{$format}";
-//  $variables['theme_hook_suggestions'][] = "print_node_{$format}.node__{$type}";
+  $variables['theme_hook_suggestions'][] = "print_node_{$format}";
+  $variables['theme_hook_suggestions'][] = "print_node_{$format}.node__{$type}";
 }
 
 /**
@@ -315,7 +313,7 @@ function print_block_view($delta = '') {
       break;
     case 'print-top':
       $block['subject'] = t('Most printed');
-      $result = db_query_range("SELECT path FROM {print_page_counter} ORDER BY totalcount DESC", 0, 3)
+      $result = db_query_range("SELECT path FROM {print_page_counter} LEFT JOIN {node} ON path = CONCAT('node/', node.nid) WHERE status != 0 OR status IS NULL ORDER BY totalcount DESC", 0, 3)
                   ->fetchAll();
       if (count($result)) {
         $block['content'] = '<div class="item-list"><ul>';
@@ -348,7 +346,7 @@ function print_node_view_alter(&$build) {
             break;
           case 2:
             $print_html_link_use_alias = variable_get('print_html_link_use_alias', PRINT_HTML_LINK_USE_ALIAS_DEFAULT);
-            $path = ($print_html_link_use_alias && isset($node->path)) ? $node->path : $node->nid;
+            $path = ($print_html_link_use_alias) ? drupal_get_path_alias('node/' . $build['#node']->nid) : $build['#node']->nid;
             break;
         }
 
@@ -900,7 +898,7 @@ function print_link_allowed($args) {
 /**
  * Parse an array into a valid urlencoded query string.
  * Modified from drupal_query_string_encode to prevent re-encoding of
- * encoded original.
+ * encoded original. (see #301192)
  *
  * @param $query
  *   The array to be processed e.g. $_GET
@@ -924,7 +922,7 @@ function print_query_string_encode($query, $exclude = array(), $parent = '') {
       $params[] = print_query_string_encode($value, $exclude, $key);
     }
     else {
-      $params[] = $key . '=' . rawurlencode($value);
+      $params[$key] = rawurlencode($value);
     }
   }
 

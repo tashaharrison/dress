@@ -143,7 +143,7 @@ function print_pdf_block_view($delta = 0) {
       switch ($delta) {
       case 'print_pdf-top':
         $block['subject'] = t('Most PDFd');
-        $result = db_query_range("SELECT path FROM {print_pdf_page_counter} ORDER BY totalcount DESC", 0, 3)
+        $result = db_query_range("SELECT path FROM {print_pdf_page_counter} LEFT JOIN {node} ON path = CONCAT('node/', node.nid) WHERE status != 0 OR status IS NULL ORDER BY totalcount DESC", 0, 3)
                     ->fetchAll();
         if (count($result)) {
           $block['content'] = '<div class="item-list"><ul>';
@@ -185,7 +185,7 @@ function print_pdf_requirements($phase) {
           );
         }
         elseif (basename($print_pdf_pdf_tool) == 'dompdf_config.inc.php') {
-          $directory = dirname($print_pdf_pdf_tool) . '/lib/fonts';
+          $directory = defined('DOMPDF_FONT_CACHE') ? DOMPDF_FONT_CACHE : dirname($print_pdf_pdf_tool) . '/lib/fonts';
           if (!is_dir($directory) || !is_writable($directory)) {
             $requirements['print_pdf_tool'] = array(
               'title' => $t('DOMPDF font cache directory'),
@@ -208,9 +208,9 @@ function print_pdf_requirements($phase) {
           }
 
           foreach (array('cache', 'images') as $dir) {
-            $directory = dirname($print_pdf_pdf_tool) .'/'. $dir;
+            $directory = dirname($print_pdf_pdf_tool) . '/' . $dir;
             if (!is_dir($directory) || !is_writable($directory)) {
-              $requirements['print_pdf_tool_'. $dir] = array(
+              $requirements['print_pdf_tool_' . $dir] = array(
                 'title' => $t('TCPDF directory'),
                 'value' => $t('Non-writable permissions'),
                 'description' => $t('You must change the %fontdir permissions to be writable, as dompdf requires write-access to that directory.', array('%fontdir' => $directory)),
@@ -219,7 +219,7 @@ function print_pdf_requirements($phase) {
             }
           }
         }
-        elseif (substr(basename($print_pdf_pdf_tool, '.exe'), 0, 11) == 'wkhtmltopdf') {
+        elseif (drupal_substr(basename($print_pdf_pdf_tool, '.exe'), 0, 11) == 'wkhtmltopdf') {
           if (function_exists('is_executable') && !is_executable($print_pdf_pdf_tool)) {
             $requirements['print_pdf_tool'] = array(
               'title' => $t('wkhtmltopdf library'),
@@ -650,7 +650,7 @@ function _print_pdf_wkhtmltopdf_version() {
   $print_pdf_pdf_tool = variable_get('print_pdf_pdf_tool', PRINT_PDF_PDF_TOOL_DEFAULT);
   $descriptor = array(0 => array('pipe', 'r'), 1 => array('pipe', 'w'), 2 => array('pipe', 'w'));
 
-  $cmd = realpath($print_pdf_pdf_tool) . ' --version';
+  $cmd = '"' . realpath($print_pdf_pdf_tool) . '" --version';
   $process = proc_open($cmd, $descriptor, $pipes, NULL, NULL);
   if (is_resource($process)) {
     $content = stream_get_contents($pipes[1]);
