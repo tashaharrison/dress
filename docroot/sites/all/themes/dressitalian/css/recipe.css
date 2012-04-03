@@ -381,10 +381,12 @@
 	margin-left: 24px;
 }
 .view-latest-recipe .views-field-field-recipe-italian-title,
-.view-latest-recipe .views-field-title h2 {
+.view-latest-recipe .views-field-title h2,
+.view-latest-recipe .views-field-title h1 {
 	font-weight: bold;
-	font-size: 24px;
-	margin-bottom:20px;
+	font-size: 22px;
+	margin-bottom: 20px;
+	line-height: 1.2;
 }
 .view-latest-recipe .views-field-field-recipe-serves,
 .view-latest-recipe .views-field-field-recipe-preptime,
