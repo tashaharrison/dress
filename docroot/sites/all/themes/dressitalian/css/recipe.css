@@ -373,3 +373,22 @@
 .section-recipes .article ul.links {
 	margin: -75px 0 0;
 }
+.view-latest-recipe {
+	text-align:right;
+}
+.view-latest-recipe .views-field-field-recipe-image {
+	float:right;
+	margin-left: 24px;
+}
+.view-latest-recipe .views-field-field-recipe-italian-title,
+.view-latest-recipe .views-field-title h2 {
+	font-weight: bold;
+	font-size: 24px;
+	margin-bottom:20px;
+}
+.view-latest-recipe .views-field views-field-field-recipe-serves,
+.view-latest-recipe .views-field-field-recipe-preptime,
+.view-latest-recipe .views-field-field-recipe-cookingtime {
+	color: #808080;
+    font-size: 16px;
+}
