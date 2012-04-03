@@ -24,6 +24,9 @@ div.olPopupCloseBox {
 	font-weight: bold;
 	font-size: 1.25em;
 }
+.openlayers-tooltip-description {
+	width:500px;
+}
 /*
 .section-regions-of-italy .view-regions-of-italy {
 	margin-bottom: 60px;
