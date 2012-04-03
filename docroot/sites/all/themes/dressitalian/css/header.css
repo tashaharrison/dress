@@ -20,21 +20,31 @@
 /* Social links */
 
 .social-links {
+	font-size:1.1em;
 	height:20px;
 	margin-top: 2px;
 }
 .social-links a {
 	display: inline-block;
     height: 20px;
-    width: 20px;
 	margin-right: 6px;
 	opacity: .8;
 }
 .social-links a:hover {
 	opacity: 1;
+	text-decoration:none;
 }
 .social-links a span {
     display: block;
     height: 0;
     overflow: hidden;
+}
+.social-links a.facebook-follow {
+	width: 102px;
+}
+.social-links a.twitter-follow {
+	width: 126px;
+}
+.social-links a.rss-follow {
+	width: 190px;
 }
