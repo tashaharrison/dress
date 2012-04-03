@@ -150,3 +150,6 @@ dd {
 .floatright {
 	float:right;
 }
+tbody {
+	border:none;
+}
