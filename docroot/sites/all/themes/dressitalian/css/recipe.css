@@ -382,7 +382,7 @@
 }
 .view-latest-recipe .views-field-field-recipe-italian-title,
 .view-latest-recipe .views-field-title h2,
-.view-latest-recipe .views-field-title h1 {
+.view-latest-recipe .views-field-nothing h1 {
 	font-weight: bold;
 	font-size: 22px;
 	margin-bottom: 20px;
