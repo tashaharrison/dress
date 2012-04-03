@@ -386,9 +386,14 @@
 	font-size: 24px;
 	margin-bottom:20px;
 }
-.view-latest-recipe .views-field views-field-field-recipe-serves,
+.view-latest-recipe .views-field-field-recipe-serves,
 .view-latest-recipe .views-field-field-recipe-preptime,
 .view-latest-recipe .views-field-field-recipe-cookingtime {
 	color: #808080;
     font-size: 16px;
+}
+.view-latest-recipe .views-field-view-node {
+	clear:none;
+	text-align:right;
+	margin-top:20px;
 }
