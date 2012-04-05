@@ -29,7 +29,6 @@
     height: 20px;
 	margin-right: 6px;
 	opacity: .8;
-	width: 20px;
 }
 .social-links a:hover {
 	opacity: 1;
@@ -39,4 +38,9 @@
     display: block;
     height: 0;
     overflow: hidden;
+}
+.facebook-follow,
+.twitter-follow,
+.rss-follow {
+	width: 20px;
 }
