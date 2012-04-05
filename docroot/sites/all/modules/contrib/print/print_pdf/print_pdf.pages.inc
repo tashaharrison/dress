@@ -24,7 +24,7 @@ function print_pdf_controller() {
   $GLOBALS['conf']['cache'] = FALSE;
 
   $args = func_get_args();
-  $path = implode('/', $args);
+  $path = filter_xss(implode('/', $args));
   $cid = isset($_GET['comment']) ? (int)$_GET['comment'] : NULL;
 
   if (!empty($path)) {
@@ -55,7 +55,7 @@ function print_pdf_controller() {
 
   $pdf = print_pdf_generate_path($path, $cid, $pdf_filename);
   if ($pdf == NULL) {
-    drupal_goto($print['url']);
+    drupal_goto($path);
     exit;
   }
 
@@ -148,7 +148,7 @@ function _print_pdf_file_access_images($html) {
       $lang = '';
       break;
   }
-*/
+ */
   // Always convert private to local paths
   $pattern = "!(<img\s[^>]*?src\s*?=\s*?['\"]?)${base_url}/(?:(?:index.php)?\?q=)?(?:${lang}/)?system/files/([^>]*?>)!is";
   $replacement = '$1file://' . realpath(variable_get('file_private_path', '')) . '/$2';
