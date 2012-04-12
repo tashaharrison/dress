@@ -360,6 +360,25 @@ function service_links_theme() {
 }
 
 /**
+ * Remove a service from the list if the related module is disabled
+ * and can't provide the correct values.
+ */
+function service_links_array_filter($services) {
+  $result = array();
+
+  foreach ($services as $service_id => $service) {
+    if ($service === 1) {
+      drupal_set_message(t('The service having id "@id" is missing, reactivate its module or save again the list of services.', array('@id' => $service_id)), 'warning', FALSE);
+    }
+    else {
+      $result[$service_id] = $service;
+    }
+  }
+
+  return $result;
+}
+
+/**
  * Discover all available service links by invoking hook_service_links().
  *
  * @param $services
@@ -395,12 +414,22 @@ function service_links_get_links($services = NULL, $reset = FALSE) {
       cache_set('service_links_get_links', $links);
     }
   }
-  // If desired, return only the given services.
-  if (isset($services) && is_numeric(key($services))) {
-    $services = array_combine($services, array_fill(0, count($services), 1));
+
+  // If desired, return only the wanted services.
+  if (isset($services)) {
+    // Detect a manual request and populate the array correctly.
+    if (is_numeric(key($services))) {
+      $services = array_combine($services, array_fill(0, count($services), 1));
+    }
+
+    // Provide only the services requested.
+    $services = array_merge($services, array_intersect_key($links, $services));
+
+    // Remove the unknown services.
+    $services = service_links_array_filter($services);
   }
 
-  return isset($services) ? array_merge($services, array_intersect_key($links, $services)) : $links;
+  return isset($services) ? $services : $links;
 }
 
 /**
@@ -675,8 +704,9 @@ function _service_links_get_tags($node, &$settings) {
 
     $url = _service_links_get_page_url(NULL, $settings);
 
-    // The choice of front_page shouldn't affect the query which points the original page
-    $query = check_plain(arg(0)) . str_replace(url(arg(0)), '', url($_GET['q']));
+    // The query shouldn't follow the front_page alias but point the original page.
+    $query = drupal_get_normal_path($_GET['q']);
+    
     $teaser = '';
     $nid = NULL;
   }
@@ -688,8 +718,8 @@ function _service_links_get_tags($node, &$settings) {
     $front_page .= '?q=';
   }
   else {
-    // Ensure a trailing slash on multilingual sites.
-    $front_page = preg_replace('/\?q\=([0-9a-z-_]+)$/i', '?q=\1/', $front_page);
+    // Ensure a trailing slash on multilingual sites with clean url on.
+    $front_page = preg_replace('/([0-9a-z-_]+)$/i', '\1/', $front_page);
   }
 
   switch ($settings['short_links_use']) {
@@ -768,7 +798,7 @@ function _service_links_get_tags($node, &$settings) {
  * Return the url for not-node pages.
  */
 function _service_links_get_page_url($node, $settings) {
-  if ($settings['link_to_front']) {
+  if ($settings['link_to_front'] || drupal_is_front_page()) {
     $url = url('<front>', array('absolute' => TRUE, 'query' => service_links_get_query($settings['text_to_append'])));
   }
   else {

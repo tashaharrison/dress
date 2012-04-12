@@ -1,6 +1,6 @@
 (function ($) {
   $(document).ready(function(){
-    // work only for FF, IE, Opera, Chrome
+    // It works only for FF, IE, Opera, Chrome
     if (window.sidebar || window.external || window.opera) {
       $("a.service-links-favorite").show();
       if (window.chrome) {
@@ -16,7 +16,7 @@
 
           $(this).attr('rel', 'sidebar').attr('href', url).attr('title', title);
         });
-      } else if (window.sidebar || window.external.AddFavourite) {
+      } else if (window.sidebar || (window.external && window.external.AddFavourite)) {
         $("a.service-links-favorite").click(function(event){
           event.preventDefault();
           var url = $(this).attr('href').split('&favtitle=');
