@@ -67,6 +67,7 @@ a:active, a:focus {
 #primary-menu-bar .primary-menu li a:link {
 }
 #primary-menu-bar .primary-menu li a:visited {
+	text-decoration:none;
 }
 #primary-menu-bar .primary-menu li a:hover {
 	font-weight:bold;
@@ -122,6 +123,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#E2E2E2', end
 #secondary-menu-bar .secondary-menu li a:link {
 }
 #secondary-menu-bar .secondary-menu li a:visited {
+	text-decoration:none;
 }
 #secondary-menu-bar .secondary-menu li a:hover {
 	font-weight:bold;
