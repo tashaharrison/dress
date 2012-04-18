@@ -67,10 +67,19 @@
 .section-products .view-product-categories {
 	margin-top: 26px;
 }
-.section-products .view-product-categories .views-fluid-grid p {
+.section-products .view-product-categories .item-list p {
 	float: left;
 	margin-top: 16px;
 	width: 335px;
+}
+.section-products .view-product-categories .item-list li {
+	display: inline-block;
+}
+.ie6-8 .section-products .view-product-categories .item-list li {
+	float:left;
+}
+.ie6-8 .section-products .view-product-categories .item-list h2 {
+	clear:left;
 }
 .section-products .field-name-field-product-buy-on {
 	text-align: center;

@@ -547,6 +547,9 @@ a.boxout-grey {
 .links .print_html a:hover {
 	background: url("../images/print-icon.png") no-repeat scroll -50px top white;
 }
+.no-grid-style ul {
+	list-style:none;
+}
 .no-grid-style li {
 	border:none;
 	background:none;
