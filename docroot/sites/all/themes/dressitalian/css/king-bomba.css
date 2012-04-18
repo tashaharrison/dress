@@ -22,6 +22,8 @@
 	font-size: 16px;
 	border-radius: 4px 4px 4px 4px;
 	box-shadow: 5px 5px 5px #888888;
+	-webkit-box-shadow: 5px 5px 5px #888888;
+	-moz-box-shadow: 5px 5px 5px #888888;
 	text-transform: uppercase;
 }
 

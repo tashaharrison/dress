@@ -454,7 +454,12 @@ span.button {
 div.container {
 	background: rgb(255,255,255); /* Old browsers */
 	box-shadow: 0 0 50px #A8A8A8;
-	padding: 15px 20px;
+	  -webkit-box-shadow: 5px 5px 5px #888888;
+   -khtml-box-shadow: 0 0 50px #A8A8A8;
+    -icab-box-shadow: 0 0 50px #A8A8A8;
+     -moz-box-shadow: 0 0 50px #A8A8A8;
+       -o-box-shadow: 0 0 50px #A8A8A8;
+		  padding: 15px 20px;
 }
 .boxout {
 	color:white;

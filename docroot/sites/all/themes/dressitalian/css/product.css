@@ -75,13 +75,43 @@
 .section-products .field-name-field-product-buy-on {
 	text-align: center;
 }
+.section-products .views-field-field-product-image {
+	text-align:center;
+}
 .section-products .field-name-field-product-buy-on a {
-	background: url(../images/asda-logo.gif) no-repeat 0 0 transparent;
+	/*background: url(../images/asda-logo.gif) no-repeat 0 0 transparent;
 	text-indent: -10000px;
 	overflow: hidden;
 	width: 120px;
 	display: inline-block;
-	height: 40px;
+	height: 40px;*/
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #E4E4E4 #D2D2D2 #B4B4B4;
+    border-radius: 20px 20px 20px 20px;
+    border-style: solid;
+    border-width: 1px;
+    color: #000000;
+    cursor: pointer;
+    font-size: 1.4em;
+    font-weight: normal;
+    padding: 12px 45px;
+    text-align: center;
+	-webkit-box-shadow: 1px 1px 6px 0px #B4B4B4;
+	-moz-box-shadow: 1px 1px 6px 0px #B4B4B4;
+	box-shadow: 1px 1px 6px 0px #B4B4B4;
+}
+.section-products .views-field-field-product-buy-on a {
+	display:block;
+    font-size: 1.3em;
+	margin-bottom:16px;
+    padding: 6px 45px;
+	-webkit-box-shadow: 1px 1px 0px 0px #B4B4B4;
+	-moz-box-shadow: 1px 1px 0px 0px #B4B4B4;
+	box-shadow: 1px 1px 0px 0px #B4B4B4;
 }
 .views-fluid-grid {
 	clear:both;
