@@ -5,23 +5,30 @@
 a {
 	text-decoration:none;
 	color: #666;
+	outline:none;
 }
 a:link {
 	text-decoration:none;
+	outline:none;
 }
 a:visited {
 	text-decoration:none;
+	outline:none;
 }
 a:hover {
 	text-decoration:underline;
 	color:#000;
+	outline:none;
 }
 a:active {
+	outline:none;
 }
 a.active {
+	outline:none;
 }
 /* Global focus style for links. */
 a:active, a:focus {
+	outline:none;
 }
 /* Primary and Secondary menus. */
 .nav {
