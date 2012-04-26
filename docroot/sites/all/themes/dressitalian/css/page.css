@@ -585,6 +585,9 @@ a.boxout-grey {
 	padding: 4px 10px 0;
 	margin:0 10px;
 }
+.front .block-mailchimp-lists h2 {
+	text-align:center;
+}
 .front #block-views-recommended-recipes-block-1 {
 	margin:0;
 }
