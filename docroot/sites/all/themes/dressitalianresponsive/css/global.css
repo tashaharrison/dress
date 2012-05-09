@@ -94,14 +94,7 @@ a:focus { }
  * Header elements
 **/
 
-.social-links { float:right; }
-.social-links a {
-	display: inline-block;
-	margin-right: 6px;
-	opacity: 0.8;
-	width: 20px;
-}
-.social-links a:hover { opacity: 1; }
+.social-links { display:none; }
 
 /** 
  * Navigation
