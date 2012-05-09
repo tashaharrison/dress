@@ -27,6 +27,21 @@
 }
 
 /** 
+ * Header elements
+**/
+
+.social-links { float:right; }
+.social-links a {
+	display: inline-block;
+	margin-right: 6px;
+	opacity: 0.8;
+}
+.facebook-follow, .twitter-follow, .rss-follow {
+	width: 20px;
+}
+.social-links a:hover { opacity: 1; }
+
+/** 
  * Navigation
 **/
 
