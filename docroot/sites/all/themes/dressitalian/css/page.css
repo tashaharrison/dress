@@ -693,3 +693,6 @@ hgroup {
 .ie6-8 img {
 	max-width:auto;
 }
+.front div.messages {
+    margin: -20px 10px 60px;
+}
