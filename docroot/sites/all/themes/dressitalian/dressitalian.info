@@ -25,6 +25,7 @@
   stylesheets[all][] = css/blog.css
   stylesheets[all][] = css/press.css
   stylesheets[all][] = css/king-bomba.css
+  stylesheets[all][] = css/photo_album.css
 
   ; Disabled styles - un-comment if you need these.
   ;stylesheets[all][] = css/admin-section.css

@@ -1,0 +1,21 @@
+/* CSS Document */
+
+.view-photo-album .views-field-field-photo-album-image img {
+	box-shadow:5px 5px 5px #888888;
+}
+.view-photo-album li.views-row {
+	display:inline-block;
+	margin:0 10px 20px;
+	text-align:center;
+	vertical-align:top;
+}
+.view-photo-album .views-field-field-caption {
+	text-align:center;
+	text-transform:lowercase;
+	margin-top:5px;
+	width:275px;
+}
+.view-photo-album ul {
+	text-align:center;
+	margin:0;
+}

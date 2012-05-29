@@ -689,6 +689,9 @@ hgroup {
 .ie6-7 .links li {
 	float:right;
 }
+.ie6-7 .view-photo-album li.views-row {
+	float:left;
+}
  /*
  * IE6-8
  */
