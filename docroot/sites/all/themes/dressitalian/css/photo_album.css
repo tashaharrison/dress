@@ -9,11 +9,12 @@
 	text-align:center;
 	vertical-align:top;
 }
-.view-photo-album .views-field-field-caption {
+.view-photo-album .angelina {
 	text-align:center;
 	text-transform:lowercase;
 	margin-top:5px;
 	width:275px;
+	font-size:25px;
 }
 .view-photo-album ul {
 	text-align:center;
