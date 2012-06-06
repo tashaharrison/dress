@@ -118,7 +118,22 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#E2E2E2', end
 }
 /* Modify the margin to set tab spacings. */
 #secondary-menu-bar .secondary-menu li {
-	width: 168px;
+	width: 125px;
+}
+#secondary-menu-bar .secondary-menu li.menu-456 {
+	width:110px;
+}
+#secondary-menu-bar .secondary-menu li.menu-539 {
+	width:183px;
+}
+#secondary-menu-bar .secondary-menu li.menu-2422 {
+	width:158px;
+}
+#secondary-menu-bar .secondary-menu li.menu-457 {
+	width:250px;
+}
+#secondary-menu-bar .secondary-menu li.menu-1833 {
+	width:100px;
 }
 #secondary-menu-bar .secondary-menu li a {
 	color: #4C4C4C;

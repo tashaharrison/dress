@@ -1,0 +1,90 @@
+@charset "utf-8";
+/* CSS Document */
+
+.front #page {
+	margin-top:20px;
+	background-color:#1589FF;
+}
+.front #primary-menu-bar .primary-menu li a {
+	color:white;
+}
+.front #secondary-menu-bar .secondary-menu li a {
+	color:white;
+}
+.front #secondary-menu-bar {
+	background:none;
+	border-top: 1px solid white;
+}
+.front .social-links a {
+	color:white;
+}
+.front h1, .front a {
+	color:white;
+}
+.front .subsection-verdure .field-name-italian-title-linked-to-node a, .front .subsection-verdure .field-name-field-recipe-italian-title, .front .views-field-field-recipe-italian-title span.Verdure a, .front .subsection-verdure .field-name-field-recipe-serves, .front .subsection-verdure .field-name-field-recipe-preptime, .front .subsection-verdure .field-name-field-recipe-cookingtime, .front .subsection-verdure .field-name-field-recipe-serves .field-label, .front .subsection-verdure .field-name-field-recipe-preptime .field-label, .front .subsection-verdure .field-name-field-recipe-cookingtime .field-label, .front .subsection-verdure .field-name-field-recipe-instructions .field-label, .front .subsection-verdure .field-name-field-recipe-ingredients .field-label, .front .subsection-verdure #page-title, .front .subsection-verdure .view-recommended-recipes h2 {
+	color:white;
+}
+.front .subsection-primi-piatti .field-name-italian-title-linked-to-node a, .front .subsection-primi-piatti .field-name-field-recipe-italian-title, .front .views-field-field-recipe-italian-title span.Primi-Piatti a, .front .subsection-primi-piatti .field-name-field-recipe-serves, .front .subsection-primi-piatti .field-name-field-recipe-preptime, .front .subsection-primi-piatti .field-name-field-recipe-cookingtime, .front .subsection-primi-piatti .field-name-field-recipe-serves .field-label, .front .subsection-primi-piatti .field-name-field-recipe-preptime .field-label, .front .subsection-primi-piatti .field-name-field-recipe-cookingtime .field-label, .front .subsection-primi-piatti .field-name-field-recipe-instructions .field-label, .front .subsection-primi-piatti .field-name-field-recipe-ingredients .field-label, .front .subsection-primi-piatti #page-title, .front .subsection-primi-piatti .view-recommended-recipes h2 {
+	color:white;
+}
+.front .subsection-pesce .field-name-italian-title-linked-to-node a, .front .subsection-pesce .field-name-field-recipe-italian-title, .front .views-field-field-recipe-italian-title span.Pesce a, .front .subsection-pesce .field-name-field-recipe-serves, .front .subsection-pesce .field-name-field-recipe-preptime, .front .subsection-pesce .field-name-field-recipe-cookingtime, .front .subsection-pesce .field-name-field-recipe-serves .field-label, .front .subsection-pesce .field-name-field-recipe-preptime .field-label, .front .subsection-pesce .field-name-field-recipe-cookingtime .field-label, .front .subsection-pesce .field-name-field-recipe-instructions .field-label, .front .subsection-pesce .field-name-field-recipe-ingredients .field-label, .front .subsection-pesce #page-title, .front .subsection-pesce .view-recommended-recipes h2 {
+	color:white;
+}
+.front .subsection-carne .field-name-italian-title-linked-to-node a, .front .subsection-carne .field-name-field-recipe-italian-title, .front .views-field-field-recipe-italian-title span.Carne a, .front .subsection-carne .field-name-field-recipe-serves, .front .subsection-carne .field-name-field-recipe-preptime, .front .subsection-carne .field-name-field-recipe-cookingtime, .front .subsection-carne .field-name-field-recipe-serves .field-label, .front .subsection-carne .field-name-field-recipe-preptime .field-label, .front .subsection-carne .field-name-field-recipe-cookingtime .field-label, .front .subsection-carne .field-name-field-recipe-instructions .field-label, .front .subsection-carne .field-name-field-recipe-ingredients .field-label, .front .subsection-carne .views-field-field-recipe-italian-title, .front .subsection-carne .views-field-field-recipe-italian-title a, .front .subsection-carne #page-title, .front .subsection-carne .recipe-category-page-italian-title a, .front .subsection-carne .view-recommended-recipes h2 {
+	color:white;
+}
+.front .subsection-antipasti .field-name-italian-title-linked-to-node a, .front .subsection-antipasti .field-name-field-recipe-italian-title, .front .views-field-field-recipe-italian-title span.Antipasti a, .front .subsection-antipasti .field-name-field-recipe-italian-title, .front .subsection-antipasti .field-name-field-recipe-serves, .front .subsection-antipasti .field-name-field-recipe-preptime, .front .subsection-antipasti .field-name-field-recipe-cookingtime, .front .subsection-antipasti .field-name-field-recipe-serves .field-label, .front .subsection-antipasti .field-name-field-recipe-preptime .field-label, .front .subsection-antipasti .field-name-field-recipe-cookingtime .field-label, .front .subsection-antipasti .field-name-field-recipe-instructions .field-label, .front .subsection-antipasti .field-name-field-recipe-ingredients .field-label, .front .subsection-antipasti .views-field-field-recipe-italian-title, .front .subsection-antipasti .views-field-field-recipe-italian-title a, .front .subsection-antipasti #page-title, .front .subsection-antipasti .view-recommended-recipes h2 {
+	color:white;
+}
+.front .view-latest-recipe .views-field-field-recipe-serves, .front .view-latest-recipe .views-field-field-recipe-preptime, .front .view-latest-recipe .views-field-field-recipe-cookingtime {
+	color:white;
+}
+.front h1 a, .front h2 a, .front h3 a, .front h4 a, .front h5 a, .front h6 a {
+	color:white;
+}
+.front .block-mailchimp-lists h2, .front .block-mailchimp-lists label {
+	color:white;
+}
+.view-photo-album .views-field-field-photo-album-image img {
+	box-shadow:none;
+}
+.view-display-id-page_1  {
+	position:relative;
+	height:450px;
+	width:100%;
+}
+.view-display-id-page_1 .views-row {
+	position:absolute;
+}
+.view-display-id-page_1 .views-row-1 {
+	bottom:25px;
+	right:25px;
+}
+.view-display-id-page_1 .views-row-2 {
+	top:52px;
+	right:316px;
+}
+.view-display-id-page_1 .views-row-3 {
+	top:36px;
+	left:44px;
+}
+.view-display-id-page_1 .views-row-4 {
+	bottom:25px;
+	left:85px;
+}
+.view-display-id-page_1 .views-row-5 {
+	top:41px;
+	right:30px;;
+}
+.view-display-id-page_1 .views-row-6 {
+	bottom:50px;
+	right:265px;
+}
+.view-display-id-page_1 .views-field-field-photo-album-image img {
+	display:block;
+}
+.view-display-id-page_1 h1 {
+	position:relative;
+	text-align: center;
+	z-index: 1;
+}
