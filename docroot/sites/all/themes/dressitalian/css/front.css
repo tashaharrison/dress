@@ -14,6 +14,7 @@
 .front #secondary-menu-bar {
 	background:none;
 	border-top: 1px solid white;
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(enabled=false)"; /* IE6-9 */
 }
 .front .social-links a {
 	color:white;
