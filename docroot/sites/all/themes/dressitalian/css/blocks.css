@@ -52,7 +52,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#C8C8C8', end
 #sidebar-last .block-inner {
 }
 .block ul li {
-	margin: 0 0 0 0.5em;
+	margin: 0;
 }
 .block .item-list ul {
 	margin-left: 1em;

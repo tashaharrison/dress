@@ -661,6 +661,9 @@ hgroup {
 .fb-social-comments-plugin {
 	margin-top: 2em;
 }
+.flexslider ul.slides li img {
+    margin: 0 auto;
+}
  /*
  * IE6/7
  */
