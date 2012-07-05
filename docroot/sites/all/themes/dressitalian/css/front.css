@@ -90,3 +90,7 @@
 	text-align: center;
 	z-index: 1;
 }
+.front .flexslider {
+    background: #817679;
+    border: none;
+}
