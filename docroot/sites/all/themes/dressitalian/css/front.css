@@ -47,7 +47,7 @@
 .front .block-mailchimp-lists h2, .front .block-mailchimp-lists label {
 	color:white;
 }
-.view-photo-album .views-field-field-photo-album-image img {
+.front .view-photo-album .views-field-field-photo-album-image img {
 	box-shadow:none;
 }
 .view-display-id-page_1  {
