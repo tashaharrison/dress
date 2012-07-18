@@ -27,3 +27,9 @@
     font-size: 24px;
     width: 250px;
 }
+.view-photo-album #caption {
+    font-family: angelina;
+    font-size: 12px;
+    font-weight: normal;
+    
+}
