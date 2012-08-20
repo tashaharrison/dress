@@ -38,6 +38,9 @@
 .blog-page-list li.views-row {
 	padding: 0 10px 14px 0;
 }
+.section-blog .field-name-post-date {
+    padding-bottom: 10px;
+}
 .more-link, .views-field-view-node, .field-name-node-link {
 	font-weight:bold;
 	text-align:left;
