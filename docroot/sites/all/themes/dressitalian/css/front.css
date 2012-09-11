@@ -3,7 +3,8 @@
 
 .front #page {
 	margin-top:20px;
-	background-color:#817679;
+	/* orig grey background-color:#817679; */
+	background-color: #9B999A;
 }
 .front #primary-menu-bar .primary-menu li a {
 	color:white;
@@ -91,6 +92,20 @@
 	z-index: 1;
 }
 .front .flexslider {
-    background: #817679;
+    background: #9B999A;
     border: none;
+}
+.front .flex-nav-container {
+    margin-top: 25px;
+    margin-bottom: 55px;
+}
+/***************************************************
+          Latest Blog Posts Block
+ ***************************************************/ 
+#block-views-latest-news-block-2 .block-title {
+    color: white;
+    padding-bottom: 10px;
+}
+#block-views-latest-news-block-2 .views-field-title {
+    font-size: 12px;
 }
