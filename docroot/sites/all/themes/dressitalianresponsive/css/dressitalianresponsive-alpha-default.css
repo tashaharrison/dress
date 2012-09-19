@@ -6,10 +6,7 @@
 h1#page-title {
     text-align: left;
 }
-.page .region-content-inner ul.links {
-    float: right;
-    margin: -96px 0 0;
-}
+
 /* Zones */
 #zone-header,
 #zone-content,
