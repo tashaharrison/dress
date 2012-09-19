@@ -6,6 +6,10 @@
 h1#page-title {
     text-align: left;
 }
+.page .region-content-inner ul.links {
+    float: right;
+    margin: -96px 0 0;
+}
 /* Zones */
 #zone-header,
 #zone-content,
@@ -85,20 +89,20 @@ h1#page-title {
  * Recipes
 **/
 
-.section-recipes .view-taxonomy-term li.taxonomy-page-item,
+.context-recipes .view-taxonomy-term li.taxonomy-page-item,
 .view-recommended-recipes li.taxonomy-page-item {
 	border-bottom: none;
 	margin:0;
 	padding: 0 0 1em 0;
 	width: 300px;
 }
-.section-recipes .view-taxonomy-term .field-name-title h2 a,
+.context-recipes .view-taxonomy-term .field-name-title h2 a,
 .view-recommended-recipes h2.field-title a,
 .view-recommended-recipes .views-field-title h2 a {
 	font-size: 0.8em;
 	font-weight: bold;
 }
-.section-recipes .view-taxonomy-term .field-name-italian-title-linked-to-node a,
+.context-recipes.view-taxonomy-term .field-name-italian-title-linked-to-node a,
 .view-recommended-recipes .views-field-field-recipe-italian-title a {
 	font-size: 1.2em;
 	font-weight: bold;

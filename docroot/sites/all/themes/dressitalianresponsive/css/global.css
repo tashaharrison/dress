@@ -39,6 +39,13 @@ h3 { font-size:1.25em; }
 h4 { font-size:1.1em; }
 h5,
 h6 { font-size:1em; }
+img {
+    border-radius: 4px;
+}
+p {
+    margin: 0 0 1em;
+    padding: 0;
+}
 a {
 	text-decoration:none;
 	color: #666;
@@ -57,7 +64,10 @@ a:focus { }
 /** 
  * Structural elements
 **/
-
+.page .region-content-inner ul.links {
+    float: right;
+    margin: -96px 0 0;
+}
 .page { }
 /* Zones */
 #zone-header,
@@ -147,6 +157,7 @@ a:focus { }
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#E2E2E2', endColorstr='#ffffff', GradientType=0 ); /* IE6-9 */
 	background: linear-gradient(top, rgba(255,255,255,1) 0%, rgba(200,200,200,1) 2%, rgba(255,255,255,1) 90%); /* W3C */
 	padding-top: 0.8em;
+	margin-bottom: 4em;
 }
 /* Modify the margin to set tab spacings. */
 #region-menu .navigation #secondary-menu li { }
@@ -373,17 +384,19 @@ fieldset legend a, html.js fieldset.collapsible legend a {
 /** 
  * Recipes
 **/
-
-.section-recipes .view-taxonomy-term img,
+.context-recipes .page .region-content-inner ul.links {
+      margin: -75px 0 0;
+}
+.context-recipes .view-taxonomy-term img,
 .view-recommended-recipes img {
 	border-radius: 4px;
 	-khtml-border-radius: 4px;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 	outline:none;
-	width:100%;
+
 }
-.section-recipes .view-taxonomy-term a:hover,
+.context-recipes  .view-taxonomy-term a:hover,
 .view-recommended-recipes a:hover { text-decoration:none; }
 .section-recipes .view-taxonomy-term .field-name-title h2 a,
 .view-recommended-recipes h2.field-title a,
@@ -391,28 +404,28 @@ fieldset legend a, html.js fieldset.collapsible legend a {
 	font-size: 1.1em;
 	font-weight: bold;
 }
-.section-recipes .view-taxonomy-term .field-name-italian-title-linked-to-node a,
+.context-recipes  .view-taxonomy-term .field-name-italian-title-linked-to-node a,
 .view-recommended-recipes .views-field-field-recipe-italian-title a {
 	font-size: 1.6em;
 	font-weight: bold;
 }
-.section-recipes .view-taxonomy-term .field-name-title h2 a,
+.context-recipes  .view-taxonomy-term .field-name-title h2 a,
 .view-recommended-recipes h2.field-name-title a,
 .view-recommended-recipes .views-field-title h2 a { color:#666; }
-.section-recipes .view-taxonomy-term .field-name-italian-title-linked-to-node { line-height:1.2; }
+.context-recipes  .view-taxonomy-term .field-name-italian-title-linked-to-node { line-height:1.2; }
 .view-recommended-recipes .views-field-title h2,
-.section-recipes .view-taxonomy-term .field-name-title h2 {
+.context-recipes .view-taxonomy-term .field-name-title h2 {
 	line-height:0.9;
 	padding-bottom: 4px;
 }
-.section-recipes .view-taxonomy-term ul.taxonomy-page-list,
+.context-recipes  .view-taxonomy-term ul.taxonomy-page-list,
 .view-recommended-recipes ul.taxonomy-page-list {
 	list-style:none;
 	margin:0;
 	text-align:center;
 }
-.section-recipes .view-taxonomy-term ul.taxonomy-page-list .article { margin:0; }
-.section-recipes .view-taxonomy-term li.taxonomy-page-item,
+.context-recipes  .view-taxonomy-term ul.taxonomy-page-list .article { margin:0; }
+.context-recipes  .view-taxonomy-term li.taxonomy-page-item,
 .view-recommended-recipes li.taxonomy-page-item {
 	color: #444;
 	display: inline-block;
@@ -423,7 +436,7 @@ fieldset legend a, html.js fieldset.collapsible legend a {
 	text-align: center;
 	vertical-align: top;
 	width: 100%;
-	border-bottom: 2px solid #CCC;
+	/*border-bottom: 2px solid #CCC;*/
 }
 .view-recommended-recipes .views_slideshow_cycle_slide { text-align:center; }
 .view-recommended-recipes .view-content { padding-top: 10px; }
@@ -510,52 +523,52 @@ fieldset legend a, html.js fieldset.collapsible legend a {
 .subsection-pesce {
 } */
 
-.page-type-recipe .field-name-title h1 {
+.node-type-recipe .field-name-title h1 {
     border-bottom: medium none;
     line-height: 1;
     margin-top: 14px;
 }
-.page-type-recipe .group-left {
+.node-type-recipe .group-left {
     width: 46%;;
 }
-.page-type-recipe .group-header {
+.node-type-recipe .group-header {
     border-bottom: 2px solid #CCC;
     margin-bottom: 14px;
 }
-.page-type-recipe .group-left a {
+.node-type-recipe .group-left a {
     font-size:18px;
     font-weight:bold
 }
-.page-type-recipe .field-name-recipe-breadcrumb {
+.node-type-recipe .field-name-recipe-breadcrumb {
     font-size:1.75em;
     font-weight:bold;
 }
-.page-type-recipe .field-name-field-recipe-italian-title {
+.node-type-recipe .field-name-field-recipe-italian-title {
     font-size:1.75em;
     font-weight:bold;
     margin-bottom: -0.4em;
     line-height:1;
 }
-.page-type-recipe .field-name-field-recipe-ingredients {
+.node-type-recipe .field-name-field-recipe-ingredients {
     margin-top: 18px;
 }
-.page-type-recipe .field-name-field-recipe-ingredients .field-label,
-.page-type-recipe .field-name-field-recipe-instructions .field-label {
+.node-type-recipe .field-name-field-recipe-ingredients .field-label,
+.node-type-recipe .field-name-field-recipe-instructions .field-label {
     font-size: 23px;
     margin-bottom: 4px;
 }
-.page-type-recipe .field-name-field-recipe-ingredients .field-items {
+.node-type-recipe .field-name-field-recipe-ingredients .field-items {
     line-height: 1.3;
     font-size: 1.1em;
 }
-.page-type-recipe .field-name-field-recipe-instructions {
+.node-type-recipe .field-name-field-recipe-instructions {
     margin-top: 18px;
 }
-.page-type-recipe .field-name-field-recipe-instructions {
+.node-type-recipe .field-name-field-recipe-instructions {
     line-height: 1.3;
     font-size:1.1em;
 }
-.page-type-recipe .field-recipe-image {
+.node-type-recipe .field-recipe-image {
     text-align:right;
 }
 .view-display-id-entity_view_1,
@@ -658,7 +671,7 @@ fieldset legend a, html.js fieldset.collapsible legend a {
 
 /* Recipe category page - WHITE */
 
-.section-recipes .view-taxonomy-term img.imagecache-recipe-category-page,
+.context-recipes .view-taxonomy-term img.imagecache-recipe-category-page,
 .view-recommended-recipes img.imagecache-recipe-category-page {
     border-radius: 4px;
     -khtml-border-radius: 4px;
@@ -666,39 +679,39 @@ fieldset legend a, html.js fieldset.collapsible legend a {
     -webkit-border-radius: 4px;
     outline:none;
 }
-.section-recipes .view-taxonomy-term a:hover,
+.context-recipes .view-taxonomy-term a:hover,
 .view-recommended-recipes a:hover {
     text-decoration:none;
 }
-.section-recipes .view-taxonomy-term .field-name-title h2 a,
+.context .view-taxonomy-term .field-name-title h2 a,
 .view-recommended-recipes h2.field-title a,
 .view-recommended-recipes .views-field-title h2 a,
-.section-recipes .view-taxonomy-term .field-name-italian-title-linked-to-node a,
+.context .view-taxonomy-term .field-name-italian-title-linked-to-node a,
 .view-recommended-recipes .views-field-field-recipe-italian-title a {
     font-size: 16px;
     font-weight: bold;
 }
-.section-recipes .view-taxonomy-term .field-name-title h2 a,
+.context-recipes .view-taxonomy-term .field-name-title h2 a,
 .view-recommended-recipes h2.field-name-title a {
     color:#666;
 }
-.section-recipes .view-taxonomy-term .field-name-italian-title-linked-to-node {
+.context-recipes .view-taxonomy-term .field-name-italian-title-linked-to-node {
     line-height:1.2;
 }
 .view-recommended-recipes .views-field-title h2,
-.section-recipes .view-taxonomy-term .field-name-title h2 {
+.context-recipes .view-taxonomy-term .field-name-title h2 {
     line-height:0.9;
 }
-.section-recipes .view-taxonomy-term ul.taxonomy-page-list,
+.context-recipes .view-taxonomy-term ul.taxonomy-page-list,
 .view-recommended-recipes ul.taxonomy-page-list {
     list-style:none;
     margin:0;
     text-align:center;
 }
-.section-recipes .view-taxonomy-term ul.taxonomy-page-list .article {
+.context-recipes .view-taxonomy-term ul.taxonomy-page-list .article {
     margin:0;
 }
-.section-recipes .view-taxonomy-term li.taxonomy-page-item,
+.context-recipes .view-taxonomy-term li.taxonomy-page-item,
 .view-recommended-recipes li.taxonomy-page-item {
     color: #444;
     display: inline-block;
@@ -804,7 +817,7 @@ fieldset legend a, html.js fieldset.collapsible legend a {
 .section-recipes .npb {
     display:none;   
 }
-.section-recipes .article ul.links {
+.context-recipes .article ul.links {
     margin: -75px 0 0;
 }
 .view-latest-recipe {
