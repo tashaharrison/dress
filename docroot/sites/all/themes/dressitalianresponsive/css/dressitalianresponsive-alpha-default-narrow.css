@@ -1,9 +1,32 @@
 /* This file will hold styles that are loaded using the same media query as the narrow grid. */
 #region-menu .navigation #secondary-menu {
-	width: 600px;
+	width: 609px;
 	margin-left: -160px;
-	padding-left: 160px;
+	padding-left: 151px;
 }
 .page-recipes-fb-recipe-of-the-week .container-12 .grid-12 {
     width: 362px;
+}
+#region-menu .navigation #secondary-menu li a {
+    padding: 14px 9px;
+}
+#region-menu {
+    margin-top: 20px;
+}
+/** 
+ * Recipes Page
+**/
+.recipe-categories-links li {
+    display: inline;
+    float: left;
+}
+.recipe-categories-links {
+    width: 800px;
+    margin:0 auto;
+}
+.recipe-categories-links li a {
+
+}
+.block ul.recipe-categories-links li {
+    width: 140px;
 }

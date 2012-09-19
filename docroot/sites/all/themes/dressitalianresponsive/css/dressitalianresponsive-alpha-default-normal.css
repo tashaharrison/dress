@@ -1,8 +1,8 @@
 /* This file will hold styles that are loaded using the same media query as the normal grid. */
 #region-menu .navigation #secondary-menu {
-	width: 830px;
+	width: 854px;
 	margin-left: -170px;
-	padding-left: 170px;
+	padding-left: 146px;
 }
 #region-menu {
 	margin-left: 0;
@@ -18,4 +18,7 @@
 }
 .page-recipes-fb-recipe-of-the-week .container-12 .grid-12 {
     width: 362px;
+}
+.block ul.recipe-categories-links li {
+    width: 160px;
 }

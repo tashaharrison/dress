@@ -3,7 +3,9 @@
 /** 
  * Structural elements
 **/
-
+h1#page-title {
+    text-align: left;
+}
 /* Zones */
 #zone-header,
 #zone-content,
@@ -69,7 +71,16 @@
 	display: inline-block;
 	padding: 0 26px;
 }
-
+#region-footer-first #block-menu-menu-footer-menu .menu {
+    margin-top: 20px;
+    padding: 20px;
+}
+#region-footer-first #block-menu-menu-footer-menu {
+    margin-bottom: 0;
+}
+#region-footer-second .block-block-6 p {
+    padding: 10px 0;
+}
 /** 
  * Recipes
 **/
