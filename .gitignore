@@ -4,3 +4,6 @@ docroot/sites/*/files
 docroot/sites/*/private
 docroot/sites/default/settings.php
 docroot/sites/dressitalian.localhost
+docroot/.htaccess
+docroot/.project
+.git
