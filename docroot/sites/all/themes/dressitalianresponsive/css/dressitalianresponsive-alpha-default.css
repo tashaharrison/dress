@@ -127,9 +127,9 @@ html {
     width: 362px;
 }
 .node-type-recipe .group-left {
-    width: 46%;;
+    width: 46%;
 }
 .node-type-recipe .group-right {
-    float: left;
+    float: right;
     width: 50%;
 }

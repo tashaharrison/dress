@@ -624,7 +624,9 @@ fieldset legend a, html.js fieldset.collapsible legend a {
 .field-name-field-recipe-cookingtime h2 {
     font-size:1em;
 }
+.fbFeedbackContent .composer {
 
+}
 /* Category specific colors */
 .subsection-pesce .field-name-italian-title-linked-to-node a,
 .subsection-pesce .field-name-field-recipe-italian-title,
