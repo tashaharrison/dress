@@ -6,7 +6,19 @@
 h1#page-title {
     text-align: left;
 }
-
+html {
+    background-attachment: fixed;
+    background-clip: border-box;
+    background-color: #FFFFFF;
+    background-image: url("/sites/all/themes/dressitalian/css/images/tomatoes.jpg");
+    background-origin: padding-box;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.page {
+    margin-top: 20px;
+}
 /* Zones */
 #zone-header,
 #zone-content,
@@ -96,12 +108,12 @@ h1#page-title {
 .context-recipes .view-taxonomy-term .field-name-title h2 a,
 .view-recommended-recipes h2.field-title a,
 .view-recommended-recipes .views-field-title h2 a {
-	font-size: 0.8em;
+	font-size: 16px;
 	font-weight: bold;
 }
-.context-recipes.view-taxonomy-term .field-name-italian-title-linked-to-node a,
+.context-recipes .view-taxonomy-term .field-name-italian-title-linked-to-node a,
 .view-recommended-recipes .views-field-field-recipe-italian-title a {
-	font-size: 1.2em;
+	font-size: 16px;
 	font-weight: bold;
 }
 .view-recommended-recipes .views-field-field-recipe-italian-title {
