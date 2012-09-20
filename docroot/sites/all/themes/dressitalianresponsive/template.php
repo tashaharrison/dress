@@ -10,3 +10,27 @@
  * for your subtheme grows. Please read the README.txt in the /preprocess and /process subfolders
  * for more information on this topic.
  */
+
+/**
+ * Implements hook_preprocess_html().
+ */
+function dressitalianresponsive_preprocess_html(&$vars) {
+  $theme = alpha_get_theme();
+  
+
+  // Add a CSS class based on the current page context.
+  if (!drupal_is_front_page()) {
+   
+	$path = drupal_get_path_alias($_GET['q']);
+	list($context,$subsection) = explode('/', $path);
+    
+ 
+	if (isset ($subsection)) {
+	  $vars['attributes_array']['class'][] = drupal_html_class('subsection-' . $subsection);
+	}
+	
+  }
+  
+  alpha_css_include();
+  alpha_libraries_include();
+}
