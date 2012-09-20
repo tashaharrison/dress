@@ -22,3 +22,6 @@
 .view-recommended-recipes li.taxonomy-page-item {
     padding: 0 25px 1em;
 }
+.node-type-recipe .group-right {
+    text-align: center;
+}
