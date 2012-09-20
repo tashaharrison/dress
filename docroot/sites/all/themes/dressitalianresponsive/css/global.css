@@ -425,7 +425,7 @@ fieldset legend a, html.js fieldset.collapsible legend a {
  * Recipes
 **/
 .context-recipes .page .region-content-inner ul.links {
-      margin: -75px 0 0;
+      display: none;
 }
 .context-recipes .view-taxonomy-term img,
 .view-recommended-recipes img {
@@ -569,7 +569,7 @@ fieldset legend a, html.js fieldset.collapsible legend a {
     margin-top: 14px;
 }
 .node-type-recipe .group-left {
-    width: 46%;;
+    width: 100%;
 }
 .node-type-recipe .group-header {
     border-bottom: 2px solid #CCC;
@@ -610,6 +610,9 @@ fieldset legend a, html.js fieldset.collapsible legend a {
 }
 .node-type-recipe .field-recipe-image {
     text-align:right;
+}
+.node-type-recipe .group-right {
+    float: none;
 }
 .view-display-id-entity_view_1,
 .view-display-id-entity_view_2 {

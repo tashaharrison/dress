@@ -97,7 +97,10 @@ html {
 /** 
  * Recipes
 **/
-
+.context-recipes .page .region-content-inner ul.links {
+      margin: -75px 0 0;
+      display: block;
+}
 .context-recipes .view-taxonomy-term li.taxonomy-page-item,
 .view-recommended-recipes li.taxonomy-page-item {
 	border-bottom: none;
@@ -122,4 +125,11 @@ html {
 }
 .page-recipes-fb-recipe-of-the-week .container-12 .grid-12 {
     width: 362px;
+}
+.node-type-recipe .group-left {
+    width: 46%;;
+}
+.node-type-recipe .group-right {
+    float: left;
+    width: 50%;
 }
