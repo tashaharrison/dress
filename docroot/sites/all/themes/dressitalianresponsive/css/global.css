@@ -613,6 +613,7 @@ fieldset legend a, html.js fieldset.collapsible legend a {
 }
 .node-type-recipe .group-right {
     float: none;
+    width: 100%;
 }
 .view-display-id-entity_view_1,
 .view-display-id-entity_view_2 {
