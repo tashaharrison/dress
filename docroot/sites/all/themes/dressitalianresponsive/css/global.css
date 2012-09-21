@@ -108,9 +108,7 @@ ul.pager {
     color: #000000;
     background: none;
 }
-.logo-img {
-    /*margin-right: 0;*/
-}
+
 /* Zones */
 
 #zone-header,
@@ -174,6 +172,7 @@ ul.pager {
 /* Modify the margin to set tab spacings. */
 #region-menu .navigation #main-menu li {
     display: block; 
+    text-align: right;
 }
 #region-menu .navigation #main-menu li a { }
 /* Set pseudo class styles. */
