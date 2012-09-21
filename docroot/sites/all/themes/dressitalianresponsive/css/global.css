@@ -508,29 +508,30 @@ fieldset legend a, html.js fieldset.collapsible legend a {
 
 }
 .recipe-categories-links li a {
-    background: url("images/recipe-categories.png") no-repeat scroll -160px 0 #4C4C4C;
+    background: url("images/recipe-categories.png") no-repeat scroll -160px 30px #4C4C4C;
     color: #FFFFFF;
     font-size: 1.3em;
     font-weight: bold;
     height: 30px;
-    padding-top: 340px;
+    padding-bottom: 100px;
     text-align: center;
     opacity: .9;
     -khtml-opacity: .9;  
     -moz-opacity: .9;  
     display: block;
+    margin-bottom: 20px;
 }
 .recipe-categories-links li.recipe-category-Antipasti a {
-    background: url("images/recipe-categories.png") no-repeat scroll 0 0 #4C4C4C;
+    background: url("images/recipe-categories.png") no-repeat scroll 0 30px #4C4C4C;
 }
 .recipe-categories-links li.recipe-category-Carne a {
-    background: url("images/recipe-categories.png") no-repeat scroll -320px 0 #4C4C4C;
+    background: url("images/recipe-categories.png") no-repeat scroll -320px 30px #4C4C4C;
 }
 .recipe-categories-links li.recipe-category-Pesce a {
-    background: url("images/recipe-categories.png") no-repeat scroll -480px 0 #4C4C4C;
+    background: url("images/recipe-categories.png") no-repeat scroll -480px 30px #4C4C4C;
 }
 .recipe-categories-links li.recipe-category-Verdure a {
-    background: url("images/recipe-categories.png") no-repeat scroll -640px 0 #4C4C4C;
+    background: url("images/recipe-categories.png") no-repeat scroll -640px 30px #4C4C4C;
 }
 /* Set pseudo class styles. */
 .recipe-categories-links li a:link {

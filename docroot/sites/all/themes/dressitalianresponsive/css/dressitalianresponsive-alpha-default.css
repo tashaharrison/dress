@@ -140,3 +140,22 @@ html {
     float: right;
     width: 50%;
 }
+.recipe-categories-links li a {
+    padding-top: 340px;
+    padding-bottom: 0;
+    background: url("images/recipe-categories.png") no-repeat scroll -160px 0 #4C4C4C;
+    margin-bottom: 0;
+}
+
+.recipe-categories-links li.recipe-category-Antipasti a {
+    background: url("images/recipe-categories.png") no-repeat scroll 0 0 #4C4C4C;
+}
+.recipe-categories-links li.recipe-category-Carne a {
+    background: url("images/recipe-categories.png") no-repeat scroll -320px 0 #4C4C4C;
+}
+.recipe-categories-links li.recipe-category-Pesce a {
+    background: url("images/recipe-categories.png") no-repeat scroll -480px 0 #4C4C4C;
+}
+.recipe-categories-links li.recipe-category-Verdure a {
+    background: url("images/recipe-categories.png") no-repeat scroll -640px 0 #4C4C4C;
+}
