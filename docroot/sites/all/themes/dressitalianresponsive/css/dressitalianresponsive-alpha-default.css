@@ -19,6 +19,9 @@ html {
 .page {
     margin-top: 20px;
 }
+.logo-img {
+    margin-right: 20px;
+}
 /* Zones */
 #zone-header,
 #zone-content,
@@ -68,9 +71,13 @@ html {
 /* Main menu */
 #region-menu .navigation #main-menu {
 	padding: 0;
+	margin-top: 0;
 }
 #region-menu .navigation #main-menu li a {
     padding: 13px 12px;
+}
+#region-menu .navigation #main-menu li {
+    display: inline-block;
 }
 /* Secondary menu */
 #region-menu .navigation #secondary-menu {
