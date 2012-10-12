@@ -506,6 +506,9 @@ fieldset legend a, html.js fieldset.collapsible legend a {
     margin:0 auto;
 
 }
+.lt-ie8 .block ul.recipe-categories-links li {
+    float: left;
+}
 .recipe-categories-links li a {
     background: url("images/recipe-categories.png") no-repeat scroll -160px 30px #4C4C4C;
     color: #FFFFFF;
