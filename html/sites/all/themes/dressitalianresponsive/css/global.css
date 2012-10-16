@@ -177,6 +177,12 @@ ul.pager {
     display: block; 
     text-align: right;
 }
+.lt-ie9 #region-menu .navigation #main-menu li a { 
+    width: auto;     
+}
+.lt-ie8 #region-menu .navigation #main-menu li {
+    float: left;
+}
 #region-menu .navigation #main-menu li a {
      width: 100px;
 }
@@ -185,6 +191,7 @@ ul.pager {
     width: auto;     
 } 
 }
+ 
 /* Set pseudo class styles. */
 #region-menu .navigation #main-menu li a:link { }
 #region-menu .navigation #main-menu li a:visited { }
@@ -516,8 +523,11 @@ fieldset legend a, html.js fieldset.collapsible legend a {
     margin:0 auto;
 
 }
-.lt-ie8 .block ul.recipe-categories-links li {
+.lt-ie9 .block ul.recipe-categories-links li {
     float: left;
+}
+.lt-ie9 .block ul.recipe-categories-links {
+    margin-left: 75px;
 }
 .recipe-categories-links li a {
     background: url("images/recipe-categories.png") no-repeat scroll -160px 30px #4C4C4C;
