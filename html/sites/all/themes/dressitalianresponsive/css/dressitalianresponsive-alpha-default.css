@@ -46,7 +46,10 @@ html {
  * Header elements
 **/
 
-.social-links { float:right; }
+.social-links { 
+    float:right;
+    display: block;
+}
 .social-links a {
 	display: inline-block;
 	margin-right: 6px;

@@ -145,7 +145,9 @@ ul.pager {
  * Header elements
 **/
 
-.social-links { display:none; }
+.social-links { 
+    display: none; 
+}
 
 /** 
  * Navigation
@@ -169,12 +171,20 @@ ul.pager {
     padding:0.6em 0; 
     margin-top: -130px;
 }
+
 /* Modify the margin to set tab spacings. */
 #region-menu .navigation #main-menu li {
     display: block; 
     text-align: right;
 }
-#region-menu .navigation #main-menu li a { }
+#region-menu .navigation #main-menu li a {
+     width: 100px;
+}
+@media all and (min-width: 461px) and (min-device-width: 461px), (max-device-width: 739px) and (min-width: 739px) and (orientation:landscape) {
+#region-menu .navigation #main-menu li a { 
+    width: auto;     
+} 
+}
 /* Set pseudo class styles. */
 #region-menu .navigation #main-menu li a:link { }
 #region-menu .navigation #main-menu li a:visited { }
@@ -204,7 +214,7 @@ ul.pager {
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#E2E2E2', endColorstr='#ffffff', GradientType=0 ); /* IE6-9 */
 	background: linear-gradient(top, rgba(255,255,255,1) 0%, rgba(200,200,200,1) 2%, rgba(255,255,255,1) 90%); /* W3C */
 	padding-top: 0.8em;
-	margin-bottom: 4em;
+	margin-bottom: 0.5em;
 }
 /* Modify the margin to set tab spacings. */
 #region-menu .navigation #secondary-menu li { }

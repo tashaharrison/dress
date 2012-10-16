@@ -182,10 +182,10 @@ $databases = array (
   array (
     'default' => 
     array (
-      'database' => 'dressitalian',
-      'username' => 'username',
-      'password' => 'password',
-      'host' => 'localhost',
+      'database' => 'db156180_dressitalian',
+      'username' => 'db156180_dress',
+      'password' => 'g7i8rG98PzdifHyZPzzKUprUiNQYv8fGosbC7AeXz4geZcgxL7yP0UG4x9ucbJd',
+      'host' => 'internal-db.s156180.gridserver.com',
       'port' => '',
       'driver' => 'mysql',
       'prefix' => '',
@@ -501,7 +501,6 @@ $conf['404_fast_html'] = '<html xmlns="http://www.w3.org/1999/xhtml"><head><titl
  * Remove the leading hash signs to disable.
  */
 # $conf['allow_authorize_operations'] = FALSE;
-
-require('/var/www/site-php/dressitalian/dressitalian-settings.inc');
+ini_set('memory_limit', '256M');
 
   header('P3P: CP="We do not have a P3P policy"');
