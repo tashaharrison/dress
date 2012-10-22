@@ -2,13 +2,13 @@
 <html>
 <head>
 	<meta content="charset=utf-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<title>FlexSlider Demo</title>
 	
 	<!-- FlexSlider pieces -->
 	<link rel="stylesheet" href="flexslider.css" type="text/css" media="screen" />
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 	<script src="jquery.flexslider-min.js"></script>
+	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 	
 	<!-- Includes for this demo -->
 	<link rel="stylesheet" href="demo-stuff/demo.css" type="text/css" media="screen" />
@@ -34,7 +34,7 @@
 	    		<p class="flex-caption">Captions and cupcakes. Winning combination.</p>
 	    	</li>
 	    	<li>
-	    		<a href="#"><img src="demo-stuff/inacup_pumpkin.jpg" /></a>
+	    		<a href="http://flex.madebymufffin.com"><img src="demo-stuff/inacup_pumpkin.jpg" /></a>
 	    		<p class="flex-caption">This image is wrapped in a link!</p>
 	    	</li>
 	    	<li>
@@ -45,7 +45,7 @@
 	    	</li>
 	    </ul>
 	  </div>
-
+	  
 		<!--============================
 		Markup for SLIDE animation
 		You need to add an extra container element for the overflow: hidden property on the slider
@@ -56,12 +56,12 @@
 			$(window).load(function() {
 				$('.flexslider').flexslider({
 				  animation: "slide",
-				  controlsContainer: ".flexslider-container"
+				  controlsContainer: ".flex-container"
 			  });
 			});
 		</script>
 		=================================
-		<div class="flexslider-container">
+		<div class="flex-container">
 			<div class="flexslider">
 		    <ul class="slides">
 		    	<li>
