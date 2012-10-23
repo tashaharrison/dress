@@ -1,6 +1,5 @@
-
-7.x-3.x-dev
-===========
+7.x-3.0
+=======
 
 Features:
 - Issue #[908920] by [recidive, BWPanda, Matthew Davidson]: Port to Drupal 7, Views 3 (Views Fluid Grid).
