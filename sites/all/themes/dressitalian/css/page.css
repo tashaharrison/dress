@@ -665,10 +665,21 @@ hgroup {
     margin: 0 auto;
 }
 .flex-direction-nav li a {
-background: url(../images/bg_direction_nav.png) no-repeat 0 0;
+    background: url(../images/bg_direction_nav.png) no-repeat 0 0;
+    width: 60px;
+    height: 60px;
+}
+.flex-direction-nav li .next {
+    background-position: -60px 0;   
 }
 .flex-control-nav li a {
-background: url(../images/bg_control_nav.png) no-repeat 0 0;
+    background: url(../images/bg_control_nav.png) no-repeat 0 0;
+}
+.flex-direction-nav li .next:hover {
+background-position: -60px -60px;
+}
+.flex-direction-nav li .prev:hover {
+background-position: 0 -60px;
 }
  /*
  * IE6/7
