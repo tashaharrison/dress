@@ -560,7 +560,11 @@ fieldset legend a, html.js fieldset.collapsible legend a {
 }
 .recipe-categories-links li a:visited {
 }
-.recipe-categories-links li a:hover {
+.recipe-categories-links li a:hover,
+.recipe-categories-links li.recipe-category-Antipasti a:hover,
+.recipe-categories-links li.recipe-category-Carne a:hover,
+.recipe-categories-links li.recipe-category-Pesce a:hover,
+.recipe-categories-links li.recipe-category-Verdure a:hover  {
     font-weight:bold;
     text-decoration:none;
     background-color:black;
