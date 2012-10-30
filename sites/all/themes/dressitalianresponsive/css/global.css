@@ -159,6 +159,7 @@ ul.pager {
 	display: inline-block;
 	font-size: 1.1em;
 	padding: 2px 20px;
+	font-weight: bold;
 }
 #region-menu .navigation a:hover {
 	font-weight:bold;
