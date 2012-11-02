@@ -4,7 +4,7 @@
 .front #page {
 	margin-top:20px;
 	/* orig grey background-color:#817679; */
-	background-color: #9B999A;
+	background-color: #BDBDBD;
 }
 .front #primary-menu-bar .primary-menu li a {
 	color:white;
@@ -92,7 +92,7 @@
 	z-index: 1;
 }
 .front .flexslider {
-    background: #9B999A;
+    background: #BDBDBD;
     border: none;
 }
 .front .flex-nav-container {
