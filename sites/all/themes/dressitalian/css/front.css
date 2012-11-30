@@ -5,7 +5,8 @@
 	margin-top:20px;
 	background-color:#0C2306;
 }
-.front #primary-menu-bar .primary-menu li a {
+.front #primary-menu-bar .primary-menu li a,
+.front #block-menu-menu-footer-menu .menu li a  {
 	color:white;
 }
 .front #secondary-menu-bar .secondary-menu li a {
@@ -20,10 +21,12 @@
 .front .social-links a {
 	color:white;
 }
-.front h1, .front a {
+.front h1, .front a, .front p {
 	color:white;
 }
-.front .subsection-verdure .field-name-italian-title-linked-to-node a, .front .subsection-verdure .field-name-field-recipe-italian-title, .front .views-field-field-recipe-italian-title span.Verdure a, .front .subsection-verdure .field-name-field-recipe-serves, 
+.front .subsection-verdure .field-name-italian-title-linked-to-node a, .front .subsection-verdure .field-name-field-recipe-italian-title, 
+.front .views-field-field-recipe-italian-title span.Verdure a, 
+.front .subsection-verdure .field-name-field-recipe-serves, 
 .front .subsection-verdure .field-name-field-recipe-preptime, 
 .front .subsection-verdure .field-name-field-recipe-cookingtime, 
 .front .subsection-verdure .field-name-field-recipe-serves .field-label, 
