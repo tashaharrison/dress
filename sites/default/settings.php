@@ -1,9 +1,5 @@
 <?php
-if ($_SERVER['HTTP_HOST'] == 'www.dressitalian.com' ||
-$_SERVER['HTTP_HOST'] == 'live.dressitalian.gotpantheon.com') {
-header('HTTP/1.0 301 Moved Permanently');
-header('Location: http://dressitalian.com'. $_SERVER['REQUEST_URI']);
-}
+
 /**
  * @file
  * Drupal site-specific configuration file.
