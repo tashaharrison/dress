@@ -619,7 +619,8 @@ fieldset legend a, html.js fieldset.collapsible legend a {
     font-size:1.75em;
     font-weight:bold;
 }
-.node-type-recipe .field-name-field-recipe-italian-title {
+.node-type-recipe .field-name-field-recipe-italian-title,
+.node-type-recipe .field-name-field-recipe-italian-title div.field-item {
     font-size:1.75em;
     font-weight:bold;
     margin-bottom: -0.4em;
