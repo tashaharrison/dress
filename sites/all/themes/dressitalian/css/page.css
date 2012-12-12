@@ -2,7 +2,7 @@
  * $Id: page.css,v 1.1.2.1 2010/09/14 20:13:12 jmburnz Exp $
  */
 html {
-	background: url(images/utensils-bg.jpg) no-repeat center center fixed #ffffff;
+	background: url(images/christmas.jpg) no-repeat center center fixed #ffffff;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -525,6 +525,9 @@ a.boxout-grey {
 	position: absolute;
 	right: 0;
 	top: -95px;
+}
+ul.links .service-links-pinterest-button a {
+    margin-top: -21px !important;
 }
 .field-links {
 	position: absolute;

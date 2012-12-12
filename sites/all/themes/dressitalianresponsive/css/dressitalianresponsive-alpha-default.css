@@ -10,7 +10,7 @@ html {
     background-attachment: fixed;
     background-clip: border-box;
     background-color: #FFFFFF;
-    background-image: url("/sites/all/themes/dressitalian/css/images/utensils-bg.jpg");
+    background-image: url("/sites/all/themes/dressitalian/css/images/christmas.jpg");
     background-origin: padding-box;
     background-position: center center;
     background-repeat: no-repeat;
@@ -109,6 +109,9 @@ html {
 .context-recipes .page .region-content-inner ul.links {
       margin: -75px 0 0;
       display: block;
+}
+ul.links .service-links-pinterest-button a {
+    margin-top: -21px !important;
 }
 .context-recipes .view-taxonomy-term li.taxonomy-page-item,
 .view-recommended-recipes li.taxonomy-page-item {
