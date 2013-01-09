@@ -3,7 +3,7 @@
 
 .front #page {
 	margin-top:20px;
-	background-color:#0C2306;
+	background-color:#686868;
 }
 .front #primary-menu-bar .primary-menu li a,
 .front #block-menu-menu-footer-menu .menu li a  {
@@ -162,7 +162,7 @@
 	z-index: 1;
 }
 .front .flexslider {
-    background: #0C2306;
+    background: #686868;
     border: none;
 }
 .front .flex-nav-container {
