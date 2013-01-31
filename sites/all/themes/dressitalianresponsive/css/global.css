@@ -1020,3 +1020,80 @@ fieldset legend a, html.js fieldset.collapsible legend a {
 	font-weight: normal;
 	font-style: normal;
 }
+/** 
+ * Blog
+**/
+.context-blog .region-sidebar-second {
+    margin-top: 36px;
+}
+.context-blog .region-sidebar-second .menu li a {
+    padding: 7px 0;
+    display: block;
+    text-align:center;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+.context-blog .region-sidebar-second .menu li a:hover {
+    color:white;
+    background-color:black;
+    text-decoration:none;
+}
+.context-blog .region-sidebar-second .menu li {
+    margin: 0;
+    padding: 0;
+}
+.context-blog ul {
+    list-style-type:none;
+    margin: 0;
+}
+.context-blog ul li {
+    list-style:none;
+}
+.context-blog .taxonomy-page-list li,
+.blog-page-list li {
+    border-bottom: 2px solid silver;
+    padding: 10px 10px 14px 0;
+}
+.context-blog .block .item-list ul.blog-page-list li {
+    margin-top:1em;
+}
+.context-blog .taxonomy-page-list li.views-row-last,
+.blog-page-list li.views-row-last {
+    border-bottom: none;
+}
+.context-blog .taxonomy-page-list li.views-row,
+.blog-page-list li.views-row {
+    padding: 0 10px 14px 0;
+}
+.context-blog .field-name-post-date {
+    padding-bottom: 10px;
+}
+.more-link, .views-field-view-node, .field-name-node-link {
+    font-weight:bold;
+    text-align:left;
+    clear:both;
+}
+.context-blog .region-sidebar-second .menu li.active-trail a {
+    font-weight:bold;
+}
+.context-blog .region-sidebar-second .block h3 {
+    font-size: 1em;
+    color: #999;
+}
+.context-blog .region-sidebar-second .block p {
+    font-size: 0.86em;
+    color:#000000;
+}
+.context-blog .region-sidebar-second .view-content ul {
+    padding: 0.1em;
+    margin:8px 0 0 0;
+}
+.node-type-blog .node-blog .field-links {
+    position: absolute;
+    right: -245px;
+    top: -92px;
+}
+.field-links .links li.comment_forbidden  {
+    display: inline-block;
+    padding: 3em 1em 0 0;
+}
