@@ -173,4 +173,6 @@ ul.links .service-links-pinterest-button a {
 .context-blog .sticky {
     position: fixed;
     top: 5px;
+    left: 50%;
+    margin-left: 190px;
 }

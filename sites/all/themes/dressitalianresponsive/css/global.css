@@ -1027,13 +1027,27 @@ fieldset legend a, html.js fieldset.collapsible legend a {
     margin-top: 36px;
 }
 .region-sidebar-second .block h2 {
-    background: -moz-linear-gradient(center top , #FFFFFF 0%, #C8C8C8 2%, #FFFFFF 100%) repeat scroll 0 0 transparent;
+    background: rgb(255,255,255); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(200,200,200,1) 2%, rgba(255,255,255,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(2%, rgba(200,200,200,1)), color-stop(100%, rgba(255,255,255,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(200,200,200,1) 2%, rgba(255,255,255,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(200,200,200,1) 2%, rgba(255,255,255,1) 100%); /* Opera11.10+ */
+    background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(200,200,200,1) 2%, rgba(255,255,255,1) 100%); /* IE10+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#C8C8C8', endColorstr='#ffffff', GradientType=0 ); /* IE6-9 */
+    background: linear-gradient(top, rgba(255,255,255,1) 0%, rgba(200,200,200,1) 2%, rgba(255,255,255,1) 100%); /* W3C */
+    text-align:center;
     margin: 0 -2px;
-    text-align: center;
 }
 .region-sidebar-second .block {
-    background: -moz-linear-gradient(center top , #FFFFFF 27%, #C6C6C6 68%, #212121 100%) repeat scroll 0 0 transparent;
     margin: 0 0 20px;
+    background: #ffffff; /* Old browsers */
+    background: -moz-linear-gradient(top, #ffffff 27%, #c6c6c6 68%, #212121 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(27%,#ffffff), color-stop(68%,#c6c6c6), color-stop(100%,#212121)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #ffffff 27%,#c6c6c6 68%,#212121 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #ffffff 27%,#c6c6c6 68%,#212121 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #ffffff 27%,#c6c6c6 68%,#212121 100%); /* IE10+ */
+    background: linear-gradient(top, #ffffff 27%,#c6c6c6 68%,#212121 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#212121',GradientType=0 ); /* IE6-9 */
     padding: 0 3px 3px;
 }
 .region-sidebar-second  .block-inner {
