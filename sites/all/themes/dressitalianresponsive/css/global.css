@@ -1026,6 +1026,20 @@ fieldset legend a, html.js fieldset.collapsible legend a {
 .context-blog .region-sidebar-second {
     margin-top: 36px;
 }
+.region-sidebar-second .block h2 {
+    background: -moz-linear-gradient(center top , #FFFFFF 0%, #C8C8C8 2%, #FFFFFF 100%) repeat scroll 0 0 transparent;
+    margin: 0 -2px;
+    text-align: center;
+}
+.region-sidebar-second .block {
+    background: -moz-linear-gradient(center top , #FFFFFF 27%, #C6C6C6 68%, #212121 100%) repeat scroll 0 0 transparent;
+    margin: 0 0 20px;
+    padding: 0 3px 3px;
+}
+.region-sidebar-second  .block-inner {
+    background-color: white;
+    margin: 0;
+}
 .context-blog .region-sidebar-second .menu li a {
     padding: 7px 0;
     display: block;
@@ -1096,4 +1110,7 @@ fieldset legend a, html.js fieldset.collapsible legend a {
 .field-links .links li.comment_forbidden  {
     display: inline-block;
     padding: 3em 1em 0 0;
+}
+.node-blog .links {
+    display: none;
 }

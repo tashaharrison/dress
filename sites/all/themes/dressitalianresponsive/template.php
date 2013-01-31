@@ -34,3 +34,5 @@ function dressitalianresponsive_preprocess_html(&$vars) {
   alpha_css_include();
   alpha_libraries_include();
 }
+drupal_add_js (drupal_get_path('theme','dressitalianresponsive') .'/js/waypoints.min.js');
+drupal_add_js (drupal_get_path('theme','dressitalianresponsive') .'/js/script.js');

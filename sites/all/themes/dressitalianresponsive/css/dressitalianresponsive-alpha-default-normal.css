@@ -22,3 +22,8 @@
 .block ul.recipe-categories-links li {
     width: 160px;
 }
+.node-blog .links {
+    display: block;
+    position: absolute;
+    right: -242px;
+}

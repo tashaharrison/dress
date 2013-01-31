@@ -164,3 +164,13 @@ ul.links .service-links-pinterest-button a {
 .recipe-categories-links li.recipe-category-Verdure a {
     background: url("images/recipe-categories.png") no-repeat scroll -640px 0 #4C4C4C;
 }
+/** 
+ * Blog
+**/
+.context-blog h2 {
+    text-align: left;
+}
+.context-blog .sticky {
+    position: fixed;
+    top: 5px;
+}
