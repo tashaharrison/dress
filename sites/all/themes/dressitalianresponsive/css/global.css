@@ -1078,11 +1078,13 @@ fieldset legend a, html.js fieldset.collapsible legend a {
     border-bottom: 2px solid silver;
     padding: 10px 10px 14px 0;
 }
+.context-blog .block .item-list ul.blog-page-list li
 .context-blog .block .item-list ul.blog-page-list li {
     margin-top:1em;
 }
 .context-blog .taxonomy-page-list li.views-row-last,
-.blog-page-list li.views-row-last {
+.blog-page-list li.views-row-last,
+.context-blog .blog-page-list .views-field-body li {
     border-bottom: none;
 }
 .context-blog .taxonomy-page-list li.views-row,
