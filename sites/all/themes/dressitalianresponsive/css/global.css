@@ -65,8 +65,7 @@ a:focus { }
  * Structural elements
 **/
 .page .region-content-inner ul.links {
-    float: right;
-    margin: -96px 0 0;
+    display: none;
 }
 .page { }
 .item-list .pager {
@@ -1202,7 +1201,7 @@ fieldset legend a, html.js fieldset.collapsible legend a {
     font-size: 1.5em;
     margin-bottom: 4px;
 }
-.node-type-product  .region-content-inner ul.links {
+.context-products  .region-content-inner ul.links {
     display: none;
 }
 .node-type-product .content .field {

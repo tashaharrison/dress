@@ -19,7 +19,30 @@ html {
 .page {
     margin-top: 20px;
 }
-
+.page .region-content-inner ul.links {
+    float: right;
+    margin: -120px 0 0;
+    display: block;
+}
+.links .print_html a img {
+    padding-left:50px;
+    outline:none;
+}
+.links .print_html {
+    float:right;
+    padding:0;
+}
+.links .print_html a {
+    background: url("/sites/all/themes/dressitalian/images/print-icon.png") no-repeat scroll left top white;
+    display: inline-block;
+    width: 50px;
+    height: 47px;
+    overflow:hidden;
+    margin-top: 50px;
+}
+.links .print_html a:hover {
+    background: url("/sites/all/themes/dressitalian/images/print-icon.png") no-repeat scroll -50px top white;
+}
 /* Zones */
 #zone-header,
 #zone-content,
@@ -107,7 +130,7 @@ html {
  * Recipes
 **/
 .context-recipes .page .region-content-inner ul.links {
-      margin: -75px 0 0;
+      margin: -105px 0 0;
       display: block;
 }
 ul.links .service-links-pinterest-button a {
@@ -201,10 +224,10 @@ ul.links .service-links-pinterest-button a {
     display: inline-block;
     float: left;
 }
-.node-type-product  .region-content-inner ul.links {
+.node-type-product .region-content-inner ul.links {
     position: absolute;
     right: 0;
-    top: 60px;
+    top: 85px;
     display: block;
 }
 ul.links .service-links-pinterest-button a {
