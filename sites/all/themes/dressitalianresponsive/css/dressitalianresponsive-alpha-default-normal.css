@@ -30,3 +30,27 @@
 .context-blog .sticky {
     margin-left: 260px;
 }
+/** 
+ * Products
+**/
+.context-products .view-product-categories .item-list p {
+    float: left;
+    margin-top: 16px;
+    width: 335px;
+    margin-right: 15px;
+}
+.context-products .view-product-categories .item-list li {
+    display: inline-block;
+    margin: 0 5px;
+}
+.node-type-product .group-serving-suggestions {
+    display: inline-block;
+    width: 300px;
+    margin-left: 10px;
+    float: left;
+    clear: none;
+    padding-top: 15px;
+}
+.node-type-product .group-product-info-boxout {
+    margin-left: 24px;
+}

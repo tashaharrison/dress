@@ -1128,3 +1128,99 @@ fieldset legend a, html.js fieldset.collapsible legend a {
 .node-blog .links {
     display: none;
 }
+/** 
+ * Products
+**/
+.context-products h1#page-title {
+    color:#004101;
+}
+.context-products h2 {
+    color:#7D0000;
+    text-align: left;
+}
+.context-products h2.page-section-title {
+    border-radius: 4px 4px 4px 4px;
+    color: white;
+    margin-bottom: 10px;
+    padding: 4px;
+    text-align: center;
+}
+.context-products h2.page-section-title-8 {
+    background-color: #7E0001;
+}
+.context-products h2.page-section-title-9 {
+    background-color: #004101;
+}
+.context-products h2.page-section-title-16 {
+    background: none repeat scroll 0 0 black;
+}
+.context-products .view-product-categories {
+    margin-top: 26px;
+}
+.context-products .view-product-categories .item-list ul {
+    margin-bottom: 10px;
+}
+.context-products .field-name-body a {
+    color:#7D0000;
+}
+.context-products .views-field-field-product-image {
+    text-align: center;
+}
+.context-products .field-name-field-product-buy-on {
+    margin-top: 0px;
+    text-align: center;
+}
+.context-products .field-name-field-product-buy-on a,
+.context-products .views-field-field-product-buy-on a {
+    background: -moz-linear-gradient(center top , #C8C8C8 0%, #FFFFFF 100%) repeat scroll 0 0 transparent;
+    box-shadow: 1px 2px 2px 0 #B4B4B4;
+    display: block;
+    font-size: 1.2em;
+    margin: 0 auto;
+    padding: 5px 35px;
+     border-color: #E4E4E4 #D2D2D2 #B4B4B4;
+    border-image: none;
+    border-radius: 20px 20px 20px 20px;
+    border-style: solid;
+    border-width: 1px;
+      color: #000000;
+    cursor: pointer;
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    width: 110px;
+}
+.node-type-product .group-product-image {
+    text-align: center;
+}
+.group-product-info-boxout .field-label,
+.field-name-field-product-storage .field-label,
+.field-name-field-product-serving .field-label,
+.node-type-product .view-recommended-recipes h2 {
+    color: #540E16;
+    font-size: 1.5em;
+    margin-bottom: 4px;
+}
+.node-type-product  .region-content-inner ul.links {
+    display: none;
+}
+.node-type-product .content .field {
+    padding-bottom: 10px;
+}
+.node-type-product .content .group_product_image .field {
+    padding: 0;
+}
+.subsection-pasta-sauces h1#page-title {
+    color: #540E16;
+}
+.node-type-product .views-field-title h2.field-content {
+    text-align: center;
+}
+.node-type-product .group-product-info-boxout {
+    line-height: 1.3;
+}
+.node-type-product .view-display-id-entity_view_1, 
+.node-type-product .view-display-id-entity_view_2 {
+    padding-top: 0;
+}

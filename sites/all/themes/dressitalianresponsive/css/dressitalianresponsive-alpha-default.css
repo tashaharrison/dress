@@ -176,3 +176,40 @@ ul.links .service-links-pinterest-button a {
     left: 50%;
     margin-left: 190px;
 }
+/** 
+ * Products
+**/
+.node-type-product .group-product-info-boxout {
+    border:2px solid silver;
+    border-radius: 4px;
+    -khtml-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    padding:4px 10px 10px;
+    line-height: 1.3;
+    margin-left: 65px;
+    display: inline-block;
+    float: left;
+    width: 300px;
+    margin-top: 15px;
+}
+.node-type-product .group-serving-suggestions {
+    clear: both;
+    padding-top: 20px;
+}
+.node-type-product .group-product-image {
+    display: inline-block;
+    float: left;
+}
+.node-type-product  .region-content-inner ul.links {
+    position: absolute;
+    right: 0;
+    top: 60px;
+    display: block;
+}
+ul.links .service-links-pinterest-button a {
+    margin: 40px 10px !important;
+}
+.node-type-product .content .field {
+ 
+}
