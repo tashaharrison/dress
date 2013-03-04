@@ -64,7 +64,7 @@ a:focus { }
 /** 
  * Structural elements
 **/
-.page .region-content-inner ul.links {
+.region-content-inner ul.links {
     display: none;
 }
 .page { }
@@ -448,9 +448,6 @@ fieldset legend a, html.js fieldset.collapsible legend a {
 /** 
  * Recipes
 **/
-.context-recipes .page .region-content-inner ul.links {
-      display: none;
-}
 .context-recipes .view-taxonomy-term img,
 .view-recommended-recipes img {
 	border-radius: 4px;
@@ -1200,9 +1197,6 @@ fieldset legend a, html.js fieldset.collapsible legend a {
     color: #540E16;
     font-size: 1.5em;
     margin-bottom: 4px;
-}
-.context-products  .region-content-inner ul.links {
-    display: none;
 }
 .node-type-product .content .field {
     padding-bottom: 10px;
