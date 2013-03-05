@@ -48,6 +48,11 @@ ul.links .service-links-pinterest-button a {
 .region-content-inner ul.links .service-links-pinterest-button {
     margin-top: 25px;
 }
+.lt-ie9 .node-type-product .region-content-inner ul.links .service-links-pinterest-button,
+.ie9 .node-type-product .region-content-inner ul.links .service-links-pinterest-button {
+    margin-top: -20px;
+}
+
 .links .print_html a img {
     padding-left:50px;
     outline:none;
@@ -200,8 +205,8 @@ ul.links .service-links-pinterest-button a {
 .recipe-categories-links li.recipe-category-Verdure a {
     background: url("images/recipe-categories.png") no-repeat scroll -640px 0 #4C4C4C;
 }
-.ie6-8 .context-recipes .view-taxonomy-term li.taxonomy-page-item, 
-.ie6-8 .view-recommended-recipes li.taxonomy-page-item {
+.lt-ie8 .context-recipes .view-taxonomy-term li.taxonomy-page-item, 
+.lt-ie8 .view-recommended-recipes li.taxonomy-page-item {
     float: left;
 }
 /** 

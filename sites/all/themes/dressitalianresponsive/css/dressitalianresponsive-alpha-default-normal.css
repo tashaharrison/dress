@@ -43,6 +43,17 @@
     display: inline-block;
     margin: 0 5px;
 }
+.lt-ie9 .context-products .view-product-categories .item-list li {
+    float: left;
+    width: 185px;
+    margin-bottom: 5px;
+}
+.lt-ie9 .context-products h2.page-section-title-9 {
+    clear: both;
+}
+.lt-ie9 .context-products .view-product-categories .item-list p {
+    font-size: 14px;
+}
 .node-type-product .group-serving-suggestions {
     display: inline-block;
     width: 300px;
@@ -50,6 +61,18 @@
     float: left;
     clear: none;
     padding-top: 15px;
+}
+.lt-ie8 .node-type-product .group-product-image {
+    width: 300px;
+}
+.lt-ie8 .node-type-product .group-serving-suggestions {
+    margin-left: 5px;
+}
+.lt-ie8 .node-type-product .group-product-info-boxout {
+    margin-left: 10px;
+}
+.lt-ie9 .context-products .field-name-field-product-buy-on a {
+    margin-top: 5px;
 }
 .node-type-product .group-product-info-boxout {
     margin-left: 24px;
