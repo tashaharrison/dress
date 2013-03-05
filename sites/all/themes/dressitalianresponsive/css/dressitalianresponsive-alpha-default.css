@@ -45,6 +45,9 @@ html {
 ul.links .service-links-pinterest-button a {
     margin-top: -21px !important;
 }
+.region-content-inner ul.links .service-links-pinterest-button {
+    margin-top: 25px;
+}
 .links .print_html a img {
     padding-left:50px;
     outline:none;
