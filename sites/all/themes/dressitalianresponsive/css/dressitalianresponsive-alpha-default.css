@@ -21,8 +21,26 @@ html {
 }
 .region-content-inner ul.links {
     float: right;
-    margin: -85px 0 0;
+    margin: -60px 0 0;
     display: block;
+}
+.context-recipes .region-content-inner ul.links {
+    margin: -50px 0 0;
+}
+.region-content-inner ul.links li {
+    display: block;
+    float: right;
+}
+.region-content-inner ul.links li {
+     margin-top: -20px;
+}
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    .context-recipes .region-content-inner ul.links {
+    margin: -80px 0 0;
+    }
+    .context-recipes .region-content-inner ul.links li {
+        margin-top: 10px;
+    }
 }
 ul.links .service-links-pinterest-button a {
     margin-top: -21px !important;
@@ -37,7 +55,7 @@ ul.links .service-links-pinterest-button a {
     width: 50px;
     height: 47px;
     overflow:hidden;
-    margin-top: 35px;
+    margin-top: 15px;
 }
 .links .print_html a:hover {
     background: url("/sites/all/themes/dressitalian/images/print-icon.png") no-repeat scroll -50px top white;
@@ -179,6 +197,10 @@ ul.links .service-links-pinterest-button a {
 .recipe-categories-links li.recipe-category-Verdure a {
     background: url("images/recipe-categories.png") no-repeat scroll -640px 0 #4C4C4C;
 }
+.ie6-8 .context-recipes .view-taxonomy-term li.taxonomy-page-item, 
+.ie6-8 .view-recommended-recipes li.taxonomy-page-item {
+    float: left;
+}
 /** 
  * Blog
 **/
@@ -219,7 +241,7 @@ ul.links .service-links-pinterest-button a {
 .node-type-product .region-content-inner ul.links {
     position: absolute;
     right: 0;
-    top: 55px;
+    top: 50px;
     display: block;
 }
 .node-type-product ul.links .service-links-pinterest-button a {
