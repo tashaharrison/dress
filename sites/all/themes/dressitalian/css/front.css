@@ -3,7 +3,7 @@
 
 .front #page {
 	margin-top:20px;
-	background-color:#999999;
+	background-color:#8C6061;
 }
 .front #primary-menu-bar .primary-menu li a,
 .front #block-menu-menu-footer-menu .menu li a  {
@@ -147,7 +147,7 @@
 }
 .view-display-id-page_1 .views-row-5 {
 	top:41px;
-	right:30px;;
+	right:30px;
 }
 .view-display-id-page_1 .views-row-6 {
 	bottom:50px;
@@ -162,7 +162,7 @@
 	z-index: 1;
 }
 .front .flexslider {
-    background: #999999;
+    background: #8C6061;
     border: none;
 }
 .front .flex-nav-container {
