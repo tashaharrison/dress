@@ -2,7 +2,7 @@
  * $Id: page.css,v 1.1.2.1 2010/09/14 20:13:12 jmburnz Exp $
  */
 html {
-	background: url(images/easter-eggs.jpg) no-repeat center center fixed #ffffff;
+	background: url(images/utensils-bg.jpg) no-repeat center center fixed #ffffff;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
