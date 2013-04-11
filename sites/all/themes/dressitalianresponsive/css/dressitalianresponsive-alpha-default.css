@@ -179,12 +179,19 @@ ul.links .service-links-pinterest-button a {
 .page-recipes-fb-recipe-of-the-week .container-12 .grid-12 {
     width: 362px;
 }
-.node-type-recipe .group-left {
+.node-type-recipe .group-left,
+.node-type-recipe .group_recipe_left {
+	float: left;
     width: 46%;
 }
-.node-type-recipe .group-right {
+.node-type-recipe .group-right,
+.node-type-recipe .group_recipe_right {
     float: right;
     width: 50%;
+}
+.group-footer,
+.group-recipe-footer {
+	clear: both;
 }
 .recipe-categories-links li a {
     padding-top: 340px;

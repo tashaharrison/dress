@@ -595,7 +595,8 @@ fieldset legend a, html.js fieldset.collapsible legend a {
 .subsection-pesce {
 } */
 
-.node-type-recipe .field-name-title h1 {
+.node-type-recipe .field-name-title h1,
+.node-type-recipe .field-name-title-field h1 {
     border-bottom: medium none;
     line-height: 1;
     margin-top: 14px;
