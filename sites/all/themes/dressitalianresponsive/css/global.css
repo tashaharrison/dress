@@ -3,23 +3,33 @@
 /** 
  * HTML elements
 **/
-
 html { font-size:90%; /* 16px x 75% = 12px */ }
 body {
 	color: #000000;
 	font-family:'CantarellRegular', Verdana, Geneva, "DejaVu Sans", sans-serif;
 	line-height:1.5;
 }
-h1 {
+h1,
+.breadcrumb,
+.node-type-recipe .field-name-title-field {
 	font-size:1.75em;
 	margin:0 0 .5em;
 	padding:0;
 }
-h1#page-title {
+h1#page-title,
+.breadcrumb {
 	border-bottom: 2px solid #CCC;
 	margin-bottom: 0.5em;
 	color: black;
 	text-align:center;
+}
+.page-taxonomy-term.context-recipes h1,
+.page-taxonomy-term.context-blog h1,
+.node-type-recipe h1 {
+	display:none;
+}
+.node-type-blog h1#page-title {
+	border:none;
 }
 h1 a,
 h2 a,
@@ -596,7 +606,7 @@ fieldset legend a, html.js fieldset.collapsible legend a {
 } */
 
 .node-type-recipe .field-name-title h1,
-.node-type-recipe .field-name-title-field h1 {
+.node-type-recipe .field-name-title-field {
     border-bottom: medium none;
     line-height: 1;
     margin-top: 14px;
@@ -674,7 +684,9 @@ fieldset legend a, html.js fieldset.collapsible legend a {
 .subsection-pesce .field-name-field-recipe-instructions .field-label,
 .subsection-pesce .field-name-field-recipe-ingredients .field-label,
 .subsection-pesce #page-title,
-.subsection-pesce .view-recommended-recipes h2
+.subsection-pesce .view-recommended-recipes h2,
+.subsection-pesce .breadcrumb,
+.subsection-pesce .breadcrumb .custom-breadcrumbs-item-1
  {
     color:#3570c7;
 }
@@ -693,7 +705,9 @@ fieldset legend a, html.js fieldset.collapsible legend a {
 .subsection-antipasti .views-field-field-recipe-italian-title,
 .subsection-antipasti .views-field-field-recipe-italian-title a,
 .subsection-antipasti #page-title,
-.subsection-antipasti .view-recommended-recipes h2
+.subsection-antipasti .view-recommended-recipes h2,
+.subsection-antipasti .breadcrumb,
+.subsection-antipasti .breadcrumb .custom-breadcrumbs-item-1
  {
     color:#808080;
 }
@@ -712,7 +726,9 @@ fieldset legend a, html.js fieldset.collapsible legend a {
 .subsection-carne .views-field-field-recipe-italian-title a,
 .subsection-carne #page-title,
 .subsection-carne .recipe-category-page-italian-title a,
-.subsection-carne .view-recommended-recipes h2
+.subsection-carne .view-recommended-recipes h2,
+.subsection-carne .breadcrumb,
+.subsection-carne .breadcrumb .custom-breadcrumbs-item-1
  {
     color:#800000;
 }
@@ -728,7 +744,9 @@ fieldset legend a, html.js fieldset.collapsible legend a {
 .subsection-primi-piatti .field-name-field-recipe-instructions .field-label,
 .subsection-primi-piatti .field-name-field-recipe-ingredients .field-label,
 .subsection-primi-piatti #page-title,
-.subsection-primi-piatti .view-recommended-recipes h2
+.subsection-primi-piatti .view-recommended-recipes h2,
+.subsection-primi-piatti .breadcrumb,
+.subsection-primi-piatti .breadcrumb .custom-breadcrumbs-item-1
  {
     color:#D96704;
 }
@@ -744,7 +762,9 @@ fieldset legend a, html.js fieldset.collapsible legend a {
 .subsection-verdure .field-name-field-recipe-instructions .field-label,
 .subsection-verdure .field-name-field-recipe-ingredients .field-label,
 .subsection-verdure #page-title,
-.subsection-verdure .view-recommended-recipes h2
+.subsection-verdure .view-recommended-recipes h2,
+.subsection-verdure .breadcrumb,
+.subsection-verdure .breadcrumb .custom-breadcrumbs-item-1
  {
     color:#034d03;
 }
@@ -880,7 +900,8 @@ fieldset legend a, html.js fieldset.collapsible legend a {
 .subsection-primi-piatti.grey .field-name-field-recipe-cookingtime .field-label,
 .subsection-primi-piatti.grey .field-name-field-recipe-instructions .field-label,
 .subsection-primi-piatti.grey .field-name-field-recipe-ingredients .field-label,
-.subsection-primi-piatti.grey .field-name-field-recipe-italian-title {
+.subsection-primi-piatti.grey .field-name-field-recipe-italian-title,
+ {
     color:#D96704;
 }
 .subsection-verdure.grey .field-name-field-recipe-serves,
@@ -897,8 +918,11 @@ fieldset legend a, html.js fieldset.collapsible legend a {
 .section-recipes .npb {
     display:none;   
 }
-.context-recipes .article ul.links {
+/*.context-recipes .article ul.links {
     margin: -75px 0 0;
+}*/
+.page-taxonomy .view-recommended-recipes h2.title {
+	display:none;
 }
 .view-latest-recipe {
     text-align:right;

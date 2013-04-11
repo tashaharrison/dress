@@ -3,7 +3,8 @@
 /** 
  * Structural elements
 **/
-h1#page-title {
+h1#page-title,
+.breadcrumb {
     text-align: left;
 }
 html {
@@ -18,14 +19,6 @@ html {
 }
 .page {
     margin-top: 20px;
-}
-.region-content-inner ul.links {
-    float: right;
-    margin: -60px 0 0;
-    display: block;
-}
-.context-recipes .region-content-inner ul.links {
-    margin: -50px 0 0;
 }
 .region-content-inner ul.links li {
     display: block;
@@ -253,15 +246,20 @@ ul.links .service-links-pinterest-button a {
     display: inline-block;
     float: left;
 }
-.node-type-product .region-content-inner ul.links {
+.region-content-inner ul.links {
     position: absolute;
     right: 0;
-    top: 50px;
+    top: 0;
     display: block;
 }
-.node-type-product ul.links .service-links-pinterest-button a {
+.region-content-inner  ul.links .service-links-pinterest-button a {
     margin: 40px 10px !important;
 }
-.node-type-product .content .field {
- 
+.region-content-inner ul.links {
+    float: right;
+    display: block;
+    margin: -10px 0 0;
+}
+.node-type-recipe .region-content-inner ul.links {
+    margin: -65px 0 0;
 }
