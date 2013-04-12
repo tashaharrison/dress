@@ -237,13 +237,20 @@ html.js #user-login-form li.openid-link, html.js #user-login li.openid-link, #us
 /* Contact us form */
 #company-address {
 }
+.page-type-webform .field-name-body {
+	float: left;
+	width: 450px;
+	padding-right: 14px;
+}
 .webform-client-form {
 	background: none repeat scroll 0 0 #EEEEEE;	
 	border-radius: 4px;
+	float: left;
 	-khtml-border-radius: 4px;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
     padding: 11px 30px 26px 24px;
+	width: 400px;
 }
 .node-form .openlayers-container {
 	margin-top: 34px
