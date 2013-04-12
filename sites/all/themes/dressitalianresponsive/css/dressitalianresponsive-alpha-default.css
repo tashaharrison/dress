@@ -27,9 +27,17 @@ html {
 .region-content-inner ul.links li {
      margin-top: -20px;
 }
+.region-content-inner ul.links {
+    float: right;
+    display: block;
+    margin: -10px 0 0;
+}
+.node-type-recipe .region-content-inner ul.links {
+    margin: -65px 0 0;
+}
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     .context-recipes .region-content-inner ul.links {
-    margin: -80px 0 0;
+    margin: -95px 0 0;
     }
     .context-recipes .region-content-inner ul.links li {
         margin-top: 10px;
@@ -254,12 +262,4 @@ ul.links .service-links-pinterest-button a {
 }
 .region-content-inner  ul.links .service-links-pinterest-button a {
     margin: 40px 10px !important;
-}
-.region-content-inner ul.links {
-    float: right;
-    display: block;
-    margin: -10px 0 0;
-}
-.node-type-recipe .region-content-inner ul.links {
-    margin: -65px 0 0;
 }
