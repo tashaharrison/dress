@@ -22,10 +22,15 @@
 .block ul.recipe-categories-links li {
     width: 160px;
 }
+/**
+ *     Blog
+ **/
 .node-blog .links {
     display: block;
-    position: absolute;
-    right: -242px;
+}
+.node-blog ul.links {
+    right: -252px;
+    top: -51px;
 }
 .context-blog .sticky {
     margin-left: 260px;

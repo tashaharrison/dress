@@ -229,6 +229,12 @@ ul.links .service-links-pinterest-button a {
     left: 50%;
     margin-left: 190px;
 }
+.context-blog .region-sidebar-second {
+    margin-top: 0;
+}
+.node-blog .links {
+    display: block;
+}
 /** 
  * Products
 **/

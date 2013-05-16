@@ -30,3 +30,10 @@
 .block ul.recipe-categories-links li {
     width: 140px;
 }
+/**
+ *     Blog
+ */
+.node-blog ul.links {
+    right: -196px;
+    top: -51px;
+}
