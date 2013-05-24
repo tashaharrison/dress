@@ -59,7 +59,7 @@ a:active, a:focus {
 }
 /* Modify the margin to set tab spacings. */
 #primary-menu-bar .primary-menu li {
-	width: 140px;
+	width: 180px;
 }
 #primary-menu-bar .primary-menu li.menu-401 {
 	width: 220px;
@@ -117,7 +117,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#E2E2E2', end
 	text-align: center;
 }
 /* Modify the margin to set tab spacings. */
-#secondary-menu-bar .secondary-menu li {
+/*#secondary-menu-bar .secondary-menu li {
 	width: 125px;
 }
 #secondary-menu-bar .secondary-menu li.menu-456 {
@@ -134,11 +134,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#E2E2E2', end
 }
 #secondary-menu-bar .secondary-menu li.menu-1833 {
 	width:100px;
-}
+}*/
 #secondary-menu-bar .secondary-menu li a {
 	color: #4C4C4C;
 	font-size: 1.1em;
-	padding: 6px 26px;
+	padding: 6px 33px;
 	font-weight: bold;
 }
 /* Set pseudo class styles. */
